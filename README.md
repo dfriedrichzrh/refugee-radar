@@ -7,14 +7,15 @@
 [![CI Pipeline](https://github.com/dfriedrichzrh/refugee-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/dfriedrichzrh/refugee-radar/actions/workflows/ci.yml)
 [![Python: 3.8+](https://img.shields.io/badge/Python-3.8%2B%20(Stdlib%20Only)-success.svg)](aegis.py)
 [![Frontend: MapLibre GL](https://img.shields.io/badge/Frontend-MapLibre%20GL%20%7C%20Vanilla%20JS-informational.svg)](index.html)
-[![Live Demo](https://img.shields.io/badge/Live%20Deployment-Cloudflare%20Edge-brightgreen.svg)](https://evening-barbara-displaying-affordable.trycloudflare.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Deployment-GitHub%20Pages-brightgreen.svg)](https://dfriedrichzrh.github.io/refugee-radar/)
 [![Status: Operational](https://img.shields.io/badge/Status-Operational%20MVP-orange.svg)](#)
 
 ---
 
 ### 🌐 Live Deployment & Preview
 
-* **Public Live Instance:** [https://evening-barbara-displaying-affordable.trycloudflare.com](https://evening-barbara-displaying-affordable.trycloudflare.com)
+* **Official Live Instance:** [https://dfriedrichzrh.github.io/refugee-radar/](https://dfriedrichzrh.github.io/refugee-radar/)
+* **Edge Tunnel (Local Backend):** [https://evening-barbara-displaying-affordable.trycloudflare.com](https://evening-barbara-displaying-affordable.trycloudflare.com)
 * **Local Endpoint:** `http://127.0.0.1:8081` (or `:8080`)
 
 ---
