@@ -4,6 +4,7 @@
 > *Zero-auth real-time telemetry fusion, 72-hour route-adaptive predictive models, and tactical IAMSAR leeway drift calculation for humanitarian responders and civil search & rescue.*
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
+[![CI Pipeline](https://github.com/dfriedrichzrh/refugee-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/dfriedrichzrh/refugee-radar/actions/workflows/ci.yml)
 [![Python: 3.8+](https://img.shields.io/badge/Python-3.8%2B%20(Stdlib%20Only)-success.svg)](aegis.py)
 [![Frontend: MapLibre GL](https://img.shields.io/badge/Frontend-MapLibre%20GL%20%7C%20Vanilla%20JS-informational.svg)](index.html)
 [![Live Demo](https://img.shields.io/badge/Live%20Deployment-Cloudflare%20Edge-brightgreen.svg)](https://evening-barbara-displaying-affordable.trycloudflare.com)

@@ -1,0 +1,43 @@
+name: CI Pipeline & Algorithmic Self-Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Täglicher automatischer Smoke-Test um 06:00 UTC
+    - cron: '0 6 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Test Zero-Dependency Live Ingestion (--once)
+      run: |
+        python3 aegis.py --once
+
+    - name: Test Synthetic Scenario - Sicily Trap
+      run: |
+        python3 aegis.py --once --scenario sicily_trap
+
+    - name: Test Synthetic Scenario - Balkan Freeze
+      run: |
+        python3 aegis.py --once --scenario balkan_freeze
+
+    - name: Test Synthetic Scenario - Aegean Surge
+      run: |
+        python3 aegis.py --once --scenario aegean_surge
+
+    - name: Validate live_state.json integrity
+      run: |
+        python3 -c "import json; data = json.load(open('live_state.json')); assert 'corridors' in data; print('JSON State Validated Successfully!')"
