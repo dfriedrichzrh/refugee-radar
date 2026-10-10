@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "If you use or reference the Refugee Radar / Aegis platform in your research or operational deployments, please cite it as below."
 authors:
-  - family-names: "Refugee Radar Core Team"
-    given-names: "safeaioptimist"
-    alias: "safeaioptimist"
+  - family-names: "Friedrich"
+    given-names: "D."
+    alias: "dfriedrichzrh"
 title: "Refugee Radar: Route-Adaptive Early Warning & Situational Awareness System for Humanitarian Logistics and Search and Rescue (SAR)"
 version: 1.0.0
 date-released: 2026-10-10
-url: "https://github.com/safeaioptimist/refugee-radar"
-repository-code: "https://github.com/safeaioptimist/refugee-radar"
+url: "https://github.com/dfriedrichzrh/refugee-radar"
+repository-code: "https://github.com/dfriedrichzrh/refugee-radar"
 abstract: "An autonomous, zero-dependency humanitarian early-warning and situational awareness platform fusing Open-Meteo marine/weather telemetry, GloFAS river discharge, UN OCHA ReliefWeb, and GDELT 2.0 anomaly events with an integrated IAMSAR leeway drift solver for 72-hour SAR and reception readiness planning."
 keywords:
   - "humanitarian logistics"

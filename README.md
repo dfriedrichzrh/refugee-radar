@@ -88,7 +88,7 @@ Refugee Radar is engineered with extreme operational resilience in mind. The bac
 ### Running Locally
 ```bash
 # Clone the repository
-git clone https://github.com/safeaioptimist/refugee-radar.git
+git clone https://github.com/dfriedrichzrh/refugee-radar.git
 cd refugee-radar
 
 # Launch the daemon & HTTP server
@@ -109,10 +109,10 @@ python3 aegis.py --once
 If you reference this software or utilize its models in research or humanitarian operations, please cite using `CITATION.cff`:
 
 ```bibtex
-@software{safeaioptimist_refugee_radar_2026,
-  author = {safeaioptimist},
+@software{friedrich_refugee_radar_2026,
+  author = {Friedrich, D. and Refugee Radar Contributors},
   title = {Refugee Radar: Route-Adaptive Early Warning & Situational Awareness System for Humanitarian Logistics and Search and Rescue},
-  url = {https://github.com/safeaioptimist/refugee-radar},
+  url = {https://github.com/dfriedrichzrh/refugee-radar},
   version = {1.0.0},
   year = {2026}
 }
