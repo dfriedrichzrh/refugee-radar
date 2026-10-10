@@ -1,0 +1,57 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Refugee Radar//Award Timeline//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Refugee Radar Awards & Deadlines
+X-WR-TIMEZONE:Europe/Zurich
+
+BEGIN:VEVENT
+UID:rr-wsis-20261115@refugee-radar
+DTSTAMP:20261010T100500Z
+DTSTART:20261115T080000Z
+DTEND:20261115T083000Z
+SUMMARY:🏆 Refugee Radar: UN WSIS Prizes 2027 Einreichung
+DESCRIPTION:Portal öffnet: https://www.itu.int/net4/wsis/stocktaking/Prizes/Prizes\n\nTextbausteine aus award_submission_dossier.md (Teil 2, English) 1:1 hineinkopieren.\nKategorie: E-Science / Action Line C11.\nAufwand: 15 Minuten.
+URL:https://www.itu.int/net4/wsis/stocktaking/Prizes/Prizes
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Erinnerung: UN WSIS Prizes Einreichung
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:rr-ars-20270115@refugee-radar
+DTSTAMP:20261010T100500Z
+DTSTART:20270115T080000Z
+DTEND:20270115T083000Z
+SUMMARY:🏆 Refugee Radar: Prix Ars Electronica (Portal öffnet)
+DESCRIPTION:Portal öffnet: https://ars.electronica.art/prix/de/\n\nBewerbung für 'Digital Humanity' oder 'European Union Citizen Science' einreichen.\nTextbausteine aus award_submission_dossier.md (Teil 2) nutzen.\nDeadline: Anfang März 2027.
+URL:https://ars.electronica.art/prix/de/
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Erinnerung: Prix Ars Electronica Einreichung
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:rr-dinacon-20270515@refugee-radar
+DTSTAMP:20261010T100500Z
+DTSTART:20270515T070000Z
+DTEND:20270515T073000Z
+SUMMARY:🏆 Refugee Radar: DINAcon Awards 2027 (Ausschreibung startet)
+DESCRIPTION:Portal: https://dinacon.ch/\n\nSchweizer Open-Source-Preis (CH Open & Uni Bern).\nTextbausteine aus award_submission_dossier.md (Teil 1, Deutsch) nutzen.\nDeadline: ca. 31. August 2027.
+URL:https://dinacon.ch/
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Erinnerung: DINAcon Awards Ausschreibung
+END:VALARM
+END:VEVENT
+
+END:VCALENDAR
