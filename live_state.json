@@ -1,0 +1,8596 @@
+{
+ "run_id": "run_20261010_0855Z",
+ "timestamp_utc": "2026-10-10T08:55:00Z",
+ "mode_label": "LIVE AUTONOMOUS PATROL",
+ "is_synthetic": false,
+ "global_risk_level": "CRITICAL",
+ "focused_corridor_id": "aegean_east",
+ "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+ "corridors": [
+  {
+   "id": "central_med",
+   "name": "Central Med (Tunisia → Lampedusa)",
+   "short_name": "Central Med",
+   "risk_score": 56,
+   "status": "ELEVATED SAR READINESS",
+   "color": "#FB923C",
+   "coordinates": {
+    "origin": [
+     10.76,
+     34.74
+    ],
+    "origin_name": "Sfax / Zarzis Coast",
+    "midpoint": [
+     11.8,
+     35.1
+    ],
+    "midpoint_name": "Sicily Strait SAR Zone",
+    "destination": [
+     12.6,
+     35.5
+    ],
+    "destination_name": "Lampedusa Reception"
+   },
+   "historical_data": {
+    "source": "UNHCR Operational Data Portal & IOM Missing Migrants (Central Mediterranean)",
+    "annual_2024_arrivals": 66280,
+    "annual_2025_arrivals": 71420,
+    "annual_2025_fatalities": 1478,
+    "monthly_trend": [
+     {
+      "month": "Okt 25",
+      "arrivals": 6420,
+      "fatalities": 142
+     },
+     {
+      "month": "Nov 25",
+      "arrivals": 4180,
+      "fatalities": 98
+     },
+     {
+      "month": "Dez 25",
+      "arrivals": 2950,
+      "fatalities": 84
+     },
+     {
+      "month": "Jan 26",
+      "arrivals": 2100,
+      "fatalities": 65
+     },
+     {
+      "month": "Feb 26",
+      "arrivals": 2450,
+      "fatalities": 71
+     },
+     {
+      "month": "Mär 26",
+      "arrivals": 3820,
+      "fatalities": 92
+     },
+     {
+      "month": "Apr 26",
+      "arrivals": 5640,
+      "fatalities": 115
+     },
+     {
+      "month": "Mai 26",
+      "arrivals": 7890,
+      "fatalities": 154
+     },
+     {
+      "month": "Jun 26",
+      "arrivals": 9420,
+      "fatalities": 188
+     },
+     {
+      "month": "Jul 26",
+      "arrivals": 11200,
+      "fatalities": 210
+     },
+     {
+      "month": "Aug 26",
+      "arrivals": 12850,
+      "fatalities": 245
+     },
+     {
+      "month": "Sep 26",
+      "arrivals": 8940,
+      "fatalities": 168
+     }
+    ],
+    "hotspot_name": "Hotspot Lampedusa (Contrada Imbriacola)",
+    "capacity_nominal": 850,
+    "capacity_max": 1400,
+    "current_occupancy": 680
+   },
+   "metrics": [
+    {
+     "label": "Current Wave",
+     "value": "1.26 m",
+     "delta": "Rough"
+    },
+    {
+     "label": "48h Peak Swell",
+     "value": "1.58 m",
+     "delta": "+41% vs 12h min"
+    },
+    {
+     "label": "Peak Wind Gust",
+     "value": "57 km/h",
+     "delta": "Beaufort 7"
+    },
+    {
+     "label": "Surface Drift",
+     "value": "1.2 kts",
+     "delta": "toward 142°"
+    }
+   ],
+   "hourly_series": {
+    "labels": [
+     "T+0h",
+     "T+4h",
+     "T+8h",
+     "T+12h",
+     "T+16h",
+     "T+20h",
+     "T+24h",
+     "T+28h",
+     "T+32h",
+     "T+36h"
+    ],
+    "primary": [
+     1.26,
+     1.5,
+     1.42,
+     1.12,
+     0.9,
+     1.1,
+     1.44,
+     1.44,
+     1.36,
+     1.16
+    ],
+    "secondary": [
+     56.9,
+     50.4,
+     41.8,
+     37.1,
+     30.6,
+     54.0,
+     49.0,
+     52.2,
+     49.7,
+     44.3
+    ]
+   },
+   "series_units": {
+    "primary": "Wave height (m)",
+    "secondary": "Wind gust (km/h)"
+   },
+   "timeline": {
+    "wave": [
+     1.26,
+     1.32,
+     1.4,
+     1.46,
+     1.5,
+     1.54,
+     1.58,
+     1.5,
+     1.42,
+     1.34,
+     1.26,
+     1.2,
+     1.12,
+     1.06,
+     1.0,
+     0.94,
+     0.9,
+     0.88,
+     0.84,
+     0.96,
+     1.1,
+     1.22,
+     1.3,
+     1.36,
+     1.44,
+     1.44,
+     1.46,
+     1.46,
+     1.44,
+     1.44,
+     1.42,
+     1.38,
+     1.36,
+     1.32,
+     1.26,
+     1.22,
+     1.16,
+     1.12,
+     1.06,
+     1.02,
+     0.96,
+     0.9,
+     0.84,
+     0.8,
+     0.76,
+     0.72,
+     0.7,
+     0.68,
+     0.66,
+     0.64,
+     0.6,
+     0.58,
+     0.56,
+     0.52,
+     0.5,
+     0.48,
+     0.44,
+     0.42,
+     0.42,
+     0.44,
+     0.44,
+     0.44,
+     0.42,
+     0.42,
+     0.42,
+     0.4,
+     0.4,
+     0.38,
+     0.38,
+     0.36,
+     0.36,
+     0.34
+    ],
+    "gust": [
+     56.9,
+     55.4,
+     54.4,
+     51.5,
+     50.4,
+     45.4,
+     45.4,
+     45.0,
+     41.8,
+     42.5,
+     43.6,
+     40.7,
+     37.1,
+     36.0,
+     38.9,
+     36.4,
+     30.6,
+     27.7,
+     39.2,
+     49.0,
+     54.0,
+     54.0,
+     51.1,
+     50.0,
+     49.0,
+     47.2,
+     51.1,
+     52.2,
+     52.2,
+     51.5,
+     51.5,
+     49.7,
+     49.7,
+     46.8,
+     43.6,
+     43.6,
+     44.3,
+     43.9,
+     41.4,
+     38.2,
+     33.1,
+     33.5,
+     31.7,
+     31.3,
+     27.0,
+     26.3,
+     25.6,
+     25.9,
+     25.2,
+     25.2,
+     22.7,
+     19.8,
+     16.9,
+     13.0,
+     12.2,
+     10.8,
+     9.0,
+     4.7,
+     8.3,
+     16.9,
+     17.3,
+     19.8,
+     19.1,
+     17.6,
+     11.5,
+     11.5,
+     15.1,
+     14.8,
+     14.4,
+     14.4,
+     13.0,
+     9.7
+    ],
+    "wind": [
+     39.2,
+     39.9,
+     37.8,
+     37.3,
+     33.8,
+     33.4,
+     33.9,
+     31.4,
+     28.1,
+     32.0,
+     30.7,
+     28.6,
+     25.2,
+     27.7,
+     28.0,
+     23.2,
+     18.8,
+     21.1,
+     30.0,
+     36.3,
+     39.7,
+     37.9,
+     36.4,
+     36.4,
+     33.7,
+     35.4,
+     37.9,
+     38.3,
+     37.5,
+     37.8,
+     36.7,
+     36.7,
+     34.9,
+     35.1,
+     32.7,
+     32.5,
+     33.0,
+     31.5,
+     29.1,
+     25.1,
+     25.4,
+     24.0,
+     24.0,
+     20.8,
+     20.0,
+     19.3,
+     17.3,
+     19.1,
+     18.7,
+     16.7,
+     14.8,
+     12.7,
+     9.6,
+     9.2,
+     7.9,
+     6.4,
+     2.6,
+     3.3,
+     6.0,
+     10.4,
+     12.0,
+     11.9,
+     9.9,
+     7.0,
+     8.1,
+     8.4,
+     10.8,
+     10.1,
+     10.5,
+     9.5,
+     7.1,
+     3.4
+    ],
+    "wdir": [
+     13,
+     13,
+     11,
+     10,
+     14,
+     11,
+     9,
+     9,
+     358,
+     348,
+     351,
+     349,
+     338,
+     337,
+     336,
+     332,
+     331,
+     333,
+     322,
+     321,
+     316,
+     309,
+     312,
+     318,
+     311,
+     305,
+     306,
+     307,
+     305,
+     311,
+     313,
+     314,
+     311,
+     314,
+     320,
+     324,
+     324,
+     327,
+     329,
+     322,
+     335,
+     336,
+     351,
+     351,
+     346,
+     346,
+     343,
+     328,
+     320,
+     335,
+     334,
+     345,
+     340,
+     315,
+     330,
+     344,
+     344,
+     264,
+     245,
+     250,
+     249,
+     245,
+     237,
+     215,
+     201,
+     190,
+     178,
+     163,
+     158,
+     155,
+     150,
+     288
+    ]
+   },
+   "prediction_72h": {
+    "blocks": [
+     {
+      "block_label": "T+06h",
+      "period": "T+0–6h",
+      "wave_m": 1.41,
+      "gust_kmh": 52.33,
+      "est_boats": 1,
+      "est_people": 38,
+      "cum_people": 38,
+      "risk_flag": "CRITICAL_CAPSIZE"
+     },
+     {
+      "block_label": "T+12h",
+      "period": "T+6–12h",
+      "wave_m": 1.38,
+      "gust_kmh": 43.17,
+      "est_boats": 1,
+      "est_people": 38,
+      "cum_people": 76,
+      "risk_flag": "CRITICAL_CAPSIZE"
+     },
+     {
+      "block_label": "T+18h",
+      "period": "T+12–18h",
+      "wave_m": 0.98,
+      "gust_kmh": 34.45,
+      "est_boats": 2,
+      "est_people": 75,
+      "cum_people": 151,
+      "risk_flag": "MODERATE"
+     },
+     {
+      "block_label": "T+24h",
+      "period": "T+18–24h",
+      "wave_m": 1.13,
+      "gust_kmh": 49.55,
+      "est_boats": 0,
+      "est_people": 0,
+      "cum_people": 151,
+      "risk_flag": "CRITICAL_CAPSIZE"
+     },
+     {
+      "block_label": "T+30h",
+      "period": "T+24–30h",
+      "wave_m": 1.45,
+      "gust_kmh": 50.53,
+      "est_boats": 0,
+      "est_people": 0,
+      "cum_people": 151,
+      "risk_flag": "CRITICAL_CAPSIZE"
+     },
+     {
+      "block_label": "T+36h",
+      "period": "T+30–36h",
+      "wave_m": 1.33,
+      "gust_kmh": 47.48,
+      "est_boats": 0,
+      "est_people": 0,
+      "cum_people": 151,
+      "risk_flag": "CRITICAL_CAPSIZE"
+     },
+     {
+      "block_label": "T+42h",
+      "period": "T+36–42h",
+      "wave_m": 1.04,
+      "gust_kmh": 39.07,
+      "est_boats": 2,
+      "est_people": 75,
+      "cum_people": 226,
+      "risk_flag": "MODERATE"
+     },
+     {
+      "block_label": "T+48h",
+      "period": "T+42–48h",
+      "wave_m": 0.75,
+      "gust_kmh": 27.97,
+      "est_boats": 2,
+      "est_people": 75,
+      "cum_people": 301,
+      "risk_flag": "MODERATE"
+     },
+     {
+      "block_label": "T+54h",
+      "period": "T+48–54h",
+      "wave_m": 0.59,
+      "gust_kmh": 20.47,
+      "est_boats": 4,
+      "est_people": 168,
+      "cum_people": 469,
+      "risk_flag": "SURGE"
+     },
+     {
+      "block_label": "T+60h",
+      "period": "T+54–60h",
+      "wave_m": 0.45,
+      "gust_kmh": 10.32,
+      "est_boats": 4,
+      "est_people": 168,
+      "cum_people": 637,
+      "risk_flag": "SURGE"
+     },
+     {
+      "block_label": "T+66h",
+      "period": "T+60–66h",
+      "wave_m": 0.42,
+      "gust_kmh": 16.13,
+      "est_boats": 5,
+      "est_people": 210,
+      "cum_people": 847,
+      "risk_flag": "SURGE"
+     },
+     {
+      "block_label": "T+72h",
+      "period": "T+66–72h",
+      "wave_m": 0.37,
+      "gust_kmh": 13.57,
+      "est_boats": 5,
+      "est_people": 210,
+      "cum_people": 1057,
+      "risk_flag": "SURGE"
+     }
+    ],
+    "total_est_arrivals": 1057,
+    "peak_window": "T+24h–T+36h",
+    "predicted_hotspot_occupancy": 1287,
+    "overcrowding_alert": true
+   },
+   "analysis": {
+    "current_wave_m": 1.26,
+    "calm_hours": 0,
+    "calm_window": null,
+    "storm_onset_h": 10,
+    "peak_wave_m": 1.58,
+    "peak_wave_h": 6,
+    "min_wave_12h_m": 1.12,
+    "trap_delta_m": 0.46,
+    "peak_gust_kmh": 56.9,
+    "trap_detected": false,
+    "drift_kts": 1.21,
+    "drift_bearing_deg": 142
+   },
+   "widget": {
+    "type": "sar_drift",
+    "title": "Distress Drift & SAR Search-Box Planner",
+    "wave": [
+     1.26,
+     1.32,
+     1.4,
+     1.46,
+     1.5,
+     1.54,
+     1.58,
+     1.5,
+     1.42,
+     1.34,
+     1.26,
+     1.2,
+     1.12,
+     1.06,
+     1.0,
+     0.94,
+     0.9,
+     0.88,
+     0.84,
+     0.96,
+     1.1,
+     1.22,
+     1.3,
+     1.36,
+     1.44,
+     1.44,
+     1.46,
+     1.46,
+     1.44,
+     1.44,
+     1.42,
+     1.38,
+     1.36,
+     1.32,
+     1.26,
+     1.22,
+     1.16
+    ],
+    "wind": [
+     39.2,
+     39.9,
+     37.8,
+     37.3,
+     33.8,
+     33.4,
+     33.9,
+     31.4,
+     28.1,
+     32.0,
+     30.7,
+     28.6,
+     25.2,
+     27.7,
+     28.0,
+     23.2,
+     18.8,
+     21.1,
+     30.0,
+     36.3,
+     39.7,
+     37.9,
+     36.4,
+     36.4,
+     33.7,
+     35.4,
+     37.9,
+     38.3,
+     37.5,
+     37.8,
+     36.7,
+     36.7,
+     34.9,
+     35.1,
+     32.7,
+     32.5,
+     33.0
+    ],
+    "gust": [
+     56.9,
+     55.4,
+     54.4,
+     51.5,
+     50.4,
+     45.4,
+     45.4,
+     45.0,
+     41.8,
+     42.5,
+     43.6,
+     40.7,
+     37.1,
+     36.0,
+     38.9,
+     36.4,
+     30.6,
+     27.7,
+     39.2,
+     49.0,
+     54.0,
+     54.0,
+     51.1,
+     50.0,
+     49.0,
+     47.2,
+     51.1,
+     52.2,
+     52.2,
+     51.5,
+     51.5,
+     49.7,
+     49.7,
+     46.8,
+     43.6,
+     43.6,
+     44.3
+    ],
+    "wdir": [
+     13,
+     13,
+     11,
+     10,
+     14,
+     11,
+     9,
+     9,
+     358,
+     348,
+     351,
+     349,
+     338,
+     337,
+     336,
+     332,
+     331,
+     333,
+     322,
+     321,
+     316,
+     309,
+     312,
+     318,
+     311,
+     305,
+     306,
+     307,
+     305,
+     311,
+     313,
+     314,
+     311,
+     314,
+     320,
+     324,
+     324
+    ],
+    "calm": null,
+    "storm": [
+     10,
+     24
+    ],
+    "datum": [
+     11.8,
+     35.1
+    ],
+    "residual_kts": 0.6
+   }
+  },
+  {
+   "id": "balkan_land",
+   "name": "Balkan Route (Bihać → Sava/Una)",
+   "short_name": "Balkan Route",
+   "risk_score": 48,
+   "status": "WATCH",
+   "color": "#FBBF24",
+   "coordinates": {
+    "origin": [
+     15.87,
+     44.81
+    ],
+    "origin_name": "Bihać, Bosnia",
+    "midpoint": [
+     15.75,
+     44.78
+    ],
+    "midpoint_name": "Plješevica Pass (1,200 m)",
+    "destination": [
+     16.9,
+     45.14
+    ],
+    "destination_name": "Sava/Una River Border"
+   },
+   "historical_data": {
+    "source": "IOM Western Balkans Overview & Frontex Land Route Data",
+    "annual_2024_arrivals": 24800,
+    "annual_2025_arrivals": 21500,
+    "annual_2025_fatalities": 46,
+    "monthly_trend": [
+     {
+      "month": "Okt 25",
+      "arrivals": 2350,
+      "fatalities": 4
+     },
+     {
+      "month": "Nov 25",
+      "arrivals": 1620,
+      "fatalities": 6
+     },
+     {
+      "month": "Dez 25",
+      "arrivals": 980,
+      "fatalities": 8
+     },
+     {
+      "month": "Jan 26",
+      "arrivals": 720,
+      "fatalities": 9
+     },
+     {
+      "month": "Feb 26",
+      "arrivals": 810,
+      "fatalities": 7
+     },
+     {
+      "month": "Mär 26",
+      "arrivals": 1240,
+      "fatalities": 5
+     },
+     {
+      "month": "Apr 26",
+      "arrivals": 1820,
+      "fatalities": 3
+     },
+     {
+      "month": "Mai 26",
+      "arrivals": 2210,
+      "fatalities": 2
+     },
+     {
+      "month": "Jun 26",
+      "arrivals": 2650,
+      "fatalities": 2
+     },
+     {
+      "month": "Jul 26",
+      "arrivals": 2980,
+      "fatalities": 3
+     },
+     {
+      "month": "Aug 26",
+      "arrivals": 3120,
+      "fatalities": 3
+     },
+     {
+      "month": "Sep 26",
+      "arrivals": 2450,
+      "fatalities": 4
+     }
+    ],
+    "hotspot_name": "Lipa & Borići Reception Centers (Bihać)",
+    "capacity_nominal": 1500,
+    "capacity_max": 2000,
+    "current_occupancy": 1120
+   },
+   "metrics": [
+    {
+     "label": "Min Night Windchill",
+     "value": "-0.7 °C",
+     "delta": "T+30h · Freezing"
+    },
+    {
+     "label": "River Discharge",
+     "value": "0.01× mean",
+     "delta": "0 m³/s"
+    },
+    {
+     "label": "Pass Wind (48h max)",
+     "value": "34 km/h",
+     "delta": "Beaufort 5"
+    },
+    {
+     "label": "48h Snowfall",
+     "value": "0.0 cm",
+     "delta": "Freezing lvl 2690 m"
+    }
+   ],
+   "hourly_series": {
+    "labels": [
+     "T+0h",
+     "T+4h",
+     "T+8h",
+     "T+12h",
+     "T+16h",
+     "T+20h",
+     "T+24h",
+     "T+28h",
+     "T+32h",
+     "T+36h"
+    ],
+    "primary": [
+     10.5,
+     11.0,
+     10.7,
+     11.6,
+     10.4,
+     9.6,
+     3.8,
+     1.5,
+     0.5,
+     6.5
+    ],
+    "secondary": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.02,
+     0.02,
+     0.02,
+     0.03,
+     0.05,
+     0.06
+    ]
+   },
+   "series_units": {
+    "primary": "Apparent temperature (°C)",
+    "secondary": "Discharge ratio (×mean)"
+   },
+   "timeline": {
+    "apparent": [
+     10.5,
+     10.8,
+     11.7,
+     11.6,
+     11.0,
+     10.8,
+     10.9,
+     10.9,
+     10.7,
+     10.3,
+     10.6,
+     11.2,
+     11.6,
+     10.9,
+     11.2,
+     10.4,
+     10.4,
+     10.6,
+     10.3,
+     10.8,
+     9.6,
+     7.4,
+     5.9,
+     5.0,
+     3.8,
+     2.7,
+     2.5,
+     2.1,
+     1.5,
+     0.8,
+     -0.7,
+     -0.4,
+     0.5,
+     1.7,
+     2.9,
+     4.7,
+     6.5,
+     6.9,
+     6.8,
+     6.1,
+     5.0,
+     4.6,
+     4.1,
+     3.8,
+     3.8,
+     3.6,
+     3.6,
+     3.4,
+     3.3,
+     3.4,
+     3.4,
+     3.2,
+     2.4,
+     1.5,
+     1.5,
+     3.3,
+     3.9,
+     4.3,
+     4.6,
+     4.8,
+     5.2,
+     5.1,
+     4.5,
+     4.1,
+     3.5,
+     2.7,
+     2.0,
+     1.8,
+     0.9,
+     0.8,
+     0.5,
+     0.2
+    ],
+    "ratio": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.03,
+     0.03,
+     0.03,
+     0.04,
+     0.04,
+     0.04,
+     0.05,
+     0.05,
+     0.05,
+     0.06,
+     0.06,
+     0.06,
+     0.07,
+     0.07,
+     0.07,
+     0.08,
+     0.08,
+     0.08,
+     0.09,
+     0.09,
+     0.09,
+     0.1,
+     0.1,
+     0.1,
+     0.11,
+     0.11,
+     0.11,
+     0.11,
+     0.12,
+     0.12,
+     0.12,
+     0.12,
+     0.12,
+     0.13,
+     0.13,
+     0.13,
+     0.14,
+     0.14,
+     0.14,
+     0.14,
+     0.15,
+     0.15,
+     0.15,
+     0.15,
+     0.15,
+     0.16
+    ],
+    "wind": [
+     11.6,
+     9.1,
+     3.5,
+     3.6,
+     6.9,
+     8.6,
+     5.8,
+     7.0,
+     9.0,
+     9.8,
+     10.2,
+     12.3,
+     15.1,
+     14.3,
+     10.0,
+     8.2,
+     6.1,
+     1.4,
+     3.1,
+     0.8,
+     4.7,
+     7.5,
+     11.7,
+     15.2,
+     19.2,
+     25.0,
+     25.0,
+     28.0,
+     31.5,
+     33.3,
+     33.7,
+     33.8,
+     34.0,
+     31.1,
+     28.2,
+     24.5,
+     18.0,
+     13.9,
+     12.5,
+     11.9,
+     10.4,
+     7.2,
+     8.3,
+     8.8,
+     8.0,
+     9.1,
+     9.4,
+     9.6,
+     10.5,
+     10.6,
+     10.4,
+     10.1,
+     9.9,
+     8.5,
+     7.6,
+     6.2,
+     8.1,
+     8.9,
+     11.0,
+     11.2,
+     11.3,
+     10.9,
+     10.5,
+     8.1,
+     6.2,
+     2.8,
+     3.2,
+     1.3,
+     3.7,
+     2.2,
+     2.2,
+     1.5
+    ]
+   },
+   "prediction_72h": {
+    "blocks": [
+     {
+      "block_label": "T+06h",
+      "period": "T+0–6h",
+      "apparent_c": 11.07,
+      "est_people": 55,
+      "cum_people": 55,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+12h",
+      "period": "T+6–12h",
+      "apparent_c": 10.77,
+      "est_people": 55,
+      "cum_people": 110,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+18h",
+      "period": "T+12–18h",
+      "apparent_c": 10.85,
+      "est_people": 55,
+      "cum_people": 165,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+24h",
+      "period": "T+18–24h",
+      "apparent_c": 8.17,
+      "est_people": 55,
+      "cum_people": 220,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+30h",
+      "period": "T+24–30h",
+      "apparent_c": 2.23,
+      "est_people": 35,
+      "cum_people": 255,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+36h",
+      "period": "T+30–36h",
+      "apparent_c": 1.45,
+      "est_people": 35,
+      "cum_people": 290,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+42h",
+      "period": "T+36–42h",
+      "apparent_c": 5.98,
+      "est_people": 55,
+      "cum_people": 345,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+48h",
+      "period": "T+42–48h",
+      "apparent_c": 3.72,
+      "est_people": 35,
+      "cum_people": 380,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+54h",
+      "period": "T+48–54h",
+      "apparent_c": 2.87,
+      "est_people": 35,
+      "cum_people": 415,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+60h",
+      "period": "T+54–60h",
+      "apparent_c": 3.73,
+      "est_people": 35,
+      "cum_people": 450,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+66h",
+      "period": "T+60–66h",
+      "apparent_c": 4.18,
+      "est_people": 35,
+      "cum_people": 485,
+      "hypo_risk": "MODERATE"
+     },
+     {
+      "block_label": "T+72h",
+      "period": "T+66–72h",
+      "apparent_c": 1.03,
+      "est_people": 35,
+      "cum_people": 520,
+      "hypo_risk": "MODERATE"
+     }
+    ],
+    "total_est_arrivals": 520,
+    "peak_window": "Tagüber T+12h–T+18h",
+    "predicted_hotspot_occupancy": 1460,
+    "overcrowding_alert": false
+   },
+   "analysis": {
+    "min_night_apparent_c": -0.7,
+    "min_night_hour": 30,
+    "min_air_c": 5.6,
+    "discharge_ratio": 0.01,
+    "discharge_m3s": 0.01,
+    "peak_ratio_7d": 0.16,
+    "snowfall_48h_cm": 0.0,
+    "max_wind_kmh": 34.0
+   },
+   "widget": {
+    "type": "hypothermia",
+    "title": "Hypothermia & Field-Medic Planner",
+    "apparent": [
+     10.5,
+     10.8,
+     11.7,
+     11.6,
+     11.0,
+     10.8,
+     10.9,
+     10.9,
+     10.7,
+     10.3,
+     10.6,
+     11.2,
+     11.6,
+     10.9,
+     11.2,
+     10.4,
+     10.4,
+     10.6,
+     10.3,
+     10.8,
+     9.6,
+     7.4,
+     5.9,
+     5.0,
+     3.8,
+     2.7,
+     2.5,
+     2.1,
+     1.5,
+     0.8,
+     -0.7,
+     -0.4,
+     0.5,
+     1.7,
+     2.9,
+     4.7,
+     6.5
+    ],
+    "ratio": [
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.01,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.03,
+     0.03,
+     0.03,
+     0.04,
+     0.04,
+     0.04,
+     0.05,
+     0.05,
+     0.05,
+     0.06,
+     0.06
+    ],
+    "min_air_c": 5.6,
+    "min_apparent_c": -0.7,
+    "ratio_now": 0.01,
+    "wind_kmh": 34.0
+   }
+  },
+  {
+   "id": "aegean_east",
+   "name": "Aegean (Çeşme → Lesbos)",
+   "short_name": "Aegean",
+   "risk_score": 85,
+   "status": "RECEPTION SURGE ALERT",
+   "color": "#F43F5E",
+   "coordinates": {
+    "origin": [
+     26.69,
+     39.32
+    ],
+    "origin_name": "Çeşme Coast",
+    "midpoint": [
+     26.4,
+     39.25
+    ],
+    "midpoint_name": "Aegean Mid-Channel",
+    "destination": [
+     26.55,
+     39.1
+    ],
+    "destination_name": "Lesbos Reception"
+   },
+   "historical_data": {
+    "source": "UNHCR Greece Sea Arrivals & IOM DTM (Eastern Mediterranean)",
+    "annual_2024_arrivals": 48300,
+    "annual_2025_arrivals": 52100,
+    "annual_2025_fatalities": 214,
+    "monthly_trend": [
+     {
+      "month": "Okt 25",
+      "arrivals": 5120,
+      "fatalities": 22
+     },
+     {
+      "month": "Nov 25",
+      "arrivals": 3840,
+      "fatalities": 18
+     },
+     {
+      "month": "Dez 25",
+      "arrivals": 2650,
+      "fatalities": 14
+     },
+     {
+      "month": "Jan 26",
+      "arrivals": 1820,
+      "fatalities": 11
+     },
+     {
+      "month": "Feb 26",
+      "arrivals": 1950,
+      "fatalities": 12
+     },
+     {
+      "month": "Mär 26",
+      "arrivals": 2890,
+      "fatalities": 16
+     },
+     {
+      "month": "Apr 26",
+      "arrivals": 4120,
+      "fatalities": 20
+     },
+     {
+      "month": "Mai 26",
+      "arrivals": 5420,
+      "fatalities": 25
+     },
+     {
+      "month": "Jun 26",
+      "arrivals": 6890,
+      "fatalities": 29
+     },
+     {
+      "month": "Jul 26",
+      "arrivals": 7650,
+      "fatalities": 34
+     },
+     {
+      "month": "Aug 26",
+      "arrivals": 8420,
+      "fatalities": 38
+     },
+     {
+      "month": "Sep 26",
+      "arrivals": 6320,
+      "fatalities": 26
+     }
+    ],
+    "hotspot_name": "Lesbos Mavrovouni (CCAC) & Chios",
+    "capacity_nominal": 3000,
+    "capacity_max": 4200,
+    "current_occupancy": 2640
+   },
+   "metrics": [
+    {
+     "label": "Current Wave",
+     "value": "0.04 m",
+     "delta": "Calm"
+    },
+    {
+     "label": "Longest Calm Run",
+     "value": "72 h",
+     "delta": "from T+0h"
+    },
+    {
+     "label": "Peak Wind Gust",
+     "value": "30 km/h",
+     "delta": "T+38h · Bft 5"
+    },
+    {
+     "label": "Gust-Spike Hours",
+     "value": "0 h",
+     "delta": "≥35 km/h"
+    }
+   ],
+   "hourly_series": {
+    "labels": [
+     "T+0h",
+     "T+4h",
+     "T+8h",
+     "T+12h",
+     "T+16h",
+     "T+20h",
+     "T+24h",
+     "T+28h",
+     "T+32h",
+     "T+36h"
+    ],
+    "primary": [
+     0.04,
+     0.04,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.04,
+     0.08
+    ],
+    "secondary": [
+     7.2,
+     4.3,
+     13.7,
+     16.9,
+     4.7,
+     5.8,
+     14.0,
+     15.8,
+     24.5,
+     24.1
+    ]
+   },
+   "series_units": {
+    "primary": "Wave height (m)",
+    "secondary": "Wind gust (km/h)"
+   },
+   "timeline": {
+    "wave": [
+     0.04,
+     0.04,
+     0.04,
+     0.04,
+     0.04,
+     0.04,
+     0.04,
+     0.04,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.04,
+     0.04,
+     0.06,
+     0.06,
+     0.08,
+     0.1,
+     0.12,
+     0.14,
+     0.16,
+     0.18,
+     0.2,
+     0.2,
+     0.18,
+     0.18,
+     0.18,
+     0.2,
+     0.2,
+     0.24,
+     0.28,
+     0.32,
+     0.32,
+     0.32,
+     0.32,
+     0.32,
+     0.3,
+     0.3,
+     0.28,
+     0.24,
+     0.22,
+     0.2,
+     0.18,
+     0.16,
+     0.16,
+     0.14,
+     0.14,
+     0.14,
+     0.14,
+     0.14,
+     0.14,
+     0.14
+    ],
+    "gust": [
+     7.2,
+     6.5,
+     5.0,
+     2.9,
+     4.3,
+     5.8,
+     7.2,
+     11.2,
+     13.7,
+     13.7,
+     14.4,
+     15.8,
+     16.9,
+     16.9,
+     14.4,
+     9.7,
+     4.7,
+     3.6,
+     6.1,
+     6.5,
+     5.8,
+     6.1,
+     8.3,
+     10.8,
+     14.0,
+     14.4,
+     14.0,
+     15.1,
+     15.8,
+     16.2,
+     16.6,
+     21.2,
+     24.5,
+     24.5,
+     19.4,
+     21.6,
+     24.1,
+     29.2,
+     30.2,
+     27.7,
+     18.0,
+     15.8,
+     13.3,
+     15.5,
+     16.9,
+     17.3,
+     16.6,
+     19.8,
+     18.4,
+     18.7,
+     17.3,
+     25.6,
+     19.1,
+     22.7,
+     25.6,
+     22.3,
+     27.0,
+     28.8,
+     27.0,
+     23.8,
+     23.4,
+     22.3,
+     21.6,
+     21.6,
+     19.1,
+     13.7,
+     16.2,
+     11.9,
+     12.2,
+     12.2,
+     16.9,
+     16.9
+    ]
+   },
+   "prediction_72h": {
+    "blocks": [
+     {
+      "block_label": "T+06h",
+      "period": "D1 00–06h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 125,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+12h",
+      "period": "D1 06–12h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 250,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+18h",
+      "period": "D1 12–18h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 375,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+24h",
+      "period": "D1 18–24h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 500,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+30h",
+      "period": "D2 00–06h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 625,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+36h",
+      "period": "D2 06–12h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 750,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+42h",
+      "period": "D2 12–18h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 875,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+48h",
+      "period": "D2 18–24h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 1000,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+54h",
+      "period": "D3 00–06h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 1125,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+60h",
+      "period": "D3 06–12h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 1250,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+66h",
+      "period": "D3 12–18h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 1375,
+      "risk_flag": "SURGE_OVERCROWDING"
+     },
+     {
+      "block_label": "T+72h",
+      "period": "D3 18–24h",
+      "est_people": 125,
+      "est_boats": 3,
+      "cum_people": 1500,
+      "risk_flag": "SURGE_OVERCROWDING"
+     }
+    ],
+    "total_est_arrivals": 1500,
+    "peak_window": "72h ruhige See ab T+0h",
+    "predicted_hotspot_occupancy": 3740,
+    "overcrowding_alert": true
+   },
+   "analysis": {
+    "current_wave_m": 0.04,
+    "longest_calm_run_h": 72,
+    "calm_run_start_h": 0,
+    "gust_spike_hours": 0,
+    "peak_gust_kmh": 30.2,
+    "peak_gust_h": 38,
+    "mode": "surge",
+    "arrivals_72h_est": 1500
+   },
+   "widget": {
+    "type": "reception_surge",
+    "title": "Island Reception Surge & Triage Predictor",
+    "labels": [
+     "D1 00–06h",
+     "D1 06–12h",
+     "D1 12–18h",
+     "D1 18–24h",
+     "D2 00–06h",
+     "D2 06–12h",
+     "D2 12–18h",
+     "D2 18–24h",
+     "D3 00–06h",
+     "D3 06–12h",
+     "D3 12–18h",
+     "D3 18–24h"
+    ],
+    "arrivals": [
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125,
+     125
+    ],
+    "capacity": 2000,
+    "base_occupancy": 1250,
+    "water_storage_l": 60000,
+    "longest_calm_h": 72
+   }
+  }
+ ],
+ "news_reports": [
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "UNHCR Operational Data Portal — Mediterranean Situation",
+   "url": "https://data.unhcr.org/en/situations/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "IOM Missing Migrants Project — Mediterranean",
+   "url": "https://missingmigrants.iom.int/region/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "UN OCHA ReliefWeb — latest humanitarian updates",
+   "url": "https://reliefweb.int/updates"
+  }
+ ],
+ "provenance_summary": [
+  {
+   "label": "OPEN-METEO MARINE",
+   "ok": true
+  },
+  {
+   "label": "OPEN-METEO WEATHER",
+   "ok": true
+  },
+  {
+   "label": "GLOFAS FLOOD",
+   "ok": true
+  },
+  {
+   "label": "UN OCHA RELIEFWEB",
+   "ok": false
+  },
+  {
+   "label": "GDELT 2.0",
+   "ok": false
+  }
+ ],
+ "agent_trajectory": [
+  {
+   "step": 1,
+   "elapsed_ms": 800,
+   "type": "COMMAND",
+   "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+   "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+   "map_action": {
+    "center": [
+     17.5,
+     39.5
+    ],
+    "zoom": 4.6,
+    "pitch": 35,
+    "bearing": 0
+   }
+  },
+  {
+   "step": 2,
+   "elapsed_ms": 2800,
+   "type": "ANALYSIS",
+   "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+   "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+   "map_action": {
+    "center": [
+     26.4,
+     39.25
+    ],
+    "zoom": 8.4,
+    "pitch": 50,
+    "bearing": -12,
+    "highlightCorridor": "aegean_east"
+   }
+  },
+  {
+   "step": 3,
+   "elapsed_ms": 5400,
+   "type": "CODE_GENERATION",
+   "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+   "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+   "widget_url": "inline://widgets/reception_surge",
+   "map_action": {
+    "center": [
+     26.4,
+     39.25
+    ],
+    "zoom": 8.9,
+    "pitch": 58,
+    "bearing": 18,
+    "highlightCorridor": "aegean_east"
+   }
+  },
+  {
+   "step": 4,
+   "elapsed_ms": 7600,
+   "type": "BRIEFING_GENERATION",
+   "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+   "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0855 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+   "briefing_ready": true
+  }
+ ],
+ "active_widget_path": "inline://widgets/reception_surge",
+ "ngo_briefing": {
+  "dispatch_id": "AEGIS-OPS-2026-1010-0855",
+  "coordinates_focus": "39.25°N, 26.40°E (Aegean Mid-Channel)",
+  "title": "Island Reception Surge & Triage Dispatch: Lesbos",
+  "target_orgs": [
+   "Hellenic Coast Guard Liaison",
+   "Lesbos Reception & Identification Centre",
+   "MSF / IFRC Medical Teams"
+  ],
+  "priority": "IMMEDIATE — Reception pressure building",
+  "key_findings": [
+   "Longest calm-sea run 72h (from T+0h); current wave 0.04 m.",
+   "0 hours with gusts ≥35 km/h; peak 30 km/h at T+38h.",
+   "Planning estimate: ~1500 arrivals over 72h (heuristic, calm-hour weighted)."
+  ],
+  "recommended_actions": [
+   "Scale reception intake, registration and shelter staffing for the next 72h.",
+   "Pre-arrange mainland ferry transfer slots and deploy additional medical triage teams to shoreline arrival points.",
+   "Keep coast-guard and NGO rescue boats on short notice for sudden channel squalls."
+  ]
+ },
+ "feeds": [
+  {
+   "feed": "central_med_marine",
+   "url": "https://marine-api.open-meteo.com/v1/marine?latitude=35.10&longitude=11.80&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height&forecast_days=3&timezone=UTC",
+   "ok": true,
+   "ms": 497
+  },
+  {
+   "feed": "central_med_weather",
+   "url": "https://api.open-meteo.com/v1/forecast?latitude=35.10&longitude=11.80&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,precipitation,visibility&forecast_days=3&timezone=UTC",
+   "ok": true,
+   "ms": 685
+  },
+  {
+   "feed": "balkan_mountain",
+   "url": "https://api.open-meteo.com/v1/forecast?latitude=44.78&longitude=15.75&hourly=temperature_2m,apparent_temperature,precipitation,snowfall,snow_depth,freezing_level_height,wind_speed_10m&forecast_days=3&timezone=UTC",
+   "ok": true,
+   "ms": 713
+  },
+  {
+   "feed": "balkan_flood",
+   "url": "https://flood-api.open-meteo.com/v1/flood?latitude=45.14&longitude=16.90&daily=river_discharge,river_discharge_mean,river_discharge_max&forecast_days=7",
+   "ok": true,
+   "ms": 496
+  },
+  {
+   "feed": "aegean_marine",
+   "url": "https://marine-api.open-meteo.com/v1/marine?latitude=39.25&longitude=26.40&hourly=wave_height,wave_direction,wave_period,wind_wave_height&forecast_days=3&timezone=UTC",
+   "ok": true,
+   "ms": 490
+  },
+  {
+   "feed": "aegean_weather",
+   "url": "https://api.open-meteo.com/v1/forecast?latitude=39.25&longitude=26.40&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&forecast_days=3&timezone=UTC",
+   "ok": true,
+   "ms": 502
+  },
+  {
+   "feed": "reliefweb",
+   "url": "https://api.reliefweb.int/v1/reports?appname=aegis-humanitarian-radar&query[value]=mediterranean+OR+refugees+OR+balkans+OR+lampedusa+OR+lesbos&limit=5&preset=latest",
+   "ok": false,
+   "ms": 139,
+   "error": "HTTPError: HTTP Error 410: Gone"
+  },
+  {
+   "feed": "gdelt",
+   "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(lampedusa%20OR%20lesbos%20OR%20bihac%20OR%20mediterranean)%20(migrants%20OR%20rescue%20OR%20coastguard%20OR%20refugees)&mode=ArtList&maxrecords=6&format=json&timespan=72h",
+   "ok": false,
+   "ms": 8732,
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  }
+ ],
+ "fallback_series": [],
+ "scenarios": {
+  "sicily_trap": {
+   "run_id": "scenario_sicily_trap",
+   "timestamp_utc": "2026-09-18T06:00:00Z",
+   "mode_label": "[ILLUSTRATIVE SYNTHETIC SCENARIO]",
+   "is_synthetic": true,
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "central_med",
+   "summary_headline": "9h Calm Window Followed by 2.1 m Sea State at T+14h in Sicily Strait — SAR Readiness Advised",
+   "corridors": [
+    {
+     "id": "central_med",
+     "name": "Central Med (Tunisia → Lampedusa)",
+     "short_name": "Central Med",
+     "risk_score": 89,
+     "status": "CRITICAL TRAP WINDOW",
+     "color": "#F43F5E",
+     "coordinates": {
+      "origin": [
+       10.76,
+       34.74
+      ],
+      "origin_name": "Sfax / Zarzis Coast",
+      "midpoint": [
+       11.8,
+       35.1
+      ],
+      "midpoint_name": "Sicily Strait SAR Zone",
+      "destination": [
+       12.6,
+       35.5
+      ],
+      "destination_name": "Lampedusa Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Operational Data Portal & IOM Missing Migrants (Central Mediterranean)",
+      "annual_2024_arrivals": 66280,
+      "annual_2025_arrivals": 71420,
+      "annual_2025_fatalities": 1478,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 6420,
+        "fatalities": 142
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 4180,
+        "fatalities": 98
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2950,
+        "fatalities": 84
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 2100,
+        "fatalities": 65
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 2450,
+        "fatalities": 71
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 3820,
+        "fatalities": 92
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 5640,
+        "fatalities": 115
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 7890,
+        "fatalities": 154
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 9420,
+        "fatalities": 188
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 11200,
+        "fatalities": 210
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 12850,
+        "fatalities": 245
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 8940,
+        "fatalities": 168
+       }
+      ],
+      "hotspot_name": "Hotspot Lampedusa (Contrada Imbriacola)",
+      "capacity_nominal": 850,
+      "capacity_max": 1400,
+      "current_occupancy": 680
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.45 m",
+       "delta": "Calm"
+      },
+      {
+       "label": "48h Peak Swell",
+       "value": "2.15 m",
+       "delta": "+378% vs 12h min"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "46 km/h",
+       "delta": "Beaufort 6"
+      },
+      {
+       "label": "Surface Drift",
+       "value": "1.2 kts",
+       "delta": "toward 120°"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.45,
+       0.47,
+       0.5,
+       1.15,
+       1.85,
+       2.15,
+       2.05,
+       1.7,
+       1.4,
+       1.1
+      ],
+      "secondary": [
+       14.0,
+       15.0,
+       16.0,
+       26.67,
+       36.67,
+       46.0,
+       40.0,
+       34.0,
+       28.0,
+       22.0
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.45,
+       0.46,
+       0.46,
+       0.47,
+       0.47,
+       0.48,
+       0.49,
+       0.49,
+       0.5,
+       0.66,
+       0.82,
+       0.99,
+       1.15,
+       1.32,
+       1.5,
+       1.68,
+       1.85,
+       1.93,
+       2.0,
+       2.08,
+       2.15,
+       2.12,
+       2.1,
+       2.07,
+       2.05,
+       1.96,
+       1.88,
+       1.79,
+       1.7,
+       1.62,
+       1.55,
+       1.48,
+       1.4,
+       1.33,
+       1.25,
+       1.18,
+       1.1,
+       1.09,
+       1.09,
+       1.08,
+       1.08,
+       1.07,
+       1.07,
+       1.06,
+       1.05,
+       1.05,
+       1.04,
+       1.04,
+       1.03,
+       1.03,
+       1.02,
+       1.01,
+       1.01,
+       1.0,
+       1.0,
+       0.99,
+       0.99,
+       0.98,
+       0.97,
+       0.97,
+       0.96,
+       0.96,
+       0.95,
+       0.95,
+       0.94,
+       0.93,
+       0.93,
+       0.92,
+       0.92,
+       0.91,
+       0.91,
+       0.9
+      ],
+      "gust": [
+       14.0,
+       14.25,
+       14.5,
+       14.75,
+       15.0,
+       15.25,
+       15.5,
+       15.75,
+       16.0,
+       18.67,
+       21.33,
+       24.0,
+       26.67,
+       29.33,
+       32.0,
+       34.33,
+       36.67,
+       39.0,
+       41.33,
+       43.67,
+       46.0,
+       44.5,
+       43.0,
+       41.5,
+       40.0,
+       38.5,
+       37.0,
+       35.5,
+       34.0,
+       32.5,
+       31.0,
+       29.5,
+       28.0,
+       26.5,
+       25.0,
+       23.5,
+       22.0,
+       21.89,
+       21.77,
+       21.66,
+       21.54,
+       21.43,
+       21.31,
+       21.2,
+       21.09,
+       20.97,
+       20.86,
+       20.74,
+       20.63,
+       20.51,
+       20.4,
+       20.29,
+       20.17,
+       20.06,
+       19.94,
+       19.83,
+       19.71,
+       19.6,
+       19.49,
+       19.37,
+       19.26,
+       19.14,
+       19.03,
+       18.91,
+       18.8,
+       18.69,
+       18.57,
+       18.46,
+       18.34,
+       18.23,
+       18.11,
+       18.0
+      ],
+      "wind": [
+       11.0,
+       11.12,
+       11.25,
+       11.38,
+       11.5,
+       11.62,
+       11.75,
+       11.88,
+       12.0,
+       14.67,
+       17.33,
+       20.0,
+       22.67,
+       25.33,
+       28.0,
+       30.0,
+       32.0,
+       34.0,
+       36.0,
+       38.0,
+       40.0,
+       38.75,
+       37.5,
+       36.25,
+       35.0,
+       33.75,
+       32.5,
+       31.25,
+       30.0,
+       29.65,
+       29.3,
+       28.95,
+       28.6,
+       28.26,
+       27.91,
+       27.56,
+       27.21,
+       26.86,
+       26.51,
+       26.16,
+       25.81,
+       25.47,
+       25.12,
+       24.77,
+       24.42,
+       24.07,
+       23.72,
+       23.37,
+       23.02,
+       22.67,
+       22.33,
+       21.98,
+       21.63,
+       21.28,
+       20.93,
+       20.58,
+       20.23,
+       19.88,
+       19.53,
+       19.19,
+       18.84,
+       18.49,
+       18.14,
+       17.79,
+       17.44,
+       17.09,
+       16.74,
+       16.4,
+       16.05,
+       15.7,
+       15.35,
+       15.0
+      ],
+      "wdir": [
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "wave_m": 0.47,
+        "gust_kmh": 14.62,
+        "est_boats": 4,
+        "est_people": 168,
+        "cum_people": 168,
+        "risk_flag": "SURGE"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "wave_m": 0.66,
+        "gust_kmh": 18.54,
+        "est_boats": 3,
+        "est_people": 126,
+        "cum_people": 294,
+        "risk_flag": "SURGE"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "wave_m": 1.57,
+        "gust_kmh": 33.0,
+        "est_boats": 1,
+        "est_people": 38,
+        "cum_people": 332,
+        "risk_flag": "CRITICAL_CAPSIZE"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "wave_m": 2.09,
+        "gust_kmh": 43.33,
+        "est_boats": 0,
+        "est_people": 0,
+        "cum_people": 332,
+        "risk_flag": "CRITICAL_CAPSIZE"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "wave_m": 1.83,
+        "gust_kmh": 36.25,
+        "est_boats": 0,
+        "est_people": 0,
+        "cum_people": 332,
+        "risk_flag": "CRITICAL_CAPSIZE"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "wave_m": 1.36,
+        "gust_kmh": 27.25,
+        "est_boats": 0,
+        "est_people": 0,
+        "cum_people": 332,
+        "risk_flag": "CRITICAL_CAPSIZE"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "wave_m": 1.09,
+        "gust_kmh": 21.71,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 407,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "wave_m": 1.05,
+        "gust_kmh": 21.03,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 482,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "wave_m": 1.02,
+        "gust_kmh": 20.34,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 557,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "wave_m": 0.98,
+        "gust_kmh": 19.66,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 632,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "wave_m": 0.95,
+        "gust_kmh": 18.97,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 707,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "wave_m": 0.92,
+        "gust_kmh": 18.29,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 782,
+        "risk_flag": "MODERATE"
+       }
+      ],
+      "total_est_arrivals": 782,
+      "peak_window": "T+06h–T+18h",
+      "predicted_hotspot_occupancy": 1012,
+      "overcrowding_alert": true
+     },
+     "analysis": {
+      "current_wave_m": 0.45,
+      "calm_hours": 9,
+      "calm_window": [
+       0,
+       8
+      ],
+      "storm_onset_h": 14,
+      "peak_wave_m": 2.15,
+      "peak_wave_h": 20,
+      "min_wave_12h_m": 0.45,
+      "trap_delta_m": 1.7,
+      "peak_gust_kmh": 46.0,
+      "trap_detected": true,
+      "drift_kts": 1.19,
+      "drift_bearing_deg": 120
+     },
+     "widget": {
+      "type": "sar_drift",
+      "title": "Distress Drift & SAR Search-Box Planner",
+      "wave": [
+       0.45,
+       0.46,
+       0.46,
+       0.47,
+       0.47,
+       0.48,
+       0.49,
+       0.49,
+       0.5,
+       0.66,
+       0.82,
+       0.99,
+       1.15,
+       1.32,
+       1.5,
+       1.68,
+       1.85,
+       1.93,
+       2.0,
+       2.08,
+       2.15,
+       2.12,
+       2.1,
+       2.07,
+       2.05,
+       1.96,
+       1.88,
+       1.79,
+       1.7,
+       1.62,
+       1.55,
+       1.48,
+       1.4,
+       1.33,
+       1.25,
+       1.18,
+       1.1
+      ],
+      "wind": [
+       11.0,
+       11.12,
+       11.25,
+       11.38,
+       11.5,
+       11.62,
+       11.75,
+       11.88,
+       12.0,
+       14.67,
+       17.33,
+       20.0,
+       22.67,
+       25.33,
+       28.0,
+       30.0,
+       32.0,
+       34.0,
+       36.0,
+       38.0,
+       40.0,
+       38.75,
+       37.5,
+       36.25,
+       35.0,
+       33.75,
+       32.5,
+       31.25,
+       30.0,
+       29.65,
+       29.3,
+       28.95,
+       28.6,
+       28.26,
+       27.91,
+       27.56,
+       27.21
+      ],
+      "gust": [
+       14.0,
+       14.25,
+       14.5,
+       14.75,
+       15.0,
+       15.25,
+       15.5,
+       15.75,
+       16.0,
+       18.67,
+       21.33,
+       24.0,
+       26.67,
+       29.33,
+       32.0,
+       34.33,
+       36.67,
+       39.0,
+       41.33,
+       43.67,
+       46.0,
+       44.5,
+       43.0,
+       41.5,
+       40.0,
+       38.5,
+       37.0,
+       35.5,
+       34.0,
+       32.5,
+       31.0,
+       29.5,
+       28.0,
+       26.5,
+       25.0,
+       23.5,
+       22.0
+      ],
+      "wdir": [
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300,
+       300
+      ],
+      "calm": [
+       0,
+       8
+      ],
+      "storm": [
+       14,
+       28
+      ],
+      "datum": [
+       11.8,
+       35.1
+      ],
+      "residual_kts": 0.6
+     }
+    },
+    {
+     "id": "balkan_land",
+     "name": "Balkan Route (Bihać → Sava/Una)",
+     "short_name": "Balkan Route",
+     "risk_score": 39,
+     "status": "WATCH",
+     "color": "#FBBF24",
+     "coordinates": {
+      "origin": [
+       15.87,
+       44.81
+      ],
+      "origin_name": "Bihać, Bosnia",
+      "midpoint": [
+       15.75,
+       44.78
+      ],
+      "midpoint_name": "Plješevica Pass (1,200 m)",
+      "destination": [
+       16.9,
+       45.14
+      ],
+      "destination_name": "Sava/Una River Border"
+     },
+     "historical_data": {
+      "source": "IOM Western Balkans Overview & Frontex Land Route Data",
+      "annual_2024_arrivals": 24800,
+      "annual_2025_arrivals": 21500,
+      "annual_2025_fatalities": 46,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 2350,
+        "fatalities": 4
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 1620,
+        "fatalities": 6
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 980,
+        "fatalities": 8
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 720,
+        "fatalities": 9
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 810,
+        "fatalities": 7
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 1240,
+        "fatalities": 5
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 1820,
+        "fatalities": 3
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 2210,
+        "fatalities": 2
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 2650,
+        "fatalities": 2
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 2980,
+        "fatalities": 3
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 3120,
+        "fatalities": 3
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 2450,
+        "fatalities": 4
+       }
+      ],
+      "hotspot_name": "Lipa & Borići Reception Centers (Bihać)",
+      "capacity_nominal": 1500,
+      "capacity_max": 2000,
+      "current_occupancy": 1120
+     },
+     "metrics": [
+      {
+       "label": "Min Night Windchill",
+       "value": "1.5 °C",
+       "delta": "T+30h · Cold"
+      },
+      {
+       "label": "River Discharge",
+       "value": "1.05× mean",
+       "delta": "84 m³/s"
+      },
+      {
+       "label": "Pass Wind (48h max)",
+       "value": "22 km/h",
+       "delta": "Beaufort 4"
+      },
+      {
+       "label": "48h Snowfall",
+       "value": "0.0 cm",
+       "delta": "Freezing lvl 1600 m"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       6.0,
+       3.33,
+       3.75,
+       7.25,
+       8.06,
+       6.19,
+       4.31,
+       2.44,
+       3.38,
+       7.12
+      ],
+      "secondary": [
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.09
+      ]
+     },
+     "series_units": {
+      "primary": "Apparent temperature (°C)",
+      "secondary": "Discharge ratio (×mean)"
+     },
+     "timeline": {
+      "apparent": [
+       6.0,
+       5.33,
+       4.67,
+       4.0,
+       3.33,
+       2.67,
+       2.0,
+       2.88,
+       3.75,
+       4.62,
+       5.5,
+       6.38,
+       7.25,
+       8.12,
+       9.0,
+       8.53,
+       8.06,
+       7.59,
+       7.12,
+       6.66,
+       6.19,
+       5.72,
+       5.25,
+       4.78,
+       4.31,
+       3.84,
+       3.38,
+       2.91,
+       2.44,
+       1.97,
+       1.5,
+       2.44,
+       3.38,
+       4.31,
+       5.25,
+       6.19,
+       7.12,
+       8.06,
+       9.0,
+       8.56,
+       8.12,
+       7.69,
+       7.25,
+       6.81,
+       6.38,
+       5.94,
+       5.5,
+       5.06,
+       4.62,
+       4.19,
+       3.75,
+       3.31,
+       2.88,
+       2.44,
+       2.0,
+       2.35,
+       2.71,
+       3.06,
+       3.41,
+       3.76,
+       4.12,
+       4.47,
+       4.82,
+       5.18,
+       5.53,
+       5.88,
+       6.24,
+       6.59,
+       6.94,
+       7.29,
+       7.65,
+       8.0
+      ],
+      "ratio": [
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.06
+      ],
+      "wind": [
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "apparent_c": 4.33,
+        "est_people": 35,
+        "cum_people": 35,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "apparent_c": 4.19,
+        "est_people": 35,
+        "cum_people": 70,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "apparent_c": 8.09,
+        "est_people": 55,
+        "cum_people": 125,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "apparent_c": 5.95,
+        "est_people": 55,
+        "cum_people": 180,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "apparent_c": 3.14,
+        "est_people": 35,
+        "cum_people": 215,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "apparent_c": 3.85,
+        "est_people": 35,
+        "cum_people": 250,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "apparent_c": 8.09,
+        "est_people": 55,
+        "cum_people": 305,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "apparent_c": 6.16,
+        "est_people": 55,
+        "cum_people": 360,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "apparent_c": 3.53,
+        "est_people": 35,
+        "cum_people": 395,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "apparent_c": 2.88,
+        "est_people": 35,
+        "cum_people": 430,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "apparent_c": 5.0,
+        "est_people": 55,
+        "cum_people": 485,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "apparent_c": 7.12,
+        "est_people": 55,
+        "cum_people": 540,
+        "hypo_risk": "MODERATE"
+       }
+      ],
+      "total_est_arrivals": 540,
+      "peak_window": "Tagüber T+12h–T+18h",
+      "predicted_hotspot_occupancy": 1480,
+      "overcrowding_alert": false
+     },
+     "analysis": {
+      "min_night_apparent_c": 1.5,
+      "min_night_hour": 30,
+      "min_air_c": 5.0,
+      "discharge_ratio": 1.05,
+      "discharge_m3s": 84.0,
+      "peak_ratio_7d": 1.1,
+      "snowfall_48h_cm": 0.0,
+      "max_wind_kmh": 22.0
+     },
+     "widget": {
+      "type": "hypothermia",
+      "title": "Hypothermia & Field-Medic Planner",
+      "apparent": [
+       6.0,
+       5.33,
+       4.67,
+       4.0,
+       3.33,
+       2.67,
+       2.0,
+       2.88,
+       3.75,
+       4.62,
+       5.5,
+       6.38,
+       7.25,
+       8.12,
+       9.0,
+       8.53,
+       8.06,
+       7.59,
+       7.12,
+       6.66,
+       6.19,
+       5.72,
+       5.25,
+       4.78,
+       4.31,
+       3.84,
+       3.38,
+       2.91,
+       2.44,
+       1.97,
+       1.5,
+       2.44,
+       3.38,
+       4.31,
+       5.25,
+       6.19,
+       7.12
+      ],
+      "ratio": [
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.09,
+       1.09,
+       1.09
+      ],
+      "min_air_c": 5.0,
+      "min_apparent_c": 1.5,
+      "ratio_now": 1.05,
+      "wind_kmh": 22.0
+     }
+    },
+    {
+     "id": "aegean_east",
+     "name": "Aegean (Çeşme → Lesbos)",
+     "short_name": "Aegean",
+     "risk_score": 22,
+     "status": "NOMINAL",
+     "color": "#34D399",
+     "coordinates": {
+      "origin": [
+       26.69,
+       39.32
+      ],
+      "origin_name": "Çeşme Coast",
+      "midpoint": [
+       26.4,
+       39.25
+      ],
+      "midpoint_name": "Aegean Mid-Channel",
+      "destination": [
+       26.55,
+       39.1
+      ],
+      "destination_name": "Lesbos Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Greece Sea Arrivals & IOM DTM (Eastern Mediterranean)",
+      "annual_2024_arrivals": 48300,
+      "annual_2025_arrivals": 52100,
+      "annual_2025_fatalities": 214,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 5120,
+        "fatalities": 22
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 3840,
+        "fatalities": 18
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2650,
+        "fatalities": 14
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 1820,
+        "fatalities": 11
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 1950,
+        "fatalities": 12
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 2890,
+        "fatalities": 16
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 4120,
+        "fatalities": 20
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 5420,
+        "fatalities": 25
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 6890,
+        "fatalities": 29
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 7650,
+        "fatalities": 34
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 8420,
+        "fatalities": 38
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 6320,
+        "fatalities": 26
+       }
+      ],
+      "hotspot_name": "Lesbos Mavrovouni (CCAC) & Chios",
+      "capacity_nominal": 3000,
+      "capacity_max": 4200,
+      "current_occupancy": 2640
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.90 m",
+       "delta": "Choppy"
+      },
+      {
+       "label": "Longest Calm Run",
+       "value": "15 h",
+       "delta": "from T+11h"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "30 km/h",
+       "delta": "T+30h · Bft 5"
+      },
+      {
+       "label": "Gust-Spike Hours",
+       "value": "0 h",
+       "delta": "≥35 km/h"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.9,
+       0.84,
+       0.78,
+       0.72,
+       0.66,
+       0.6,
+       0.7,
+       0.8,
+       0.9,
+       1.0
+      ],
+      "secondary": [
+       22.0,
+       23.07,
+       24.13,
+       25.2,
+       26.27,
+       27.33,
+       28.4,
+       29.47,
+       29.76,
+       29.27
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.9,
+       0.89,
+       0.87,
+       0.85,
+       0.84,
+       0.82,
+       0.81,
+       0.8,
+       0.78,
+       0.77,
+       0.75,
+       0.73,
+       0.72,
+       0.71,
+       0.69,
+       0.68,
+       0.66,
+       0.65,
+       0.63,
+       0.61,
+       0.6,
+       0.62,
+       0.65,
+       0.68,
+       0.7,
+       0.72,
+       0.75,
+       0.78,
+       0.8,
+       0.82,
+       0.85,
+       0.88,
+       0.9,
+       0.93,
+       0.95,
+       0.98,
+       1.0,
+       1.03,
+       1.05,
+       1.08,
+       1.1,
+       1.09,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.02,
+       1.01,
+       1.0,
+       0.99,
+       0.98,
+       0.97,
+       0.96,
+       0.95,
+       0.95,
+       0.94,
+       0.93,
+       0.92,
+       0.91,
+       0.9,
+       0.89,
+       0.88,
+       0.87,
+       0.86,
+       0.85,
+       0.84,
+       0.83,
+       0.82,
+       0.81,
+       0.8
+      ],
+      "gust": [
+       22.0,
+       22.27,
+       22.53,
+       22.8,
+       23.07,
+       23.33,
+       23.6,
+       23.87,
+       24.13,
+       24.4,
+       24.67,
+       24.93,
+       25.2,
+       25.47,
+       25.73,
+       26.0,
+       26.27,
+       26.53,
+       26.8,
+       27.07,
+       27.33,
+       27.6,
+       27.87,
+       28.13,
+       28.4,
+       28.67,
+       28.93,
+       29.2,
+       29.47,
+       29.73,
+       30.0,
+       29.88,
+       29.76,
+       29.63,
+       29.51,
+       29.39,
+       29.27,
+       29.15,
+       29.02,
+       28.9,
+       28.78,
+       28.66,
+       28.54,
+       28.41,
+       28.29,
+       28.17,
+       28.05,
+       27.93,
+       27.8,
+       27.68,
+       27.56,
+       27.44,
+       27.32,
+       27.2,
+       27.07,
+       26.95,
+       26.83,
+       26.71,
+       26.59,
+       26.46,
+       26.34,
+       26.22,
+       26.1,
+       25.98,
+       25.85,
+       25.73,
+       25.61,
+       25.49,
+       25.37,
+       25.24,
+       25.12,
+       25.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "D1 00–06h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 15,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "D1 06–12h",
+        "est_people": 33,
+        "est_boats": 1,
+        "cum_people": 48,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "D1 12–18h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 173,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "D1 18–24h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 298,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "D2 00–06h",
+        "est_people": 52,
+        "est_boats": 1,
+        "cum_people": 350,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "D2 06–12h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 365,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "D2 12–18h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 380,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "D2 18–24h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 395,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "D3 00–06h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 410,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "D3 06–12h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 425,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "D3 12–18h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 440,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "D3 18–24h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 455,
+        "risk_flag": "NOMINAL"
+       }
+      ],
+      "total_est_arrivals": 455,
+      "peak_window": "15h ruhige See ab T+11h",
+      "predicted_hotspot_occupancy": 2695,
+      "overcrowding_alert": false
+     },
+     "analysis": {
+      "current_wave_m": 0.9,
+      "longest_calm_run_h": 15,
+      "calm_run_start_h": 11,
+      "gust_spike_hours": 0,
+      "peak_gust_kmh": 30.0,
+      "peak_gust_h": 30,
+      "mode": "squall",
+      "arrivals_72h_est": 455
+     },
+     "widget": {
+      "type": "reception_surge",
+      "title": "Island Reception Surge & Triage Predictor",
+      "labels": [
+       "D1 00–06h",
+       "D1 06–12h",
+       "D1 12–18h",
+       "D1 18–24h",
+       "D2 00–06h",
+       "D2 06–12h",
+       "D2 12–18h",
+       "D2 18–24h",
+       "D3 00–06h",
+       "D3 06–12h",
+       "D3 12–18h",
+       "D3 18–24h"
+      ],
+      "arrivals": [
+       15,
+       33,
+       125,
+       125,
+       52,
+       15,
+       15,
+       15,
+       15,
+       15,
+       15,
+       15
+      ],
+      "capacity": 2000,
+      "base_occupancy": 1250,
+      "water_storage_l": 60000,
+      "longest_calm_h": 15
+     }
+    }
+   ],
+   "news_reports": [
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic marine advisory: calm coastal window followed by 2.1 m sea state mid-strait",
+     "url": "https://reliefweb.int/updates"
+    },
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic SAR coordination note: NGO vessels asked to pre-position near 35.1°N 11.8°E",
+     "url": "https://data.unhcr.org/en/situations/mediterranean"
+    },
+    {
+     "source": "Reference",
+     "title": "IOM Missing Migrants Project — Mediterranean",
+     "url": "https://missingmigrants.iom.int/region/mediterranean"
+    }
+   ],
+   "provenance_summary": [
+    {
+     "label": "OPEN-METEO MARINE",
+     "ok": null
+    },
+    {
+     "label": "OPEN-METEO WEATHER",
+     "ok": null
+    },
+    {
+     "label": "GLOFAS FLOOD",
+     "ok": null
+    },
+    {
+     "label": "UN OCHA RELIEFWEB",
+     "ok": null
+    },
+    {
+     "label": "GDELT 2.0",
+     "ok": null
+    }
+   ],
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once --scenario sicily_trap",
+     "thought": "Loading [Illustrative Synthetic Scenario] 'sicily_trap' (synthetic data, not live) to rehearse the full patrol pipeline through the same deterministic algorithms.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Central Med 89, Balkan Route 39, Aegean 22. Focusing Central Med (Tunisia → Lampedusa) (score 89/100, CRITICAL TRAP WINDOW): 9h Calm Window Followed by 2.1 m Sea State at T+14h in Sicily Strait — SAR Readiness Advised.",
+     "map_action": {
+      "center": [
+       11.8,
+       35.1
+      ],
+      "zoom": 6.8,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "central_med"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type sar_drift --corridor central_med --data live_state.json#corridors.central_med.widget",
+     "thought": "Synthesizing 'Distress Drift & SAR Search-Box Planner' bound to the 36h wave/gust series: responders set hours-since-alert and search-target type to get drift vector, search area (NM²), sea state at the box and Beaufort severity class.",
+     "widget_url": "inline://widgets/sar_drift",
+     "map_action": {
+      "center": [
+       11.8,
+       35.1
+      ],
+      "zoom": 7.3,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "central_med"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-0918-0600 focused on 35.10°N, 11.80°E (Sicily Strait SAR Zone). First action: Pre-position SAR assets across 34.95°N–35.25°N, 11.50°E–12.10°E before T+12h.",
+     "briefing_ready": true
+    }
+   ],
+   "active_widget_path": "inline://widgets/sar_drift",
+   "ngo_briefing": {
+    "dispatch_id": "AEGIS-OPS-2026-0918-0600",
+    "coordinates_focus": "35.10°N, 11.80°E (Sicily Strait SAR Zone)",
+    "title": "SAR & Medical Readiness Dispatch: Sicily Strait Sea-State Shift",
+    "target_orgs": [
+     "Mediterranean SAR Vessels",
+     "MRCC Liaison",
+     "Lampedusa Medical Triage"
+    ],
+    "priority": "IMMEDIATE — Sea state deteriorates from T+14h",
+    "key_findings": [
+     "Mid-strait sea state is currently 0.45 m; 12-hour minimum 0.45 m (9 calm hours in 0–18h).",
+     "Peak 2.15 m at T+20h with gusts to 46 km/h (Beaufort 6).",
+     "Modelled surface drift 1.2 kts toward 120° — search boxes translate ~29 NM per 24h."
+    ],
+    "recommended_actions": [
+     "Pre-position SAR assets across 34.95°N–35.25°N, 11.50°E–12.10°E before T+12h.",
+     "Prepare Lampedusa pier medical triage for hypothermia, dehydration and fuel-burn injuries.",
+     "Relay multilingual (Arabic, French, English) marine weather warnings via coastal community and fishing-fleet channels."
+    ]
+   },
+   "scenario_label": "[Illustrative Synthetic Scenario] Sicily Strait Calm-Then-Storm SAR Window (Central Med)"
+  },
+  "balkan_freeze": {
+   "run_id": "scenario_balkan_freeze",
+   "timestamp_utc": "2026-01-14T00:00:00Z",
+   "mode_label": "[ILLUSTRATIVE SYNTHETIC SCENARIO]",
+   "is_synthetic": true,
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "balkan_land",
+   "summary_headline": "Plješevica Pass Night Windchill -6.8°C; Una/Sava Discharge at 1.45× Seasonal Mean",
+   "corridors": [
+    {
+     "id": "central_med",
+     "name": "Central Med (Tunisia → Lampedusa)",
+     "short_name": "Central Med",
+     "risk_score": 26,
+     "status": "WATCH",
+     "color": "#FBBF24",
+     "coordinates": {
+      "origin": [
+       10.76,
+       34.74
+      ],
+      "origin_name": "Sfax / Zarzis Coast",
+      "midpoint": [
+       11.8,
+       35.1
+      ],
+      "midpoint_name": "Sicily Strait SAR Zone",
+      "destination": [
+       12.6,
+       35.5
+      ],
+      "destination_name": "Lampedusa Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Operational Data Portal & IOM Missing Migrants (Central Mediterranean)",
+      "annual_2024_arrivals": 66280,
+      "annual_2025_arrivals": 71420,
+      "annual_2025_fatalities": 1478,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 6420,
+        "fatalities": 142
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 4180,
+        "fatalities": 98
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2950,
+        "fatalities": 84
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 2100,
+        "fatalities": 65
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 2450,
+        "fatalities": 71
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 3820,
+        "fatalities": 92
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 5640,
+        "fatalities": 115
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 7890,
+        "fatalities": 154
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 9420,
+        "fatalities": 188
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 11200,
+        "fatalities": 210
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 12850,
+        "fatalities": 245
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 8940,
+        "fatalities": 168
+       }
+      ],
+      "hotspot_name": "Hotspot Lampedusa (Contrada Imbriacola)",
+      "capacity_nominal": 850,
+      "capacity_max": 1400,
+      "current_occupancy": 680
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.80 m",
+       "delta": "Rough"
+      },
+      {
+       "label": "48h Peak Swell",
+       "value": "1.10 m",
+       "delta": "+38% vs 12h min"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "26 km/h",
+       "delta": "Beaufort 4"
+      },
+      {
+       "label": "Surface Drift",
+       "value": "0.9 kts",
+       "delta": "toward 135°"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.8,
+       0.85,
+       0.9,
+       0.95,
+       1.0,
+       1.05,
+       1.1,
+       1.07,
+       1.03,
+       1.0
+      ],
+      "secondary": [
+       18.0,
+       19.33,
+       20.67,
+       22.0,
+       23.33,
+       24.67,
+       26.0,
+       25.49,
+       24.98,
+       24.47
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.8,
+       0.81,
+       0.83,
+       0.84,
+       0.85,
+       0.86,
+       0.88,
+       0.89,
+       0.9,
+       0.91,
+       0.93,
+       0.94,
+       0.95,
+       0.96,
+       0.98,
+       0.99,
+       1.0,
+       1.01,
+       1.03,
+       1.04,
+       1.05,
+       1.06,
+       1.08,
+       1.09,
+       1.1,
+       1.09,
+       1.08,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.03,
+       1.02,
+       1.01,
+       1.0,
+       0.99,
+       0.98,
+       0.98,
+       0.97,
+       0.96,
+       0.95,
+       0.94,
+       0.93,
+       0.93,
+       0.92,
+       0.91,
+       0.9,
+       0.9,
+       0.91,
+       0.91,
+       0.92,
+       0.92,
+       0.93,
+       0.93,
+       0.93,
+       0.94,
+       0.94,
+       0.95,
+       0.95,
+       0.96,
+       0.96,
+       0.97,
+       0.97,
+       0.97,
+       0.98,
+       0.98,
+       0.99,
+       0.99,
+       1.0,
+       1.0
+      ],
+      "gust": [
+       18.0,
+       18.33,
+       18.67,
+       19.0,
+       19.33,
+       19.67,
+       20.0,
+       20.33,
+       20.67,
+       21.0,
+       21.33,
+       21.67,
+       22.0,
+       22.33,
+       22.67,
+       23.0,
+       23.33,
+       23.67,
+       24.0,
+       24.33,
+       24.67,
+       25.0,
+       25.33,
+       25.67,
+       26.0,
+       25.87,
+       25.74,
+       25.62,
+       25.49,
+       25.36,
+       25.23,
+       25.11,
+       24.98,
+       24.85,
+       24.72,
+       24.6,
+       24.47,
+       24.34,
+       24.21,
+       24.09,
+       23.96,
+       23.83,
+       23.7,
+       23.57,
+       23.45,
+       23.32,
+       23.19,
+       23.06,
+       22.94,
+       22.81,
+       22.68,
+       22.55,
+       22.43,
+       22.3,
+       22.17,
+       22.04,
+       21.91,
+       21.79,
+       21.66,
+       21.53,
+       21.4,
+       21.28,
+       21.15,
+       21.02,
+       20.89,
+       20.77,
+       20.64,
+       20.51,
+       20.38,
+       20.26,
+       20.13,
+       20.0
+      ],
+      "wind": [
+       14.0,
+       14.12,
+       14.25,
+       14.38,
+       14.5,
+       14.62,
+       14.75,
+       14.88,
+       15.0,
+       15.12,
+       15.25,
+       15.38,
+       15.5,
+       15.62,
+       15.75,
+       15.88,
+       16.0,
+       16.12,
+       16.25,
+       16.38,
+       16.5,
+       16.62,
+       16.75,
+       16.88,
+       17.0,
+       16.96,
+       16.91,
+       16.87,
+       16.83,
+       16.79,
+       16.74,
+       16.7,
+       16.66,
+       16.62,
+       16.57,
+       16.53,
+       16.49,
+       16.45,
+       16.4,
+       16.36,
+       16.32,
+       16.28,
+       16.23,
+       16.19,
+       16.15,
+       16.11,
+       16.06,
+       16.02,
+       15.98,
+       15.94,
+       15.89,
+       15.85,
+       15.81,
+       15.77,
+       15.72,
+       15.68,
+       15.64,
+       15.6,
+       15.55,
+       15.51,
+       15.47,
+       15.43,
+       15.38,
+       15.34,
+       15.3,
+       15.26,
+       15.21,
+       15.17,
+       15.13,
+       15.09,
+       15.04,
+       15.0
+      ],
+      "wdir": [
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "wave_m": 0.83,
+        "gust_kmh": 18.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 75,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "wave_m": 0.91,
+        "gust_kmh": 20.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 150,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "wave_m": 0.98,
+        "gust_kmh": 22.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 225,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "wave_m": 1.06,
+        "gust_kmh": 24.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 300,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "wave_m": 1.08,
+        "gust_kmh": 25.68,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 375,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "wave_m": 1.03,
+        "gust_kmh": 24.92,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 450,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "wave_m": 0.98,
+        "gust_kmh": 24.15,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 525,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "wave_m": 0.93,
+        "gust_kmh": 23.38,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 600,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "wave_m": 0.91,
+        "gust_kmh": 22.62,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 675,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "wave_m": 0.94,
+        "gust_kmh": 21.85,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 750,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "wave_m": 0.96,
+        "gust_kmh": 21.08,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 825,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "wave_m": 0.99,
+        "gust_kmh": 20.32,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 900,
+        "risk_flag": "MODERATE"
+       }
+      ],
+      "total_est_arrivals": 900,
+      "peak_window": "T+24h–T+36h",
+      "predicted_hotspot_occupancy": 1130,
+      "overcrowding_alert": true
+     },
+     "analysis": {
+      "current_wave_m": 0.8,
+      "calm_hours": 0,
+      "calm_window": null,
+      "storm_onset_h": null,
+      "peak_wave_m": 1.1,
+      "peak_wave_h": 24,
+      "min_wave_12h_m": 0.8,
+      "trap_delta_m": 0.3,
+      "peak_gust_kmh": 26.0,
+      "trap_detected": false,
+      "drift_kts": 0.91,
+      "drift_bearing_deg": 135
+     },
+     "widget": {
+      "type": "sar_drift",
+      "title": "Distress Drift & SAR Search-Box Planner",
+      "wave": [
+       0.8,
+       0.81,
+       0.83,
+       0.84,
+       0.85,
+       0.86,
+       0.88,
+       0.89,
+       0.9,
+       0.91,
+       0.93,
+       0.94,
+       0.95,
+       0.96,
+       0.98,
+       0.99,
+       1.0,
+       1.01,
+       1.03,
+       1.04,
+       1.05,
+       1.06,
+       1.08,
+       1.09,
+       1.1,
+       1.09,
+       1.08,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.03,
+       1.02,
+       1.01,
+       1.0
+      ],
+      "wind": [
+       14.0,
+       14.12,
+       14.25,
+       14.38,
+       14.5,
+       14.62,
+       14.75,
+       14.88,
+       15.0,
+       15.12,
+       15.25,
+       15.38,
+       15.5,
+       15.62,
+       15.75,
+       15.88,
+       16.0,
+       16.12,
+       16.25,
+       16.38,
+       16.5,
+       16.62,
+       16.75,
+       16.88,
+       17.0,
+       16.96,
+       16.91,
+       16.87,
+       16.83,
+       16.79,
+       16.74,
+       16.7,
+       16.66,
+       16.62,
+       16.57,
+       16.53,
+       16.49
+      ],
+      "gust": [
+       18.0,
+       18.33,
+       18.67,
+       19.0,
+       19.33,
+       19.67,
+       20.0,
+       20.33,
+       20.67,
+       21.0,
+       21.33,
+       21.67,
+       22.0,
+       22.33,
+       22.67,
+       23.0,
+       23.33,
+       23.67,
+       24.0,
+       24.33,
+       24.67,
+       25.0,
+       25.33,
+       25.67,
+       26.0,
+       25.87,
+       25.74,
+       25.62,
+       25.49,
+       25.36,
+       25.23,
+       25.11,
+       24.98,
+       24.85,
+       24.72,
+       24.6,
+       24.47
+      ],
+      "wdir": [
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315
+      ],
+      "calm": null,
+      "storm": null,
+      "datum": [
+       11.8,
+       35.1
+      ],
+      "residual_kts": 0.6
+     }
+    },
+    {
+     "id": "balkan_land",
+     "name": "Balkan Route (Bihać → Sava/Una)",
+     "short_name": "Balkan Route",
+     "risk_score": 93,
+     "status": "SEVERE HYPOTHERMIA RISK",
+     "color": "#F43F5E",
+     "coordinates": {
+      "origin": [
+       15.87,
+       44.81
+      ],
+      "origin_name": "Bihać, Bosnia",
+      "midpoint": [
+       15.75,
+       44.78
+      ],
+      "midpoint_name": "Plješevica Pass (1,200 m)",
+      "destination": [
+       16.9,
+       45.14
+      ],
+      "destination_name": "Sava/Una River Border"
+     },
+     "historical_data": {
+      "source": "IOM Western Balkans Overview & Frontex Land Route Data",
+      "annual_2024_arrivals": 24800,
+      "annual_2025_arrivals": 21500,
+      "annual_2025_fatalities": 46,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 2350,
+        "fatalities": 4
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 1620,
+        "fatalities": 6
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 980,
+        "fatalities": 8
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 720,
+        "fatalities": 9
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 810,
+        "fatalities": 7
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 1240,
+        "fatalities": 5
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 1820,
+        "fatalities": 3
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 2210,
+        "fatalities": 2
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 2650,
+        "fatalities": 2
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 2980,
+        "fatalities": 3
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 3120,
+        "fatalities": 3
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 2450,
+        "fatalities": 4
+       }
+      ],
+      "hotspot_name": "Lipa & Borići Reception Centers (Bihać)",
+      "capacity_nominal": 1500,
+      "capacity_max": 2000,
+      "current_occupancy": 1120
+     },
+     "metrics": [
+      {
+       "label": "Min Night Windchill",
+       "value": "-6.8 °C",
+       "delta": "T+5h · Severe"
+      },
+      {
+       "label": "River Discharge",
+       "value": "1.45× mean",
+       "delta": "116 m³/s"
+      },
+      {
+       "label": "Pass Wind (48h max)",
+       "value": "22 km/h",
+       "delta": "Beaufort 4"
+      },
+      {
+       "label": "48h Snowfall",
+       "value": "19.2 cm",
+       "delta": "Freezing lvl 600 m"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       -2.0,
+       -5.84,
+       -4.62,
+       -1.72,
+       -2.29,
+       -4.0,
+       -5.11,
+       -6.22,
+       -4.81,
+       -2.56
+      ],
+      "secondary": [
+       1.45,
+       1.47,
+       1.48,
+       1.5,
+       1.52,
+       1.53,
+       1.55,
+       1.54,
+       1.53,
+       1.52
+      ]
+     },
+     "series_units": {
+      "primary": "Apparent temperature (°C)",
+      "secondary": "Discharge ratio (×mean)"
+     },
+     "timeline": {
+      "apparent": [
+       -2.0,
+       -2.96,
+       -3.92,
+       -4.88,
+       -5.84,
+       -6.8,
+       -6.08,
+       -5.35,
+       -4.62,
+       -3.9,
+       -3.17,
+       -2.45,
+       -1.72,
+       -1.0,
+       -1.43,
+       -1.86,
+       -2.29,
+       -2.71,
+       -3.14,
+       -3.57,
+       -4.0,
+       -4.28,
+       -4.56,
+       -4.83,
+       -5.11,
+       -5.39,
+       -5.67,
+       -5.94,
+       -6.22,
+       -6.5,
+       -5.94,
+       -5.38,
+       -4.81,
+       -4.25,
+       -3.69,
+       -3.12,
+       -2.56,
+       -2.0,
+       -2.24,
+       -2.49,
+       -2.73,
+       -2.98,
+       -3.22,
+       -3.46,
+       -3.71,
+       -3.95,
+       -4.19,
+       -4.44,
+       -4.68,
+       -4.93,
+       -5.17,
+       -5.41,
+       -5.66,
+       -5.9,
+       -5.63,
+       -5.36,
+       -5.08,
+       -4.81,
+       -4.54,
+       -4.27,
+       -3.99,
+       -3.72,
+       -3.45,
+       -3.18,
+       -2.91,
+       -2.63,
+       -2.36,
+       -2.09,
+       -1.82,
+       -1.54,
+       -1.27,
+       -1.0
+      ],
+      "ratio": [
+       1.45,
+       1.45,
+       1.46,
+       1.46,
+       1.47,
+       1.47,
+       1.48,
+       1.48,
+       1.48,
+       1.49,
+       1.49,
+       1.5,
+       1.5,
+       1.5,
+       1.51,
+       1.51,
+       1.52,
+       1.52,
+       1.52,
+       1.53,
+       1.53,
+       1.54,
+       1.54,
+       1.55,
+       1.55,
+       1.55,
+       1.55,
+       1.54,
+       1.54,
+       1.54,
+       1.54,
+       1.54,
+       1.53,
+       1.53,
+       1.53,
+       1.53,
+       1.52,
+       1.52,
+       1.52,
+       1.52,
+       1.52,
+       1.51,
+       1.51,
+       1.51,
+       1.51,
+       1.51,
+       1.5,
+       1.5,
+       1.5,
+       1.5,
+       1.49,
+       1.49,
+       1.48,
+       1.48,
+       1.48,
+       1.47,
+       1.47,
+       1.46,
+       1.46,
+       1.45,
+       1.45,
+       1.45,
+       1.44,
+       1.44,
+       1.43,
+       1.43,
+       1.42,
+       1.42,
+       1.42,
+       1.41,
+       1.41,
+       1.4
+      ],
+      "wind": [
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "apparent_c": -4.4,
+        "est_people": 18,
+        "cum_people": 18,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "apparent_c": -4.26,
+        "est_people": 18,
+        "cum_people": 36,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "apparent_c": -1.84,
+        "est_people": 35,
+        "cum_people": 71,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "apparent_c": -4.06,
+        "est_people": 18,
+        "cum_people": 89,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "apparent_c": -5.8,
+        "est_people": 18,
+        "cum_people": 107,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "apparent_c": -4.53,
+        "est_people": 18,
+        "cum_people": 125,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "apparent_c": -2.5,
+        "est_people": 18,
+        "cum_people": 143,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "apparent_c": -3.83,
+        "est_people": 18,
+        "cum_people": 161,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "apparent_c": -5.29,
+        "est_people": 18,
+        "cum_people": 179,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "apparent_c": -4.95,
+        "est_people": 18,
+        "cum_people": 197,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "apparent_c": -3.31,
+        "est_people": 18,
+        "cum_people": 215,
+        "hypo_risk": "HIGH"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "apparent_c": -1.68,
+        "est_people": 35,
+        "cum_people": 250,
+        "hypo_risk": "HIGH"
+       }
+      ],
+      "total_est_arrivals": 250,
+      "peak_window": "Tagüber T+12h–T+18h",
+      "predicted_hotspot_occupancy": 1190,
+      "overcrowding_alert": false
+     },
+     "analysis": {
+      "min_night_apparent_c": -6.8,
+      "min_night_hour": 5,
+      "min_air_c": -3.3,
+      "discharge_ratio": 1.45,
+      "discharge_m3s": 116.0,
+      "peak_ratio_7d": 1.55,
+      "snowfall_48h_cm": 19.2,
+      "max_wind_kmh": 22.0
+     },
+     "widget": {
+      "type": "hypothermia",
+      "title": "Hypothermia & Field-Medic Planner",
+      "apparent": [
+       -2.0,
+       -2.96,
+       -3.92,
+       -4.88,
+       -5.84,
+       -6.8,
+       -6.08,
+       -5.35,
+       -4.62,
+       -3.9,
+       -3.17,
+       -2.45,
+       -1.72,
+       -1.0,
+       -1.43,
+       -1.86,
+       -2.29,
+       -2.71,
+       -3.14,
+       -3.57,
+       -4.0,
+       -4.28,
+       -4.56,
+       -4.83,
+       -5.11,
+       -5.39,
+       -5.67,
+       -5.94,
+       -6.22,
+       -6.5,
+       -5.94,
+       -5.38,
+       -4.81,
+       -4.25,
+       -3.69,
+       -3.12,
+       -2.56
+      ],
+      "ratio": [
+       1.45,
+       1.45,
+       1.46,
+       1.46,
+       1.47,
+       1.47,
+       1.48,
+       1.48,
+       1.48,
+       1.49,
+       1.49,
+       1.5,
+       1.5,
+       1.5,
+       1.51,
+       1.51,
+       1.52,
+       1.52,
+       1.52,
+       1.53,
+       1.53,
+       1.54,
+       1.54,
+       1.55,
+       1.55,
+       1.55,
+       1.55,
+       1.54,
+       1.54,
+       1.54,
+       1.54,
+       1.54,
+       1.53,
+       1.53,
+       1.53,
+       1.53,
+       1.52
+      ],
+      "min_air_c": -3.3,
+      "min_apparent_c": -6.8,
+      "ratio_now": 1.45,
+      "wind_kmh": 22.0
+     }
+    },
+    {
+     "id": "aegean_east",
+     "name": "Aegean (Çeşme → Lesbos)",
+     "short_name": "Aegean",
+     "risk_score": 22,
+     "status": "NOMINAL",
+     "color": "#34D399",
+     "coordinates": {
+      "origin": [
+       26.69,
+       39.32
+      ],
+      "origin_name": "Çeşme Coast",
+      "midpoint": [
+       26.4,
+       39.25
+      ],
+      "midpoint_name": "Aegean Mid-Channel",
+      "destination": [
+       26.55,
+       39.1
+      ],
+      "destination_name": "Lesbos Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Greece Sea Arrivals & IOM DTM (Eastern Mediterranean)",
+      "annual_2024_arrivals": 48300,
+      "annual_2025_arrivals": 52100,
+      "annual_2025_fatalities": 214,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 5120,
+        "fatalities": 22
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 3840,
+        "fatalities": 18
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2650,
+        "fatalities": 14
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 1820,
+        "fatalities": 11
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 1950,
+        "fatalities": 12
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 2890,
+        "fatalities": 16
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 4120,
+        "fatalities": 20
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 5420,
+        "fatalities": 25
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 6890,
+        "fatalities": 29
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 7650,
+        "fatalities": 34
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 8420,
+        "fatalities": 38
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 6320,
+        "fatalities": 26
+       }
+      ],
+      "hotspot_name": "Lesbos Mavrovouni (CCAC) & Chios",
+      "capacity_nominal": 3000,
+      "capacity_max": 4200,
+      "current_occupancy": 2640
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.90 m",
+       "delta": "Choppy"
+      },
+      {
+       "label": "Longest Calm Run",
+       "value": "15 h",
+       "delta": "from T+11h"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "30 km/h",
+       "delta": "T+30h · Bft 5"
+      },
+      {
+       "label": "Gust-Spike Hours",
+       "value": "0 h",
+       "delta": "≥35 km/h"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.9,
+       0.84,
+       0.78,
+       0.72,
+       0.66,
+       0.6,
+       0.7,
+       0.8,
+       0.9,
+       1.0
+      ],
+      "secondary": [
+       22.0,
+       23.07,
+       24.13,
+       25.2,
+       26.27,
+       27.33,
+       28.4,
+       29.47,
+       29.76,
+       29.27
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.9,
+       0.89,
+       0.87,
+       0.85,
+       0.84,
+       0.82,
+       0.81,
+       0.8,
+       0.78,
+       0.77,
+       0.75,
+       0.73,
+       0.72,
+       0.71,
+       0.69,
+       0.68,
+       0.66,
+       0.65,
+       0.63,
+       0.61,
+       0.6,
+       0.62,
+       0.65,
+       0.68,
+       0.7,
+       0.72,
+       0.75,
+       0.78,
+       0.8,
+       0.82,
+       0.85,
+       0.88,
+       0.9,
+       0.93,
+       0.95,
+       0.98,
+       1.0,
+       1.03,
+       1.05,
+       1.08,
+       1.1,
+       1.09,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.02,
+       1.01,
+       1.0,
+       0.99,
+       0.98,
+       0.97,
+       0.96,
+       0.95,
+       0.95,
+       0.94,
+       0.93,
+       0.92,
+       0.91,
+       0.9,
+       0.89,
+       0.88,
+       0.87,
+       0.86,
+       0.85,
+       0.84,
+       0.83,
+       0.82,
+       0.81,
+       0.8
+      ],
+      "gust": [
+       22.0,
+       22.27,
+       22.53,
+       22.8,
+       23.07,
+       23.33,
+       23.6,
+       23.87,
+       24.13,
+       24.4,
+       24.67,
+       24.93,
+       25.2,
+       25.47,
+       25.73,
+       26.0,
+       26.27,
+       26.53,
+       26.8,
+       27.07,
+       27.33,
+       27.6,
+       27.87,
+       28.13,
+       28.4,
+       28.67,
+       28.93,
+       29.2,
+       29.47,
+       29.73,
+       30.0,
+       29.88,
+       29.76,
+       29.63,
+       29.51,
+       29.39,
+       29.27,
+       29.15,
+       29.02,
+       28.9,
+       28.78,
+       28.66,
+       28.54,
+       28.41,
+       28.29,
+       28.17,
+       28.05,
+       27.93,
+       27.8,
+       27.68,
+       27.56,
+       27.44,
+       27.32,
+       27.2,
+       27.07,
+       26.95,
+       26.83,
+       26.71,
+       26.59,
+       26.46,
+       26.34,
+       26.22,
+       26.1,
+       25.98,
+       25.85,
+       25.73,
+       25.61,
+       25.49,
+       25.37,
+       25.24,
+       25.12,
+       25.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "D1 00–06h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 15,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "D1 06–12h",
+        "est_people": 33,
+        "est_boats": 1,
+        "cum_people": 48,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "D1 12–18h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 173,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "D1 18–24h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 298,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "D2 00–06h",
+        "est_people": 52,
+        "est_boats": 1,
+        "cum_people": 350,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "D2 06–12h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 365,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "D2 12–18h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 380,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "D2 18–24h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 395,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "D3 00–06h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 410,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "D3 06–12h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 425,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "D3 12–18h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 440,
+        "risk_flag": "NOMINAL"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "D3 18–24h",
+        "est_people": 15,
+        "est_boats": 1,
+        "cum_people": 455,
+        "risk_flag": "NOMINAL"
+       }
+      ],
+      "total_est_arrivals": 455,
+      "peak_window": "15h ruhige See ab T+11h",
+      "predicted_hotspot_occupancy": 2695,
+      "overcrowding_alert": false
+     },
+     "analysis": {
+      "current_wave_m": 0.9,
+      "longest_calm_run_h": 15,
+      "calm_run_start_h": 11,
+      "gust_spike_hours": 0,
+      "peak_gust_kmh": 30.0,
+      "peak_gust_h": 30,
+      "mode": "squall",
+      "arrivals_72h_est": 455
+     },
+     "widget": {
+      "type": "reception_surge",
+      "title": "Island Reception Surge & Triage Predictor",
+      "labels": [
+       "D1 00–06h",
+       "D1 06–12h",
+       "D1 12–18h",
+       "D1 18–24h",
+       "D2 00–06h",
+       "D2 06–12h",
+       "D2 12–18h",
+       "D2 18–24h",
+       "D3 00–06h",
+       "D3 06–12h",
+       "D3 12–18h",
+       "D3 18–24h"
+      ],
+      "arrivals": [
+       15,
+       33,
+       125,
+       125,
+       52,
+       15,
+       15,
+       15,
+       15,
+       15,
+       15,
+       15
+      ],
+      "capacity": 2000,
+      "base_occupancy": 1250,
+      "water_storage_l": 60000,
+      "longest_calm_h": 15
+     }
+    }
+   ],
+   "news_reports": [
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic field report: windchill near -7°C on Plješevica ridge overnight",
+     "url": "https://reliefweb.int/updates"
+    },
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic hydrology note: Una/Sava discharge 1.45× seasonal mean",
+     "url": "https://reliefweb.int/updates"
+    },
+    {
+     "source": "Reference",
+     "title": "IOM Missing Migrants Project — Mediterranean",
+     "url": "https://missingmigrants.iom.int/region/mediterranean"
+    }
+   ],
+   "provenance_summary": [
+    {
+     "label": "OPEN-METEO MARINE",
+     "ok": null
+    },
+    {
+     "label": "OPEN-METEO WEATHER",
+     "ok": null
+    },
+    {
+     "label": "GLOFAS FLOOD",
+     "ok": null
+    },
+    {
+     "label": "UN OCHA RELIEFWEB",
+     "ok": null
+    },
+    {
+     "label": "GDELT 2.0",
+     "ok": null
+    }
+   ],
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once --scenario balkan_freeze",
+     "thought": "Loading [Illustrative Synthetic Scenario] 'balkan_freeze' (synthetic data, not live) to rehearse the full patrol pipeline through the same deterministic algorithms.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Balkan Route 93, Central Med 26, Aegean 22. Focusing Balkan Route (Bihać → Sava/Una) (score 93/100, SEVERE HYPOTHERMIA RISK): Plješevica Pass Night Windchill -6.8°C; Una/Sava Discharge at 1.45× Seasonal Mean.",
+     "map_action": {
+      "center": [
+       15.75,
+       44.78
+      ],
+      "zoom": 7.6,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "balkan_land"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type hypothermia --corridor balkan_land --data live_state.json#corridors.balkan_land.widget",
+     "thought": "Synthesizing 'Hypothermia & Field-Medic Planner' bound to the 36h windchill and Una/Sava discharge curves; elevation, wet-clothing and wind controls drive severe-hypothermia onset, frostbite window and thermal-kit needs.",
+     "widget_url": "inline://widgets/hypothermia",
+     "map_action": {
+      "center": [
+       15.75,
+       44.78
+      ],
+      "zoom": 8.1,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "balkan_land"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-0114-0000 focused on 44.78°N, 15.75°E (Plješevica Pass (1,200 m)). First action: Stage thermal kits, dry clothing and emergency blankets at Bihać-area reception and aid points before nightfall.",
+     "briefing_ready": true
+    }
+   ],
+   "active_widget_path": "inline://widgets/hypothermia",
+   "ngo_briefing": {
+    "dispatch_id": "AEGIS-OPS-2026-0114-0000",
+    "coordinates_focus": "44.78°N, 15.75°E (Plješevica Pass (1,200 m))",
+    "title": "Cold-Exposure & River Safety Dispatch: Plješevica / Una Corridor",
+    "target_orgs": [
+     "Red Cross BiH Field Teams",
+     "Mountain Rescue Service (GSS)",
+     "UNHCR / IOM Protection Partners"
+    ],
+    "priority": "IMMEDIATE — Night windchill minimum at T+5h",
+    "key_findings": [
+     "Minimum night apparent temperature at the pass: -6.8°C (T+5h); air -3.3°C.",
+     "Una/Sava discharge 116 m³/s = 1.45× seasonal mean (7-day peak 1.55×).",
+     "48h snowfall 19.2 cm; pass wind up to 22 km/h."
+    ],
+    "recommended_actions": [
+     "Stage thermal kits, dry clothing and emergency blankets at Bihać-area reception and aid points before nightfall.",
+     "Task mobile medic patrols on forest and ridge approaches ahead of the T+5h temperature minimum.",
+     "Coordinate civil-protection swift-water rescue readiness along elevated Una/Sava reaches and open warm-shelter overflow capacity."
+    ]
+   },
+   "scenario_label": "[Illustrative Synthetic Scenario] Plješevica Pass Freeze & River Swell (Balkan Route)"
+  },
+  "aegean_surge": {
+   "run_id": "scenario_aegean_surge",
+   "timestamp_utc": "2026-07-02T04:00:00Z",
+   "mode_label": "[ILLUSTRATIVE SYNTHETIC SCENARIO]",
+   "is_synthetic": true,
+   "global_risk_level": "HIGH",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "corridors": [
+    {
+     "id": "central_med",
+     "name": "Central Med (Tunisia → Lampedusa)",
+     "short_name": "Central Med",
+     "risk_score": 26,
+     "status": "WATCH",
+     "color": "#FBBF24",
+     "coordinates": {
+      "origin": [
+       10.76,
+       34.74
+      ],
+      "origin_name": "Sfax / Zarzis Coast",
+      "midpoint": [
+       11.8,
+       35.1
+      ],
+      "midpoint_name": "Sicily Strait SAR Zone",
+      "destination": [
+       12.6,
+       35.5
+      ],
+      "destination_name": "Lampedusa Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Operational Data Portal & IOM Missing Migrants (Central Mediterranean)",
+      "annual_2024_arrivals": 66280,
+      "annual_2025_arrivals": 71420,
+      "annual_2025_fatalities": 1478,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 6420,
+        "fatalities": 142
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 4180,
+        "fatalities": 98
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2950,
+        "fatalities": 84
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 2100,
+        "fatalities": 65
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 2450,
+        "fatalities": 71
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 3820,
+        "fatalities": 92
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 5640,
+        "fatalities": 115
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 7890,
+        "fatalities": 154
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 9420,
+        "fatalities": 188
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 11200,
+        "fatalities": 210
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 12850,
+        "fatalities": 245
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 8940,
+        "fatalities": 168
+       }
+      ],
+      "hotspot_name": "Hotspot Lampedusa (Contrada Imbriacola)",
+      "capacity_nominal": 850,
+      "capacity_max": 1400,
+      "current_occupancy": 680
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.80 m",
+       "delta": "Rough"
+      },
+      {
+       "label": "48h Peak Swell",
+       "value": "1.10 m",
+       "delta": "+38% vs 12h min"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "26 km/h",
+       "delta": "Beaufort 4"
+      },
+      {
+       "label": "Surface Drift",
+       "value": "0.9 kts",
+       "delta": "toward 135°"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.8,
+       0.85,
+       0.9,
+       0.95,
+       1.0,
+       1.05,
+       1.1,
+       1.07,
+       1.03,
+       1.0
+      ],
+      "secondary": [
+       18.0,
+       19.33,
+       20.67,
+       22.0,
+       23.33,
+       24.67,
+       26.0,
+       25.49,
+       24.98,
+       24.47
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.8,
+       0.81,
+       0.83,
+       0.84,
+       0.85,
+       0.86,
+       0.88,
+       0.89,
+       0.9,
+       0.91,
+       0.93,
+       0.94,
+       0.95,
+       0.96,
+       0.98,
+       0.99,
+       1.0,
+       1.01,
+       1.03,
+       1.04,
+       1.05,
+       1.06,
+       1.08,
+       1.09,
+       1.1,
+       1.09,
+       1.08,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.03,
+       1.02,
+       1.01,
+       1.0,
+       0.99,
+       0.98,
+       0.98,
+       0.97,
+       0.96,
+       0.95,
+       0.94,
+       0.93,
+       0.93,
+       0.92,
+       0.91,
+       0.9,
+       0.9,
+       0.91,
+       0.91,
+       0.92,
+       0.92,
+       0.93,
+       0.93,
+       0.93,
+       0.94,
+       0.94,
+       0.95,
+       0.95,
+       0.96,
+       0.96,
+       0.97,
+       0.97,
+       0.97,
+       0.98,
+       0.98,
+       0.99,
+       0.99,
+       1.0,
+       1.0
+      ],
+      "gust": [
+       18.0,
+       18.33,
+       18.67,
+       19.0,
+       19.33,
+       19.67,
+       20.0,
+       20.33,
+       20.67,
+       21.0,
+       21.33,
+       21.67,
+       22.0,
+       22.33,
+       22.67,
+       23.0,
+       23.33,
+       23.67,
+       24.0,
+       24.33,
+       24.67,
+       25.0,
+       25.33,
+       25.67,
+       26.0,
+       25.87,
+       25.74,
+       25.62,
+       25.49,
+       25.36,
+       25.23,
+       25.11,
+       24.98,
+       24.85,
+       24.72,
+       24.6,
+       24.47,
+       24.34,
+       24.21,
+       24.09,
+       23.96,
+       23.83,
+       23.7,
+       23.57,
+       23.45,
+       23.32,
+       23.19,
+       23.06,
+       22.94,
+       22.81,
+       22.68,
+       22.55,
+       22.43,
+       22.3,
+       22.17,
+       22.04,
+       21.91,
+       21.79,
+       21.66,
+       21.53,
+       21.4,
+       21.28,
+       21.15,
+       21.02,
+       20.89,
+       20.77,
+       20.64,
+       20.51,
+       20.38,
+       20.26,
+       20.13,
+       20.0
+      ],
+      "wind": [
+       14.0,
+       14.12,
+       14.25,
+       14.38,
+       14.5,
+       14.62,
+       14.75,
+       14.88,
+       15.0,
+       15.12,
+       15.25,
+       15.38,
+       15.5,
+       15.62,
+       15.75,
+       15.88,
+       16.0,
+       16.12,
+       16.25,
+       16.38,
+       16.5,
+       16.62,
+       16.75,
+       16.88,
+       17.0,
+       16.96,
+       16.91,
+       16.87,
+       16.83,
+       16.79,
+       16.74,
+       16.7,
+       16.66,
+       16.62,
+       16.57,
+       16.53,
+       16.49,
+       16.45,
+       16.4,
+       16.36,
+       16.32,
+       16.28,
+       16.23,
+       16.19,
+       16.15,
+       16.11,
+       16.06,
+       16.02,
+       15.98,
+       15.94,
+       15.89,
+       15.85,
+       15.81,
+       15.77,
+       15.72,
+       15.68,
+       15.64,
+       15.6,
+       15.55,
+       15.51,
+       15.47,
+       15.43,
+       15.38,
+       15.34,
+       15.3,
+       15.26,
+       15.21,
+       15.17,
+       15.13,
+       15.09,
+       15.04,
+       15.0
+      ],
+      "wdir": [
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "wave_m": 0.83,
+        "gust_kmh": 18.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 75,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "wave_m": 0.91,
+        "gust_kmh": 20.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 150,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "wave_m": 0.98,
+        "gust_kmh": 22.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 225,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "wave_m": 1.06,
+        "gust_kmh": 24.83,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 300,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "wave_m": 1.08,
+        "gust_kmh": 25.68,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 375,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "wave_m": 1.03,
+        "gust_kmh": 24.92,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 450,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "wave_m": 0.98,
+        "gust_kmh": 24.15,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 525,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "wave_m": 0.93,
+        "gust_kmh": 23.38,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 600,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "wave_m": 0.91,
+        "gust_kmh": 22.62,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 675,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "wave_m": 0.94,
+        "gust_kmh": 21.85,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 750,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "wave_m": 0.96,
+        "gust_kmh": 21.08,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 825,
+        "risk_flag": "MODERATE"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "wave_m": 0.99,
+        "gust_kmh": 20.32,
+        "est_boats": 2,
+        "est_people": 75,
+        "cum_people": 900,
+        "risk_flag": "MODERATE"
+       }
+      ],
+      "total_est_arrivals": 900,
+      "peak_window": "T+24h–T+36h",
+      "predicted_hotspot_occupancy": 1130,
+      "overcrowding_alert": true
+     },
+     "analysis": {
+      "current_wave_m": 0.8,
+      "calm_hours": 0,
+      "calm_window": null,
+      "storm_onset_h": null,
+      "peak_wave_m": 1.1,
+      "peak_wave_h": 24,
+      "min_wave_12h_m": 0.8,
+      "trap_delta_m": 0.3,
+      "peak_gust_kmh": 26.0,
+      "trap_detected": false,
+      "drift_kts": 0.91,
+      "drift_bearing_deg": 135
+     },
+     "widget": {
+      "type": "sar_drift",
+      "title": "Distress Drift & SAR Search-Box Planner",
+      "wave": [
+       0.8,
+       0.81,
+       0.83,
+       0.84,
+       0.85,
+       0.86,
+       0.88,
+       0.89,
+       0.9,
+       0.91,
+       0.93,
+       0.94,
+       0.95,
+       0.96,
+       0.98,
+       0.99,
+       1.0,
+       1.01,
+       1.03,
+       1.04,
+       1.05,
+       1.06,
+       1.08,
+       1.09,
+       1.1,
+       1.09,
+       1.08,
+       1.08,
+       1.07,
+       1.06,
+       1.05,
+       1.04,
+       1.03,
+       1.03,
+       1.02,
+       1.01,
+       1.0
+      ],
+      "wind": [
+       14.0,
+       14.12,
+       14.25,
+       14.38,
+       14.5,
+       14.62,
+       14.75,
+       14.88,
+       15.0,
+       15.12,
+       15.25,
+       15.38,
+       15.5,
+       15.62,
+       15.75,
+       15.88,
+       16.0,
+       16.12,
+       16.25,
+       16.38,
+       16.5,
+       16.62,
+       16.75,
+       16.88,
+       17.0,
+       16.96,
+       16.91,
+       16.87,
+       16.83,
+       16.79,
+       16.74,
+       16.7,
+       16.66,
+       16.62,
+       16.57,
+       16.53,
+       16.49
+      ],
+      "gust": [
+       18.0,
+       18.33,
+       18.67,
+       19.0,
+       19.33,
+       19.67,
+       20.0,
+       20.33,
+       20.67,
+       21.0,
+       21.33,
+       21.67,
+       22.0,
+       22.33,
+       22.67,
+       23.0,
+       23.33,
+       23.67,
+       24.0,
+       24.33,
+       24.67,
+       25.0,
+       25.33,
+       25.67,
+       26.0,
+       25.87,
+       25.74,
+       25.62,
+       25.49,
+       25.36,
+       25.23,
+       25.11,
+       24.98,
+       24.85,
+       24.72,
+       24.6,
+       24.47
+      ],
+      "wdir": [
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315,
+       315
+      ],
+      "calm": null,
+      "storm": null,
+      "datum": [
+       11.8,
+       35.1
+      ],
+      "residual_kts": 0.6
+     }
+    },
+    {
+     "id": "balkan_land",
+     "name": "Balkan Route (Bihać → Sava/Una)",
+     "short_name": "Balkan Route",
+     "risk_score": 39,
+     "status": "WATCH",
+     "color": "#FBBF24",
+     "coordinates": {
+      "origin": [
+       15.87,
+       44.81
+      ],
+      "origin_name": "Bihać, Bosnia",
+      "midpoint": [
+       15.75,
+       44.78
+      ],
+      "midpoint_name": "Plješevica Pass (1,200 m)",
+      "destination": [
+       16.9,
+       45.14
+      ],
+      "destination_name": "Sava/Una River Border"
+     },
+     "historical_data": {
+      "source": "IOM Western Balkans Overview & Frontex Land Route Data",
+      "annual_2024_arrivals": 24800,
+      "annual_2025_arrivals": 21500,
+      "annual_2025_fatalities": 46,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 2350,
+        "fatalities": 4
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 1620,
+        "fatalities": 6
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 980,
+        "fatalities": 8
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 720,
+        "fatalities": 9
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 810,
+        "fatalities": 7
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 1240,
+        "fatalities": 5
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 1820,
+        "fatalities": 3
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 2210,
+        "fatalities": 2
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 2650,
+        "fatalities": 2
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 2980,
+        "fatalities": 3
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 3120,
+        "fatalities": 3
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 2450,
+        "fatalities": 4
+       }
+      ],
+      "hotspot_name": "Lipa & Borići Reception Centers (Bihać)",
+      "capacity_nominal": 1500,
+      "capacity_max": 2000,
+      "current_occupancy": 1120
+     },
+     "metrics": [
+      {
+       "label": "Min Night Windchill",
+       "value": "1.5 °C",
+       "delta": "T+30h · Cold"
+      },
+      {
+       "label": "River Discharge",
+       "value": "1.05× mean",
+       "delta": "84 m³/s"
+      },
+      {
+       "label": "Pass Wind (48h max)",
+       "value": "22 km/h",
+       "delta": "Beaufort 4"
+      },
+      {
+       "label": "48h Snowfall",
+       "value": "0.0 cm",
+       "delta": "Freezing lvl 1600 m"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       6.0,
+       3.33,
+       3.75,
+       7.25,
+       8.06,
+       6.19,
+       4.31,
+       2.44,
+       3.38,
+       7.12
+      ],
+      "secondary": [
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.09
+      ]
+     },
+     "series_units": {
+      "primary": "Apparent temperature (°C)",
+      "secondary": "Discharge ratio (×mean)"
+     },
+     "timeline": {
+      "apparent": [
+       6.0,
+       5.33,
+       4.67,
+       4.0,
+       3.33,
+       2.67,
+       2.0,
+       2.88,
+       3.75,
+       4.62,
+       5.5,
+       6.38,
+       7.25,
+       8.12,
+       9.0,
+       8.53,
+       8.06,
+       7.59,
+       7.12,
+       6.66,
+       6.19,
+       5.72,
+       5.25,
+       4.78,
+       4.31,
+       3.84,
+       3.38,
+       2.91,
+       2.44,
+       1.97,
+       1.5,
+       2.44,
+       3.38,
+       4.31,
+       5.25,
+       6.19,
+       7.12,
+       8.06,
+       9.0,
+       8.56,
+       8.12,
+       7.69,
+       7.25,
+       6.81,
+       6.38,
+       5.94,
+       5.5,
+       5.06,
+       4.62,
+       4.19,
+       3.75,
+       3.31,
+       2.88,
+       2.44,
+       2.0,
+       2.35,
+       2.71,
+       3.06,
+       3.41,
+       3.76,
+       4.12,
+       4.47,
+       4.82,
+       5.18,
+       5.53,
+       5.88,
+       6.24,
+       6.59,
+       6.94,
+       7.29,
+       7.65,
+       8.0
+      ],
+      "ratio": [
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.1,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.09,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.06
+      ],
+      "wind": [
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0,
+       22.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "T+0–6h",
+        "apparent_c": 4.33,
+        "est_people": 35,
+        "cum_people": 35,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "T+6–12h",
+        "apparent_c": 4.19,
+        "est_people": 35,
+        "cum_people": 70,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "T+12–18h",
+        "apparent_c": 8.09,
+        "est_people": 55,
+        "cum_people": 125,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "T+18–24h",
+        "apparent_c": 5.95,
+        "est_people": 55,
+        "cum_people": 180,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "T+24–30h",
+        "apparent_c": 3.14,
+        "est_people": 35,
+        "cum_people": 215,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "T+30–36h",
+        "apparent_c": 3.85,
+        "est_people": 35,
+        "cum_people": 250,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "T+36–42h",
+        "apparent_c": 8.09,
+        "est_people": 55,
+        "cum_people": 305,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "T+42–48h",
+        "apparent_c": 6.16,
+        "est_people": 55,
+        "cum_people": 360,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "T+48–54h",
+        "apparent_c": 3.53,
+        "est_people": 35,
+        "cum_people": 395,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "T+54–60h",
+        "apparent_c": 2.88,
+        "est_people": 35,
+        "cum_people": 430,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "T+60–66h",
+        "apparent_c": 5.0,
+        "est_people": 55,
+        "cum_people": 485,
+        "hypo_risk": "MODERATE"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "T+66–72h",
+        "apparent_c": 7.12,
+        "est_people": 55,
+        "cum_people": 540,
+        "hypo_risk": "MODERATE"
+       }
+      ],
+      "total_est_arrivals": 540,
+      "peak_window": "Tagüber T+12h–T+18h",
+      "predicted_hotspot_occupancy": 1480,
+      "overcrowding_alert": false
+     },
+     "analysis": {
+      "min_night_apparent_c": 1.5,
+      "min_night_hour": 30,
+      "min_air_c": 5.0,
+      "discharge_ratio": 1.05,
+      "discharge_m3s": 84.0,
+      "peak_ratio_7d": 1.1,
+      "snowfall_48h_cm": 0.0,
+      "max_wind_kmh": 22.0
+     },
+     "widget": {
+      "type": "hypothermia",
+      "title": "Hypothermia & Field-Medic Planner",
+      "apparent": [
+       6.0,
+       5.33,
+       4.67,
+       4.0,
+       3.33,
+       2.67,
+       2.0,
+       2.88,
+       3.75,
+       4.62,
+       5.5,
+       6.38,
+       7.25,
+       8.12,
+       9.0,
+       8.53,
+       8.06,
+       7.59,
+       7.12,
+       6.66,
+       6.19,
+       5.72,
+       5.25,
+       4.78,
+       4.31,
+       3.84,
+       3.38,
+       2.91,
+       2.44,
+       1.97,
+       1.5,
+       2.44,
+       3.38,
+       4.31,
+       5.25,
+       6.19,
+       7.12
+      ],
+      "ratio": [
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.05,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.06,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.07,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.08,
+       1.09,
+       1.09,
+       1.09
+      ],
+      "min_air_c": 5.0,
+      "min_apparent_c": 1.5,
+      "ratio_now": 1.05,
+      "wind_kmh": 22.0
+     }
+    },
+    {
+     "id": "aegean_east",
+     "name": "Aegean (Çeşme → Lesbos)",
+     "short_name": "Aegean",
+     "risk_score": 80,
+     "status": "RECEPTION SURGE ALERT",
+     "color": "#F43F5E",
+     "coordinates": {
+      "origin": [
+       26.69,
+       39.32
+      ],
+      "origin_name": "Çeşme Coast",
+      "midpoint": [
+       26.4,
+       39.25
+      ],
+      "midpoint_name": "Aegean Mid-Channel",
+      "destination": [
+       26.55,
+       39.1
+      ],
+      "destination_name": "Lesbos Reception"
+     },
+     "historical_data": {
+      "source": "UNHCR Greece Sea Arrivals & IOM DTM (Eastern Mediterranean)",
+      "annual_2024_arrivals": 48300,
+      "annual_2025_arrivals": 52100,
+      "annual_2025_fatalities": 214,
+      "monthly_trend": [
+       {
+        "month": "Okt 25",
+        "arrivals": 5120,
+        "fatalities": 22
+       },
+       {
+        "month": "Nov 25",
+        "arrivals": 3840,
+        "fatalities": 18
+       },
+       {
+        "month": "Dez 25",
+        "arrivals": 2650,
+        "fatalities": 14
+       },
+       {
+        "month": "Jan 26",
+        "arrivals": 1820,
+        "fatalities": 11
+       },
+       {
+        "month": "Feb 26",
+        "arrivals": 1950,
+        "fatalities": 12
+       },
+       {
+        "month": "Mär 26",
+        "arrivals": 2890,
+        "fatalities": 16
+       },
+       {
+        "month": "Apr 26",
+        "arrivals": 4120,
+        "fatalities": 20
+       },
+       {
+        "month": "Mai 26",
+        "arrivals": 5420,
+        "fatalities": 25
+       },
+       {
+        "month": "Jun 26",
+        "arrivals": 6890,
+        "fatalities": 29
+       },
+       {
+        "month": "Jul 26",
+        "arrivals": 7650,
+        "fatalities": 34
+       },
+       {
+        "month": "Aug 26",
+        "arrivals": 8420,
+        "fatalities": 38
+       },
+       {
+        "month": "Sep 26",
+        "arrivals": 6320,
+        "fatalities": 26
+       }
+      ],
+      "hotspot_name": "Lesbos Mavrovouni (CCAC) & Chios",
+      "capacity_nominal": 3000,
+      "capacity_max": 4200,
+      "current_occupancy": 2640
+     },
+     "metrics": [
+      {
+       "label": "Current Wave",
+       "value": "0.35 m",
+       "delta": "Calm"
+      },
+      {
+       "label": "Longest Calm Run",
+       "value": "72 h",
+       "delta": "from T+0h"
+      },
+      {
+       "label": "Peak Wind Gust",
+       "value": "19 km/h",
+       "delta": "T+36h · Bft 3"
+      },
+      {
+       "label": "Gust-Spike Hours",
+       "value": "0 h",
+       "delta": "≥35 km/h"
+      }
+     ],
+     "hourly_series": {
+      "labels": [
+       "T+0h",
+       "T+4h",
+       "T+8h",
+       "T+12h",
+       "T+16h",
+       "T+20h",
+       "T+24h",
+       "T+28h",
+       "T+32h",
+       "T+36h"
+      ],
+      "primary": [
+       0.35,
+       0.35,
+       0.34,
+       0.34,
+       0.33,
+       0.33,
+       0.33,
+       0.32,
+       0.33,
+       0.34
+      ],
+      "secondary": [
+       14.0,
+       14.56,
+       15.11,
+       15.67,
+       16.22,
+       16.78,
+       17.33,
+       17.89,
+       18.44,
+       19.0
+      ]
+     },
+     "series_units": {
+      "primary": "Wave height (m)",
+      "secondary": "Wind gust (km/h)"
+     },
+     "timeline": {
+      "wave": [
+       0.35,
+       0.35,
+       0.35,
+       0.35,
+       0.35,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.33,
+       0.32,
+       0.32,
+       0.32,
+       0.32,
+       0.32,
+       0.32,
+       0.33,
+       0.33,
+       0.33,
+       0.34,
+       0.34,
+       0.34,
+       0.34,
+       0.35,
+       0.35,
+       0.35,
+       0.36,
+       0.36,
+       0.36,
+       0.36,
+       0.37,
+       0.37,
+       0.37,
+       0.38,
+       0.38,
+       0.38,
+       0.38,
+       0.38,
+       0.37,
+       0.37,
+       0.37,
+       0.37,
+       0.37,
+       0.37,
+       0.37,
+       0.36,
+       0.36,
+       0.36,
+       0.36,
+       0.36,
+       0.36,
+       0.36,
+       0.35,
+       0.35,
+       0.35,
+       0.35
+      ],
+      "gust": [
+       14.0,
+       14.14,
+       14.28,
+       14.42,
+       14.56,
+       14.69,
+       14.83,
+       14.97,
+       15.11,
+       15.25,
+       15.39,
+       15.53,
+       15.67,
+       15.81,
+       15.94,
+       16.08,
+       16.22,
+       16.36,
+       16.5,
+       16.64,
+       16.78,
+       16.92,
+       17.06,
+       17.19,
+       17.33,
+       17.47,
+       17.61,
+       17.75,
+       17.89,
+       18.03,
+       18.17,
+       18.31,
+       18.44,
+       18.58,
+       18.72,
+       18.86,
+       19.0,
+       18.91,
+       18.83,
+       18.74,
+       18.66,
+       18.57,
+       18.49,
+       18.4,
+       18.31,
+       18.23,
+       18.14,
+       18.06,
+       17.97,
+       17.89,
+       17.8,
+       17.71,
+       17.63,
+       17.54,
+       17.46,
+       17.37,
+       17.29,
+       17.2,
+       17.11,
+       17.03,
+       16.94,
+       16.86,
+       16.77,
+       16.69,
+       16.6,
+       16.51,
+       16.43,
+       16.34,
+       16.26,
+       16.17,
+       16.09,
+       16.0
+      ]
+     },
+     "prediction_72h": {
+      "blocks": [
+       {
+        "block_label": "T+06h",
+        "period": "D1 00–06h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 125,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+12h",
+        "period": "D1 06–12h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 250,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+18h",
+        "period": "D1 12–18h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 375,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+24h",
+        "period": "D1 18–24h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 500,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+30h",
+        "period": "D2 00–06h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 625,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+36h",
+        "period": "D2 06–12h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 750,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+42h",
+        "period": "D2 12–18h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 875,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+48h",
+        "period": "D2 18–24h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 1000,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+54h",
+        "period": "D3 00–06h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 1125,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+60h",
+        "period": "D3 06–12h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 1250,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+66h",
+        "period": "D3 12–18h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 1375,
+        "risk_flag": "SURGE_OVERCROWDING"
+       },
+       {
+        "block_label": "T+72h",
+        "period": "D3 18–24h",
+        "est_people": 125,
+        "est_boats": 3,
+        "cum_people": 1500,
+        "risk_flag": "SURGE_OVERCROWDING"
+       }
+      ],
+      "total_est_arrivals": 1500,
+      "peak_window": "72h ruhige See ab T+0h",
+      "predicted_hotspot_occupancy": 3740,
+      "overcrowding_alert": true
+     },
+     "analysis": {
+      "current_wave_m": 0.35,
+      "longest_calm_run_h": 72,
+      "calm_run_start_h": 0,
+      "gust_spike_hours": 0,
+      "peak_gust_kmh": 19.0,
+      "peak_gust_h": 36,
+      "mode": "surge",
+      "arrivals_72h_est": 1500
+     },
+     "widget": {
+      "type": "reception_surge",
+      "title": "Island Reception Surge & Triage Predictor",
+      "labels": [
+       "D1 00–06h",
+       "D1 06–12h",
+       "D1 12–18h",
+       "D1 18–24h",
+       "D2 00–06h",
+       "D2 06–12h",
+       "D2 12–18h",
+       "D2 18–24h",
+       "D3 00–06h",
+       "D3 06–12h",
+       "D3 12–18h",
+       "D3 18–24h"
+      ],
+      "arrivals": [
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125,
+       125
+      ],
+      "capacity": 2000,
+      "base_occupancy": 1250,
+      "water_storage_l": 60000,
+      "longest_calm_h": 72
+     }
+    }
+   ],
+   "news_reports": [
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic reception update: 72h calm-sea run, Lesbos centre nearing capacity",
+     "url": "https://reliefweb.int/updates"
+    },
+    {
+     "source": "[Illustrative Synthetic Scenario]",
+     "title": "Synthetic logistics note: additional mainland ferry slots requested",
+     "url": "https://data.unhcr.org/en/situations/mediterranean"
+    },
+    {
+     "source": "Reference",
+     "title": "IOM Missing Migrants Project — Mediterranean",
+     "url": "https://missingmigrants.iom.int/region/mediterranean"
+    }
+   ],
+   "provenance_summary": [
+    {
+     "label": "OPEN-METEO MARINE",
+     "ok": null
+    },
+    {
+     "label": "OPEN-METEO WEATHER",
+     "ok": null
+    },
+    {
+     "label": "GLOFAS FLOOD",
+     "ok": null
+    },
+    {
+     "label": "UN OCHA RELIEFWEB",
+     "ok": null
+    },
+    {
+     "label": "GDELT 2.0",
+     "ok": null
+    }
+   ],
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once --scenario aegean_surge",
+     "thought": "Loading [Illustrative Synthetic Scenario] 'aegean_surge' (synthetic data, not live) to rehearse the full patrol pipeline through the same deterministic algorithms.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 80, Balkan Route 39, Central Med 26. Focusing Aegean (Çeşme → Lesbos) (score 80/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-0702-0400 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ],
+   "active_widget_path": "inline://widgets/reception_surge",
+   "ngo_briefing": {
+    "dispatch_id": "AEGIS-OPS-2026-0702-0400",
+    "coordinates_focus": "39.25°N, 26.40°E (Aegean Mid-Channel)",
+    "title": "Island Reception Surge & Triage Dispatch: Lesbos",
+    "target_orgs": [
+     "Hellenic Coast Guard Liaison",
+     "Lesbos Reception & Identification Centre",
+     "MSF / IFRC Medical Teams"
+    ],
+    "priority": "IMMEDIATE — Reception pressure building",
+    "key_findings": [
+     "Longest calm-sea run 72h (from T+0h); current wave 0.35 m.",
+     "0 hours with gusts ≥35 km/h; peak 19 km/h at T+36h.",
+     "Planning estimate: ~1500 arrivals over 72h (heuristic, calm-hour weighted)."
+    ],
+    "recommended_actions": [
+     "Scale reception intake, registration and shelter staffing for the next 72h.",
+     "Pre-arrange mainland ferry transfer slots and deploy additional medical triage teams to shoreline arrival points.",
+     "Keep coast-guard and NGO rescue boats on short notice for sudden channel squalls."
+    ]
+   },
+   "scenario_label": "[Illustrative Synthetic Scenario] Aegean Island Reception Surge (Eastern Med)"
+  }
+ },
+ "generator": {
+  "name": "aegis.py",
+  "version": "1.0",
+  "refresh_seconds": 1800,
+  "disclaimer": "Planning aid for humanitarian responders; not a navigation product."
+ },
+ "run_history": [
+  {
+   "run_id": "run_20261010_0638Z",
+   "timestamp_utc": "2026-10-10T06:38:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 89
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 89, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0638 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0639Z",
+   "timestamp_utc": "2026-10-10T06:39:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 89
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 89, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0639 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0703Z",
+   "timestamp_utc": "2026-10-10T07:03:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 89
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 89, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0703 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0709Z",
+   "timestamp_utc": "2026-10-10T07:09:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0709 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0722Z",
+   "timestamp_utc": "2026-10-10T07:22:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0722 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0724Z",
+   "timestamp_utc": "2026-10-10T07:24:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0724 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0725Z",
+   "timestamp_utc": "2026-10-10T07:25:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0725 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0755Z",
+   "timestamp_utc": "2026-10-10T07:55:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 89
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 89, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0755 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0825Z",
+   "timestamp_utc": "2026-10-10T08:25:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0825 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261010_0855Z",
+   "timestamp_utc": "2026-10-10T08:55:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 56,
+    "balkan_land": 48,
+    "aegean_east": 85
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 85, Central Med 56, Balkan Route 48. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch AEGIS-OPS-2026-1010-0855 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  }
+ ]
+}
