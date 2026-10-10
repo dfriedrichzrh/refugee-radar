@@ -22,22 +22,10 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Test Zero-Dependency Live Ingestion (--once)
+    - name: Run Full Telemetry Ingestion, Corridors & Synthetic Scenarios
       run: |
         python3 aegis.py --once
 
-    - name: Test Synthetic Scenario - Sicily Trap
+    - name: Validate live_state.json Schema & Scenarios Integrity
       run: |
-        python3 aegis.py --once --scenario sicily_trap
-
-    - name: Test Synthetic Scenario - Balkan Freeze
-      run: |
-        python3 aegis.py --once --scenario balkan_freeze
-
-    - name: Test Synthetic Scenario - Aegean Surge
-      run: |
-        python3 aegis.py --once --scenario aegean_surge
-
-    - name: Validate live_state.json integrity
-      run: |
-        python3 -c "import json; data = json.load(open('live_state.json')); assert 'corridors' in data; print('JSON State Validated Successfully!')"
+        python3 -c "import json; data = json.load(open('live_state.json')); assert 'corridors' in data; assert 'scenarios' in data; print('JSON State & Scenarios Validated Successfully!')"
