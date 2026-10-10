@@ -5,3 +5,4 @@ __pycache__/
 backup/
 *.log
 .DS_Store
+refugee_radar_awards.ics
