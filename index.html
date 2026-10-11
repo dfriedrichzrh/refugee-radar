@@ -305,38 +305,12 @@
       color: #FFFFFF;
     }
 
-    /* Executive SITREP Summary Strip - Human-Readable Context */
-    .executive-sitrep-strip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      height: 28px;
-      background: rgba(248, 250, 252, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-hairline);
-      font-size: 0.775rem;
-      font-weight: 500;
-      color: #334155;
-      padding: 0 1.25rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      z-index: 95;
-    }
-
-    .executive-sitrep-strip .ess-bullet {
-      color: var(--accent-amber);
-      font-size: 0.7rem;
-    }
-
     /* --------------------------------------------------------------------------
        COMMAND WORKSPACE (Zero-Scroll 2-Column Split: 46% Map | 54% Telemetry)
        -------------------------------------------------------------------------- */
     .workspace-grid {
       flex: 1;
-      height: calc(100vh - 54px - 28px - 48px);
+      height: calc(100vh - 54px - 48px);
       display: grid;
       grid-template-columns: 46% 54%;
       overflow: hidden;
@@ -1276,12 +1250,6 @@
       </button>
     </div>
   </header>
-
-  <!-- EXECUTIVE SITREP SUMMARY STRIP -->
-  <div class="executive-sitrep-strip" id="executive-sitrep-strip">
-    <span class="ess-bullet" id="ess-bullet">●</span>
-    <span id="ess-text">Lagebericht T+0h: Ruhige See in der Ost-Ägäis begünstigt Überfahrten nach Lesbos; Zentrales Mittelmeer: 1.66m Dünung (stabil).</span>
-  </div>
 
   <!-- MAIN WORKSPACE: MAP (46%) + TELEMETRY INSPECTOR (54%) -->
   <main class="workspace-grid">
@@ -2356,28 +2324,6 @@
           situationBadge = isDe ? ' · Lage stabil' : ' · Stable state';
         }
         timeLabel.textContent = `${timeObj.formatted}${situationBadge}`;
-      }
-
-      // Executive SITREP Strip: 1-Sentence Human-Readable Situation Summary
-      const essText = document.getElementById('ess-text');
-      const essBullet = document.getElementById('ess-bullet');
-      if (essText) {
-        if (wAegScrub < 0.6) {
-          if (essBullet) essBullet.style.color = 'var(--accent-red)';
-          essText.innerHTML = isDe
-            ? `<strong>Lage T+${scrubHour}h:</strong> Brennpunkt Ost-Ägäis (${wAegScrub.toFixed(2)}m Ruhigsee begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${wMedScrub.toFixed(2)}m Dünung (stabil).`
-            : `<strong>Situation T+${scrubHour}h:</strong> Hotspot East Aegean (${wAegScrub.toFixed(2)}m calm sea favors boat crossings to Lesbos); Central Med: ${wMedScrub.toFixed(2)}m swell (stable).`;
-        } else if (wMedScrub >= 1.5) {
-          if (essBullet) essBullet.style.color = 'var(--accent-red)';
-          essText.innerHTML = isDe
-            ? `<strong>Lage T+${scrubHour}h:</strong> Raue See im Zentralen Mittelmeer (${wMedScrub.toFixed(2)}m Dünung übersteigt 1.5m Kentergrenze). Erhöhte SAR-Wachsamkeit vor Lampedusa.`
-            : `<strong>Situation T+${scrubHour}h:</strong> Rough seas in Central Med (${wMedScrub.toFixed(2)}m swell exceeds 1.5m capsize limit). Heightened SAR alert off Lampedusa.`;
-        } else {
-          if (essBullet) essBullet.style.color = 'var(--accent-green)';
-          essText.innerHTML = isDe
-            ? `<strong>Lage T+${scrubHour}h:</strong> Moderate Seebedingungen über allen Marine-Sektoren (unter 1.5m Kentergrenze). Reguläre SAR-Wachsamkeit.`
-            : `<strong>Situation T+${scrubHour}h:</strong> Moderate sea conditions across all marine sectors (below 1.5m capsize limit). Routine SAR readiness.`;
-        }
       }
 
       // Update Map Overlay Card
