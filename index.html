@@ -1240,13 +1240,13 @@
         <span>▶</span> <span>30s Tour</span>
       </button>
       <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar">
-        <span>📋</span> <span>SITREP</span>
+        <span>SITREP</span>
       </button>
       <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" title="Sprache umschalten / Switch language">
-        <span>🌐</span> <span id="lbl-lang-code">DE</span>
+        <span id="lbl-lang-code">DE</span>
       </button>
       <button class="btn-action" onclick="openFaqModal()" id="lbl-faq">
-        <span>ℹ️</span> <span>FAQ</span>
+        <span>FAQ</span>
       </button>
     </div>
   </header>
@@ -3024,8 +3024,8 @@
       const t = i18n[currentLang];
       setTxt('lbl-live-badge', t.liveBadge);
       setTxt('lbl-subtitle', t.subtitle);
-      setTxt('lbl-report-bar', t.report);
-      setTxt('lbl-faq', t.faq);
+      setTxt('lbl-report-bar', 'SITREP');
+      setTxt('lbl-faq', 'FAQ');
       setTxt('lbl-map-focus', t.mapFocus);
       
       setTxt('lbl-chart-title', t.chartTitle);
