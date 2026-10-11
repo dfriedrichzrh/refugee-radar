@@ -72,7 +72,7 @@ Refugee Radar is engineered with extreme operational resilience in mind. The bac
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │                   Responsive Tactical Frontend                         │
-│  - MapLibre GL Interactive Geonavigation (Apple-Studio aesthetic)      │
+│  - MapLibre GL Interactive Geonavigation (v2.0 High-Precision Command Center aesthetic)      │
 │  - Dual-Language Support (EN / DE)                                     │
 │  - Tactical Interactive Widgets (IAMSAR Drift, Hypothermia, Surge)     │
 │  - 1-Click Operational SITREP Dispatch (Signal / Slack markdown)       │
