@@ -588,6 +588,64 @@
       pointer-events: none;
     }
 
+    /* Apple Pro Frosted Glass Hotspot Markers */
+    .hotspot-marker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px) saturate(190%);
+      color: var(--text-main);
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: -apple-system, BlinkMacSystemFont, var(--font-sans);
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      user-select: none;
+      z-index: 15;
+    }
+    .hotspot-marker:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      border-color: var(--apple-blue);
+    }
+    .hotspot-marker .marker-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.1rem 0.38rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    /* Floating Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(16px);
+      color: #FFFFFF;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-apple-lg);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      pointer-events: none;
+    }
+
     /* Reception Capacity Card */
     .capacity-card {
       background: #FFFFFF;
@@ -959,6 +1017,10 @@
             <span class="card-title" id="lbl-chart-title">📈 72h Multi-Sector Hazard Comparison</span>
             <span class="card-subtitle" id="lbl-chart-sub">Simultaneous 3-corridor dynamics</span>
           </div>
+          <div style="display:flex; align-items:center; gap:0.35rem; font-size:0.675rem;">
+            <span class="feed-badge" id="insight-badge" style="font-weight:700; background:rgba(2, 132, 199, 0.12); color:#0284C7;">LIVE</span>
+            <span id="insight-text" style="color:var(--text-secondary); max-width:260px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Environmental baseline stable</span>
+          </div>
         </div>
 
         <!-- Legend Pills directly above chart -->
@@ -999,6 +1061,9 @@
 
     </div>
   </main>
+
+  <!-- FLOATING TOAST -->
+  <div class="toast-notification" id="toast-copy"></div>
 
   <!-- BOTTOM DOCK: 72H PLAYBACK CONTROLS (macOS Timeline Scrub Bar) -->
   <footer class="apple-dock">
@@ -1555,8 +1620,18 @@
           const occ = getSimulatedOccupancy(hsData, scrubHour);
           const pct = Math.round((occ / hsData.nominal) * 100);
           const shortName = hsData.name.split(' ')[0];
-          el.innerHTML = `🏛️ ${shortName}: <strong>${pct}%</strong>`;
-          el.style.background = pct >= 100 ? '#EF4444' : (pct >= 85 ? '#F59E0B' : '#0F172A');
+          
+          let badgeBg = 'rgba(52, 199, 89, 0.15)';
+          let badgeColor = '#15803D';
+          if (pct >= 100) {
+            badgeBg = 'rgba(239, 68, 68, 0.18)';
+            badgeColor = '#DC2626';
+          } else if (pct >= 85) {
+            badgeBg = 'rgba(245, 158, 11, 0.18)';
+            badgeColor = '#D97706';
+          }
+          el.style.background = '';
+          el.innerHTML = `<span>🏛️ ${shortName}</span><span class="marker-badge" style="background:${badgeBg}; color:${badgeColor};">${pct}%</span>`;
         }
       });
 
@@ -2083,6 +2158,7 @@
     function updateInsightText(metricVal, h, isMarine) {
       const insightText = document.getElementById('insight-text');
       const badge = document.getElementById('insight-badge');
+      if (!insightText || !badge) return;
       const isDe = currentLang === 'de';
 
       if (isMarine) {
@@ -2433,35 +2509,39 @@
     // Task 5: Language Toggle
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'de' : 'en';
-      document.getElementById('btn-lang').textContent = currentLang === 'en' ? 'DE' : 'EN';
+      const setTxt = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val !== undefined) el.textContent = val;
+      };
+
+      setTxt('btn-lang', currentLang === 'en' ? 'DE' : 'EN');
       
       const t = i18n[currentLang];
-      document.getElementById('lbl-live-badge').textContent = t.liveBadge;
-      document.getElementById('lbl-subtitle').textContent = t.subtitle;
-      document.getElementById('lbl-report-bar').textContent = t.report;
-      document.getElementById('lbl-faq').textContent = t.faq;
-      document.getElementById('lbl-map-focus').textContent = t.mapFocus;
+      setTxt('lbl-live-badge', t.liveBadge);
+      setTxt('lbl-subtitle', t.subtitle);
+      setTxt('lbl-report-bar', t.report);
+      setTxt('lbl-faq', t.faq);
+      setTxt('lbl-map-focus', t.mapFocus);
       
-      document.getElementById('lbl-chart-title').textContent = t.chartTitle;
-      document.getElementById('lbl-chart-sub').textContent = t.chartSub;
-      document.getElementById('lbl-capacity-title').textContent = t.capTitle;
-      document.getElementById('lbl-capacity-sub').textContent = t.capSub;
-      document.getElementById('lbl-occupancy-bar').textContent = t.occupancyBar;
-      document.getElementById('lbl-agent-title').textContent = t.agentTitle;
-      document.getElementById('lbl-agent-sub').textContent = t.agentSub;
+      setTxt('lbl-chart-title', t.chartTitle);
+      setTxt('lbl-chart-sub', t.chartSub);
+      setTxt('lbl-capacity-title', t.capTitle);
+      setTxt('lbl-capacity-sub', t.capSub);
+      setTxt('lbl-occupancy-bar', t.occupancyBar);
+      setTxt('lbl-agent-title', t.agentTitle);
+      setTxt('lbl-agent-sub', t.agentSub);
       
-      document.getElementById('leg-calm').textContent = t.legCalm;
-      document.getElementById('leg-rough').textContent = t.legRough;
-      document.getElementById('leg-severe').textContent = t.legSevere;
-      document.getElementById('leg-sar').textContent = t.legSar;
+      setTxt('leg-calm', t.legCalm);
+      setTxt('leg-rough', t.legRough);
+      setTxt('leg-severe', t.legSevere);
+      setTxt('leg-sar', t.legSar);
 
-      document.getElementById('toggle-waves').textContent = t.layerWaves;
-      document.getElementById('toggle-wind').textContent = t.layerWind;
-      document.getElementById('toggle-sar').textContent = t.layerSar;
-      document.getElementById('toggle-hotspots').textContent = t.layerHotspots;
-      document.getElementById('lbl-datum-btn').textContent = t.datumBtn;
-      const dtTitle = document.getElementById('lbl-datum-card-title');
-      if (dtTitle && t.datumTitle) dtTitle.textContent = t.datumTitle;
+      setTxt('toggle-waves', t.layerWaves);
+      setTxt('toggle-wind', t.layerWind);
+      setTxt('toggle-sar', t.layerSar);
+      setTxt('toggle-hotspots', t.layerHotspots);
+      setTxt('lbl-datum-btn', t.datumBtn);
+      setTxt('lbl-datum-card-title', t.datumTitle);
 
       const lblTourBtn = document.getElementById('lbl-tour-btn');
       if (lblTourBtn && t.tourBtn) lblTourBtn.textContent = t.tourBtn;
