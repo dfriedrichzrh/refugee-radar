@@ -305,12 +305,38 @@
       color: #FFFFFF;
     }
 
+    /* Executive SITREP Summary Strip - Human-Readable Context */
+    .executive-sitrep-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      height: 28px;
+      background: rgba(248, 250, 252, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 0.775rem;
+      font-weight: 500;
+      color: #334155;
+      padding: 0 1.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      z-index: 95;
+    }
+
+    .executive-sitrep-strip .ess-bullet {
+      color: var(--accent-amber);
+      font-size: 0.7rem;
+    }
+
     /* --------------------------------------------------------------------------
        COMMAND WORKSPACE (Zero-Scroll 2-Column Split: 46% Map | 54% Telemetry)
        -------------------------------------------------------------------------- */
     .workspace-grid {
       flex: 1;
-      height: calc(100vh - 54px - 48px);
+      height: calc(100vh - 54px - 28px - 48px);
       display: grid;
       grid-template-columns: 46% 54%;
       overflow: hidden;
@@ -1251,7 +1277,13 @@
     </div>
   </header>
 
-  <!-- MAIN WORKSPACE: MAP (62%) + TELEMETRY INSPECTOR (38%) -->
+  <!-- EXECUTIVE SITREP SUMMARY STRIP -->
+  <div class="executive-sitrep-strip" id="executive-sitrep-strip">
+    <span class="ess-bullet" id="ess-bullet">●</span>
+    <span id="ess-text">Lagebericht T+0h: Ruhige See in der Ost-Ägäis begünstigt Überfahrten nach Lesbos; Zentrales Mittelmeer: 1.66m Dünung (stabil).</span>
+  </div>
+
+  <!-- MAIN WORKSPACE: MAP (46%) + TELEMETRY INSPECTOR (54%) -->
   <main class="workspace-grid">
     
     <!-- LEFT: MAP CANVAS -->
@@ -1470,7 +1502,7 @@
   <div class="modal-backdrop" id="sitrep-modal" onclick="if(event.target===this)closeSitrepModal()">
     <div class="modal-window modal-sitrep">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h3 style="font-size:1.05rem; font-weight:700;" id="sitrep-modal-title">📋 Humanitarian SITREP Dispatch</h3>
+        <h3 style="font-size:1.05rem; font-weight:700;" id="sitrep-modal-title">Humanitarian SITREP Dispatch</h3>
         <span style="cursor:pointer; font-size:1.35rem; color:var(--text-muted); padding:0 0.25rem;" onclick="closeSitrepModal()">&times;</span>
       </div>
       <div id="sitrep-modal-body">
@@ -2172,8 +2204,8 @@
 
         if (c.id === 'aegean_east') {
           title = isDe ? 'Ost-Ägäis' : 'Eastern Aegean';
-          riskLabel = isDe ? `${c.risk_score}% Surge` : `${c.risk_score}% Surge`;
-          tooltip = isDe ? `Ost-Ägäis: ${c.risk_score}% Surge-Risiko (Ruhigsee begünstigt Überfahrten nach Lesbos)` : `East Aegean: ${c.risk_score}% Surge Risk (Calm sea crossings to Lesbos)`;
+          riskLabel = isDe ? `${c.risk_score}% Überfahrt-Peak` : `${c.risk_score}% Crossing Peak`;
+          tooltip = isDe ? `Ost-Ägäis: ${c.risk_score}% Überfahrten-Spitze (Ruhige See begünstigt Überfahrten nach Lesbos)` : `East Aegean: ${c.risk_score}% Crossing Peak (Calm sea triggers boat crossings to Lesbos)`;
         } else if (c.id === 'central_med') {
           title = isDe ? 'Zentr. Med' : 'Central Med';
           riskLabel = isDe ? `${c.risk_score}% Seegang` : `${c.risk_score}% Swell`;
@@ -2307,9 +2339,46 @@
       const isMarine = c.id !== 'balkan_land';
       const timeObj = getWallClockTime(scrubHour);
 
-      // Task 4: Update scrubber time label with UTC wall-clock time
+      // Task 4: Update scrubber time label with UTC wall-clock time + situation cue
       const timeLabel = document.getElementById('sim-time-label');
-      if (timeLabel) timeLabel.textContent = timeObj.formatted;
+      const medC = liveState.corridors.find(x => x.id === 'central_med');
+      const aegC = liveState.corridors.find(x => x.id === 'aegean_east');
+      const wAegScrub = (aegC?.timeline?.wave && aegC.timeline.wave[scrubHour] !== undefined) ? aegC.timeline.wave[scrubHour] : 0.8;
+      const wMedScrub = (medC?.timeline?.wave && medC.timeline.wave[scrubHour] !== undefined) ? medC.timeline.wave[scrubHour] : 1.2;
+
+      if (timeLabel) {
+        let situationBadge = '';
+        if (wMedScrub >= 1.5 || wAegScrub >= 1.5) {
+          situationBadge = isDe ? ' · ⚠️ Raue See (>1.5m)' : ' · ⚠️ Rough Seas (>1.5m)';
+        } else if (wAegScrub < 0.6) {
+          situationBadge = isDe ? ' · 🚨 Überfahrt-Spitze (Ägäis)' : ' · 🚨 Crossing Peak (Aegean)';
+        } else {
+          situationBadge = isDe ? ' · Lage stabil' : ' · Stable state';
+        }
+        timeLabel.textContent = `${timeObj.formatted}${situationBadge}`;
+      }
+
+      // Executive SITREP Strip: 1-Sentence Human-Readable Situation Summary
+      const essText = document.getElementById('ess-text');
+      const essBullet = document.getElementById('ess-bullet');
+      if (essText) {
+        if (wAegScrub < 0.6) {
+          if (essBullet) essBullet.style.color = 'var(--accent-red)';
+          essText.innerHTML = isDe
+            ? `<strong>Lage T+${scrubHour}h:</strong> Brennpunkt Ost-Ägäis (${wAegScrub.toFixed(2)}m Ruhigsee begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${wMedScrub.toFixed(2)}m Dünung (stabil).`
+            : `<strong>Situation T+${scrubHour}h:</strong> Hotspot East Aegean (${wAegScrub.toFixed(2)}m calm sea favors boat crossings to Lesbos); Central Med: ${wMedScrub.toFixed(2)}m swell (stable).`;
+        } else if (wMedScrub >= 1.5) {
+          if (essBullet) essBullet.style.color = 'var(--accent-red)';
+          essText.innerHTML = isDe
+            ? `<strong>Lage T+${scrubHour}h:</strong> Raue See im Zentralen Mittelmeer (${wMedScrub.toFixed(2)}m Dünung übersteigt 1.5m Kentergrenze). Erhöhte SAR-Wachsamkeit vor Lampedusa.`
+            : `<strong>Situation T+${scrubHour}h:</strong> Rough seas in Central Med (${wMedScrub.toFixed(2)}m swell exceeds 1.5m capsize limit). Heightened SAR alert off Lampedusa.`;
+        } else {
+          if (essBullet) essBullet.style.color = 'var(--accent-green)';
+          essText.innerHTML = isDe
+            ? `<strong>Lage T+${scrubHour}h:</strong> Moderate Seebedingungen über allen Marine-Sektoren (unter 1.5m Kentergrenze). Reguläre SAR-Wachsamkeit.`
+            : `<strong>Situation T+${scrubHour}h:</strong> Moderate sea conditions across all marine sectors (below 1.5m capsize limit). Routine SAR readiness.`;
+        }
+      }
 
       // Update Map Overlay Card
       const vp = CORRIDOR_VIEWPORTS[selectedCorridorId];
@@ -2615,13 +2684,13 @@
             ? `T+${h}h: ${isExtreme ? 'Schwere See' : 'Raue See'} im ${stormSector} (${peakWave.toFixed(2)}m Dünung, >1.5m Kentergrenze). Erhöhte Seenot- und Kentergefahr für Schlauchboote.`
             : `T+${h}h: ${isExtreme ? 'Heavy sea' : 'Rough sea'} in ${stormSector} (${peakWave.toFixed(2)}m swell, >1.5m capsize limit). Heightened distress and capsize risk for rubber dinghies.`;
         } else if (waveAeg < 0.6) {
-          badge.textContent = isDe ? "PAN-MED: RUHIGSEE-SURGE" : "PAN-MED: CALM SURGE";
+          badge.textContent = isDe ? "PAN-MED: ÜBERFAHRT-SPITZE" : "PAN-MED: CROSSING PEAK";
           badge.style.background = 'var(--accent-amber-light)';
           badge.style.color = '#92400E';
           if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Brennpunkt Ost-Ägäis (${waveAeg.toFixed(2)}m Ruhigsee begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${waveMed.toFixed(2)}m Dünung.`
-            : `T+${h}h: Hotspot Eastern Aegean (${waveAeg.toFixed(2)}m calm sea driving departures toward Lesbos); Central Med: ${waveMed.toFixed(2)}m swell.`;
+            ? `T+${h}h: Brennpunkt Ost-Ägäis (${waveAeg.toFixed(2)}m ruhige See begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${waveMed.toFixed(2)}m Dünung.`
+            : `T+${h}h: Hotspot Eastern Aegean (${waveAeg.toFixed(2)}m calm sea driving boat departures toward Lesbos); Central Med: ${waveMed.toFixed(2)}m swell.`;
         } else {
           badge.textContent = isDe ? "PAN-MED: LAGE STABIL" : "PAN-MED: STABLE STATE";
           badge.style.background = 'var(--accent-blue-light)';
@@ -2654,13 +2723,13 @@
             ? `T+${h}h: ${isExtreme ? 'Schwere See' : 'Raue See'} (${valFormatted}m Dünung). Übersteigt 1.5m Kentergrenze für seeuntüchtige Schlauchboote.`
             : `T+${h}h: ${isExtreme ? 'Heavy sea' : 'Rough sea'} (${valFormatted}m swell). Exceeds 1.5m capsize limit for unseaworthy crafts.`;
         } else if (metricVal < 0.6) {
-          badge.textContent = isDe ? `${corridorLabel.toUpperCase()}: RUHIGSEE-SURGE` : `${corridorLabel.toUpperCase()}: CALM SURGE`;
+          badge.textContent = isDe ? `${corridorLabel.toUpperCase()}: ÜBERFAHRT-SPITZE` : `${corridorLabel.toUpperCase()}: CROSSING PEAK`;
           badge.style.background = 'var(--accent-amber-light)';
           badge.style.color = '#92400E';
           if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Ruhiges Wetterfenster (${valFormatted}m). Sprunghafter Anstieg der Abfahrten erwartet.`
-            : `T+${h}h: Calm weather window (${valFormatted}m). Surge in departures likely.`;
+            ? `T+${h}h: Ruhiges Wetterfenster (${valFormatted}m). Deutlicher Anstieg der Überfahrten erwartet.`
+            : `T+${h}h: Calm weather window (${valFormatted}m). Significant increase in boat crossings expected.`;
         } else {
           badge.textContent = isDe ? `${corridorLabel.toUpperCase()}: LAGE STABIL` : `${corridorLabel.toUpperCase()}: STABLE STATE`;
           badge.style.background = 'var(--accent-blue-light)';
