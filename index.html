@@ -106,7 +106,23 @@
       color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
+    }
+
+    .brand-monogram {
+      width: 27px;
+      height: 27px;
+      background: linear-gradient(135deg, #007AFF 0%, #0051B3 100%);
+      color: #FFFFFF;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 6px rgba(0, 122, 255, 0.35);
+      flex-shrink: 0;
     }
 
     .brand-badge {
@@ -574,7 +590,7 @@
     .chart-container {
       position: relative;
       width: 100%;
-      height: 165px;
+      height: 185px;
     }
 
     .chart-svg {
@@ -801,6 +817,52 @@
       padding: 0.1rem 0.35rem;
       border-radius: 3px;
       height: fit-content;
+    }
+
+    /* Restored Operational Assessment & Situation Outlook Banner */
+    .insight-callout-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-left: 4px solid var(--apple-blue);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.95rem;
+      box-shadow: var(--shadow-apple-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .insight-callout-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .insight-callout-tag {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(0, 122, 255, 0.1);
+      color: var(--apple-blue);
+    }
+
+    .insight-callout-time {
+      font-size: 0.725rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .insight-callout-text {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.45;
     }
 
     /* --------------------------------------------------------------------------
@@ -1090,7 +1152,7 @@
   <header class="apple-nav">
     <div class="nav-brand">
       <div class="brand-logo">
-        <span style="color:var(--apple-blue); font-size:1.1rem;">⚓</span>
+        <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
       </div>
       <span class="brand-badge">PRO COMMAND</span>
@@ -1232,10 +1294,6 @@
             <span class="card-title" id="lbl-chart-title">📈 72h Multi-Sector Hazard Comparison</span>
             <span class="card-subtitle" id="lbl-chart-sub">Simultaneous 3-corridor dynamics</span>
           </div>
-          <div style="display:flex; align-items:center; gap:0.35rem; font-size:0.675rem;">
-            <span class="feed-badge" id="insight-badge" style="font-weight:700; background:rgba(2, 132, 199, 0.12); color:#0284C7;">LIVE</span>
-            <span id="insight-text" style="color:var(--text-secondary); max-width:260px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Environmental baseline stable</span>
-          </div>
         </div>
 
         <!-- Legend Pills directly above chart -->
@@ -1260,6 +1318,17 @@
             <span id="hotspot-name-label">Hotspot Facility</span>
             <span id="hotspot-counts-label">680 / 850 Beds</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Restored Dynamic Operational Assessment & Situation Outlook Card -->
+      <div class="insight-callout-card" id="insight-callout-wrap">
+        <div class="insight-callout-header">
+          <span class="insight-callout-tag" id="insight-badge">LAGE STABIL</span>
+          <span class="insight-callout-time" id="insight-time-pill">T+0h Status</span>
+        </div>
+        <div class="insight-callout-text" id="insight-text">
+          T+0h: Moderate Seebedingungen (1.26m). Reguläre SAR-Wachsamkeit.
         </div>
       </div>
 
@@ -2403,49 +2472,62 @@
     }
 
     function updateInsightText(metricVal, h, isMarine) {
+      const insightCard = document.getElementById('insight-callout-wrap');
       const insightText = document.getElementById('insight-text');
       const badge = document.getElementById('insight-badge');
+      const timePill = document.getElementById('insight-time-pill');
       if (!insightText || !badge) return;
       const isDe = currentLang === 'de';
 
+      if (timePill) {
+        timePill.textContent = `T+${h}h Status`;
+      }
+
       if (isMarine) {
+        const valFormatted = typeof metricVal === 'number' ? metricVal.toFixed(2) : metricVal;
         if (metricVal > 2.0) {
           badge.textContent = isDe ? "KENTERGEFAHR" : "CAPSIZE RISK";
           badge.style.background = 'var(--accent-red-light)';
           badge.style.color = '#991B1B';
+          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-red)';
           insightText.textContent = isDe
-            ? `T+${h}h: Schwere See (${metricVal}m Dünung). Hohe Kentergefahr binnen 30 Min.`
-            : `T+${h}h: Heavy sea (${metricVal}m swell). High probability of capsize within 30 min.`;
+            ? `T+${h}h: Schwere See (${valFormatted}m Dünung). Hohe Kentergefahr binnen 30 Min.`
+            : `T+${h}h: Heavy sea (${valFormatted}m swell). High probability of capsize within 30 min.`;
         } else if (metricVal < 0.6) {
           badge.textContent = isDe ? "RUHIGSEE-SURGE" : "CALM SURGE";
           badge.style.background = 'var(--accent-amber-light)';
           badge.style.color = '#92400E';
+          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Ruhiges Wetterfenster (${metricVal}m). Sprunghafter Anstieg der Abfahrten erwartet.`
-            : `T+${h}h: Calm weather window (${metricVal}m). Surge in departures likely.`;
+            ? `T+${h}h: Ruhiges Wetterfenster (${valFormatted}m). Sprunghafter Anstieg der Abfahrten erwartet.`
+            : `T+${h}h: Calm weather window (${valFormatted}m). Surge in departures likely.`;
         } else {
           badge.textContent = isDe ? "LAGE STABIL" : "STABLE STATE";
           badge.style.background = 'var(--accent-blue-light)';
           badge.style.color = '#075985';
+          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-blue)';
           insightText.textContent = isDe
-            ? `T+${h}h: Moderate Seebedingungen (${metricVal}m). Reguläre SAR-Wachsamkeit.`
-            : `T+${h}h: Moderate sea state (${metricVal}m). Routine SAR readiness.`;
+            ? `T+${h}h: Moderate Seebedingungen (${valFormatted}m). Reguläre SAR-Wachsamkeit.`
+            : `T+${h}h: Moderate sea state (${valFormatted}m). Routine SAR readiness.`;
         }
       } else {
+        const valFormatted = typeof metricVal === 'number' ? metricVal.toFixed(1) : metricVal;
         if (metricVal <= 0) {
           badge.textContent = isDe ? "FROST-GEFAHR" : "FREEZING RISK";
           badge.style.background = 'var(--accent-red-light)';
           badge.style.color = '#991B1B';
+          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-red)';
           insightText.textContent = isDe
-            ? `T+${h}h: Sub-Null Windchill (${metricVal.toFixed(1)}°C). Akute Unterkühlungsgefahr am Gebirgspass.`
-            : `T+${h}h: Sub-zero windchill (${metricVal.toFixed(1)}°C). Acute hypothermia risk along mountain pass.`;
+            ? `T+${h}h: Sub-Null Windchill (${valFormatted}°C). Akute Unterkühlungsgefahr am Gebirgspass.`
+            : `T+${h}h: Sub-zero windchill (${valFormatted}°C). Acute hypothermia risk along mountain pass.`;
         } else {
           badge.textContent = isDe ? "PASSAGE PASSABEL" : "PASSABLE ROUTE";
           badge.style.background = 'var(--accent-blue-light)';
           badge.style.color = '#075985';
+          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-blue)';
           insightText.textContent = isDe
-            ? `T+${h}h: Windchill ${metricVal.toFixed(1)}°C. Moderate Gehbedingungen.`
-            : `T+${h}h: Windchill ${metricVal.toFixed(1)}°C. Moderate transit conditions.`;
+            ? `T+${h}h: Windchill ${valFormatted}°C. Moderate Gehbedingungen.`
+            : `T+${h}h: Windchill ${valFormatted}°C. Moderate transit conditions.`;
         }
       }
     }
