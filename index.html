@@ -483,6 +483,114 @@
       display: flex;
     }
 
+    /* Interactive Guided Tour Styling */
+    .btn-tour {
+      background: #0284C7;
+      color: #FFFFFF;
+      font-weight: 600;
+      border: 1px solid #0284C7;
+      box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
+      transition: all 0.15s ease;
+    }
+    .btn-tour:hover {
+      background: #0369A1;
+      border-color: #0369A1;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .tour-banner {
+      position: fixed;
+      top: 4.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.22);
+      padding: 0.9rem 1.25rem;
+      z-index: 2000;
+      width: 90%;
+      max-width: 580px;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      animation: tourFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tour-banner.active {
+      display: flex;
+    }
+
+    @keyframes tourFadeIn {
+      from { opacity: 0; transform: translate(-50%, -10px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .tour-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tour-step-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: var(--accent-blue-light);
+      color: var(--accent-blue);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tour-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tour-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .tour-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.3rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tour-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .tour-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      transition: all 0.2s ease;
+    }
+    .tour-dot.active {
+      background: var(--accent-blue);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .tour-highlight {
+      position: relative;
+      z-index: 1001 !important;
+      box-shadow: 0 0 0 4px var(--accent-blue), 0 12px 30px rgba(2, 132, 199, 0.25) !important;
+      transition: all 0.3s ease;
+    }
+
     .datum-header {
       display: flex;
       justify-content: space-between;
@@ -1063,6 +1171,11 @@
     </div>
 
     <div class="nav-controls">
+      <!-- Interactive Guided Explainer Tour Button -->
+      <button class="btn btn-tour" id="btn-start-tour" onclick="startInteractiveTour()" title="Play 30s Guided Explainer Tour">
+        ▶ <span id="lbl-tour-btn">30s Tour</span>
+      </button>
+
       <!-- Scenario Selection -->
       <select id="scenario-select" class="select-ctrl" title="Operation Scenario">
         <option value="live">📡 Live Sensor Feeds</option>
@@ -1082,6 +1195,39 @@
       </button>
     </div>
   </header>
+
+  <!-- Floating Guided Explainer Tour Card -->
+  <div class="tour-banner" id="tour-banner">
+    <div class="tour-header">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span class="tour-step-badge" id="tour-step-badge">STEP 1 OF 5</span>
+        <span class="tour-title" id="tour-title">Live Corridors & Tactical Map</span>
+      </div>
+      <button class="btn" onclick="stopInteractiveTour()" style="height:24px; padding:0 0.5rem; font-size:0.7rem; color:var(--text-muted); cursor:pointer;">
+        ✕ <span id="lbl-tour-exit">Exit</span>
+      </button>
+    </div>
+    <div class="tour-desc" id="tour-desc">
+      Refugee Radar fuses satellite marine weather with UN shelter capacities across Central Med, the Aegean, and Balkan land passages.
+    </div>
+    <div class="tour-actions">
+      <div class="tour-dots" id="tour-dots">
+        <span class="tour-dot active"></span>
+        <span class="tour-dot"></span>
+        <span class="tour-dot"></span>
+        <span class="tour-dot"></span>
+        <span class="tour-dot"></span>
+      </div>
+      <div style="display:flex; gap:0.4rem;">
+        <button class="btn" id="btn-tour-prev" onclick="prevTourStep()" style="height:28px; font-size:0.75rem; padding:0 0.6rem;">
+          ‹ <span id="lbl-tour-prev">Prev</span>
+        </button>
+        <button class="btn btn-primary" id="btn-tour-next" onclick="nextTourStep()" style="height:28px; font-size:0.75rem; padding:0 0.8rem;">
+          <span id="lbl-tour-next">Next</span> ›
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Purposeful 72h Timeline Scrubber Bar - Aligned with Map and Dashboard -->
   <div class="timeline-banner">
@@ -1422,6 +1568,10 @@
         layerHotspots: "🏛️ Hotspots",
         datumBtn: "Mayday Drift",
         datumTitle: "🚨 Mayday Drift Calculator",
+        tourBtn: "30s Tour",
+        tourExit: "Exit",
+        tourPrev: "Prev",
+        tourNext: "Next",
         scenarios: {
           live: "📡 Live Sensor Feeds",
           sicily_trap: "🌊 Scenario: Sicily Wave Trap (Gale)",
@@ -1497,6 +1647,10 @@
         layerHotspots: "🏛️ Aufnahmelager",
         datumBtn: "Mayday-Drift",
         datumTitle: "🚨 Mayday-Driftrechner",
+        tourBtn: "30s Tour",
+        tourExit: "Beenden",
+        tourPrev: "Zurück",
+        tourNext: "Weiter",
         scenarios: {
           live: "📡 Live Sensordaten",
           sicily_trap: "🌊 Szenario: Sizilien Wellenfalle (Sturm)",
@@ -2488,6 +2642,16 @@
       const dtTitle = document.getElementById('lbl-datum-card-title');
       if (dtTitle && t.datumTitle) dtTitle.textContent = t.datumTitle;
 
+      const lblTourBtn = document.getElementById('lbl-tour-btn');
+      if (lblTourBtn && t.tourBtn) lblTourBtn.textContent = t.tourBtn;
+      const lblTourExit = document.getElementById('lbl-tour-exit');
+      if (lblTourExit && t.tourExit) lblTourExit.textContent = t.tourExit;
+      const lblTourPrev = document.getElementById('lbl-tour-prev');
+      if (lblTourPrev && t.tourPrev) lblTourPrev.textContent = t.tourPrev;
+      const lblTourNext = document.getElementById('lbl-tour-next');
+      if (lblTourNext && t.tourNext) lblTourNext.textContent = t.tourNext;
+      if (typeof isTourRunning !== 'undefined' && isTourRunning) renderTourStep(tourStepIndex);
+
       const scSelect = document.getElementById('scenario-select');
       if (scSelect) {
         scSelect.options[0].textContent = t.scenarios.live;
@@ -2715,6 +2879,199 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       }).catch(err => {
         console.error('Copy failed:', err);
       });
+    }
+
+    // =========================================================================
+    // Interactive 30s Guided Explainer Tour Engine
+    // =========================================================================
+    let isTourRunning = false;
+    let tourStepIndex = 0;
+    let tourTimer = null;
+
+    const TOUR_STEPS = [
+      {
+        targetId: 'tactical-map',
+        badgeEn: 'STEP 1 OF 5 · LIVE CORRIDORS',
+        badgeDe: 'SCHRITT 1 VON 5 · KORRIDORE',
+        titleEn: 'Multi-Sector Tactical Radar',
+        titleDe: 'Multi-Sektor Taktisches Radar',
+        descEn: 'Refugee Radar fuses open oceanographic weather with UN shelter telemetry across the Central Med, Eastern Aegean, and Balkan land passages.',
+        descDe: 'Refugee Radar verbindet marine Wettermodelle mit UN-Aufnahmedaten über das zentrale Mittelmeer, die Ägäis und die Balkan-Landroute.',
+        duration: 6500,
+        action: () => {
+          selectCorridor('central_med');
+          if (map && CORRIDOR_VIEWPORTS['central_med']) {
+            map.flyTo({ center: CORRIDOR_VIEWPORTS['central_med'].center, zoom: 6.8, duration: 1000 });
+          }
+        }
+      },
+      {
+        targetId: 'timeline-chart-wrap',
+        badgeEn: 'STEP 2 OF 5 · 72H FORECAST',
+        badgeDe: 'SCHRITT 2 VON 5 · 72H-PROGNOSE',
+        titleEn: '72h Hazard Horizon & Departure Windows',
+        titleDe: '72h-Gefahrenhorizont & Zeitreise-Simulation',
+        descEn: 'Civil responders anticipate calm-sea weather windows 72h in advance before departure surges spike. Watch the timeline scrubber advance!',
+        descDe: 'Einsatzleiter erkennen ruhige Wetterfenster 72h im Voraus, bevor sprunghafte Abfahrten einsetzen. Beobachten Sie die automatische Zeitreise!',
+        duration: 7500,
+        action: () => {
+          let h = 0;
+          const anim = setInterval(() => {
+            h += 2;
+            if (h > 16 || !isTourRunning) {
+              clearInterval(anim);
+            } else {
+              const el = document.getElementById('time-scrubber');
+              if (el) {
+                el.value = h;
+                onScrubChange(h);
+              }
+            }
+          }, 240);
+        }
+      },
+      {
+        targetId: 'btn-toggle-datum',
+        badgeEn: 'STEP 3 OF 5 · MAYDAY DRIFT',
+        badgeDe: 'SCHRITT 3 VON 5 · MAYDAY-DRIFT',
+        titleEn: 'IAMSAR Leeway Drift & Search Polygon',
+        titleDe: 'IAMSAR-Leeway Bootsdrift & Suchgebiet',
+        descEn: 'When distress calls occur, the leeway physics engine computes aerodynamic and hydrodynamic wind drift by craft type to project expanding search polygons (NM²).',
+        descDe: 'Bei Notrufen berechnet das IAMSAR-Leeway-Modell den Windversatz nach Bootstyp (Schlauchboot, Holzboot, PIW) und projiziert das expandierende Suchgebiet in Seemeilen.',
+        duration: 7500,
+        action: () => {
+          const panel = document.getElementById('datum-panel');
+          if (panel) panel.classList.add('active');
+          updateDatumCalculation();
+        }
+      },
+      {
+        targetId: 'lbl-capacity-title',
+        badgeEn: 'STEP 4 OF 5 · RECEPTION HEADROOM',
+        badgeDe: 'SCHRITT 4 VON 5 · LAGER-KAPAZITÄT',
+        titleEn: 'Frontline Camp Capacity & Surge Alerts',
+        titleDe: 'Lager-Auslastung & Puffer-Frühwarnung',
+        descEn: 'Dynamically tracks frontline facility capacity (Lampedusa 680/850, Moria, Bihać) against nominal ceilings to stage emergency logistics before overcrowding.',
+        descDe: 'Überwacht Erstaufnahmelager dynamisch gegenüber Notfallgrenzen (Lampedusa 680/850 Betten, Moria, Bihać), um rechtzeitig vor Überbelegung zu warnen.',
+        duration: 6500,
+        action: () => {
+          const panel = document.getElementById('datum-panel');
+          if (panel) panel.classList.remove('active');
+        }
+      },
+      {
+        targetId: 'btn-report-bar',
+        badgeEn: 'STEP 5 OF 5 · SITREP DISPATCH',
+        badgeDe: 'SCHRITT 5 VON 5 · EINSATZ-LAGEBERICHT',
+        titleEn: '1-Click Operational Dispatch (Signal / Slack)',
+        titleDe: '1-Klick-Lagebericht für Signal / WhatsApp',
+        descEn: 'One click formats an executive situation report (SITREP) with weather windows, drift coordinates, and shelter directives ready to paste into response channels.',
+        descDe: 'Erzeugt mit einem Klick einen einsatzfertigen Lagebericht mit Wetterfenstern, verdriftetem Notruf-Datum und Lager-Direktiven für verschlüsselte Einsatzgruppen.',
+        duration: 8000,
+        action: () => {
+          openSitrepModal();
+        }
+      }
+    ];
+
+    function startInteractiveTour() {
+      isTourRunning = true;
+      tourStepIndex = 0;
+      const banner = document.getElementById('tour-banner');
+      if (banner) banner.classList.add('active');
+      renderTourStep(0);
+    }
+
+    function renderTourStep(idx) {
+      if (!isTourRunning || idx < 0 || idx >= TOUR_STEPS.length) {
+        stopInteractiveTour();
+        return;
+      }
+      tourStepIndex = idx;
+      clearTimeout(tourTimer);
+
+      const step = TOUR_STEPS[idx];
+      const isDe = currentLang === 'de';
+
+      const badgeEl = document.getElementById('tour-step-badge');
+      const titleEl = document.getElementById('tour-title');
+      const descEl = document.getElementById('tour-desc');
+      const nextBtn = document.getElementById('lbl-tour-next');
+      const prevBtn = document.getElementById('btn-tour-prev');
+
+      if (badgeEl) badgeEl.textContent = isDe ? step.badgeDe : step.badgeEn;
+      if (titleEl) titleEl.textContent = isDe ? step.titleDe : step.titleEn;
+      if (descEl) descEl.textContent = isDe ? step.descDe : step.descEn;
+
+      if (nextBtn) {
+        nextBtn.textContent = idx === TOUR_STEPS.length - 1
+          ? (isDe ? 'Fertig ✓' : 'Done ✓')
+          : (isDe ? 'Weiter ›' : 'Next ›');
+      }
+
+      if (prevBtn) {
+        prevBtn.style.visibility = idx === 0 ? 'hidden' : 'visible';
+      }
+
+      const dots = document.querySelectorAll('.tour-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+      const target = document.getElementById(step.targetId);
+      if (target) {
+        target.classList.add('tour-highlight');
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      if (typeof step.action === 'function') {
+        step.action();
+      }
+
+      tourTimer = setTimeout(() => {
+        if (isTourRunning) {
+          if (idx < TOUR_STEPS.length - 1) {
+            renderTourStep(idx + 1);
+          } else {
+            stopInteractiveTour();
+          }
+        }
+      }, step.duration);
+    }
+
+    function nextTourStep() {
+      if (tourStepIndex < TOUR_STEPS.length - 1) {
+        renderTourStep(tourStepIndex + 1);
+      } else {
+        stopInteractiveTour();
+      }
+    }
+
+    function prevTourStep() {
+      if (tourStepIndex > 0) {
+        renderTourStep(tourStepIndex - 1);
+      }
+    }
+
+    function stopInteractiveTour() {
+      isTourRunning = false;
+      clearTimeout(tourTimer);
+      const banner = document.getElementById('tour-banner');
+      if (banner) banner.classList.remove('active');
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+      toggleSitrepModal(false);
+      const datumPanel = document.getElementById('datum-panel');
+      if (datumPanel) datumPanel.classList.remove('active');
+      document.getElementById('time-scrubber').value = 0;
+      onScrubChange(0);
+
+      const toast = document.getElementById('toast-copy');
+      if (toast) {
+        toast.textContent = currentLang === 'de' ? '✓ Tour abgeschlossen! Radar ist voll bedienbar.' : '✓ Tour complete! Radar is fully interactive.';
+        toast.style.display = 'flex';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
+      }
     }
 
     // Initial Bootstrap
