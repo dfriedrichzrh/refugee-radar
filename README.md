@@ -1,4 +1,4 @@
-# Refugee Radar (AEGIS)
+# Refugee Radar
 
 > **Autonomous Humanitarian & SAR Early-Warning Situational Awareness System**  
 > *Zero-auth real-time telemetry fusion, 72-hour route-adaptive predictive models, and tactical IAMSAR leeway drift calculation for humanitarian responders and civil search & rescue.*

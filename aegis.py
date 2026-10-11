@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AEGIS // Autonomous Humanitarian & Refugee Route Early-Warning Radar.
+"""Refugee Radar // Autonomous Humanitarian & Refugee Route Early-Warning Radar.
 
 Single-file, standard-library-only backend:
   * fetches zero-auth public telemetry (Open-Meteo Marine & Weather, GloFAS
@@ -36,7 +36,7 @@ INDEX_PATH = os.path.join(HERE, "index.html")
 REFRESH_SECONDS = 1800
 TIMEOUT = 10
 HISTORY_MAX = 10
-USER_AGENT = "aegis-humanitarian-radar/1.0 (read-only humanitarian early-warning dashboard)"
+USER_AGENT = "refugee-radar/1.0 (read-only humanitarian early-warning dashboard)"
 
 ENDPOINTS = {
     "central_med_marine": "https://marine-api.open-meteo.com/v1/marine?latitude=35.10&longitude=11.80&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height&forecast_days=3&timezone=UTC",
@@ -899,7 +899,7 @@ def refresh_loop():
 
 # --------------------------------------------------------------------------- read-only server
 class Handler(http.server.BaseHTTPRequestHandler):
-    server_version = "AEGIS/1.0"
+    server_version = "RefugeeRadar/1.0"
     sys_version = ""
     ROUTES = {
         "/": (INDEX_PATH, "text/html; charset=utf-8"),
@@ -1019,7 +1019,7 @@ def http_self_test():
 
 def print_summary(v):
     print("=" * 78)
-    print("AEGIS PATROL %s  @ %s  [%s]" % (v["run_id"], v["timestamp_utc"], v["mode_label"]))
+    print("REFUGEE RADAR PATROL %s  @ %s  [%s]" % (v["run_id"], v["timestamp_utc"], v["mode_label"]))
     print("GLOBAL RISK: %s   FOCUS: %s" % (v["global_risk_level"], v["focused_corridor_id"]))
     print("HEADLINE: %s" % v["summary_headline"])
     print("-" * 78)
@@ -1039,7 +1039,7 @@ def print_summary(v):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="AEGIS humanitarian early-warning radar (read-only)")
+    ap = argparse.ArgumentParser(description="Refugee Radar humanitarian early-warning radar (read-only)")
     ap.add_argument("--once", action="store_true", help="fetch telemetry once, self-test, exit")
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8080)
@@ -1075,7 +1075,7 @@ def main():
     except OSError as e:
         log("Binding to %s:%d failed (%s). If occupied, you can pass --port." % (args.host, args.port, e))
         raise
-    log("AEGIS read-only server on http://%s:%d (GET/HEAD only; refresh every %ds)" % (args.host, args.port, REFRESH_SECONDS))
+    log("Refugee Radar read-only server on http://%s:%d (GET/HEAD only; refresh every %ds)" % (args.host, args.port, REFRESH_SECONDS))
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
