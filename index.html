@@ -1491,6 +1491,7 @@
   <script>
     // Global State
     let liveState = null;
+    let baseLiveState = null;
     let selectedCorridorId = 'central_med';
     let scrubHour = 0;
     let isSimulating = false;
@@ -2058,6 +2059,7 @@
         const res = await fetch('live_state.json?t=' + Date.now());
         if (!res.ok) throw new Error('HTTP ' + res.status);
         liveState = await res.json();
+        baseLiveState = JSON.parse(JSON.stringify(liveState));
         
         renderCorridorTabs();
         updateDisplay();
@@ -2581,23 +2583,70 @@
       }
     }
 
-    // Scenario Switching
+    // Scenario Switching Engine
     document.getElementById('scenario-select').addEventListener('change', async (e) => {
       const val = e.target.value;
+      const liveBadge = document.getElementById('lbl-live-badge');
+      const pulseDot = document.querySelector('.pulse-dot');
+      const isDe = currentLang === 'de';
+
       if (val === 'live') {
-        loadData();
-        return;
+        if (baseLiveState) {
+          liveState = JSON.parse(JSON.stringify(baseLiveState));
+        } else {
+          await loadData();
+          return;
+        }
+        if (liveBadge) liveBadge.textContent = 'LIVE PATROL';
+        if (pulseDot) pulseDot.style.background = '#10B981';
+        selectedCorridorId = liveState.focused_corridor_id || 'central_med';
+      } else if (baseLiveState && baseLiveState.scenarios && baseLiveState.scenarios[val]) {
+        const sc = baseLiveState.scenarios[val];
+        // Fully swap liveState with the crisis scenario dataset
+        liveState = {
+          ...JSON.parse(JSON.stringify(sc)),
+          scenarios: baseLiveState.scenarios
+        };
+        selectedCorridorId = sc.focused_corridor_id || 'central_med';
+        
+        if (liveBadge) {
+          liveBadge.textContent = isDe ? 'SZENARIO SIMULATION' : 'SCENARIO MODE';
+        }
+        if (pulseDot) pulseDot.style.background = '#F59E0B';
       }
 
-      if (liveState && liveState.scenarios && liveState.scenarios[val]) {
-        const sc = liveState.scenarios[val];
-        selectedCorridorId = sc.corridor_id || selectedCorridorId;
-        renderCorridorTabs();
-        updateDisplay();
-        renderTimelineChart();
-        if (map && CORRIDOR_VIEWPORTS[selectedCorridorId]) {
-          map.flyTo({ center: CORRIDOR_VIEWPORTS[selectedCorridorId].center, zoom: CORRIDOR_VIEWPORTS[selectedCorridorId].zoom });
-        }
+      // Reset timeline scrubber to T+0h for the new scenario
+      scrubHour = 0;
+      const scrubber = document.getElementById('time-scrubber');
+      if (scrubber) scrubber.value = 0;
+
+      // Re-render all dashboard components with scenario data
+      renderCorridorTabs();
+      updateDisplay();
+      renderTimelineChart();
+      renderAgentFeed();
+
+      // Smoothly fly map to the scenario's focus corridor
+      if (map && CORRIDOR_VIEWPORTS[selectedCorridorId]) {
+        map.flyTo({
+          center: CORRIDOR_VIEWPORTS[selectedCorridorId].center,
+          zoom: CORRIDOR_VIEWPORTS[selectedCorridorId].zoom,
+          duration: 1200
+        });
+      }
+
+      // Show toast confirmation
+      const toast = document.getElementById('toast-copy');
+      if (toast) {
+        const scenarioNames = {
+          live: isDe ? '📡 Live Sensordaten geladen' : '📡 Live Sensor Feeds Loaded',
+          sicily_trap: isDe ? '🌊 Szenario: Sizilien Wellenfalle geladen' : '🌊 Scenario: Sicily Wave Trap Loaded',
+          aegean_surge: isDe ? '⛵ Szenario: Ägäis Ruhigsee-Surge geladen' : '⛵ Scenario: Aegean Calm Surge Loaded',
+          balkan_freeze: isDe ? '❄️ Szenario: Balkan Frost-Passage geladen' : '❄️ Scenario: Balkan Freeze Loaded'
+        };
+        toast.textContent = scenarioNames[val] || (isDe ? '✓ Szenario gewechselt' : '✓ Scenario switched');
+        toast.style.display = 'flex';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
       }
     });
 
