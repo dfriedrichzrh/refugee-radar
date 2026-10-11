@@ -816,10 +816,50 @@
     }
 
     .chart-cursor {
-      stroke: var(--accent-blue);
+      stroke: #94A3B8;
       stroke-width: 1.5;
       stroke-dasharray: 3 3;
       pointer-events: none;
+    }
+
+    .chart-legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.65rem;
+      margin-bottom: 0.6rem;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.725rem;
+      font-family: var(--font-mono);
+      min-height: 32px;
+      transition: all 0.15s ease;
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .legend-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-pill .val {
+      font-weight: 700;
     }
 
     /* Hotspot Occupancy Meter */
@@ -1386,6 +1426,9 @@
             Cursor: T+0h · 10 Oct 08:00 UTC
           </div>
         </div>
+
+        <!-- Dynamic Legend & Telemetry Readout Bar -->
+        <div id="chart-legend-bar" class="chart-legend-bar"></div>
 
         <div class="chart-container" id="timeline-chart-wrap">
           <svg class="chart-svg" id="timeline-chart" preserveAspectRatio="none"></svg>
@@ -2550,13 +2593,14 @@
 
       const width = 650;
       const height = 180;
-      const padding = { top: 25, right: 35, bottom: 28, left: 45 };
+      const padding = { top: 18, right: 35, bottom: 26, left: 45 };
       const chartW = width - padding.left - padding.right;
       const chartH = height - padding.top - padding.bottom;
 
       svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
       const isDe = currentLang === 'de';
+      const legendBarEl = document.getElementById('chart-legend-bar');
 
       // OPTION A: Multi-Sector Comparison Chart when "All Sectors" is selected
       if (selectedCorridorId === 'all') {
@@ -2595,17 +2639,26 @@
           ` L ${getX(n-1).toFixed(1)},${getY(0).toFixed(1)} Z`;
 
         const curX = getX(curIdx).toFixed(1);
-        const curY = getY(seriesSum[curIdx] || 0).toFixed(1);
-
         const vAeg = seriesAeg[curIdx].toFixed(1);
         const vMed = seriesMed[curIdx].toFixed(1);
         const vBalk = seriesBalk[curIdx].toFixed(1);
         const vSum = seriesSum[curIdx].toFixed(1);
 
+        // Update external clean legend pills above chart (no dark overlay inside chart)
+        if (legendBarEl) {
+          legendBarEl.innerHTML = `
+            <span class="legend-pill"><span class="dot" style="background:#EF4444;"></span>${isDe ? 'Ost-Ägäis' : 'East Aegean'}: <span class="val" style="color:#DC2626;">${vAeg}</span> ppl/h</span>
+            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Zentr. Mittelmeer' : 'Central Med'}: <span class="val" style="color:#0284C7;">${vMed}</span> ppl/h</span>
+            <span class="legend-pill"><span class="dot" style="background:#10B981;"></span>${isDe ? 'Balkan-Route' : 'Balkan'}: <span class="val" style="color:#059669;">${vBalk}</span> ppl/h</span>
+            <span class="legend-pill" style="border-color:#C4B5FD; background:#FAF5FF;"><span class="dot" style="background:#8B5CF6;"></span>${isDe ? 'Pan-Med Gesamt' : 'Pan-Med Total'}: <span class="val" style="color:#7C3AED;">${vSum}</span> ppl/h</span>
+            <span style="margin-left:auto; font-size:0.7rem; color:var(--text-muted); font-weight:600;">🕒 ${timeObj.formatted}</span>
+          `;
+        }
+
         svg.innerHTML = `
           <defs>
             <linearGradient id="areaGradPan" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.18" />
+              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.16" />
               <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.0" />
             </linearGradient>
           </defs>
@@ -2619,21 +2672,6 @@
 
           <line x1="${padding.left}" y1="${getY(maxVal*0.25)}" x2="${width - padding.right}" y2="${getY(maxVal*0.25)}" stroke="#F1F5F9" stroke-width="1"/>
           <text x="${padding.left - 6}" y="${getY(maxVal*0.25) + 3}" fill="#94A3B8" font-size="8" text-anchor="end" font-family="monospace">${Math.round(maxVal*0.25)}/h</text>
-
-          <!-- Legend Bar on Top -->
-          <g font-size="8.5" font-family="var(--font-mono, monospace)" font-weight="600">
-            <circle cx="52" cy="14" r="3.5" fill="#EF4444"/>
-            <text x="59" y="17" fill="#DC2626">${isDe ? 'Ost-Ägäis' : 'East Aegean'}</text>
-
-            <circle cx="150" cy="14" r="3.5" fill="#0284C7"/>
-            <text x="157" y="17" fill="#0284C7">${isDe ? 'Zentr. Mittelmeer' : 'Central Med'}</text>
-
-            <circle cx="280" cy="14" r="3.5" fill="#10B981"/>
-            <text x="287" y="17" fill="#059669">${isDe ? 'Balkan-Route' : 'Balkan Route'}</text>
-
-            <line x1="390" y1="14" x2="406" y2="14" stroke="#8B5CF6" stroke-width="1.8" stroke-dasharray="3 3"/>
-            <text x="411" y="17" fill="#7C3AED">${isDe ? 'Pan-Med Gesamt (Σ)' : 'Pan-Med Total (Σ)'}</text>
-          </g>
 
           <!-- Area fill under cumulative sum -->
           <path d="${areaPath}" fill="url(#areaGradPan)" />
@@ -2650,23 +2688,20 @@
           <!-- Curve 4: Pan-Med Sum (Purple Dashed) -->
           <polyline points="${ptsSum}" fill="none" stroke="#8B5CF6" stroke-width="2.0" stroke-dasharray="4 3" stroke-linecap="round" />
 
-          <!-- Dynamic Tracking Cursor -->
+          <!-- Dynamic Tracking Cursor Line -->
           <line class="chart-cursor" x1="${curX}" y1="${padding.top}" x2="${curX}" y2="${height - padding.bottom}" />
-          <circle cx="${curX}" cy="${curY}" r="5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="2"/>
 
-          <!-- Live Cursor Readout Badge with Wall-clock time -->
-          <g transform="translate(${Math.min(width - 290, Math.max(padding.left, curX - 140))}, ${padding.top - 8})">
-            <rect width="280" height="22" rx="4" fill="#0F172A" opacity="0.92" />
-            <text x="140" y="15" fill="#FFFFFF" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="600">
-              Ägäis: ${vAeg} · Z-Med: ${vMed} · Balk: ${vBalk} · Σ ${vSum}/h · ${timeObj.shortTime}
-            </text>
-          </g>
+          <!-- Clean Intersection Dots on Each Curve -->
+          <circle cx="${curX}" cy="${getY(seriesBalk[curIdx])}" r="3.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5"/>
+          <circle cx="${curX}" cy="${getY(seriesMed[curIdx])}" r="3.5" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.5"/>
+          <circle cx="${curX}" cy="${getY(seriesAeg[curIdx])}" r="3.5" fill="#EF4444" stroke="#FFFFFF" stroke-width="1.5"/>
+          <circle cx="${curX}" cy="${getY(seriesSum[curIdx])}" r="4.5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="2"/>
 
           <!-- Time Ticks -->
-          <text x="${padding.left}" y="${height - 10}" font-size="9" fill="#94A3B8" font-family="monospace">T+0h</text>
-          <text x="${padding.left + chartW * 0.33}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+24h</text>
-          <text x="${padding.left + chartW * 0.66}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+48h</text>
-          <text x="${width - padding.right}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="end" font-family="monospace">T+72h</text>
+          <text x="${padding.left}" y="${height - 8}" font-size="9" fill="#94A3B8" font-family="monospace">T+0h</text>
+          <text x="${padding.left + chartW * 0.33}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+24h</text>
+          <text x="${padding.left + chartW * 0.66}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+48h</text>
+          <text x="${width - padding.right}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="end" font-family="monospace">T+72h</text>
         `;
 
         // Interactive Scrubbing on SVG Click
@@ -2715,18 +2750,29 @@
         ? (isDe ? '1.5m Kentergrenze' : '1.5m Capsize Limit')
         : (isDe ? '0°C Frostgrenze' : '0°C Freeze Limit');
 
-      const s1Label = isMarine 
-        ? (isDe ? `Welle: ${series1[curIdx]?.toFixed(2)}m` : `Wave: ${series1[curIdx]?.toFixed(2)}m`)
-        : `Windchill: ${series1[curIdx]?.toFixed(1)}°C`;
-      
-      const s2Label = isMarine 
-        ? (isDe ? `Böen: ${Math.round(series2[curIdx] || 0)}km/h` : `Gusts: ${Math.round(series2[curIdx] || 0)}km/h`)
-        : `River: ${series2[curIdx]?.toFixed(2)}×`;
-
       // Task 4: Wall-clock indicator label
       const timeObj = getWallClockTime(scrubHour);
       const hoverInd = document.getElementById('chart-hover-indicator');
       if (hoverInd) hoverInd.textContent = `Cursor: ${timeObj.formatted}`;
+
+      // Update external clean legend pills above chart
+      if (legendBarEl) {
+        if (isMarine) {
+          legendBarEl.innerHTML = `
+            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Wellenhöhe' : 'Wave Height'}: <span class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(2)} m</span></span>
+            <span class="legend-pill"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Spitzenböen' : 'Peak Gusts'}: <span class="val" style="color:#7C3AED;">${Math.round(series2[curIdx] || 0)} km/h</span></span>
+            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
+            <span style="margin-left:auto; font-size:0.7rem; color:var(--text-muted); font-weight:600;">🕒 ${timeObj.formatted}</span>
+          `;
+        } else {
+          legendBarEl.innerHTML = `
+            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Windchill' : 'Apparent Temp'}: <span class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(1)} °C</span></span>
+            <span class="legend-pill"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Flussabfluss' : 'River Flow'}: <span class="val" style="color:#7C3AED;">${series2[curIdx]?.toFixed(2)}× mean</span></span>
+            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
+            <span style="margin-left:auto; font-size:0.7rem; color:var(--text-muted); font-weight:600;">🕒 ${timeObj.formatted}</span>
+          `;
+        }
+      }
 
       svg.innerHTML = `
         <defs>
@@ -2757,19 +2803,11 @@
         <line class="chart-cursor" x1="${curX}" y1="${padding.top}" x2="${curX}" y2="${height - padding.bottom}" />
         <circle cx="${curX}" cy="${curY}" r="5" fill="#0284C7" stroke="#FFFFFF" stroke-width="2"/>
 
-        <!-- Live Cursor Readout Badge with Wall-clock time -->
-        <g transform="translate(${Math.min(width - 190, Math.max(padding.left, curX - 85))}, ${padding.top - 8})">
-          <rect width="180" height="22" rx="4" fill="#0F172A" opacity="0.9" />
-          <text x="90" y="15" fill="#FFFFFF" font-size="9" font-family="monospace" text-anchor="middle" font-weight="600">
-            ${s1Label} · ${s2Label} · ${timeObj.shortTime}
-          </text>
-        </g>
-
         <!-- Time Ticks -->
-        <text x="${padding.left}" y="${height - 10}" font-size="9" fill="#94A3B8" font-family="monospace">T+0h</text>
-        <text x="${padding.left + chartW * 0.33}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+24h</text>
-        <text x="${padding.left + chartW * 0.66}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+48h</text>
-        <text x="${width - padding.right}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="end" font-family="monospace">T+72h</text>
+        <text x="${padding.left}" y="${height - 8}" font-size="9" fill="#94A3B8" font-family="monospace">T+0h</text>
+        <text x="${padding.left + chartW * 0.33}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+24h</text>
+        <text x="${padding.left + chartW * 0.66}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+48h</text>
+        <text x="${width - padding.right}" y="${height - 8}" font-size="9" fill="#94A3B8" text-anchor="end" font-family="monospace">T+72h</text>
       `;
 
       // Interactive Scrubbing on SVG Click
