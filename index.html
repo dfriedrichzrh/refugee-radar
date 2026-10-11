@@ -263,18 +263,28 @@
     .btn-action {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.35rem;
       height: 32px;
       padding: 0 0.85rem;
       border-radius: 9999px;
       font-size: 0.8rem;
       font-weight: 600;
+      font-family: var(--font-sans);
+      line-height: 1;
       background: rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(0, 0, 0, 0.06);
       color: var(--text-main);
       cursor: pointer;
       transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      white-space: nowrap;
+    }
+
+    .btn-action span {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
     }
 
     .btn-action:hover {
@@ -1232,11 +1242,11 @@
       <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar">
         <span>📋</span> <span>SITREP</span>
       </button>
-      <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" style="font-family:var(--font-mono);">
-        DE
+      <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" title="Sprache umschalten / Switch language">
+        <span>🌐</span> <span id="lbl-lang-code">DE</span>
       </button>
       <button class="btn-action" onclick="openFaqModal()" id="lbl-faq">
-        FAQ
+        <span>ℹ️</span> <span>FAQ</span>
       </button>
     </div>
   </header>
@@ -3009,7 +3019,7 @@
         if (el && val !== undefined) el.textContent = val;
       };
 
-      setTxt('btn-lang', currentLang === 'en' ? 'DE' : 'EN');
+      setTxt('lbl-lang-code', currentLang === 'en' ? 'DE' : 'EN');
       
       const t = i18n[currentLang];
       setTxt('lbl-live-badge', t.liveBadge);
