@@ -881,17 +881,18 @@
 
     /* Restored Operational Assessment & Situation Outlook Banner */
     .insight-callout-card {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
-      border: 1px solid var(--border-hairline);
+      border: 1px solid rgba(15, 23, 42, 0.1);
       border-left: 4px solid var(--accent-blue);
       border-radius: var(--radius-md);
       padding: 0.75rem 0.95rem;
-      box-shadow: var(--shadow-elevation-sm);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-bottom: 0.1rem;
     }
 
     .insight-callout-header {
@@ -901,11 +902,11 @@
     }
 
     .insight-callout-tag {
-      font-size: 0.7rem;
+      font-size: 0.725rem;
       font-family: var(--font-mono);
       font-weight: 800;
       letter-spacing: 0.04em;
-      padding: 0.15rem 0.45rem;
+      padding: 0.15rem 0.5rem;
       border-radius: 4px;
       background: rgba(0, 122, 255, 0.1);
       color: var(--accent-blue);
@@ -914,14 +915,17 @@
     .insight-callout-time {
       font-size: 0.725rem;
       font-family: var(--font-mono);
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--text-secondary);
+      font-weight: 700;
+      background: rgba(15, 23, 42, 0.05);
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
     }
 
     .insight-callout-text {
-      font-size: 0.825rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: var(--text-main);
+      color: #0F172A;
       line-height: 1.45;
     }
 
@@ -1318,6 +1322,17 @@
 
     <!-- RIGHT: TACTICAL TELEMETRY INSPECTOR -->
     <div class="telemetry-pane">
+
+      <!-- Dynamic Executive Situation Outlook & Assessment Banner (Top Priority) -->
+      <div class="insight-callout-card" id="insight-callout-wrap">
+        <div class="insight-callout-header">
+          <span class="insight-callout-tag" id="insight-badge">LAGE STABIL</span>
+          <span class="insight-callout-time" id="insight-time-pill">T+0h Status</span>
+        </div>
+        <div class="insight-callout-text" id="insight-text">
+          T+0h: Moderate Seebedingungen (1.26m). Reguläre SAR-Wachsamkeit.
+        </div>
+      </div>
       
       <!-- 4 Compact Telemetry Metric Chips -->
       <div class="metrics-row">
@@ -1378,17 +1393,6 @@
             <span id="hotspot-name-label">Hotspot Facility</span>
             <span id="hotspot-counts-label">680 / 850 Beds</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Restored Dynamic Operational Assessment & Situation Outlook Card -->
-      <div class="insight-callout-card" id="insight-callout-wrap">
-        <div class="insight-callout-header">
-          <span class="insight-callout-tag" id="insight-badge">LAGE STABIL</span>
-          <span class="insight-callout-time" id="insight-time-pill">T+0h Status</span>
-        </div>
-        <div class="insight-callout-text" id="insight-text">
-          T+0h: Moderate Seebedingungen (1.26m). Reguläre SAR-Wachsamkeit.
         </div>
       </div>
 
