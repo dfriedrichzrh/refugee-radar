@@ -2188,23 +2188,31 @@
       return 0.05;
     }
 
-    function getArrivalRateAtHour(h) {
-      const c = getActiveCorridor();
-      const wave = getWaveAtHour(h);
-      
-      let baseRate = 2.2;
-      if (c && c.id === 'aegean_east') baseRate = 3.5;
-      if (c && c.id === 'balkan_land') baseRate = 1.8;
+    function getCorridorArrivalRate(corridorId, h) {
+      if (!liveState || !liveState.corridors) return 2.0;
+      const c = liveState.corridors.find(x => x.id === corridorId);
+      if (!c) return 2.0;
 
-      if (c?.id === 'balkan_land') {
-        const app = getApparentAtHour(h);
+      let baseRate = 2.2;
+      if (c.id === 'aegean_east') baseRate = 3.5;
+      if (c.id === 'balkan_land') baseRate = 1.8;
+
+      if (c.id === 'balkan_land') {
+        const app = (c.timeline?.apparent && c.timeline.apparent[h] !== undefined) ? c.timeline.apparent[h] : 4.0;
         if (app <= 0) return Math.max(0.2, baseRate * 0.25);
         return baseRate * 1.1;
       }
 
+      const wave = (c.timeline?.wave && c.timeline.wave[h] !== undefined) ? c.timeline.wave[h] : 1.2;
       if (wave < 0.6) return baseRate * 2.6;
       if (wave > 1.5) return Math.max(0.2, baseRate * 0.15);
       return baseRate * (1 - (wave - 0.6) / 0.9 * 0.85);
+    }
+
+    function getArrivalRateAtHour(h) {
+      const c = getActiveCorridor();
+      if (!c) return 2.2;
+      return getCorridorArrivalRate(c.id, h);
     }
 
     function getSimulatedOccupancy(hotspot, h) {
@@ -2279,110 +2287,200 @@
       const valHs = document.getElementById('val-hotspot-occ');
       const benchHs = document.getElementById('bench-hotspot');
 
-      const hourlyRate = getArrivalRateAtHour(scrubHour);
-      let cumArrivals = 0;
-      for (let i = 0; i <= scrubHour; i++) {
-        cumArrivals += getArrivalRateAtHour(i);
-      }
-      cumArrivals = Math.round(cumArrivals);
-
-      // Task 2: Dynamically adapt cards for Land vs. Marine corridors
-      if (isMarine) {
-        const wave = getWaveAtHour(scrubHour);
-        const gust = getGustAtHour(scrubHour);
-        const bft = Math.min(12, Math.max(1, Math.round(gust / 11)));
-
-        lblWave.textContent = isDe ? 'Wellenhöhe' : 'Wave Height';
-        valWave.textContent = wave.toFixed(2);
-        unitWave.textContent = 'm';
-
-        if (wave < 0.6) {
-          subWave.textContent = isDe ? 'Sehr ruhig (Wetterfenster)' : 'Very calm (weather window)';
-          benchWave.innerHTML = `<span style="color:#10B981;">●</span> ${isDe ? 'Surge-Risiko · Schwelle: 1.5m Kenterung' : 'Surge risk · Threshold: 1.5m capsize'}`;
-        } else if (wave <= 1.5) {
-          subWave.textContent = isDe ? 'Moderate Dünung' : 'Moderate swell';
-          benchWave.innerHTML = `<span style="color:#F59E0B;">●</span> ${isDe ? 'Normalbereich · Schwelle: 1.5m Kenterung' : 'Normal range · Threshold: 1.5m capsize'}`;
-        } else {
-          subWave.textContent = isDe ? 'Schwere See' : 'Heavy sea';
-          benchWave.innerHTML = `<span style="color:#EF4444; font-weight:700;">● ${isDe ? '⚠️ Über 1.5m Kentergrenze!' : '⚠️ Above 1.5m capsize limit!'}</span>`;
-        }
-
-        lblGust.textContent = isDe ? 'Spitzenböen' : 'Peak Gusts';
-        valGust.textContent = Math.round(gust);
-        unitGust.textContent = 'km/h';
-        subGust.textContent = isDe ? `Beaufort ${bft} · Offshore-Drift` : `Beaufort ${bft} · Offshore drift`;
-        benchGust.innerHTML = gust < 25 
-          ? `<span style="color:#10B981;">●</span> ${isDe ? 'Normal: <25 km/h' : 'Normal: <25 km/h'}`
-          : (gust <= 40 
-              ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Frisch · Über 40 km/h kritisch' : 'Fresh · Above 40 km/h critical'}`
-              : `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Starkwind (Notruf-Häufung)' : 'High wind (distress surge)'}</span>`);
-      } else {
-        // LAND CORRIDOR: Balkan Route (Bihać)
-        const app = getApparentAtHour(scrubHour);
-        const ratio = getRatioAtHour(scrubHour);
-
-        lblWave.textContent = isDe ? 'Windchill Gefühlt' : 'Apparent Temp';
-        valWave.textContent = app.toFixed(1);
-        unitWave.textContent = '°C';
-        subWave.textContent = isDe ? 'Plješevica-Pass' : 'Plješevica Pass';
-
-        if (app <= 0) {
-          benchWave.innerHTML = `<span style="color:#EF4444; font-weight:700;">● ${isDe ? '⚠️ Unter 0°C Frostgrenze (Hypothermie)' : '⚠️ Freeze Limit (<0°C Hypothermia Risk)'}</span>`;
-        } else if (app <= 6) {
-          benchWave.innerHTML = `<span style="color:#F59E0B;">●</span> ${isDe ? 'Kalt (Kälteexposition)' : 'Cold exposure risk (0-6°C)'}`;
-        } else {
-          benchWave.innerHTML = `<span style="color:#10B981;">●</span> ${isDe ? 'Mild (Über Frostgrenze)' : 'Above freezing (mild)'}`;
-        }
-
-        lblGust.textContent = isDe ? 'Flussabfluss-Index' : 'River Flow Ratio';
-        valGust.textContent = ratio.toFixed(2);
-        unitGust.textContent = '× mean';
-        subGust.textContent = isDe ? 'Una/Sava Furt-Risiko' : 'Una/Sava Crossing Risk';
-        benchGust.innerHTML = ratio > 0.8
-          ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Hochwasser / Ertrinkungsgefahr' : 'High current / Drowning hazard'}</span>`
-          : `<span style="color:#10B981;">●</span> ${isDe ? 'Normaler Pegel (Wadbar)' : 'Normal baseline (fordable)'}`;
-      }
-
-      // Card 3: Arrival rate
-      valArr.textContent = hourlyRate.toFixed(1);
-      subArr.textContent = isDe
-        ? `Ø Rate (Σ ${cumArrivals} Pers. bei T+${scrubHour}h)`
-        : `Avg rate (Σ ${cumArrivals} ppl at T+${scrubHour}h)`;
-
-      const arrRatio = (hourlyRate / 2.2).toFixed(1);
-      benchArr.innerHTML = hourlyRate > 4.5
-        ? `<span style="color:#EF4444; font-weight:700;">● ${arrRatio}× ${isDe ? 'über Normalwert (Schnitt: 2.2/h)' : 'above normal (avg: 2.2/h)'}</span>`
-        : (hourlyRate >= 2.0
-            ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Schnittbereich: 2.2 Pers./h' : 'Baseline range: 2.2 ppl/h'}`
-            : `<span style="color:#10B981;">●</span> ${isDe ? 'Unter Schnitt (Sturm-Stopp)' : 'Below average (storm halt)'}`);
-
-      // Card 4 & Hotspot Banner (Task 1: Dynamic Hotspot Data)
-      valHs.textContent = pct;
-      const freeBeds = Math.max(0, hsData.nominal - occ);
-      benchHs.innerHTML = pct >= 95
-        ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Kritisch voll · Puffer erschöpft' : 'Critical full · Headroom depleted'}</span>`
-        : (pct >= 80
-            ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Nur noch ' + freeBeds + ' Plätze frei' : 'Only ' + freeBeds + ' beds left'}`
-            : `<span style="color:#10B981;">●</span> ${isDe ? 'Puffer: ' + freeBeds + ' frei' : 'Headroom: ' + freeBeds + ' free'}`);
-
-      document.getElementById('sub-hotspot-occ').textContent = hsData.name.split(' ')[0] + ' ' + (isDe ? 'Lager' : 'Facility');
-      document.getElementById('hotspot-name-label').textContent = hsData.name;
-      document.getElementById('hotspot-counts-label').textContent = isDe
-        ? `Belegt: ${occ} / ${hsData.nominal} (Nominal) · ${hsData.max} (Notfallgrenze)`
-        : `Occupied: ${occ} / ${hsData.nominal} (Nominal) · ${hsData.max} (Emergency limit)`;
-      document.getElementById('hotspot-percent-label').textContent = `${pct}%`;
-
-      if (fillBar) {
-        fillBar.style.width = `${Math.min(100, pct)}%`;
-        fillBar.style.background = pct >= 100 ? 'var(--accent-red)' : (pct >= 85 ? 'var(--accent-amber)' : 'var(--accent-blue)');
-      }
-
-      // Dynamic Chart Subtitle adapting to Route Type
+      const chartTitleEl = document.getElementById('lbl-chart-title');
       const chartSubEl = document.getElementById('lbl-chart-sub');
-      if (chartSubEl) {
-        chartSubEl.textContent = isMarine
-          ? (isDe ? 'Kombinierte Modellierung aus Seegang (m), Windböen (km/h) und Abfahrtsrate' : 'Combined modeling of sea wave height (m), wind gusts (km/h), and hourly departure rate')
-          : (isDe ? 'Kombinierte Modellierung aus Gebirgs-Windchill (°C), Una/Sava-Flusspegel und Transitrate' : 'Combined modeling of mountain windchill (°C), Una river discharge ratio, and transit rate');
+
+      if (selectedCorridorId === 'all') {
+        const medCorridor = liveState.corridors.find(x => x.id === 'central_med');
+        const aegCorridor = liveState.corridors.find(x => x.id === 'aegean_east');
+        const balkCorridor = liveState.corridors.find(x => x.id === 'balkan_land');
+
+        const waveMed = (medCorridor?.timeline?.wave && medCorridor.timeline.wave[scrubHour] !== undefined) ? medCorridor.timeline.wave[scrubHour] : 1.25;
+        const waveAeg = (aegCorridor?.timeline?.wave && aegCorridor.timeline.wave[scrubHour] !== undefined) ? aegCorridor.timeline.wave[scrubHour] : 1.25;
+        const peakWave = Math.max(waveMed, waveAeg);
+
+        const gustMed = (medCorridor?.timeline?.gust && medCorridor.timeline.gust[scrubHour] !== undefined) ? medCorridor.timeline.gust[scrubHour] : 45;
+        const gustAeg = (aegCorridor?.timeline?.gust && aegCorridor.timeline.gust[scrubHour] !== undefined) ? aegCorridor.timeline.gust[scrubHour] : 45;
+        const gustBalk = (balkCorridor?.timeline?.gust && balkCorridor.timeline.gust[scrubHour] !== undefined) ? balkCorridor.timeline.gust[scrubHour] : 30;
+        const peakGust = Math.max(gustMed, gustAeg, gustBalk);
+
+        const rateMed = getCorridorArrivalRate('central_med', scrubHour);
+        const rateAeg = getCorridorArrivalRate('aegean_east', scrubHour);
+        const rateBalk = getCorridorArrivalRate('balkan_land', scrubHour);
+        const totalHourlyRate = rateMed + rateAeg + rateBalk;
+
+        let cumTotalArrivals = 0;
+        for (let i = 0; i <= scrubHour; i++) {
+          cumTotalArrivals += getCorridorArrivalRate('central_med', i) + getCorridorArrivalRate('aegean_east', i) + getCorridorArrivalRate('balkan_land', i);
+        }
+        cumTotalArrivals = Math.round(cumTotalArrivals);
+
+        const hsMed = getHotspotDataForCorridor('central_med');
+        const hsAeg = getHotspotDataForCorridor('aegean_east');
+        const hsBalk = getHotspotDataForCorridor('balkan_land');
+        const occMed = getSimulatedOccupancy(hsMed, scrubHour);
+        const occAeg = getSimulatedOccupancy(hsAeg, scrubHour);
+        const occBalk = getSimulatedOccupancy(hsBalk, scrubHour);
+        const totalOcc = occMed + occAeg + occBalk;
+        const totalNominal = hsMed.nominal + hsAeg.nominal + hsBalk.nominal;
+        const avgOccPct = Math.round((totalOcc / totalNominal) * 100);
+
+        // Card 1: Peak Wave across marine sectors
+        lblWave.textContent = isDe ? 'Spitzen-Welle (Marine)' : 'Peak Swell (Marine)';
+        valWave.textContent = peakWave.toFixed(2);
+        unitWave.textContent = 'm';
+        subWave.textContent = isDe ? 'Ost-Ägäis & Sizilien-Kanal' : 'East Aegean & Sicily Strait';
+        benchWave.innerHTML = peakWave > 1.5 
+          ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? '⚠️ Über 1.5m Kentergrenze!' : '⚠️ Above 1.5m capsize limit!'}</span>`
+          : `<span style="color:#10B981;">●</span> ${isDe ? 'Unter 1.5m Kentergrenze' : 'Below 1.5m capsize limit'}`;
+
+        // Card 2: Peak Gusts
+        lblGust.textContent = isDe ? 'Max. Windböen' : 'Peak Gusts';
+        valGust.textContent = Math.round(peakGust);
+        unitGust.textContent = 'km/h';
+        subGust.textContent = isDe ? 'Pan-Mediterrane Drift' : 'Pan-Med Drift Vector';
+        benchGust.innerHTML = peakGust > 40
+          ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Starkwind (Erhöhte Seenot)' : 'High wind (distress surge)'}</span>`
+          : `<span style="color:#10B981;">●</span> ${isDe ? 'Normalbereich (<40 km/h)' : 'Normal range (<40 km/h)'}`;
+
+        // Card 3: Pan-Med Cumulative Arrival Rate
+        valArr.textContent = totalHourlyRate.toFixed(1);
+        subArr.textContent = isDe
+          ? `Pan-Med Summe (Σ ${cumTotalArrivals} Pers. bei T+${scrubHour}h)`
+          : `Pan-Med Total (Σ ${cumTotalArrivals} ppl at T+${scrubHour}h)`;
+        benchArr.innerHTML = `<span style="color:#0284C7; font-weight:700;">● ${isDe ? 'Addierte UNHCR-Prognose (3 Sektoren)' : 'Aggregated forecast (3 sectors)'}</span>`;
+
+        // Card 4: Hotspot Network
+        valHs.textContent = avgOccPct;
+        benchHs.innerHTML = `<span style="color:#F59E0B; font-weight:700;">● ${isDe ? 'Ø über 3 Aufnahme-Zentren' : 'Avg across 3 reception centers'}</span>`;
+        document.getElementById('sub-hotspot-occ').textContent = isDe ? 'Pan-Med Aufnahme' : 'Pan-Med Reception';
+        document.getElementById('hotspot-name-label').textContent = isDe ? 'Mittelmeer-Aufnahmenetzwerk (3 Hotspots)' : 'Mediterranean Reception Network (3 Hotspots)';
+        document.getElementById('hotspot-counts-label').textContent = isDe
+          ? `Gesamt: ${totalOcc} / ${totalNominal} Plätze (Lampedusa, Moria, Lipa)`
+          : `Total: ${totalOcc} / ${totalNominal} beds (Lampedusa, Moria, Lipa)`;
+        document.getElementById('hotspot-percent-label').textContent = `${avgOccPct}%`;
+
+        if (fillBar) {
+          fillBar.style.width = `${Math.min(100, avgOccPct)}%`;
+          fillBar.style.background = avgOccPct >= 100 ? 'var(--accent-red)' : (avgOccPct >= 85 ? 'var(--accent-amber)' : 'var(--accent-blue)');
+        }
+
+        if (chartTitleEl) {
+          chartTitleEl.textContent = isDe ? '72h Multi-Sektor Vergleich (Pan-Mittelmeer)' : '72h Multi-Sector Hazard Comparison (Pan-Med)';
+        }
+        if (chartSubEl) {
+          chartSubEl.textContent = isDe 
+            ? 'Stündliche Abfahrts- & Ankunftsdynamik über alle 3 aktiven Routen im Vergleich (Pers./h)'
+            : 'Comparative hourly departure & arrival dynamics across all 3 active corridors (ppl/h)';
+        }
+      } else {
+        const hourlyRate = getArrivalRateAtHour(scrubHour);
+        let cumArrivals = 0;
+        for (let i = 0; i <= scrubHour; i++) {
+          cumArrivals += getArrivalRateAtHour(i);
+        }
+        cumArrivals = Math.round(cumArrivals);
+
+        // Task 2: Dynamically adapt cards for Land vs. Marine corridors
+        if (isMarine) {
+          const wave = getWaveAtHour(scrubHour);
+          const gust = getGustAtHour(scrubHour);
+          const bft = Math.min(12, Math.max(1, Math.round(gust / 11)));
+
+          lblWave.textContent = isDe ? 'Wellenhöhe' : 'Wave Height';
+          valWave.textContent = wave.toFixed(2);
+          unitWave.textContent = 'm';
+
+          if (wave < 0.6) {
+            subWave.textContent = isDe ? 'Sehr ruhig (Wetterfenster)' : 'Very calm (weather window)';
+            benchWave.innerHTML = `<span style="color:#10B981;">●</span> ${isDe ? 'Surge-Risiko · Schwelle: 1.5m Kenterung' : 'Surge risk · Threshold: 1.5m capsize'}`;
+          } else if (wave <= 1.5) {
+            subWave.textContent = isDe ? 'Moderate Dünung' : 'Moderate swell';
+            benchWave.innerHTML = `<span style="color:#F59E0B;">●</span> ${isDe ? 'Normalbereich · Schwelle: 1.5m Kenterung' : 'Normal range · Threshold: 1.5m capsize'}`;
+          } else {
+            subWave.textContent = isDe ? 'Schwere See' : 'Heavy sea';
+            benchWave.innerHTML = `<span style="color:#EF4444; font-weight:700;">● ${isDe ? '⚠️ Über 1.5m Kentergrenze!' : '⚠️ Above 1.5m capsize limit!'}</span>`;
+          }
+
+          lblGust.textContent = isDe ? 'Spitzenböen' : 'Peak Gusts';
+          valGust.textContent = Math.round(gust);
+          unitGust.textContent = 'km/h';
+          subGust.textContent = isDe ? `Beaufort ${bft} · Offshore-Drift` : `Beaufort ${bft} · Offshore drift`;
+          benchGust.innerHTML = gust < 25 
+            ? `<span style="color:#10B981;">●</span> ${isDe ? 'Normal: <25 km/h' : 'Normal: <25 km/h'}`
+            : (gust <= 40 
+                ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Frisch · Über 40 km/h kritisch' : 'Fresh · Above 40 km/h critical'}`
+                : `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Starkwind (Notruf-Häufung)' : 'High wind (distress surge)'}</span>`);
+        } else {
+          // LAND CORRIDOR: Balkan Route (Bihać)
+          const app = getApparentAtHour(scrubHour);
+          const ratio = getRatioAtHour(scrubHour);
+
+          lblWave.textContent = isDe ? 'Windchill Gefühlt' : 'Apparent Temp';
+          valWave.textContent = app.toFixed(1);
+          unitWave.textContent = '°C';
+          subWave.textContent = isDe ? 'Plješevica-Pass' : 'Plješevica Pass';
+
+          if (app <= 0) {
+            benchWave.innerHTML = `<span style="color:#EF4444; font-weight:700;">● ${isDe ? '⚠️ Unter 0°C Frostgrenze (Hypothermie)' : '⚠️ Freeze Limit (<0°C Hypothermia Risk)'}</span>`;
+          } else if (app <= 6) {
+            benchWave.innerHTML = `<span style="color:#F59E0B;">●</span> ${isDe ? 'Kalt (Kälteexposition)' : 'Cold exposure risk (0-6°C)'}`;
+          } else {
+            benchWave.innerHTML = `<span style="color:#10B981;">●</span> ${isDe ? 'Mild (Über Frostgrenze)' : 'Above freezing (mild)'}`;
+          }
+
+          lblGust.textContent = isDe ? 'Flussabfluss-Index' : 'River Flow Ratio';
+          valGust.textContent = ratio.toFixed(2);
+          unitGust.textContent = '× mean';
+          subGust.textContent = isDe ? 'Una/Sava Furt-Risiko' : 'Una/Sava Crossing Risk';
+          benchGust.innerHTML = ratio > 0.8
+            ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Hochwasser / Ertrinkungsgefahr' : 'High current / Drowning hazard'}</span>`
+            : `<span style="color:#10B981;">●</span> ${isDe ? 'Normaler Pegel (Wadbar)' : 'Normal baseline (fordable)'}`;
+        }
+
+        // Card 3: Arrival rate
+        valArr.textContent = hourlyRate.toFixed(1);
+        subArr.textContent = isDe
+          ? `Ø Rate (Σ ${cumArrivals} Pers. bei T+${scrubHour}h)`
+          : `Avg rate (Σ ${cumArrivals} ppl at T+${scrubHour}h)`;
+
+        const arrRatio = (hourlyRate / 2.2).toFixed(1);
+        benchArr.innerHTML = hourlyRate > 4.5
+          ? `<span style="color:#EF4444; font-weight:700;">● ${arrRatio}× ${isDe ? 'über Normalwert (Schnitt: 2.2/h)' : 'above normal (avg: 2.2/h)'}</span>`
+          : (hourlyRate >= 2.0
+              ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Schnittbereich: 2.2 Pers./h' : 'Baseline range: 2.2 ppl/h'}`
+              : `<span style="color:#10B981;">●</span> ${isDe ? 'Unter Schnitt (Sturm-Stopp)' : 'Below average (storm halt)'}`);
+
+        // Card 4 & Hotspot Banner (Task 1: Dynamic Hotspot Data)
+        valHs.textContent = pct;
+        const freeBeds = Math.max(0, hsData.nominal - occ);
+        benchHs.innerHTML = pct >= 95
+          ? `<span style="color:#EF4444; font-weight:700;">● ${isDe ? 'Kritisch voll · Puffer erschöpft' : 'Critical full · Headroom depleted'}</span>`
+          : (pct >= 80
+              ? `<span style="color:#F59E0B;">●</span> ${isDe ? 'Nur noch ' + freeBeds + ' Plätze frei' : 'Only ' + freeBeds + ' beds left'}`
+              : `<span style="color:#10B981;">●</span> ${isDe ? 'Puffer: ' + freeBeds + ' frei' : 'Headroom: ' + freeBeds + ' free'}`);
+
+        document.getElementById('sub-hotspot-occ').textContent = hsData.name.split(' ')[0] + ' ' + (isDe ? 'Lager' : 'Facility');
+        document.getElementById('hotspot-name-label').textContent = hsData.name;
+        document.getElementById('hotspot-counts-label').textContent = isDe
+          ? `Belegt: ${occ} / ${hsData.nominal} (Nominal) · ${hsData.max} (Notfallgrenze)`
+          : `Occupied: ${occ} / ${hsData.nominal} (Nominal) · ${hsData.max} (Emergency limit)`;
+        document.getElementById('hotspot-percent-label').textContent = `${pct}%`;
+
+        if (fillBar) {
+          fillBar.style.width = `${Math.min(100, pct)}%`;
+          fillBar.style.background = pct >= 100 ? 'var(--accent-red)' : (pct >= 85 ? 'var(--accent-amber)' : 'var(--accent-blue)');
+        }
+
+        if (chartTitleEl) {
+          const corridorTitle = isDe ? (vp?.nameDe || c.name) : (vp?.nameEn || c.name);
+          chartTitleEl.textContent = (isDe ? '72h Gefahrenverlauf: ' : '72h Hazard Trajectory: ') + corridorTitle;
+        }
+        if (chartSubEl) {
+          chartSubEl.textContent = isMarine
+            ? (isDe ? 'Kombinierte Modellierung aus Seegang (m), Windböen (km/h) und Abfahrtsrate' : 'Combined modeling of sea wave height (m), wind gusts (km/h), and hourly departure rate')
+            : (isDe ? 'Kombinierte Modellierung aus Gebirgs-Windchill (°C), Una/Sava-Flusspegel und Transitrate' : 'Combined modeling of mountain windchill (°C), Una river discharge ratio, and transit rate');
+        }
       }
 
       // Hide Maritime SAR Drift Tool on Land Corridor
@@ -2459,6 +2557,129 @@
       svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
       const isDe = currentLang === 'de';
+
+      // OPTION A: Multi-Sector Comparison Chart when "All Sectors" is selected
+      if (selectedCorridorId === 'all') {
+        const n = 72;
+        const curIdx = Math.min(scrubHour, n - 1);
+        const timeObj = getWallClockTime(scrubHour);
+        const hoverInd = document.getElementById('chart-hover-indicator');
+        if (hoverInd) hoverInd.textContent = `Cursor: ${timeObj.formatted}`;
+
+        const seriesAeg = [];
+        const seriesMed = [];
+        const seriesBalk = [];
+        const seriesSum = [];
+
+        for (let i = 0; i < n; i++) {
+          const rAeg = getCorridorArrivalRate('aegean_east', i);
+          const rMed = getCorridorArrivalRate('central_med', i);
+          const rBalk = getCorridorArrivalRate('balkan_land', i);
+          seriesAeg.push(rAeg);
+          seriesMed.push(rMed);
+          seriesBalk.push(rBalk);
+          seriesSum.push(rAeg + rMed + rBalk);
+        }
+
+        const maxVal = Math.max(14, Math.ceil(Math.max(...seriesSum) * 1.15));
+        const getX = (i) => padding.left + (i / (n - 1)) * chartW;
+        const getY = (val) => padding.top + chartH - (val / maxVal) * chartH;
+
+        const ptsAeg = seriesAeg.map((v, i) => `${getX(i).toFixed(1)},${getY(v).toFixed(1)}`).join(' ');
+        const ptsMed = seriesMed.map((v, i) => `${getX(i).toFixed(1)},${getY(v).toFixed(1)}`).join(' ');
+        const ptsBalk = seriesBalk.map((v, i) => `${getX(i).toFixed(1)},${getY(v).toFixed(1)}`).join(' ');
+        const ptsSum = seriesSum.map((v, i) => `${getX(i).toFixed(1)},${getY(v).toFixed(1)}`).join(' ');
+
+        const areaPath = `M ${getX(0).toFixed(1)},${getY(0).toFixed(1)} ` +
+          seriesSum.map((v, i) => `L ${getX(i).toFixed(1)},${getY(v).toFixed(1)}`).join(' ') +
+          ` L ${getX(n-1).toFixed(1)},${getY(0).toFixed(1)} Z`;
+
+        const curX = getX(curIdx).toFixed(1);
+        const curY = getY(seriesSum[curIdx] || 0).toFixed(1);
+
+        const vAeg = seriesAeg[curIdx].toFixed(1);
+        const vMed = seriesMed[curIdx].toFixed(1);
+        const vBalk = seriesBalk[curIdx].toFixed(1);
+        const vSum = seriesSum[curIdx].toFixed(1);
+
+        svg.innerHTML = `
+          <defs>
+            <linearGradient id="areaGradPan" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          <!-- Grid Lines & Y-ticks -->
+          <line x1="${padding.left}" y1="${getY(maxVal*0.75)}" x2="${width - padding.right}" y2="${getY(maxVal*0.75)}" stroke="#F1F5F9" stroke-width="1"/>
+          <text x="${padding.left - 6}" y="${getY(maxVal*0.75) + 3}" fill="#94A3B8" font-size="8" text-anchor="end" font-family="monospace">${Math.round(maxVal*0.75)}/h</text>
+
+          <line x1="${padding.left}" y1="${getY(maxVal*0.5)}" x2="${width - padding.right}" y2="${getY(maxVal*0.5)}" stroke="#F1F5F9" stroke-width="1"/>
+          <text x="${padding.left - 6}" y="${getY(maxVal*0.5) + 3}" fill="#94A3B8" font-size="8" text-anchor="end" font-family="monospace">${Math.round(maxVal*0.5)}/h</text>
+
+          <line x1="${padding.left}" y1="${getY(maxVal*0.25)}" x2="${width - padding.right}" y2="${getY(maxVal*0.25)}" stroke="#F1F5F9" stroke-width="1"/>
+          <text x="${padding.left - 6}" y="${getY(maxVal*0.25) + 3}" fill="#94A3B8" font-size="8" text-anchor="end" font-family="monospace">${Math.round(maxVal*0.25)}/h</text>
+
+          <!-- Legend Bar on Top -->
+          <g font-size="8.5" font-family="var(--font-mono, monospace)" font-weight="600">
+            <circle cx="52" cy="14" r="3.5" fill="#EF4444"/>
+            <text x="59" y="17" fill="#DC2626">${isDe ? 'Ost-Ägäis' : 'East Aegean'}</text>
+
+            <circle cx="150" cy="14" r="3.5" fill="#0284C7"/>
+            <text x="157" y="17" fill="#0284C7">${isDe ? 'Zentr. Mittelmeer' : 'Central Med'}</text>
+
+            <circle cx="280" cy="14" r="3.5" fill="#10B981"/>
+            <text x="287" y="17" fill="#059669">${isDe ? 'Balkan-Route' : 'Balkan Route'}</text>
+
+            <line x1="390" y1="14" x2="406" y2="14" stroke="#8B5CF6" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <text x="411" y="17" fill="#7C3AED">${isDe ? 'Pan-Med Gesamt (Σ)' : 'Pan-Med Total (Σ)'}</text>
+          </g>
+
+          <!-- Area fill under cumulative sum -->
+          <path d="${areaPath}" fill="url(#areaGradPan)" />
+
+          <!-- Curve 1: Balkan Route (Emerald) -->
+          <polyline points="${ptsBalk}" fill="none" stroke="#10B981" stroke-width="2.0" stroke-linecap="round" opacity="0.9" />
+
+          <!-- Curve 2: Central Med (Blue) -->
+          <polyline points="${ptsMed}" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round" opacity="0.95" />
+
+          <!-- Curve 3: East Aegean (Red) -->
+          <polyline points="${ptsAeg}" fill="none" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" opacity="0.95" />
+
+          <!-- Curve 4: Pan-Med Sum (Purple Dashed) -->
+          <polyline points="${ptsSum}" fill="none" stroke="#8B5CF6" stroke-width="2.0" stroke-dasharray="4 3" stroke-linecap="round" />
+
+          <!-- Dynamic Tracking Cursor -->
+          <line class="chart-cursor" x1="${curX}" y1="${padding.top}" x2="${curX}" y2="${height - padding.bottom}" />
+          <circle cx="${curX}" cy="${curY}" r="5" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="2"/>
+
+          <!-- Live Cursor Readout Badge with Wall-clock time -->
+          <g transform="translate(${Math.min(width - 290, Math.max(padding.left, curX - 140))}, ${padding.top - 8})">
+            <rect width="280" height="22" rx="4" fill="#0F172A" opacity="0.92" />
+            <text x="140" y="15" fill="#FFFFFF" font-size="8.5" font-family="monospace" text-anchor="middle" font-weight="600">
+              Ägäis: ${vAeg} · Z-Med: ${vMed} · Balk: ${vBalk} · Σ ${vSum}/h · ${timeObj.shortTime}
+            </text>
+          </g>
+
+          <!-- Time Ticks -->
+          <text x="${padding.left}" y="${height - 10}" font-size="9" fill="#94A3B8" font-family="monospace">T+0h</text>
+          <text x="${padding.left + chartW * 0.33}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+24h</text>
+          <text x="${padding.left + chartW * 0.66}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="monospace">T+48h</text>
+          <text x="${width - padding.right}" y="${height - 10}" font-size="9" fill="#94A3B8" text-anchor="end" font-family="monospace">T+72h</text>
+        `;
+
+        // Interactive Scrubbing on SVG Click
+        svg.onclick = (e) => {
+          const rect = svg.getBoundingClientRect();
+          const clickRatio = (e.clientX - rect.left) / rect.width;
+          const hour = Math.round(clickRatio * 71);
+          const clampedHour = Math.max(0, Math.min(71, hour));
+          document.getElementById('time-scrubber').value = clampedHour;
+          onScrubChange(clampedHour);
+        };
+        return;
+      }
       const isMarine = c.id !== 'balkan_land';
       const series1 = isMarine 
         ? (c.timeline?.wave || c.hourly_series?.primary || [1.2, 1.4, 1.5, 1.8, 1.6, 1.3, 1.1])
