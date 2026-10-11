@@ -182,9 +182,11 @@
     .corridor-tab {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.45rem;
       padding: 0 0.85rem;
       height: 32px;
+      min-width: 148px;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -643,7 +645,7 @@
     .chart-container {
       position: relative;
       width: 100%;
-      height: 185px;
+      height: 215px;
     }
 
     .chart-svg {
@@ -2160,15 +2162,15 @@
 
         if (c.id === 'aegean_east') {
           title = isDe ? 'Ost-Ägäis' : 'Eastern Aegean';
-          riskLabel = `${c.risk_score}% Surge`;
+          riskLabel = isDe ? `${c.risk_score}% Surge` : `${c.risk_score}% Surge`;
           tooltip = isDe ? `Ost-Ägäis: ${c.risk_score}% Surge-Risiko (Ruhigsee begünstigt Überfahrten nach Lesbos)` : `East Aegean: ${c.risk_score}% Surge Risk (Calm sea crossings to Lesbos)`;
         } else if (c.id === 'central_med') {
           title = isDe ? 'Zentr. Med' : 'Central Med';
-          riskLabel = `${c.risk_score}% Seegang`;
+          riskLabel = isDe ? `${c.risk_score}% Seegang` : `${c.risk_score}% Swell`;
           tooltip = isDe ? `Zentrales Mittelmeer: ${c.risk_score}% Seegangs- & Kentergefahr (SAR-Wachsamkeit)` : `Central Med: ${c.risk_score}% Swell & Capsize Risk (SAR readiness)`;
         } else if (c.id === 'balkan_land') {
           title = isDe ? 'Balkan' : 'Balkan Route';
-          riskLabel = `${c.risk_score}% Transit`;
+          riskLabel = isDe ? `${c.risk_score}% Transit` : `${c.risk_score}% Transit`;
           tooltip = isDe ? `Balkan-Route: ${c.risk_score}% Transit-Risiko (Gebirgspass-Windchill & Flusspegel)` : `Balkan: ${c.risk_score}% Transit Risk (Mountain pass & river flood)`;
         }
 
@@ -2678,7 +2680,7 @@
       if (!svg || !c) return;
 
       const width = 650;
-      const height = 180;
+      const height = 208;
       const padding = { top: 18, right: 35, bottom: 26, left: 45 };
       const chartW = width - padding.left - padding.right;
       const chartH = height - padding.top - padding.bottom;
@@ -3037,6 +3039,9 @@
       setTxt('toggle-hotspots', t.layerHotspots);
       setTxt('lbl-datum-btn', t.datumBtn);
       setTxt('lbl-datum-card-title', t.datumTitle);
+      setTxt('lbl-vessel-type', currentLang === 'de' ? 'Bootstyp (Leeway)' : 'Craft Type (Leeway)');
+      setTxt('lbl-pick-map', currentLang === 'de' ? '🎯 In Karte setzen' : '🎯 Click Map to Place');
+      setTxt('lbl-agent-toggle', currentLang === 'de' ? 'Details' : 'Details');
 
       const lblTourBtn = document.getElementById('lbl-tour-btn');
       if (lblTourBtn && t.tourBtn) lblTourBtn.textContent = t.tourBtn;
@@ -3049,6 +3054,7 @@
       if (typeof isTourRunning !== 'undefined' && isTourRunning) renderTourStep(tourStepIndex);
 
       renderFaqModal();
+      renderRiskExplainerModal();
       renderCorridorTabs();
       updateDisplay();
       renderTimelineChart();
