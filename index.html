@@ -1176,14 +1176,6 @@
         ▶ <span id="lbl-tour-btn">30s Tour</span>
       </button>
 
-      <!-- Scenario Selection -->
-      <select id="scenario-select" class="select-ctrl" title="Operation Scenario">
-        <option value="live">📡 Live Sensor Feeds</option>
-        <option value="sicily_trap">🌊 Scenario: Sicily Wave Trap (Gale)</option>
-        <option value="aegean_surge">⛵ Scenario: Aegean Calm-Sea Surge</option>
-        <option value="balkan_freeze">❄️ Scenario: Balkan Frost Passage</option>
-      </select>
-
       <!-- Unified FAQ Modal Button -->
       <button class="btn" id="btn-faq" onclick="toggleModal(true)">
         💡 <span id="lbl-faq">FAQ</span>
@@ -1492,7 +1484,7 @@
     // Global State
     let liveState = null;
     let baseLiveState = null;
-    let selectedCorridorId = 'central_med';
+    let selectedCorridorId = 'all';
     let scrubHour = 0;
     let isSimulating = false;
     let simInterval = null;
@@ -1514,8 +1506,9 @@
       }
     };
 
-    // Precise Viewports for multi-corridor navigation
+    // Precise Viewports for multi-corridor navigation & Continental Pan-Med Overview
     const CORRIDOR_VIEWPORTS = {
+      all: { center: [18.8, 38.6], zoom: 4.8, pitch: 0, nameDe: '🗺️ Alle Sektoren (Pan-Mittelmeer)', nameEn: '🗺️ All Sectors (Pan-Med Overview)' },
       central_med: { center: [12.6, 35.5], zoom: 6.8, pitch: 15, nameDe: 'Zentrales Mittelmeer', nameEn: 'Central Mediterranean' },
       balkan_land: { center: [15.87, 44.82], zoom: 8.6, pitch: 20, nameDe: 'Balkan-Route (Bihać)', nameEn: 'Balkan Route (Bihać)' },
       aegean_east: { center: [26.45, 39.22], zoom: 8.8, pitch: 15, nameDe: 'Ost-Ägäis (Lesbos)', nameEn: 'Eastern Aegean (Lesbos)' }
@@ -1769,8 +1762,8 @@
             }
           ]
         },
-        center: [12.6, 35.5],
-        zoom: 6.8,
+        center: [18.8, 38.6],
+        zoom: 4.8,
         attributionControl: false
       });
 
@@ -2073,6 +2066,11 @@
 
     function getActiveCorridor() {
       if (!liveState || !liveState.corridors) return null;
+      if (selectedCorridorId === 'all') {
+        // Return highest-risk corridor as primary focal data
+        return liveState.corridors.find(c => c.id === liveState.focused_corridor_id) 
+            || liveState.corridors.reduce((max, c) => c.risk_score > max.risk_score ? c : max, liveState.corridors[0]);
+      }
       return liveState.corridors.find(c => c.id === selectedCorridorId) || liveState.corridors[0];
     }
 
@@ -2080,13 +2078,29 @@
       const container = document.getElementById('corridor-tabs');
       if (!container || !liveState || !liveState.corridors) return;
 
-      container.innerHTML = liveState.corridors.map(c => {
+      const isDe = currentLang === 'de';
+      const allActive = selectedCorridorId === 'all' ? 'active' : '';
+      const maxRisk = Math.max(...liveState.corridors.map(c => c.risk_score));
+      const maxRiskColor = maxRisk > 75 ? 'var(--accent-red)' : (maxRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
+      const maxRiskBg = maxRisk > 75 ? 'var(--accent-red-light)' : (maxRisk > 50 ? 'var(--accent-amber-light)' : 'var(--accent-green-light)');
+
+      const overviewHtml = `
+        <div class="corridor-tab ${allActive}" onclick="selectCorridor('all')">
+          <div class="c-header">
+            <span class="c-title">${isDe ? '🗺️ Alle Sektoren' : '🗺️ All Sectors'}</span>
+            <span class="c-risk" style="background:${maxRiskBg}; color:${maxRiskColor};">${maxRisk}%</span>
+          </div>
+          <div class="c-sub">${isDe ? 'Pan-Mittelmeer Radar' : 'Pan-Med Overview'}</div>
+        </div>
+      `;
+
+      const tabsHtml = liveState.corridors.map(c => {
         const activeClass = c.id === selectedCorridorId ? 'active' : '';
         const riskColor = c.risk_score > 75 ? 'var(--accent-red)' : (c.risk_score > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
         const riskBg = c.risk_score > 75 ? 'var(--accent-red-light)' : (c.risk_score > 50 ? 'var(--accent-amber-light)' : 'var(--accent-green-light)');
         
         let title = c.short_name || c.name;
-        if (currentLang === 'en') {
+        if (!isDe) {
           if (c.id === 'central_med') title = 'Central Med';
           else if (c.id === 'balkan_land') title = 'Balkan Route';
           else if (c.id === 'aegean_east') title = 'Eastern Aegean';
@@ -2102,6 +2116,8 @@
           </div>
         `;
       }).join('');
+
+      container.innerHTML = overviewHtml + tabsHtml;
     }
 
     function selectCorridor(id) {
@@ -2208,12 +2224,23 @@
 
       // Update Map Overlay Card
       const vp = CORRIDOR_VIEWPORTS[selectedCorridorId];
-      const corridorTitle = isDe ? (vp?.nameDe || c.name) : (vp?.nameEn || c.name);
-      document.getElementById('map-corridor-name').textContent = corridorTitle;
-      const riskEl = document.getElementById('map-corridor-risk');
-      riskEl.textContent = `(${c.risk_score}%)`;
-      riskEl.style.color = c.risk_score > 75 ? 'var(--accent-red)' : (c.risk_score > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
-      document.getElementById('map-corridor-status').textContent = c.status;
+      if (selectedCorridorId === 'all') {
+        const maxRisk = Math.max(...liveState.corridors.map(x => x.risk_score));
+        document.getElementById('map-corridor-name').textContent = isDe ? 'Pan-Mittelmeer & Balkan' : 'Pan-Med & Balkan Radar';
+        const riskEl = document.getElementById('map-corridor-risk');
+        riskEl.textContent = `(${maxRisk}%)`;
+        riskEl.style.color = maxRisk > 75 ? 'var(--accent-red)' : (maxRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
+        document.getElementById('map-corridor-status').textContent = isDe 
+          ? '3 aktive Überwachungssektoren · Höchste Alarmstufe: ' + c.name.split(' ')[0]
+          : '3 active early-warning sectors · Highest alert: ' + c.name.split(' ')[0];
+      } else {
+        const corridorTitle = isDe ? (vp?.nameDe || c.name) : (vp?.nameEn || c.name);
+        document.getElementById('map-corridor-name').textContent = corridorTitle;
+        const riskEl = document.getElementById('map-corridor-risk');
+        riskEl.textContent = `(${c.risk_score}%)`;
+        riskEl.style.color = c.risk_score > 75 ? 'var(--accent-red)' : (c.risk_score > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
+        document.getElementById('map-corridor-status').textContent = c.status;
+      }
 
       // Task 1: Bind dynamically to live_state.json hotspot values!
       const hsData = getHotspotDataForCorridor(c.id);
@@ -2583,73 +2610,6 @@
       }
     }
 
-    // Scenario Switching Engine
-    document.getElementById('scenario-select').addEventListener('change', async (e) => {
-      const val = e.target.value;
-      const liveBadge = document.getElementById('lbl-live-badge');
-      const pulseDot = document.querySelector('.pulse-dot');
-      const isDe = currentLang === 'de';
-
-      if (val === 'live') {
-        if (baseLiveState) {
-          liveState = JSON.parse(JSON.stringify(baseLiveState));
-        } else {
-          await loadData();
-          return;
-        }
-        if (liveBadge) liveBadge.textContent = 'LIVE PATROL';
-        if (pulseDot) pulseDot.style.background = '#10B981';
-        selectedCorridorId = liveState.focused_corridor_id || 'central_med';
-      } else if (baseLiveState && baseLiveState.scenarios && baseLiveState.scenarios[val]) {
-        const sc = baseLiveState.scenarios[val];
-        // Fully swap liveState with the crisis scenario dataset
-        liveState = {
-          ...JSON.parse(JSON.stringify(sc)),
-          scenarios: baseLiveState.scenarios
-        };
-        selectedCorridorId = sc.focused_corridor_id || 'central_med';
-        
-        if (liveBadge) {
-          liveBadge.textContent = isDe ? 'SZENARIO SIMULATION' : 'SCENARIO MODE';
-        }
-        if (pulseDot) pulseDot.style.background = '#F59E0B';
-      }
-
-      // Reset timeline scrubber to T+0h for the new scenario
-      scrubHour = 0;
-      const scrubber = document.getElementById('time-scrubber');
-      if (scrubber) scrubber.value = 0;
-
-      // Re-render all dashboard components with scenario data
-      renderCorridorTabs();
-      updateDisplay();
-      renderTimelineChart();
-      renderAgentFeed();
-
-      // Smoothly fly map to the scenario's focus corridor
-      if (map && CORRIDOR_VIEWPORTS[selectedCorridorId]) {
-        map.flyTo({
-          center: CORRIDOR_VIEWPORTS[selectedCorridorId].center,
-          zoom: CORRIDOR_VIEWPORTS[selectedCorridorId].zoom,
-          duration: 1200
-        });
-      }
-
-      // Show toast confirmation
-      const toast = document.getElementById('toast-copy');
-      if (toast) {
-        const scenarioNames = {
-          live: isDe ? '📡 Live Sensordaten geladen' : '📡 Live Sensor Feeds Loaded',
-          sicily_trap: isDe ? '🌊 Szenario: Sizilien Wellenfalle geladen' : '🌊 Scenario: Sicily Wave Trap Loaded',
-          aegean_surge: isDe ? '⛵ Szenario: Ägäis Ruhigsee-Surge geladen' : '⛵ Scenario: Aegean Calm Surge Loaded',
-          balkan_freeze: isDe ? '❄️ Szenario: Balkan Frost-Passage geladen' : '❄️ Scenario: Balkan Freeze Loaded'
-        };
-        toast.textContent = scenarioNames[val] || (isDe ? '✓ Szenario gewechselt' : '✓ Scenario switched');
-        toast.style.display = 'flex';
-        setTimeout(() => { toast.style.display = 'none'; }, 2500);
-      }
-    });
-
     // Render FAQ Modal Body
     function renderFaqModal() {
       const titleEl = document.getElementById('faq-modal-title');
@@ -2700,14 +2660,6 @@
       const lblTourNext = document.getElementById('lbl-tour-next');
       if (lblTourNext && t.tourNext) lblTourNext.textContent = t.tourNext;
       if (typeof isTourRunning !== 'undefined' && isTourRunning) renderTourStep(tourStepIndex);
-
-      const scSelect = document.getElementById('scenario-select');
-      if (scSelect) {
-        scSelect.options[0].textContent = t.scenarios.live;
-        scSelect.options[1].textContent = t.scenarios.sicily_trap;
-        scSelect.options[2].textContent = t.scenarios.aegean_surge;
-        scSelect.options[3].textContent = t.scenarios.balkan_freeze;
-      }
 
       renderFaqModal();
       renderCorridorTabs();
@@ -2948,9 +2900,9 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
         descDe: 'Refugee Radar verbindet marine Wettermodelle mit UN-Aufnahmedaten über das zentrale Mittelmeer, die Ägäis und die Balkan-Landroute.',
         duration: 6500,
         action: () => {
-          selectCorridor('central_med');
-          if (map && CORRIDOR_VIEWPORTS['central_med']) {
-            map.flyTo({ center: CORRIDOR_VIEWPORTS['central_med'].center, zoom: 6.8, duration: 1000 });
+          selectCorridor('all');
+          if (map && CORRIDOR_VIEWPORTS['all']) {
+            map.flyTo({ center: CORRIDOR_VIEWPORTS['all'].center, zoom: 4.8, duration: 1000 });
           }
         }
       },
@@ -2964,6 +2916,7 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
         descDe: 'Einsatzleiter erkennen ruhige Wetterfenster 72h im Voraus, bevor sprunghafte Abfahrten einsetzen. Beobachten Sie die automatische Zeitreise!',
         duration: 7500,
         action: () => {
+          selectCorridor('central_med');
           let h = 0;
           const anim = setInterval(() => {
             h += 2;
