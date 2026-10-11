@@ -2080,17 +2080,22 @@
 
       const isDe = currentLang === 'de';
       const allActive = selectedCorridorId === 'all' ? 'active' : '';
+      const avgRisk = Math.round(liveState.corridors.reduce((sum, c) => sum + c.risk_score, 0) / (liveState.corridors.length || 1));
       const maxRisk = Math.max(...liveState.corridors.map(c => c.risk_score));
-      const maxRiskColor = maxRisk > 75 ? 'var(--accent-red)' : (maxRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
-      const maxRiskBg = maxRisk > 75 ? 'var(--accent-red-light)' : (maxRisk > 50 ? 'var(--accent-amber-light)' : 'var(--accent-green-light)');
+      const hotspotCorridor = liveState.corridors.reduce((max, c) => c.risk_score > max.risk_score ? c : max, liveState.corridors[0]);
+      const avgRiskColor = avgRisk > 75 ? 'var(--accent-red)' : (avgRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
+      const avgRiskBg = avgRisk > 75 ? 'var(--accent-red-light)' : (avgRisk > 50 ? 'var(--accent-amber-light)' : 'var(--accent-green-light)');
+      const hotspotName = isDe 
+        ? (hotspotCorridor.short_name || hotspotCorridor.name.split(' ')[0])
+        : (hotspotCorridor.id === 'aegean_east' ? 'Aegean' : (hotspotCorridor.id === 'central_med' ? 'Central Med' : 'Balkan'));
 
       const overviewHtml = `
         <div class="corridor-tab ${allActive}" onclick="selectCorridor('all')">
           <div class="c-header">
             <span class="c-title">${isDe ? '🗺️ Alle Sektoren' : '🗺️ All Sectors'}</span>
-            <span class="c-risk" style="background:${maxRiskBg}; color:${maxRiskColor};">${maxRisk}%</span>
+            <span class="c-risk" style="background:${avgRiskBg}; color:${avgRiskColor};" title="${isDe ? 'Durchschnitt aller 3 Sektoren' : 'Average across all 3 sectors'}">Ø ${avgRisk}%</span>
           </div>
-          <div class="c-sub">${isDe ? 'Pan-Mittelmeer Radar' : 'Pan-Med Overview'}</div>
+          <div class="c-sub">${isDe ? `Mittelwert · Peak: ${hotspotName} ${maxRisk}%` : `Average · Peak: ${hotspotName} ${maxRisk}%`}</div>
         </div>
       `;
 
@@ -2225,14 +2230,20 @@
       // Update Map Overlay Card
       const vp = CORRIDOR_VIEWPORTS[selectedCorridorId];
       if (selectedCorridorId === 'all') {
+        const avgRisk = Math.round(liveState.corridors.reduce((sum, x) => sum + x.risk_score, 0) / (liveState.corridors.length || 1));
         const maxRisk = Math.max(...liveState.corridors.map(x => x.risk_score));
+        const hotspotCorridor = liveState.corridors.reduce((max, x) => x.risk_score > max.risk_score ? x : max, liveState.corridors[0]);
+        const hotspotName = isDe 
+          ? (hotspotCorridor.short_name || hotspotCorridor.name.split(' ')[0])
+          : (hotspotCorridor.id === 'aegean_east' ? 'Aegean' : (hotspotCorridor.id === 'central_med' ? 'Central Med' : 'Balkan'));
+
         document.getElementById('map-corridor-name').textContent = isDe ? 'Pan-Mittelmeer & Balkan' : 'Pan-Med & Balkan Radar';
         const riskEl = document.getElementById('map-corridor-risk');
-        riskEl.textContent = `(${maxRisk}%)`;
-        riskEl.style.color = maxRisk > 75 ? 'var(--accent-red)' : (maxRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
+        riskEl.textContent = `(Ø ${avgRisk}%)`;
+        riskEl.style.color = avgRisk > 75 ? 'var(--accent-red)' : (avgRisk > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
         document.getElementById('map-corridor-status').textContent = isDe 
-          ? '3 aktive Überwachungssektoren · Höchste Alarmstufe: ' + c.name.split(' ')[0]
-          : '3 active early-warning sectors · Highest alert: ' + c.name.split(' ')[0];
+          ? `3 aktive Überwachungssektoren · Brennpunkt: ${hotspotName} (${maxRisk}%)`
+          : `3 active early-warning sectors · Hotspot: ${hotspotName} (${maxRisk}%)`;
       } else {
         const corridorTitle = isDe ? (vp?.nameDe || c.name) : (vp?.nameEn || c.name);
         document.getElementById('map-corridor-name').textContent = corridorTitle;
