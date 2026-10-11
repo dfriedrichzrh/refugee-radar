@@ -1,6 +1,6 @@
 {
- "run_id": "run_20261011_1420Z",
- "timestamp_utc": "2026-10-11T14:20:00Z",
+ "run_id": "run_20261011_1450Z",
+ "timestamp_utc": "2026-10-11T14:50:00Z",
  "mode_label": "LIVE AUTONOMOUS PATROL",
  "is_synthetic": false,
  "global_risk_level": "CRITICAL",
@@ -1827,9 +1827,19 @@
  ],
  "news_reports": [
   {
-   "source": "GDELT 2.0 · publico.es",
-   "title": "Pirómanos y colibríes",
-   "url": "https://www.publico.es/opinion/columnas/piromanos-colibries.html"
+   "source": "Reference (feed unavailable)",
+   "title": "UNHCR Operational Data Portal — Mediterranean Situation",
+   "url": "https://data.unhcr.org/en/situations/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "IOM Missing Migrants Project — Mediterranean",
+   "url": "https://missingmigrants.iom.int/region/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "UN OCHA ReliefWeb — latest humanitarian updates",
+   "url": "https://reliefweb.int/updates"
   }
  ],
  "provenance_summary": [
@@ -1851,7 +1861,7 @@
   },
   {
    "label": "GDELT 2.0",
-   "ok": true
+   "ok": false
   }
  ],
  "agent_trajectory": [
@@ -1911,13 +1921,13 @@
    "elapsed_ms": 7600,
    "type": "BRIEFING_GENERATION",
    "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
-   "thought": "Published NGO dispatch RR-OPS-2026-1011-1420 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+   "thought": "Published NGO dispatch RR-OPS-2026-1011-1450 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
    "briefing_ready": true
   }
  ],
  "active_widget_path": "inline://widgets/reception_surge",
  "ngo_briefing": {
-  "dispatch_id": "RR-OPS-2026-1011-1420",
+  "dispatch_id": "RR-OPS-2026-1011-1450",
   "coordinates_focus": "39.25°N, 26.40°E (Aegean Mid-Channel)",
   "title": "Island Reception Surge & Triage Dispatch: Lesbos",
   "target_orgs": [
@@ -1942,50 +1952,51 @@
    "feed": "central_med_marine",
    "url": "https://marine-api.open-meteo.com/v1/marine?latitude=35.10&longitude=11.80&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 503
+   "ms": 514
   },
   {
    "feed": "central_med_weather",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=35.10&longitude=11.80&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,precipitation,visibility&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 160
+   "ms": 174
   },
   {
    "feed": "balkan_mountain",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=44.78&longitude=15.75&hourly=temperature_2m,apparent_temperature,precipitation,snowfall,snow_depth,freezing_level_height,wind_speed_10m&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 168
+   "ms": 164
   },
   {
    "feed": "balkan_flood",
    "url": "https://flood-api.open-meteo.com/v1/flood?latitude=45.14&longitude=16.90&daily=river_discharge,river_discharge_mean,river_discharge_max&forecast_days=7",
    "ok": true,
-   "ms": 502
+   "ms": 501
   },
   {
    "feed": "aegean_marine",
    "url": "https://marine-api.open-meteo.com/v1/marine?latitude=39.25&longitude=26.40&hourly=wave_height,wave_direction,wave_period,wind_wave_height&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 514
+   "ms": 488
   },
   {
    "feed": "aegean_weather",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=39.25&longitude=26.40&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 154
+   "ms": 156
   },
   {
    "feed": "reliefweb",
    "url": "https://api.reliefweb.int/v1/reports?appname=aegis-humanitarian-radar&query[value]=mediterranean+OR+refugees+OR+balkans+OR+lampedusa+OR+lesbos&limit=5&preset=latest",
    "ok": false,
-   "ms": 144,
+   "ms": 143,
    "error": "HTTPError: HTTP Error 410: Gone"
   },
   {
    "feed": "gdelt",
    "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(lampedusa%20OR%20lesbos%20OR%20bihac%20OR%20mediterranean)%20(migrants%20OR%20rescue%20OR%20coastguard%20OR%20refugees)&mode=ArtList&maxrecords=6&format=json&timespan=72h",
-   "ok": true,
-   "ms": 15097
+   "ok": false,
+   "ms": 10883,
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   }
  ],
  "fallback_series": [],
@@ -7852,79 +7863,6 @@
  },
  "run_history": [
   {
-   "run_id": "run_20261011_1004Z",
-   "timestamp_utc": "2026-10-11T10:04:00Z",
-   "global_risk_level": "CRITICAL",
-   "focused_corridor_id": "aegean_east",
-   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
-   "scores": {
-    "central_med": 49,
-    "balkan_land": 51,
-    "aegean_east": 89
-   },
-   "agent_trajectory": [
-    {
-     "step": 1,
-     "elapsed_ms": 800,
-     "type": "COMMAND",
-     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
-     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
-     "map_action": {
-      "center": [
-       17.5,
-       39.5
-      ],
-      "zoom": 4.6,
-      "pitch": 35,
-      "bearing": 0
-     }
-    },
-    {
-     "step": 2,
-     "elapsed_ms": 2800,
-     "type": "ANALYSIS",
-     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
-     "thought": "Cross-corridor triage: Aegean 89, Balkan Route 51, Central Med 49. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
-     "map_action": {
-      "center": [
-       26.4,
-       39.25
-      ],
-      "zoom": 8.4,
-      "pitch": 50,
-      "bearing": -12,
-      "highlightCorridor": "aegean_east"
-     }
-    },
-    {
-     "step": 3,
-     "elapsed_ms": 5400,
-     "type": "CODE_GENERATION",
-     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
-     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
-     "widget_url": "inline://widgets/reception_surge",
-     "map_action": {
-      "center": [
-       26.4,
-       39.25
-      ],
-      "zoom": 8.9,
-      "pitch": 58,
-      "bearing": 18,
-      "highlightCorridor": "aegean_east"
-     }
-    },
-    {
-     "step": 4,
-     "elapsed_ms": 7600,
-     "type": "BRIEFING_GENERATION",
-     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
-     "thought": "Published NGO dispatch AEGIS-OPS-2026-1011-1004 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
-     "briefing_ready": true
-    }
-   ]
-  },
-  {
    "run_id": "run_20261011_1034Z",
    "timestamp_utc": "2026-10-11T10:34:00Z",
    "global_risk_level": "CRITICAL",
@@ -8577,6 +8515,79 @@
      "type": "BRIEFING_GENERATION",
      "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
      "thought": "Published NGO dispatch RR-OPS-2026-1011-1420 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261011_1450Z",
+   "timestamp_utc": "2026-10-11T14:50:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 53,
+    "balkan_land": 53,
+    "aegean_east": 93
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 93, Central Med 53, Balkan Route 53. Focusing Aegean (Çeşme → Lesbos) (score 93/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch RR-OPS-2026-1011-1450 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
      "briefing_ready": true
     }
    ]
