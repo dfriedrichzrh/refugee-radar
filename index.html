@@ -1,812 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refugee Radar — Autonomous Early Warning & SAR Logistics</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refugee Radar // Apple Pro Command Center</title>
   
-  <!-- MapLibre GL -->
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-
-  <!-- Typography: Inter & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  <!-- MapLibre GL CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  
   <style>
+    /* ==========================================================================
+       APPLE SENIOR DESIGNER // PRO COMMAND CENTER DESIGN SYSTEM
+       macOS Sequoia / VisionOS Light Precision Theme (Zero-Scroll Viewport)
+       ========================================================================== */
     :root {
-      --bg: #F8FAFC;
-      --surface: #FFFFFF;
-      --surface-subtle: #F1F5F9;
-      --border: #E2E8F0;
-      --border-focus: #CBD5E1;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      --font-mono: "SF Mono", Menlo, Monaco, ui-monospace, monospace;
+      
+      /* Apple Pro System Palette */
+      --apple-blue: #007AFF;
+      --apple-red: #FF3B30;
+      --apple-orange: #FF9500;
+      --apple-green: #34C759;
+      --apple-purple: #AF52DE;
+      
+      --accent-blue: #007AFF;
+      --accent-blue-light: rgba(0, 122, 255, 0.08);
+      --accent-red: #FF3B30;
+      --accent-red-light: rgba(255, 59, 48, 0.08);
+      --accent-amber: #FF9500;
+      --accent-amber-light: rgba(255, 149, 0, 0.08);
+      --accent-green: #34C759;
+      --accent-green-light: rgba(52, 199, 89, 0.08);
+      
+      /* Surface & Materials */
+      --bg-studio: #F1F5F9;
+      --bg-canvas: #F8FAFC;
+      --surface-glass: rgba(255, 255, 255, 0.88);
+      --surface-glass-heavy: rgba(255, 255, 255, 0.96);
+      --border-hairline: rgba(15, 23, 42, 0.08);
+      --border-subtle: rgba(15, 23, 42, 0.14);
+      
       --text-main: #0F172A;
       --text-muted: #64748B;
-      --text-dim: #94A3B8;
-
-      --accent-blue: #0284C7;
-      --accent-blue-light: #E0F2FE;
-      --accent-green: #10B981;
-      --accent-green-light: #D1FAE5;
-      --accent-amber: #F59E0B;
-      --accent-amber-light: #FEF3C7;
-      --accent-red: #EF4444;
-      --accent-red-light: #FEE2E2;
-      --accent-purple: #8B5CF6;
-
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
+      --text-secondary: #475569;
+      
+      --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-apple-md: 0 4px 14px rgba(15, 23, 42, 0.06);
+      --shadow-apple-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.12);
+      
+      --radius-xs: 4px;
+      --radius-sm: 6px;
+      --radius-md: 9px;
+      --radius-lg: 12px;
+      --radius-pill: 9999px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
       font-family: var(--font-sans);
-      background-color: var(--bg);
+      background: var(--bg-studio);
       color: var(--text-main);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Navigation Bar */
-    header {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.75rem 1.5rem;
+    /* --------------------------------------------------------------------------
+       TOP NAVIGATION BAR (Ultra-sleek 46px macOS Header)
+       -------------------------------------------------------------------------- */
+    .apple-nav {
+      height: 46px;
+      min-height: 46px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(24px) saturate(190%);
+      border-bottom: 1px solid var(--border-hairline);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      padding: 0 1rem;
+      z-index: 100;
     }
 
-    .brand-section {
+    .nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
-    .brand-badge {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
-      color: white;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .brand-logo {
       font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
-    }
-
-    .brand-titles h1 {
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 0.95rem;
       letter-spacing: -0.02em;
       color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
-    .brand-titles p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .brand-badge {
+      font-size: 0.625rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      background: rgba(0, 122, 255, 0.1);
+      color: var(--apple-blue);
+      border: 1px solid rgba(0, 122, 255, 0.2);
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius-xs);
+      text-transform: uppercase;
     }
 
     .live-pulse {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 0.35rem;
       font-size: 0.7rem;
       font-family: var(--font-mono);
       font-weight: 600;
-      background: var(--accent-green-light);
-      color: #065F46;
+      color: var(--apple-green);
+      background: rgba(52, 199, 89, 0.08);
+      border: 1px solid rgba(52, 199, 89, 0.2);
       padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius-pill);
     }
 
     .pulse-dot {
       width: 6px;
       height: 6px;
-      background: var(--accent-green);
+      background: var(--apple-green);
       border-radius: 50%;
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      box-shadow: 0 0 6px rgba(52, 199, 89, 0.6);
+      animation: pulseGlow 2s infinite ease-in-out;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
     }
 
-    .nav-controls {
+    /* Apple macOS Segmented Sector Switcher in Navigation */
+    .corridor-bar {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      background: rgba(15, 23, 42, 0.05);
+      padding: 2px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(15, 23, 42, 0.06);
     }
 
-    .btn {
-      height: 34px;
-      padding: 0 0.85rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: var(--font-sans);
+    .corridor-tab {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .corridor-tab:hover {
+      color: var(--text-main);
+    }
+
+    .corridor-tab.active {
+      background: #FFFFFF;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .corridor-tab .c-risk {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    .corridor-tab .c-sub {
+      display: none; /* Hide heavy subtitle in sleek segmented control */
+    }
+
+    /* Nav Action Buttons */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-apple {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.28rem 0.65rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background: #FFFFFF;
+      color: var(--text-main);
+      box-shadow: var(--shadow-apple-sm);
       cursor: pointer;
       transition: all 0.15s ease;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-main);
     }
 
-    .btn:hover {
-      background: var(--surface-subtle);
-      border-color: var(--border-focus);
+    .btn-apple:hover {
+      background: #F8FAFC;
+      border-color: var(--border-subtle);
+      box-shadow: var(--shadow-apple-md);
+      transform: translateY(-0.5px);
     }
 
-    .btn-primary {
-      background: #0F172A;
+    .btn-apple-primary {
+      background: var(--apple-blue);
       color: #FFFFFF;
-      border-color: #0F172A;
+      border-color: var(--apple-blue);
+      box-shadow: 0 1px 3px rgba(0, 122, 255, 0.3);
     }
 
-    .btn-primary:hover {
-      background: #1E293B;
+    .btn-apple-primary:hover {
+      background: #0066D6;
+      border-color: #0066D6;
       color: #FFFFFF;
+      box-shadow: 0 3px 8px rgba(0, 122, 255, 0.4);
     }
 
-    .btn-danger {
-      background: var(--accent-red);
-      color: #FFFFFF;
-      border-color: var(--accent-red);
-    }
-
-    select.select-ctrl {
-      height: 34px;
-      padding: 0 0.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      font-family: var(--font-sans);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-main);
-      cursor: pointer;
-      outline: none;
-    }
-
-    /* Purposeful 72h Timeline Scrubber Bar - Aligned with Map and Dashboard */
-    .timeline-banner {
-      background: #FFFFFF;
-      border-bottom: 1px solid var(--border);
+    /* --------------------------------------------------------------------------
+       COMMAND WORKSPACE (Zero-Scroll 2-Column Split: 62% Map | 38% Telemetry)
+       -------------------------------------------------------------------------- */
+    .workspace-grid {
+      flex: 1;
+      height: calc(100vh - 46px - 48px);
       display: grid;
       grid-template-columns: 46% 54%;
-      box-shadow: var(--shadow-sm);
-    }
-
-    @media (max-width: 1100px) {
-      .timeline-banner {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .timeline-left {
-      padding: 0.75rem 1.25rem;
-      border-right: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .timeline-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex: 1;
-    }
-
-    .sim-play-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #0F172A;
-      color: white;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      transition: transform 0.1s ease, background 0.15s ease;
-    }
-
-    .sim-play-btn:hover {
-      transform: scale(1.05);
-      background: #1E293B;
-    }
-
-    .sim-time-badge {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.75rem;
-      min-width: 155px;
-      text-align: center;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius-sm);
-      flex-shrink: 0;
-      line-height: 1.3;
-    }
-
-    .scrubber-track {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .range-input {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 6px;
-      border-radius: 3px;
-      background: #CBD5E1;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .range-input::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent-blue);
-      border: 2px solid #FFFFFF;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      cursor: grab;
-      transition: transform 0.1s;
-    }
-
-    .range-input::-webkit-slider-thumb:active {
-      transform: scale(1.2);
-      cursor: grabbing;
-    }
-
-    .timeline-ticks {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .timeline-right {
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .timeline-insight {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      color: var(--text-main);
-      flex: 1;
-    }
-
-    .insight-tag {
-      font-weight: 700;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      background: var(--accent-amber-light);
-      color: #92400E;
-      flex-shrink: 0;
-    }
-
-    /* Main Command Layout */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 46% 54%;
-      flex: 1;
-      min-height: calc(100vh - 120px);
-    }
-
-    @media (max-width: 1100px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Left: Tactical Map Column */
-    .map-pane {
+      overflow: hidden;
       position: relative;
-      border-right: 1px solid var(--border);
+    }
+
+    /* LEFT PANE: Full-Bleed Map Canvas with Floating HUDs */
+    .map-canvas-pane {
+      position: relative;
+      width: 100%;
+      height: 100%;
       background: #E2E8F0;
-      min-height: 480px;
-      display: flex;
-      flex-direction: column;
     }
 
     #tactical-map {
       width: 100%;
       height: 100%;
-      flex: 1;
     }
 
-    .map-overlay-card {
+    /* Floating Glass HUD: Sector Status */
+    .hud-sector-card {
       position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
+      top: 12px;
+      left: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid var(--border-hairline);
       border-radius: var(--radius-md);
-      padding: 0.75rem 1rem;
-      box-shadow: var(--shadow-md);
+      padding: 0.55rem 0.85rem;
+      box-shadow: var(--shadow-apple-md);
       z-index: 10;
       max-width: 320px;
     }
 
-    .map-overlay-title {
-      font-size: 0.75rem;
+    .hud-title {
+      font-size: 0.65rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      font-family: var(--font-mono);
     }
 
-    .map-overlay-corridor {
-      font-size: 0.95rem;
+    .hud-corridor-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-top: 0.1rem;
+    }
+
+    .hud-name {
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .hud-risk {
+      font-size: 0.825rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    .hud-status {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+      line-height: 1.35;
+    }
+
+    /* Floating Glass HUD: Layer Controls & Swatches */
+    .hud-layers {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.4rem 0.6rem;
+      box-shadow: var(--shadow-apple-md);
+      z-index: 10;
       display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      flex-direction: column;
+      gap: 0.35rem;
     }
 
     .map-toggles {
-      position: absolute;
-      bottom: 2.2rem;
-      left: 1rem;
       display: flex;
-      gap: 0.4rem;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      padding: 0.35rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
+      gap: 0.3rem;
     }
 
     .toggle-pill {
-      font-size: 0.7rem;
+      font-size: 0.675rem;
       font-weight: 600;
       padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border-hairline);
+      background: #FFFFFF;
+      color: var(--text-secondary);
       cursor: pointer;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text-muted);
-      transition: all 0.15s;
+      transition: all 0.12s ease;
     }
 
     .toggle-pill.active {
-      background: #FFFFFF;
-      color: var(--text-main);
-      border-color: var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Interactive Mayday SAR Drift Action Panel */
-    .datum-control-bar {
-      position: absolute;
-      top: 1rem;
-      right: 3.75rem; /* Clean clearance for MapLibre zoom controls */
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: flex-end;
-    }
-
-    .btn-datum-toggle {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(239, 68, 68, 0.45);
-      color: #DC2626;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .btn-datum-toggle:hover {
-      background: #FEF2F2;
-      border-color: #EF4444;
-      box-shadow: var(--shadow-md);
-    }
-
-    .datum-card {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.85rem 1rem;
-      box-shadow: var(--shadow-lg);
-      width: 290px;
-      display: none;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .datum-card.active {
-      display: flex;
-    }
-
-    /* Interactive Guided Tour Styling */
-    .btn-tour {
-      background: #0284C7;
+      background: var(--apple-blue);
       color: #FFFFFF;
-      font-weight: 600;
-      border: 1px solid #0284C7;
-      box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
-      transition: all 0.15s ease;
-    }
-    .btn-tour:hover {
-      background: #0369A1;
-      border-color: #0369A1;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
-      transform: translateY(-1px);
-    }
-
-    .tour-banner {
-      position: fixed;
-      top: 4.8rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.22);
-      padding: 0.9rem 1.25rem;
-      z-index: 2000;
-      width: 90%;
-      max-width: 580px;
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      animation: tourFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .tour-banner.active {
-      display: flex;
-    }
-
-    @keyframes tourFadeIn {
-      from { opacity: 0; transform: translate(-50%, -10px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-
-    .tour-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .tour-step-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      background: var(--accent-blue-light);
-      color: var(--accent-blue);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tour-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .tour-desc {
-      font-size: 0.825rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .tour-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.3rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .tour-dots {
-      display: flex;
-      gap: 0.35rem;
-    }
-
-    .tour-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #E2E8F0;
-      transition: all 0.2s ease;
-    }
-    .tour-dot.active {
-      background: var(--accent-blue);
-      width: 20px;
-      border-radius: 4px;
-    }
-
-    .tour-highlight {
-      position: relative;
-      z-index: 1001 !important;
-      box-shadow: 0 0 0 4px var(--accent-blue), 0 12px 30px rgba(2, 132, 199, 0.25) !important;
-      transition: all 0.3s ease;
-    }
-
-    .datum-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .datum-row {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .input-sm {
-      height: 28px;
-      padding: 0 0.5rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      background: #FFFFFF;
-      outline: none;
-      width: 100%;
+      border-color: var(--apple-blue);
     }
 
     .map-legend {
-      position: absolute;
-      bottom: 2.2rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      padding: 0.5rem 0.75rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      font-size: 0.7rem;
-      z-index: 10;
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      padding-top: 0.25rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      color: var(--text-muted);
+      gap: 0.25rem;
     }
 
     .legend-swatch {
-      width: 10px;
-      height: 10px;
+      width: 7px;
+      height: 7px;
       border-radius: 2px;
     }
 
-    /* Right: Command Center Column */
-    .dashboard-pane {
-      background: var(--bg);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      overflow-y: auto;
-    }
-
-    /* Corridor Selection Pills */
-    .corridor-bar {
-      display: flex;
-      gap: 0.5rem;
-      width: 100%;
-    }
-
-    .corridor-tab {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.75rem 1rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .corridor-tab:hover {
-      border-color: var(--border-focus);
-      background: #FFFFFF;
-    }
-
-    .corridor-tab.active {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 1px var(--accent-blue), var(--shadow-sm);
-      background: #FFFFFF;
-    }
-
-    .corridor-tab.active::before {
-      content: '';
+    /* Mayday Leeway Drift Tool Drawer */
+    .datum-control-bar {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--accent-blue);
+      top: 12px;
+      right: 3.75rem; /* Safe offset avoiding MapLibre + / - zoom buttons */
+      z-index: 10;
     }
 
-    .c-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .c-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .c-risk {
-      font-family: var(--font-mono);
+    .btn-datum-toggle {
+      background: var(--surface-glass);
+      backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 59, 48, 0.25);
+      color: var(--apple-red);
       font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-apple-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+    .btn-datum-toggle:hover {
+      background: #FFFFFF;
+      box-shadow: var(--shadow-apple-md);
     }
 
-    .c-sub {
-      font-size: 0.7rem;
-      color: var(--text-muted);
+    .datum-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
+      box-shadow: var(--shadow-apple-lg);
+      width: 280px;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
     }
+    .datum-card.active { display: flex; }
 
-    /* Metrics Strip */
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    /* RIGHT PANE: Tactical Telemetry Inspector */
+    .telemetry-pane {
+      background: #FFFFFF;
+      border-left: 1px solid var(--border-hairline);
+      height: 100%;
+      overflow-y: auto;
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
       gap: 0.75rem;
     }
 
+    /* 4 Compact Telemetry Metric Cards */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+    }
+
     .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.75rem;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.65rem;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.1rem;
+      transition: all 0.12s ease;
+    }
+    .metric-card:hover {
+      border-color: var(--border-subtle);
+      background: #FFFFFF;
+      box-shadow: var(--shadow-apple-sm);
     }
 
     .metric-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
     }
 
     .metric-value {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text-main);
       font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
       display: flex;
       align-items: baseline;
-      gap: 0.25rem;
+      gap: 0.2rem;
     }
 
     .metric-unit {
       font-size: 0.75rem;
-      color: var(--text-dim);
-      font-weight: 400;
+      font-weight: 500;
+      color: var(--text-muted);
     }
 
     .metric-sub {
-      font-size: 0.7rem;
-      color: var(--text-muted);
+      font-size: 0.675rem;
+      color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* Dynamic Chart Card */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1rem 1.25rem;
-      box-shadow: var(--shadow-sm);
+    .metric-bench {
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+      line-height: 1.25;
     }
 
-    .card-header {
+    /* 72h Forecast Chart Card */
+    .chart-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.75rem;
+      box-shadow: var(--shadow-apple-sm);
+    }
+
+    .chart-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .chart-title-wrap {
+      display: flex;
+      flex-direction: column;
     }
 
     .card-title {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
+      letter-spacing: -0.01em;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .card-subtitle {
-      font-size: 0.75rem;
+      font-size: 0.675rem;
       color: var(--text-muted);
+      margin-top: 0.05rem;
+    }
+
+    /* Clean Legend Pills Bar (Replacing Old Clunky Black Box) */
+    .chart-legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.5rem;
+      margin-bottom: 0.4rem;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-xs);
+      font-size: 0.685rem;
+      font-family: var(--font-mono);
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+      background: #FFFFFF;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+    }
+
+    .legend-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .legend-pill .val {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
     }
 
     .chart-container {
       position: relative;
       width: 100%;
-      height: 180px;
+      height: 135px;
     }
 
     .chart-svg {
@@ -816,522 +582,306 @@
     }
 
     .chart-cursor {
-      stroke: #94A3B8;
+      stroke: var(--apple-blue);
       stroke-width: 1.5;
       stroke-dasharray: 3 3;
       pointer-events: none;
     }
 
-    .chart-legend-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.4rem 0.65rem;
-      margin-bottom: 0.6rem;
-      background: #F8FAFC;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 0.725rem;
-      font-family: var(--font-mono);
-      min-height: 32px;
-      transition: all 0.15s ease;
-    }
-
-    .legend-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-weight: 500;
+    /* Reception Capacity Card */
+    .capacity-card {
       background: #FFFFFF;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.75rem;
+      box-shadow: var(--shadow-apple-sm);
     }
 
-    .legend-pill .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .legend-pill .val {
-      font-weight: 700;
-    }
-
-    /* Hotspot Occupancy Meter */
     .hotspot-banner {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.75rem 1rem;
-      gap: 1rem;
-    }
-
-    .hotspot-info {
-      display: flex;
       flex-direction: column;
-      gap: 0.15rem;
+      gap: 0.3rem;
+      margin-top: 0.35rem;
     }
 
-    .hotspot-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .hotspot-counts {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .capacity-bar-wrap {
-      flex: 1;
-      max-width: 240px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .capacity-bar {
-      height: 8px;
-      background: #E2E8F0;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .capacity-fill {
-      height: 100%;
-      background: var(--accent-blue);
-      border-radius: 4px;
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-
-    /* Agent Trajectory / Activity log */
-    .agent-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .feed-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.75rem;
-      padding: 0.5rem;
-      border-radius: var(--radius-sm);
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-    }
-
-    .feed-badge {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 0.1rem 0.35rem;
-      border-radius: 4px;
-      background: #E2E8F0;
-      color: #334155;
-      flex-shrink: 0;
-    }
-
-    .feed-text {
-      color: var(--text-main);
-      line-height: 1.4;
-    }
-
-    .feed-meta {
-      font-size: 0.65rem;
-      color: var(--text-dim);
-      margin-top: 0.15rem;
-      font-family: var(--font-mono);
-    }
-
-    /* Modal Styling */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-window {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+    .hotspot-track {
       width: 100%;
-      max-width: 680px;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      flex-direction: column;
+      height: 7px;
+      background: #E2E8F0;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
     }
 
-    .modal-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      background: #FFFFFF;
-      z-index: 10;
+    .hotspot-fill {
+      height: 100%;
+      background: var(--apple-blue);
+      border-radius: var(--radius-pill);
+      transition: width 0.3s ease;
     }
 
-    .modal-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-
-    .modal-body {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      line-height: 1.6;
-      font-size: 0.85rem;
-      color: #334155;
-    }
-
-    .faq-q {
-      font-weight: 700;
-      color: var(--text-main);
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .faq-a {
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    /* SITREP Document Modal Styling */
-    .sitrep-window {
-      max-width: 840px;
-    }
-
-    .sitrep-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .sitrep-doc {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      font-family: var(--font-sans);
-      color: #0F172A;
-    }
-
-    .sitrep-doc-header {
-      border-bottom: 2px solid #0F172A;
-      padding-bottom: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .sitrep-org {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-blue);
-    }
-
-    .sitrep-doc-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #0F172A;
-      margin-top: 0.2rem;
-    }
-
-    .sitrep-meta-badge {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.6rem;
-      border-radius: var(--radius-sm);
-      text-align: right;
-    }
-
-    .sitrep-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .sitrep-card {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.85rem 1rem;
+    /* Autonomous Sensor Fusion Feed */
+    .agent-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.75rem;
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
     }
 
-    .sitrep-card-title {
-      font-size: 0.75rem;
+    .feed-item {
+      display: flex;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      line-height: 1.35;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .feed-item:last-child { border-bottom: none; }
+
+    .feed-badge {
+      font-size: 0.6rem;
+      font-family: var(--font-mono);
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text-muted);
+      background: #E2E8F0;
+      color: var(--text-secondary);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      height: fit-content;
+    }
+
+    /* --------------------------------------------------------------------------
+       BOTTOM SCRUB DOCK (48px macOS Precision Playback Bar)
+       -------------------------------------------------------------------------- */
+    .apple-dock {
+      height: 48px;
+      min-height: 48px;
+      background: var(--surface-glass-heavy);
+      backdrop-filter: blur(24px) saturate(190%);
+      border-top: 1px solid var(--border-hairline);
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      padding: 0 1rem;
+      gap: 0.85rem;
+      z-index: 100;
     }
 
-    .sitrep-directive {
-      border-left: 3px solid var(--accent-blue);
-      background: #F0F9FF;
-      padding: 0.75rem 1rem;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .sitrep-directive strong {
-      color: #0369A1;
-    }
-
-    .toast-copy {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: #0F172A;
+    .btn-play-pause {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-hairline);
+      background: var(--text-main);
       color: #FFFFFF;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-apple-sm);
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .btn-play-pause:hover {
+      transform: scale(1.05);
+      background: var(--apple-blue);
+      border-color: var(--apple-blue);
+    }
+
+    .dock-scrubber-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .scrubber-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 5px;
+      border-radius: 3px;
+      background: #CBD5E1;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .scrubber-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--apple-blue);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+    .scrubber-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .dock-time-pill {
+      font-size: 0.725rem;
+      font-family: var(--font-mono);
       font-weight: 600;
-      box-shadow: var(--shadow-lg);
-      z-index: 300;
+      color: var(--text-main);
+      background: #FFFFFF;
+      border: 1px solid var(--border-hairline);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-apple-sm);
+      white-space: nowrap;
+    }
+
+    .dock-anchors {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .dock-anchor-btn {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 0.18rem 0.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .dock-anchor-btn:hover {
+      background: rgba(15, 23, 42, 0.06);
+      color: var(--text-main);
+    }
+
+    /* Modals & Tour Styling */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
       display: none;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+    }
+    .modal-backdrop.active { display: flex; }
+
+    .modal-window {
+      background: #FFFFFF;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-apple-lg);
+      width: 90%;
+      max-width: 620px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
     }
 
-    /* Hotspot Marker Styling */
-    .hotspot-marker {
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: #0F172A;
-      color: white;
-      font-size: 9px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      border: 1px solid white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-      cursor: pointer;
+    /* Guided Tour Banner */
+    .tour-banner {
+      position: fixed;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-apple-lg);
+      padding: 0.85rem 1.15rem;
+      z-index: 2000;
+      width: 90%;
+      max-width: 540px;
+      display: none;
+      flex-direction: column;
+      gap: 0.45rem;
     }
-
-    .datum-marker {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #EF4444;
-      border: 3px solid #FFFFFF;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
-      cursor: pointer;
-      animation: pulse 1.8s infinite;
-    }
-
-    /* Print Viewport Optimization */
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #sitrep-modal, #sitrep-modal * {
-        visibility: visible;
-      }
-      #sitrep-modal {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background: transparent !important;
-        padding: 0 !important;
-      }
-      .modal-window {
-        max-width: 100% !important;
-        border: none !important;
-        box-shadow: none !important;
-      }
-      .modal-header .sitrep-toolbar, .modal-close {
-        display: none !important;
-      }
+    .tour-banner.active { display: flex; }
+    .tour-highlight {
+      position: relative;
+      z-index: 1001 !important;
+      box-shadow: 0 0 0 4px var(--apple-blue), 0 12px 30px rgba(0, 122, 255, 0.25) !important;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header>
-    <div class="brand-section">
-      <div class="brand-badge">RR</div>
-      <div class="brand-titles">
-        <h1>
-          Refugee Radar
-          <span class="live-pulse"><span class="pulse-dot"></span> <span id="lbl-live-badge">LIVE PATROL</span></span>
-        </h1>
-        <p id="lbl-subtitle">Civil early-warning system for SAR logistics & humanitarian readiness</p>
+  <!-- TOP APPLE NAV -->
+  <header class="apple-nav">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <span style="color:var(--apple-blue); font-size:1.1rem;">⚓</span>
+        <span>Refugee Radar</span>
+      </div>
+      <span class="brand-badge">PRO COMMAND</span>
+      <div class="live-pulse">
+        <div class="pulse-dot"></div>
+        <span id="lbl-live-badge">LIVE AUTONOMOUS PATROL</span>
       </div>
     </div>
 
-    <div class="nav-controls">
-      <!-- Interactive Guided Explainer Tour Button -->
-      <button class="btn btn-tour" id="btn-start-tour" onclick="startInteractiveTour()" title="Play 30s Guided Explainer Tour">
-        ▶ <span id="lbl-tour-btn">30s Tour</span>
-      </button>
+    <!-- macOS Segmented Corridor Tabs -->
+    <div class="corridor-bar" id="corridor-tabs">
+      <!-- Rendered by JS -->
+    </div>
 
-      <!-- Unified FAQ Modal Button -->
-      <button class="btn" id="btn-faq" onclick="toggleModal(true)">
-        💡 <span id="lbl-faq">FAQ</span>
+    <div class="nav-actions">
+      <button class="btn-apple btn-apple-primary" onclick="startGuidedTour()">
+        <span>▶</span> <span>30s Tour</span>
       </button>
-
-      <!-- Language Switch (Defaults to EN for maritime compliance) -->
-      <button class="btn" id="btn-lang" onclick="toggleLanguage()" style="font-family:var(--font-mono); font-weight:700;">
+      <button class="btn-apple" onclick="openSitrepModal()" id="lbl-report-bar">
+        <span>📋</span> <span>SITREP</span>
+      </button>
+      <button class="btn-apple" onclick="toggleLanguage()" id="btn-lang" style="font-family:var(--font-mono);">
         DE
+      </button>
+      <button class="btn-apple" onclick="openFaqModal()" id="lbl-faq">
+        FAQ
       </button>
     </div>
   </header>
 
-  <!-- Floating Guided Explainer Tour Card -->
-  <div class="tour-banner" id="tour-banner">
-    <div class="tour-header">
-      <div style="display:flex; align-items:center; gap:0.5rem;">
-        <span class="tour-step-badge" id="tour-step-badge">STEP 1 OF 5</span>
-        <span class="tour-title" id="tour-title">Live Corridors & Tactical Map</span>
-      </div>
-      <button class="btn" onclick="stopInteractiveTour()" style="height:24px; padding:0 0.5rem; font-size:0.7rem; color:var(--text-muted); cursor:pointer;">
-        ✕ <span id="lbl-tour-exit">Exit</span>
-      </button>
-    </div>
-    <div class="tour-desc" id="tour-desc">
-      Refugee Radar fuses satellite marine weather with UN shelter capacities across Central Med, the Aegean, and Balkan land passages.
-    </div>
-    <div class="tour-actions">
-      <div class="tour-dots" id="tour-dots">
-        <span class="tour-dot active"></span>
-        <span class="tour-dot"></span>
-        <span class="tour-dot"></span>
-        <span class="tour-dot"></span>
-        <span class="tour-dot"></span>
-      </div>
-      <div style="display:flex; gap:0.4rem;">
-        <button class="btn" id="btn-tour-prev" onclick="prevTourStep()" style="height:28px; font-size:0.75rem; padding:0 0.6rem;">
-          ‹ <span id="lbl-tour-prev">Prev</span>
-        </button>
-        <button class="btn btn-primary" id="btn-tour-next" onclick="nextTourStep()" style="height:28px; font-size:0.75rem; padding:0 0.8rem;">
-          <span id="lbl-tour-next">Next</span> ›
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Purposeful 72h Timeline Scrubber Bar - Aligned with Map and Dashboard -->
-  <div class="timeline-banner">
-    <!-- Left: Flush with Tactical Map (46%) -->
-    <div class="timeline-left">
-      <button class="sim-play-btn" id="sim-toggle-btn" onclick="toggleSimulation()" title="Play / Pause Simulation">
-        ▶
-      </button>
-      
-      <div class="sim-time-badge" id="sim-time-label">T+0h · 10 Oct 08:00 UTC</div>
-
-      <div class="scrubber-track">
-        <input type="range" id="time-scrubber" class="range-input" min="0" max="71" value="0" oninput="onScrubChange(this.value)">
-        <div class="timeline-ticks">
-          <span>T+0h</span>
-          <span>T+12h</span>
-          <span>T+24h</span>
-          <span>T+36h</span>
-          <span>T+48h</span>
-          <span>T+60h</span>
-          <span>T+72h</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right: Flush with Command Dashboard (54%) -->
-    <div class="timeline-right">
-      <div class="timeline-insight">
-        <span class="insight-tag" id="insight-badge">SITUATION FORECAST</span>
-        <span id="insight-text">Environmental baseline stable. Standard humanitarian surveillance active.</span>
-      </div>
-
-      <button class="btn btn-primary" id="btn-report-bar" onclick="openSitrepModal()" style="flex-shrink:0;">
-        📄 <span id="lbl-report-bar">Situation Report (SITREP)</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Main Grid: Tactical Map & Command Center -->
-  <main class="main-grid">
+  <!-- MAIN WORKSPACE: MAP (62%) + TELEMETRY INSPECTOR (38%) -->
+  <main class="workspace-grid">
     
-    <!-- Left Column: Tactical Map -->
-    <div class="map-pane">
+    <!-- LEFT: MAP CANVAS -->
+    <div class="map-canvas-pane">
       <div id="tactical-map"></div>
 
-      <!-- Map Corridor Status Card -->
-      <div class="map-overlay-card">
-        <div class="map-overlay-title" id="lbl-map-focus">Focus Sector</div>
-        <div class="map-overlay-corridor">
-          <span id="map-corridor-name">Central Mediterranean</span>
-          <span id="map-corridor-risk" style="color:var(--accent-amber); font-family:var(--font-mono); font-size:0.85rem;">(56%)</span>
+      <!-- Floating HUD: Selected Sector Card -->
+      <div class="hud-sector-card">
+        <div class="hud-title" id="lbl-map-focus">Sector Radar Status</div>
+        <div class="hud-corridor-row">
+          <span class="hud-name" id="map-corridor-name">Pan-Med & Balkan Radar</span>
+          <span class="hud-risk" id="map-corridor-risk" style="color:var(--apple-amber);">(Ø 58%)</span>
         </div>
-        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;" id="map-corridor-status">
-          Elevated SAR Readiness · Swell 1.3m
+        <div class="hud-status" id="map-corridor-status">
+          3 aktive Überwachungssektoren · Brennpunkt: Ägäis (89%)
         </div>
       </div>
 
-      <!-- Interactive SAR Drift Calculator Toolbar -->
+      <!-- Floating HUD: Mayday Leeway Drift Tool -->
       <div class="datum-control-bar" id="datum-control-bar">
         <button class="btn-datum-toggle" id="btn-toggle-datum" onclick="toggleDatumCard()">
           🧭 <span id="lbl-datum-btn">Mayday Drift</span>
         </button>
 
         <div class="datum-card" id="datum-panel">
-          <div class="datum-header">
-            <span id="lbl-datum-card-title">🚨 Mayday Drift Calculator</span>
-            <span style="cursor:pointer; color:var(--text-muted); font-size:1.1rem; line-height:1;" onclick="toggleDatumCard()">&times;</span>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);" id="lbl-datum-card-title">🚨 Mayday Drift Calculator</span>
+            <span style="cursor:pointer; color:var(--text-muted); font-size:1.1rem;" onclick="toggleDatumCard()">&times;</span>
           </div>
 
           <div>
-            <label style="font-size:0.65rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;" id="lbl-vessel-type">Vessel Craft Type (Leeway)</label>
-            <select class="select-ctrl" id="datum-vessel-type" style="width:100%; height:28px; font-size:0.75rem; margin-top:2px;" onchange="updateDatumCalculation()">
+            <label style="font-size:0.65rem; color:var(--text-muted); font-weight:600;" id="lbl-vessel-type">Craft Type (Leeway)</label>
+            <select class="select-ctrl" id="datum-vessel-type" style="width:100%; height:26px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline); margin-top:2px;" onchange="updateDatumCalculation()">
               <option value="dinghy">Rubber Dinghy / Schlauchboot (2.8% wind)</option>
               <option value="wood">Overcrowded Wooden Boat (1.4% wind)</option>
               <option value="metal">Iron Boat / Metallkahn (1.0% wind)</option>
@@ -1339,95 +889,79 @@
             </select>
           </div>
 
-          <div>
-            <label style="font-size:0.65rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;" id="lbl-datum-coords">Initial Datum Coordinates (Lon, Lat)</label>
-            <div class="datum-row" style="margin-top:2px;">
-              <input type="number" step="0.01" class="input-sm" id="datum-lon" placeholder="Lon (e.g. 12.2)" value="12.2" onchange="updateDatumFromInputs()">
-              <input type="number" step="0.01" class="input-sm" id="datum-lat" placeholder="Lat (e.g. 35.1)" value="35.1" onchange="updateDatumFromInputs()">
-            </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+            <input type="number" step="0.01" id="datum-lon" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lon" value="12.2" onchange="updateDatumFromInputs()">
+            <input type="number" step="0.01" id="datum-lat" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lat" value="35.1" onchange="updateDatumFromInputs()">
           </div>
 
-          <div style="background:var(--surface-subtle); padding:0.4rem 0.6rem; border-radius:4px; font-size:0.7rem; font-family:var(--font-mono); line-height:1.4;">
-            <div><strong>Drift Speed:</strong> <span id="val-leeway-speed">1.2 kts</span> (<span id="val-leeway-brg">145°</span>)</div>
-            <div><strong>Search Area (T+h):</strong> <span id="val-leeway-area">34.8 NM²</span></div>
+          <div style="background:var(--bg-canvas); padding:0.4rem; border-radius:4px; font-size:0.7rem; font-family:var(--font-mono);">
+            <div>Speed: <span id="val-leeway-speed" style="font-weight:700;">1.2 kts</span> (<span id="val-leeway-brg">145°</span>)</div>
+            <div>Area: <span id="val-leeway-area" style="font-weight:700;">34.8 NM²</span></div>
           </div>
 
-          <button class="btn btn-primary" style="height:26px; font-size:0.7rem;" onclick="activateMapCrosshair()">
-            🎯 <span id="lbl-pick-map">Click Map to Place Datum</span>
+          <button class="btn-apple btn-apple-primary" style="height:26px; font-size:0.7rem; justify-content:center;" onclick="activateMapCrosshair()">
+            🎯 <span id="lbl-pick-map">Click Map to Place</span>
           </button>
         </div>
       </div>
 
-      <!-- Map Layer Toggles -->
-      <div class="map-toggles">
-        <button class="toggle-pill active" id="toggle-waves" onclick="toggleLayer('waves')">🌊 Sea State</button>
-        <button class="toggle-pill active" id="toggle-wind" onclick="toggleLayer('wind')">💨 Drift Vector</button>
-        <button class="toggle-pill active" id="toggle-sar" onclick="toggleLayer('sar')">🎯 SAR Area</button>
-        <button class="toggle-pill active" id="toggle-hotspots" onclick="toggleLayer('hotspots')">🏛️ Hotspots</button>
-      </div>
-
-      <!-- Map Legend -->
-      <div class="map-legend">
-        <div class="legend-item"><div class="legend-swatch" style="background:#10B981;"></div> <span id="leg-calm">Calm Sea (&lt;0.8m)</span></div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#F59E0B;"></div> <span id="leg-rough">Capsize Risk (&gt;1.5m)</span></div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#EF4444;"></div> <span id="leg-severe">Severe Hazard (&gt;2.2m)</span></div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#8B5CF6; border-radius:50%;"></div> <span id="leg-sar">SAR Drift Box (Leeway)</span></div>
+      <!-- Floating HUD: Layer Pills & Color Swatches -->
+      <div class="hud-layers">
+        <div class="map-toggles">
+          <button class="toggle-pill active" id="toggle-waves" onclick="toggleLayer('waves')">🌊 Sea</button>
+          <button class="toggle-pill active" id="toggle-wind" onclick="toggleLayer('wind')">💨 Wind</button>
+          <button class="toggle-pill active" id="toggle-sar" onclick="toggleLayer('sar')">🎯 SAR</button>
+          <button class="toggle-pill active" id="toggle-hotspots" onclick="toggleLayer('hotspots')">🏛️ Camps</button>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-swatch" style="background:#34C759;"></div> <span id="leg-calm">Calm (&lt;0.8m)</span></div>
+          <div class="legend-item"><div class="legend-swatch" style="background:#FF9500;"></div> <span id="leg-rough">Capsize (&gt;1.5m)</span></div>
+          <div class="legend-item"><div class="legend-swatch" style="background:#FF3B30;"></div> <span id="leg-severe">Severe (&gt;2.2m)</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- Right Column: Command Dashboard -->
-    <div class="dashboard-pane">
+    <!-- RIGHT: TACTICAL TELEMETRY INSPECTOR -->
+    <div class="telemetry-pane">
       
-      <!-- Corridor Selection Switcher -->
-      <div class="corridor-bar" id="corridor-tabs">
-        <!-- Rendered by JS -->
-      </div>
-
-      <!-- Live & Simulated Sektor-Metriken mit klaren Referenzwerten (Land vs Sea Aware) -->
+      <!-- 4 Compact Telemetry Metric Chips -->
       <div class="metrics-row">
         <div class="metric-card">
           <span class="metric-label" id="lbl-m-wave">Wave Height</span>
           <span class="metric-value"><span id="val-wave">1.26</span> <span class="metric-unit" id="unit-wave">m</span></span>
           <span class="metric-sub" id="sub-wave">Significant sea</span>
-          <span class="metric-bench" id="bench-wave" style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Threshold: 1.5m capsize limit</span>
+          <span class="metric-bench" id="bench-wave">Threshold: 1.5m</span>
         </div>
         <div class="metric-card">
           <span class="metric-label" id="lbl-m-wind">Peak Gusts</span>
           <span class="metric-value"><span id="val-gust">57</span> <span class="metric-unit" id="unit-gust">km/h</span></span>
           <span class="metric-sub" id="sub-gust">Offshore drift</span>
-          <span class="metric-bench" id="bench-gust" style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Normal: &lt;25 km/h (Bft 3)</span>
+          <span class="metric-bench" id="bench-gust">Normal: &lt;25 km/h</span>
         </div>
         <div class="metric-card">
           <span class="metric-label" id="lbl-m-arrivals">Arrival Rate</span>
           <span class="metric-value"><span id="val-arrivals">2.1</span> <span class="metric-unit" id="unit-arrivals">ppl/h</span></span>
-          <span class="metric-sub" id="sub-arrivals">Avg rate (Σ 142 ppl at T+72h)</span>
-          <span class="metric-bench" id="bench-arrivals" style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Historical baseline: 2.2 ppl/h</span>
+          <span class="metric-sub" id="sub-arrivals">Avg rate</span>
+          <span class="metric-bench" id="bench-arrivals">UNHCR baseline</span>
         </div>
         <div class="metric-card">
           <span class="metric-label" id="lbl-m-hotspot">Capacity</span>
           <span class="metric-value"><span id="val-hotspot-occ">88</span> <span class="metric-unit">%</span></span>
-          <span class="metric-sub" id="sub-hotspot-occ">Lampedusa Hotspot</span>
-          <span class="metric-bench" id="bench-hotspot" style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Nominal: 850 · Max: 1,400</span>
+          <span class="metric-sub" id="sub-hotspot-occ">Lampedusa</span>
+          <span class="metric-bench" id="bench-hotspot">Puffer headroom</span>
         </div>
       </div>
 
-      <!-- Dynamic 72h Forward Forecast Chart -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">
-              📈 <span id="lbl-chart-title">72h Hazard Trajectory & Arrival Forecast</span>
-            </div>
-            <div class="card-subtitle" id="lbl-chart-sub">
-              Combined modeling of sea wave height (m), wind gusts (km/h), and hourly departure rate
-            </div>
-          </div>
-          <div style="font-size:0.75rem; font-family:var(--font-mono); font-weight:600; color:var(--accent-blue);" id="chart-hover-indicator">
-            Cursor: T+0h · 10 Oct 08:00 UTC
+      <!-- 72h Multi-Sector Horizon Chart -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title-wrap">
+            <span class="card-title" id="lbl-chart-title">📈 72h Multi-Sector Hazard Comparison</span>
+            <span class="card-subtitle" id="lbl-chart-sub">Simultaneous 3-corridor dynamics</span>
           </div>
         </div>
 
-        <!-- Dynamic Legend & Telemetry Readout Bar -->
+        <!-- Legend Pills directly above chart -->
         <div id="chart-legend-bar" class="chart-legend-bar"></div>
 
         <div class="chart-container" id="timeline-chart-wrap">
@@ -1435,95 +969,103 @@
         </div>
       </div>
 
-      <!-- Hotspot Reception & Historical Comparison (Dynamic Binding to live_state.json) -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">
-              🏛️ <span id="lbl-capacity-title">Reception Capacity & Historical Trend</span>
-            </div>
-            <div class="card-subtitle" id="lbl-capacity-sub">
-              UNHCR / IOM baseline vs. simulated occupancy after 72h
-            </div>
-          </div>
+      <!-- Reception Capacity Gauge -->
+      <div class="capacity-card">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <span class="card-title" style="font-size:0.75rem;" id="lbl-capacity-title">🏛️ Reception Headroom</span>
+          <span id="hotspot-percent-label" style="font-family:var(--font-mono); font-weight:700; font-size:0.75rem;">88%</span>
         </div>
-
         <div class="hotspot-banner">
-          <div class="hotspot-info">
-            <span class="hotspot-title" id="hotspot-name-label">Hotspot Lampedusa (Contrada Imbriacola)</span>
-            <span class="hotspot-counts" id="hotspot-counts-label">Occupied: 680 / 850 (Nominal) · 1,400 (Emergency limit)</span>
+          <div class="hotspot-track">
+            <div class="hotspot-fill" id="hotspot-fill" style="width:88%;"></div>
           </div>
-          <div class="capacity-bar-wrap">
-            <div style="display:flex; justify-content:space-between; font-size:0.7rem; font-weight:600;">
-              <span id="lbl-occupancy-bar">Occupancy</span>
-              <span id="hotspot-percent-label">80%</span>
-            </div>
-            <div class="capacity-bar">
-              <div class="capacity-fill" id="hotspot-fill" style="width: 80%;"></div>
-            </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.65rem; color:var(--text-muted); font-family:var(--font-mono);">
+            <span id="hotspot-name-label">Hotspot Facility</span>
+            <span id="hotspot-counts-label">680 / 850 Beds</span>
           </div>
         </div>
       </div>
 
-      <!-- Autonomous Agent Trajectory & Sensor Feeds -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">
-            🤖 <span id="lbl-agent-title">Autonomous Agent Trajectory & Sensor Fusion</span>
-          </div>
-          <div class="card-subtitle" id="lbl-agent-sub">
-            Latest execution cycles across Open-Meteo, GDELT & SAR feeds
-          </div>
+      <!-- Autonomous Agent Telemetry Stream -->
+      <div class="agent-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.725rem; font-weight:700; color:var(--text-main);" id="lbl-agent-title">🤖 Autonomous Sensor Fusion</span>
+          <span style="font-size:0.625rem; font-family:var(--font-mono); color:var(--apple-green); font-weight:600;">CYCLE 30M ACTIVE</span>
         </div>
-
-        <div class="agent-feed" id="agent-feed-list">
-          <!-- Rendered by JS -->
+        <div id="agent-feed-list" style="display:flex; flex-direction:column; gap:0.25rem;">
+          <!-- Populated by JS -->
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Unified FAQ & Methodology Modal -->
-  <div class="modal-overlay" id="faq-modal" onclick="if(event.target===this) toggleModal(false)">
+  <!-- BOTTOM DOCK: 72H PLAYBACK CONTROLS (macOS Timeline Scrub Bar) -->
+  <footer class="apple-dock">
+    <button class="btn-play-pause" id="sim-toggle-btn" onclick="toggleSimulation()">▶</button>
+    
+    <div class="dock-scrubber-wrap">
+      <input type="range" min="0" max="71" value="0" class="scrubber-slider" id="time-scrubber" oninput="onScrubChange(this.value)" />
+    </div>
+
+    <div class="dock-time-pill" id="sim-time-label">
+      Cursor: T+0h · 11 Oct 08:00 UTC
+    </div>
+
+    <div class="dock-anchors">
+      <button class="dock-anchor-btn" onclick="document.getElementById('time-scrubber').value=0; onScrubChange(0);">T+0h</button>
+      <button class="dock-anchor-btn" onclick="document.getElementById('time-scrubber').value=24; onScrubChange(24);">T+24h</button>
+      <button class="dock-anchor-btn" onclick="document.getElementById('time-scrubber').value=48; onScrubChange(48);">T+48h</button>
+      <button class="dock-anchor-btn" onclick="document.getElementById('time-scrubber').value=71; onScrubChange(71);">T+72h</button>
+    </div>
+  </footer>
+
+  <!-- MODALS: SITREP & FAQ -->
+  <div class="modal-backdrop" id="sitrep-modal">
     <div class="modal-window">
-      <div class="modal-header">
-        <div class="modal-title" id="faq-modal-title">💡 FAQ & Operational Methodology</div>
-        <button class="modal-close" onclick="toggleModal(false)">&times;</button>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-size:1rem; font-weight:700;" id="sitrep-modal-title">📋 Humanitarian SITREP Dispatch</h3>
+        <span style="cursor:pointer; font-size:1.2rem; color:var(--text-muted);" onclick="closeSitrepModal()">&times;</span>
       </div>
-      <div class="modal-body" id="faq-modal-body">
-        <!-- Rendered dynamically by JS -->
+      <div id="sitrep-modal-body">
+        <div id="sitrep-body"></div>
       </div>
-    </div>
-  </div>
-
-  <!-- Operational SITREP Document Modal -->
-  <div class="modal-overlay" id="sitrep-modal" onclick="if(event.target===this) toggleSitrepModal(false)">
-    <div class="modal-window sitrep-window">
-      <div class="modal-header">
-        <div class="modal-title" id="sitrep-modal-title">📄 Operational Situation Report (SITREP)</div>
-        <div class="sitrep-toolbar">
-          <button class="btn" id="btn-copy-sitrep" onclick="copySitrepToClipboard()">
-            📋 <span id="lbl-copy-sitrep">Copy for Signal / Slack</span>
-          </button>
-          <button class="btn btn-primary" id="btn-print-sitrep" onclick="window.print()">
-            🖨️ <span id="lbl-print-sitrep">Print / PDF</span>
-          </button>
-          <button class="modal-close" onclick="toggleSitrepModal(false)">&times;</button>
-        </div>
-      </div>
-      <div class="modal-body" id="sitrep-modal-body">
-        <!-- Rendered dynamically by JS -->
+      <textarea id="sitrep-text" style="position:absolute; left:-9999px;"></textarea>
+      <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+        <button class="btn-apple" onclick="closeSitrepModal()">Close</button>
+        <button class="btn-apple btn-apple-primary" id="btn-copy-sitrep" onclick="copySitrep()">Copy for Signal / Email</button>
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div class="toast-copy" id="toast-copy">
-    ✓ Copied to clipboard (Signal/Slack format)
+  <div class="modal-backdrop" id="faq-modal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-size:1rem; font-weight:700;" id="faq-modal-title">About Refugee Radar</h3>
+        <span style="cursor:pointer; font-size:1.2rem; color:var(--text-muted);" onclick="closeFaqModal()">&times;</span>
+      </div>
+      <div id="faq-modal-body" style="font-size:0.825rem; line-height:1.6; color:var(--text-secondary);"></div>
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="btn-apple" onclick="closeFaqModal()">Close</button>
+      </div>
+    </div>
   </div>
 
-  <script>
+  <!-- GUIDED TOUR BANNER -->
+  <div class="tour-banner" id="tour-banner">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="brand-badge" id="tour-step-badge">STEP 1 OF 5</span>
+      <span style="cursor:pointer; color:var(--text-muted); font-size:1.1rem;" onclick="stopGuidedTour()">&times;</span>
+    </div>
+    <div style="font-size:0.95rem; font-weight:700; color:var(--text-main);" id="tour-title">Tour Title</div>
+    <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;" id="tour-desc">Tour description...</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem;">
+      <div style="display:flex; gap:0.3rem;" id="tour-dots"></div>
+      <button class="btn-apple btn-apple-primary" style="padding:0.2rem 0.6rem; font-size:0.75rem;" onclick="nextTourStep()">Next →</button>
+    </div>
+  </div>
+
+<script>
     // Global State
     let liveState = null;
     let baseLiveState = null;
