@@ -2493,31 +2493,34 @@
         const waveAeg = (aegCorridor?.timeline?.wave && aegCorridor.timeline.wave[h] !== undefined) ? aegCorridor.timeline.wave[h] : 0.02;
         const peakWave = Math.max(waveMed, waveAeg);
 
-        if (peakWave > 2.0) {
+        if (peakWave >= 1.5) {
           const stormSector = waveMed >= waveAeg ? (isDe ? 'Zentralen Mittelmeer' : 'Central Med') : (isDe ? 'der Ost-Ägäis' : 'Eastern Aegean');
-          badge.textContent = isDe ? "PAN-MED: KENTERGEFAHR" : "PAN-MED: CAPSIZE RISK";
-          badge.style.background = 'var(--accent-red-light)';
-          badge.style.color = '#991B1B';
-          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-red)';
+          const isExtreme = peakWave >= 2.0;
+          badge.textContent = isExtreme 
+            ? (isDe ? "PAN-MED: KENTERGEFAHR" : "PAN-MED: CAPSIZE RISK")
+            : (isDe ? "PAN-MED: RAUE SEE" : "PAN-MED: ROUGH SEAS");
+          badge.style.background = isExtreme ? 'var(--accent-red-light)' : 'var(--accent-amber-light)';
+          badge.style.color = isExtreme ? '#991B1B' : '#92400E';
+          if (insightCard) insightCard.style.borderLeftColor = isExtreme ? 'var(--accent-red)' : 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Schwere See im ${stormSector} (${peakWave.toFixed(2)}m Dünung). Akute Kentergefahr auf See.`
-            : `T+${h}h: Heavy sea in ${stormSector} (${peakWave.toFixed(2)}m swell). Acute maritime capsize risk.`;
+            ? `T+${h}h: ${isExtreme ? 'Schwere See' : 'Raue See'} im ${stormSector} (${peakWave.toFixed(2)}m Dünung, >1.5m Kentergrenze). Erhöhte Seenot- und Kentergefahr für Schlauchboote.`
+            : `T+${h}h: ${isExtreme ? 'Heavy sea' : 'Rough sea'} in ${stormSector} (${peakWave.toFixed(2)}m swell, >1.5m capsize limit). Heightened distress and capsize risk for rubber dinghies.`;
         } else if (waveAeg < 0.6) {
           badge.textContent = isDe ? "PAN-MED: RUHIGSEE-SURGE" : "PAN-MED: CALM SURGE";
           badge.style.background = 'var(--accent-amber-light)';
           badge.style.color = '#92400E';
           if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Brennpunkt Ost-Ägäis (${waveAeg.toFixed(2)}m Ruhigsee begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${waveMed.toFixed(2)}m Dünung (reguläre SAR-Wachsamkeit).`
-            : `T+${h}h: Hotspot Eastern Aegean (${waveAeg.toFixed(2)}m calm sea driving departures toward Lesbos); Central Med: ${waveMed.toFixed(2)}m swell (routine SAR readiness).`;
+            ? `T+${h}h: Brennpunkt Ost-Ägäis (${waveAeg.toFixed(2)}m Ruhigsee begünstigt Überfahrten nach Lesbos); Zentrales Mittelmeer: ${waveMed.toFixed(2)}m Dünung.`
+            : `T+${h}h: Hotspot Eastern Aegean (${waveAeg.toFixed(2)}m calm sea driving departures toward Lesbos); Central Med: ${waveMed.toFixed(2)}m swell.`;
         } else {
           badge.textContent = isDe ? "PAN-MED: LAGE STABIL" : "PAN-MED: STABLE STATE";
           badge.style.background = 'var(--accent-blue-light)';
           badge.style.color = '#075985';
           if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-blue)';
           insightText.textContent = isDe
-            ? `T+${h}h: Moderate Seebedingungen über allen Marine-Sektoren (Spitze: ${peakWave.toFixed(2)}m). Reguläre SAR-Wachsamkeit.`
-            : `T+${h}h: Moderate sea conditions across marine sectors (peak: ${peakWave.toFixed(2)}m). Routine SAR readiness.`;
+            ? `T+${h}h: Moderate Seebedingungen über allen Marine-Sektoren (Spitze: ${peakWave.toFixed(2)}m, unter 1.5m Kentergrenze). Reguläre SAR-Wachsamkeit.`
+            : `T+${h}h: Moderate sea conditions across marine sectors (peak: ${peakWave.toFixed(2)}m, below 1.5m capsize limit). Routine SAR readiness.`;
         }
         return;
       }
@@ -2530,14 +2533,17 @@
 
       if (isMarine) {
         const valFormatted = typeof metricVal === 'number' ? metricVal.toFixed(2) : metricVal;
-        if (metricVal > 2.0) {
-          badge.textContent = isDe ? `${corridorLabel.toUpperCase()}: KENTERGEFAHR` : `${corridorLabel.toUpperCase()}: CAPSIZE RISK`;
-          badge.style.background = 'var(--accent-red-light)';
-          badge.style.color = '#991B1B';
-          if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-red)';
+        if (metricVal >= 1.5) {
+          const isExtreme = metricVal >= 2.0;
+          badge.textContent = isExtreme
+            ? (isDe ? `${corridorLabel.toUpperCase()}: KENTERGEFAHR` : `${corridorLabel.toUpperCase()}: CAPSIZE RISK`)
+            : (isDe ? `${corridorLabel.toUpperCase()}: RAUE SEE (>1.5m)` : `${corridorLabel.toUpperCase()}: ROUGH SEAS (>1.5m)`);
+          badge.style.background = isExtreme ? 'var(--accent-red-light)' : 'var(--accent-amber-light)';
+          badge.style.color = isExtreme ? '#991B1B' : '#92400E';
+          if (insightCard) insightCard.style.borderLeftColor = isExtreme ? 'var(--accent-red)' : 'var(--accent-amber)';
           insightText.textContent = isDe
-            ? `T+${h}h: Schwere See (${valFormatted}m Dünung). Hohe Kentergefahr binnen 30 Min.`
-            : `T+${h}h: Heavy sea (${valFormatted}m swell). High probability of capsize within 30 min.`;
+            ? `T+${h}h: ${isExtreme ? 'Schwere See' : 'Raue See'} (${valFormatted}m Dünung). Übersteigt 1.5m Kentergrenze für seeuntüchtige Schlauchboote.`
+            : `T+${h}h: ${isExtreme ? 'Heavy sea' : 'Rough sea'} (${valFormatted}m swell). Exceeds 1.5m capsize limit for unseaworthy crafts.`;
         } else if (metricVal < 0.6) {
           badge.textContent = isDe ? `${corridorLabel.toUpperCase()}: RUHIGSEE-SURGE` : `${corridorLabel.toUpperCase()}: CALM SURGE`;
           badge.style.background = 'var(--accent-amber-light)';
@@ -2552,8 +2558,8 @@
           badge.style.color = '#075985';
           if (insightCard) insightCard.style.borderLeftColor = 'var(--accent-blue)';
           insightText.textContent = isDe
-            ? `T+${h}h: Moderate Seebedingungen (${valFormatted}m). Reguläre SAR-Wachsamkeit.`
-            : `T+${h}h: Moderate sea state (${valFormatted}m). Routine SAR readiness.`;
+            ? `T+${h}h: Moderate Seebedingungen (${valFormatted}m, unter 1.5m Kentergrenze). Reguläre SAR-Wachsamkeit.`
+            : `T+${h}h: Moderate sea state (${valFormatted}m, below 1.5m capsize limit). Routine SAR readiness.`;
         }
       } else {
         const valFormatted = typeof metricVal === 'number' ? metricVal.toFixed(1) : metricVal;

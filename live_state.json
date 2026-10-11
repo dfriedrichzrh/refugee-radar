@@ -1,6 +1,6 @@
 {
- "run_id": "run_20261011_1249Z",
- "timestamp_utc": "2026-10-11T12:49:00Z",
+ "run_id": "run_20261011_1319Z",
+ "timestamp_utc": "2026-10-11T13:19:00Z",
  "mode_label": "LIVE AUTONOMOUS PATROL",
  "is_synthetic": false,
  "global_risk_level": "CRITICAL",
@@ -782,7 +782,7 @@
    "id": "balkan_land",
    "name": "Balkan Route (Bihać → Sava/Una)",
    "short_name": "Balkan Route",
-   "risk_score": 50,
+   "risk_score": 53,
    "status": "COLD-EXPOSURE WARNING",
    "color": "#FB923C",
    "coordinates": {
@@ -877,8 +877,8 @@
    "metrics": [
     {
      "label": "Min Night Windchill",
-     "value": "-1.3 °C",
-     "delta": "T+46h · Freezing"
+     "value": "-2.0 °C",
+     "delta": "T+42h · Freezing"
     },
     {
      "label": "River Discharge",
@@ -893,7 +893,7 @@
     {
      "label": "48h Snowfall",
      "value": "0.0 cm",
-     "delta": "Freezing lvl 1870 m"
+     "delta": "Freezing lvl 1930 m"
     }
    ],
    "hourly_series": {
@@ -913,13 +913,13 @@
      5.7,
      3.3,
      1.7,
-     5.3,
-     5.3,
-     4.0,
-     3.9,
-     3.0,
-     -0.1,
-     -0.4
+     5.4,
+     5.8,
+     3.8,
+     4.4,
+     3.3,
+     -0.0,
+     0.8
     ],
     "secondary": [
      0.02,
@@ -952,55 +952,55 @@
      1.7,
      3.1,
      4.7,
-     5.3,
-     5.5,
-     6.0,
-     5.9,
-     5.3,
-     5.0,
+     5.4,
+     5.7,
+     6.4,
+     6.4,
+     5.8,
+     4.9,
      4.5,
      4.2,
-     4.0,
-     3.9,
-     3.9,
-     4.1,
-     3.9,
      3.8,
-     3.9,
      3.7,
-     3.0,
-     2.1,
-     1.4,
-     0.6,
-     -0.1,
-     -0.4,
-     -0.9,
-     -0.4,
-     -0.4,
+     3.8,
+     4.0,
+     4.4,
+     4.2,
+     4.1,
+     3.8,
+     3.3,
+     2.4,
+     1.5,
+     0.8,
+     -0.0,
      -0.3,
-     -0.6,
-     -0.8,
-     -0.8,
-     -0.8,
+     -0.1,
+     0.3,
+     0.8,
+     1.0,
+     0.2,
      -1.1,
-     -1.1,
-     -1.0,
-     -0.9,
-     -1.3,
-     -1.3,
+     -1.5,
+     -2.0,
+     -2.0,
+     -1.5,
      -1.5,
      -1.9,
-     -2.3,
-     -2.8,
-     -2.7,
-     -2.7,
-     -2.8,
      -1.8,
-     -0.5,
-     0.2,
-     1.0,
-     1.6,
-     1.1,
+     -1.8,
+     -1.8,
+     -2.1,
+     -2.4,
+     -2.9,
+     -2.8,
+     -2.9,
+     -3.2,
+     -3.0,
+     -2.4,
+     -1.9,
+     -0.9,
+     0.1,
+     0.4,
      0.7,
      0.6,
      0.5,
@@ -1100,55 +1100,55 @@
      29.8,
      28.2,
      23.7,
-     21.3,
-     17.9,
-     13.4,
-     10.9,
-     8.0,
-     5.1,
-     6.5,
-     6.8,
-     6.8,
-     7.9,
-     8.7,
-     8.6,
-     9.3,
-     9.7,
-     9.8,
-     9.8,
-     11.6,
-     15.6,
-     18.7,
-     24.3,
-     27.5,
-     26.7,
-     25.7,
-     21.8,
-     21.9,
-     20.6,
-     19.8,
-     21.1,
      20.5,
-     22.1,
-     22.8,
-     23.4,
-     21.8,
-     19.2,
-     21.4,
-     20.0,
-     20.7,
-     23.7,
-     26.7,
-     29.4,
+     17.4,
+     11.8,
+     8.5,
+     6.0,
+     5.2,
+     6.9,
+     7.2,
+     6.9,
+     7.6,
+     7.6,
+     7.4,
+     7.3,
+     8.2,
+     9.2,
+     9.5,
+     10.2,
+     13.0,
+     17.3,
+     21.5,
+     26.2,
+     26.6,
+     22.7,
+     20.2,
+     17.9,
+     16.9,
+     19.3,
+     23.0,
+     25.3,
+     25.9,
+     26.5,
+     25.6,
+     24.9,
+     27.1,
+     26.8,
+     25.4,
+     24.9,
+     25.7,
+     27.2,
+     30.3,
      27.9,
-     25.5,
-     26.0,
-     22.8,
-     18.4,
-     16.4,
-     15.6,
-     17.1,
-     19.5,
+     26.6,
+     27.8,
+     29.9,
+     28.8,
+     28.8,
+     26.5,
+     24.4,
+     23.3,
      22.6,
      21.1,
      17.9,
@@ -1183,7 +1183,7 @@
      {
       "block_label": "T+18h",
       "period": "T+12–18h",
-      "apparent_c": 5.5,
+      "apparent_c": 5.77,
       "est_people": 55,
       "cum_people": 125,
       "hypo_risk": "MODERATE"
@@ -1191,7 +1191,7 @@
      {
       "block_label": "T+24h",
       "period": "T+18–24h",
-      "apparent_c": 4.1,
+      "apparent_c": 4.0,
       "est_people": 35,
       "cum_people": 160,
       "hypo_risk": "MODERATE"
@@ -1199,7 +1199,7 @@
      {
       "block_label": "T+30h",
       "period": "T+24–30h",
-      "apparent_c": 3.4,
+      "apparent_c": 3.7,
       "est_people": 35,
       "cum_people": 195,
       "hypo_risk": "MODERATE"
@@ -1207,7 +1207,7 @@
      {
       "block_label": "T+36h",
       "period": "T+30–36h",
-      "apparent_c": 0.03,
+      "apparent_c": 0.37,
       "est_people": 35,
       "cum_people": 230,
       "hypo_risk": "MODERATE"
@@ -1215,7 +1215,7 @@
      {
       "block_label": "T+42h",
       "period": "T+36–42h",
-      "apparent_c": -0.62,
+      "apparent_c": -0.43,
       "est_people": 35,
       "cum_people": 265,
       "hypo_risk": "HIGH"
@@ -1223,7 +1223,7 @@
      {
       "block_label": "T+48h",
       "period": "T+42–48h",
-      "apparent_c": -1.12,
+      "apparent_c": -1.75,
       "est_people": 35,
       "cum_people": 300,
       "hypo_risk": "HIGH"
@@ -1231,7 +1231,7 @@
      {
       "block_label": "T+54h",
       "period": "T+48–54h",
-      "apparent_c": -2.32,
+      "apparent_c": -2.48,
       "est_people": 18,
       "cum_people": 318,
       "hypo_risk": "HIGH"
@@ -1239,7 +1239,7 @@
      {
       "block_label": "T+60h",
       "period": "T+54–60h",
-      "apparent_c": -0.38,
+      "apparent_c": -1.88,
       "est_people": 35,
       "cum_people": 353,
       "hypo_risk": "HIGH"
@@ -1247,7 +1247,7 @@
      {
       "block_label": "T+66h",
       "period": "T+60–66h",
-      "apparent_c": 0.53,
+      "apparent_c": 0.42,
       "est_people": 35,
       "cum_people": 388,
       "hypo_risk": "MODERATE"
@@ -1267,9 +1267,9 @@
     "overcrowding_alert": false
    },
    "analysis": {
-    "min_night_apparent_c": -1.3,
-    "min_night_hour": 46,
-    "min_air_c": 3.7,
+    "min_night_apparent_c": -2.0,
+    "min_night_hour": 42,
+    "min_air_c": 3.8,
     "discharge_ratio": 0.02,
     "discharge_m3s": 0.02,
     "peak_ratio_7d": 0.17,
@@ -1292,31 +1292,31 @@
      1.7,
      3.1,
      4.7,
-     5.3,
-     5.5,
-     6.0,
-     5.9,
-     5.3,
-     5.0,
+     5.4,
+     5.7,
+     6.4,
+     6.4,
+     5.8,
+     4.9,
      4.5,
      4.2,
-     4.0,
-     3.9,
-     3.9,
-     4.1,
-     3.9,
      3.8,
-     3.9,
      3.7,
-     3.0,
-     2.1,
-     1.4,
-     0.6,
+     3.8,
+     4.0,
+     4.4,
+     4.2,
+     4.1,
+     3.8,
+     3.3,
+     2.4,
+     1.5,
+     0.8,
+     -0.0,
+     -0.3,
      -0.1,
-     -0.4,
-     -0.9,
-     -0.4,
-     -0.4
+     0.3,
+     0.8
     ],
     "ratio": [
      0.02,
@@ -1357,8 +1357,8 @@
      0.16,
      0.17
     ],
-    "min_air_c": 3.7,
-    "min_apparent_c": -1.3,
+    "min_air_c": 3.8,
+    "min_apparent_c": -2.0,
     "ratio_now": 0.02,
     "wind_kmh": 29.8
    }
@@ -1827,9 +1827,19 @@
  ],
  "news_reports": [
   {
-   "source": "GDELT 2.0 · publico.es",
-   "title": "Pirómanos y colibríes",
-   "url": "https://www.publico.es/opinion/columnas/piromanos-colibries.html"
+   "source": "Reference (feed unavailable)",
+   "title": "UNHCR Operational Data Portal — Mediterranean Situation",
+   "url": "https://data.unhcr.org/en/situations/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "IOM Missing Migrants Project — Mediterranean",
+   "url": "https://missingmigrants.iom.int/region/mediterranean"
+  },
+  {
+   "source": "Reference (feed unavailable)",
+   "title": "UN OCHA ReliefWeb — latest humanitarian updates",
+   "url": "https://reliefweb.int/updates"
   }
  ],
  "provenance_summary": [
@@ -1851,7 +1861,7 @@
   },
   {
    "label": "GDELT 2.0",
-   "ok": true
+   "ok": false
   }
  ],
  "agent_trajectory": [
@@ -1876,7 +1886,7 @@
    "elapsed_ms": 2800,
    "type": "ANALYSIS",
    "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
-   "thought": "Cross-corridor triage: Aegean 89, Central Med 53, Balkan Route 50. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+   "thought": "Cross-corridor triage: Aegean 89, Central Med 53, Balkan Route 53. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
    "map_action": {
     "center": [
      26.4,
@@ -1911,13 +1921,13 @@
    "elapsed_ms": 7600,
    "type": "BRIEFING_GENERATION",
    "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
-   "thought": "Published NGO dispatch RR-OPS-2026-1011-1249 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+   "thought": "Published NGO dispatch RR-OPS-2026-1011-1319 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
    "briefing_ready": true
   }
  ],
  "active_widget_path": "inline://widgets/reception_surge",
  "ngo_briefing": {
-  "dispatch_id": "RR-OPS-2026-1011-1249",
+  "dispatch_id": "RR-OPS-2026-1011-1319",
   "coordinates_focus": "39.25°N, 26.40°E (Aegean Mid-Channel)",
   "title": "Island Reception Surge & Triage Dispatch: Lesbos",
   "target_orgs": [
@@ -1942,50 +1952,51 @@
    "feed": "central_med_marine",
    "url": "https://marine-api.open-meteo.com/v1/marine?latitude=35.10&longitude=11.80&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 505
+   "ms": 521
   },
   {
    "feed": "central_med_weather",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=35.10&longitude=11.80&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,precipitation,visibility&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 498
+   "ms": 509
   },
   {
    "feed": "balkan_mountain",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=44.78&longitude=15.75&hourly=temperature_2m,apparent_temperature,precipitation,snowfall,snow_depth,freezing_level_height,wind_speed_10m&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 500
+   "ms": 517
   },
   {
    "feed": "balkan_flood",
    "url": "https://flood-api.open-meteo.com/v1/flood?latitude=45.14&longitude=16.90&daily=river_discharge,river_discharge_mean,river_discharge_max&forecast_days=7",
    "ok": true,
-   "ms": 504
+   "ms": 520
   },
   {
    "feed": "aegean_marine",
    "url": "https://marine-api.open-meteo.com/v1/marine?latitude=39.25&longitude=26.40&hourly=wave_height,wave_direction,wave_period,wind_wave_height&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 485
+   "ms": 521
   },
   {
    "feed": "aegean_weather",
    "url": "https://api.open-meteo.com/v1/forecast?latitude=39.25&longitude=26.40&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m&forecast_days=3&timezone=UTC",
    "ok": true,
-   "ms": 477
+   "ms": 507
   },
   {
    "feed": "reliefweb",
    "url": "https://api.reliefweb.int/v1/reports?appname=aegis-humanitarian-radar&query[value]=mediterranean+OR+refugees+OR+balkans+OR+lampedusa+OR+lesbos&limit=5&preset=latest",
    "ok": false,
-   "ms": 113,
+   "ms": 134,
    "error": "HTTPError: HTTP Error 410: Gone"
   },
   {
    "feed": "gdelt",
    "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=(lampedusa%20OR%20lesbos%20OR%20bihac%20OR%20mediterranean)%20(migrants%20OR%20rescue%20OR%20coastguard%20OR%20refugees)&mode=ArtList&maxrecords=6&format=json&timespan=72h",
-   "ok": true,
-   "ms": 12525
+   "ok": false,
+   "ms": 10035,
+   "error": "URLError: <urlopen error _ssl.c:990: The handshake operation timed out>"
   }
  ],
  "fallback_series": [],
@@ -7852,79 +7863,6 @@
  },
  "run_history": [
   {
-   "run_id": "run_20261011_0833Z",
-   "timestamp_utc": "2026-10-11T08:33:00Z",
-   "global_risk_level": "CRITICAL",
-   "focused_corridor_id": "aegean_east",
-   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
-   "scores": {
-    "central_med": 49,
-    "balkan_land": 51,
-    "aegean_east": 85
-   },
-   "agent_trajectory": [
-    {
-     "step": 1,
-     "elapsed_ms": 800,
-     "type": "COMMAND",
-     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
-     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
-     "map_action": {
-      "center": [
-       17.5,
-       39.5
-      ],
-      "zoom": 4.6,
-      "pitch": 35,
-      "bearing": 0
-     }
-    },
-    {
-     "step": 2,
-     "elapsed_ms": 2800,
-     "type": "ANALYSIS",
-     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
-     "thought": "Cross-corridor triage: Aegean 85, Balkan Route 51, Central Med 49. Focusing Aegean (Çeşme → Lesbos) (score 85/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
-     "map_action": {
-      "center": [
-       26.4,
-       39.25
-      ],
-      "zoom": 8.4,
-      "pitch": 50,
-      "bearing": -12,
-      "highlightCorridor": "aegean_east"
-     }
-    },
-    {
-     "step": 3,
-     "elapsed_ms": 5400,
-     "type": "CODE_GENERATION",
-     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
-     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
-     "widget_url": "inline://widgets/reception_surge",
-     "map_action": {
-      "center": [
-       26.4,
-       39.25
-      ],
-      "zoom": 8.9,
-      "pitch": 58,
-      "bearing": 18,
-      "highlightCorridor": "aegean_east"
-     }
-    },
-    {
-     "step": 4,
-     "elapsed_ms": 7600,
-     "type": "BRIEFING_GENERATION",
-     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
-     "thought": "Published NGO dispatch AEGIS-OPS-2026-1011-0833 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
-     "briefing_ready": true
-    }
-   ]
-  },
-  {
    "run_id": "run_20261011_0904Z",
    "timestamp_utc": "2026-10-11T09:04:00Z",
    "global_risk_level": "CRITICAL",
@@ -8577,6 +8515,79 @@
      "type": "BRIEFING_GENERATION",
      "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
      "thought": "Published NGO dispatch RR-OPS-2026-1011-1249 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
+     "briefing_ready": true
+    }
+   ]
+  },
+  {
+   "run_id": "run_20261011_1319Z",
+   "timestamp_utc": "2026-10-11T13:19:00Z",
+   "global_risk_level": "CRITICAL",
+   "focused_corridor_id": "aegean_east",
+   "summary_headline": "72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch",
+   "scores": {
+    "central_med": 53,
+    "balkan_land": 53,
+    "aegean_east": 89
+   },
+   "agent_trajectory": [
+    {
+     "step": 1,
+     "elapsed_ms": 800,
+     "type": "COMMAND",
+     "command": "python3 aegis.py --once  # 8 zero-auth feeds, 10s timeout each",
+     "thought": "Waking for scheduled 30-minute humanitarian patrol. Pulling Open-Meteo Marine & Weather, GloFAS river discharge, UN OCHA ReliefWeb and GDELT dispatches for all three corridors.",
+     "map_action": {
+      "center": [
+       17.5,
+       39.5
+      ],
+      "zoom": 4.6,
+      "pitch": 35,
+      "bearing": 0
+     }
+    },
+    {
+     "step": 2,
+     "elapsed_ms": 2800,
+     "type": "ANALYSIS",
+     "command": "jq '.corridors[] | {id, risk_score, status}' live_state.json",
+     "thought": "Cross-corridor triage: Aegean 89, Central Med 53, Balkan Route 53. Focusing Aegean (Çeşme → Lesbos) (score 89/100, RECEPTION SURGE ALERT): 72h Calm-Sea Run in Çeşme–Lesbos Channel — Island Reception Surge Watch.",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.4,
+      "pitch": 50,
+      "bearing": -12,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 3,
+     "elapsed_ms": 5400,
+     "type": "CODE_GENERATION",
+     "command": "render widget --type reception_surge --corridor aegean_east --data live_state.json#corridors.aegean_east.widget",
+     "thought": "Synthesizing 'Island Reception Surge & Triage Predictor' from 72h calm-sea arrival pressure; ferry-transfer and triage-team sliders drive peak occupancy, WASH buffer and triage wait.",
+     "widget_url": "inline://widgets/reception_surge",
+     "map_action": {
+      "center": [
+       26.4,
+       39.25
+      ],
+      "zoom": 8.9,
+      "pitch": 58,
+      "bearing": 18,
+      "highlightCorridor": "aegean_east"
+     }
+    },
+    {
+     "step": 4,
+     "elapsed_ms": 7600,
+     "type": "BRIEFING_GENERATION",
+     "command": "write live_state.json  # ngo_briefing + run_history[-10:] via atomic os.replace",
+     "thought": "Published NGO dispatch RR-OPS-2026-1011-1319 focused on 39.25°N, 26.40°E (Aegean Mid-Channel). First action: Scale reception intake, registration and shelter staffing for the next 72h.",
      "briefing_ready": true
     }
    ]
