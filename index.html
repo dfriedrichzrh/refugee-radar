@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refugee Radar // v3.0 C2 Mission Commander</title>
+  <title>Refugee Radar // v3.0</title>
   
   <!-- MapLibre GL CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" />
@@ -1458,14 +1458,14 @@
   <!-- TOP COMMAND NAV (v2.0) -->
   <header class="top-command-nav">
     <div class="nav-brand">
-      <div class="brand-logo">
+      <div class="brand-logo" title="Refugee Radar: Ziviles Frühwarnsystem für Rettungslogistik & Seegangs-Gefahren">
         <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
-        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;">v3.0 C2</span>
+        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.0: Maritimes Frühwarnsystem mit Offline-Cache, GPX-Export und Pegel-Alarmen">v3.0</span>
       </div>
-      <div class="live-pulse">
+      <div class="live-pulse" title="Live-Überwachung: Wetter- und Lagedaten werden alle 30 Minuten automatisch aktualisiert">
         <div class="pulse-dot"></div>
-        <span id="lbl-live-badge">LIVE AUTONOMOUS PATROL</span>
+        <span id="lbl-live-badge">LIVE</span>
       </div>
     </div>
 
@@ -1475,22 +1475,22 @@
     </div>
 
     <div class="nav-actions">
-      <button class="btn-action btn-action-primary" onclick="startGuidedTour()">
+      <button class="btn-action btn-action-primary" onclick="startGuidedTour()" title="30s Tour: Schnelle interaktive Einführung für Einsteiger durch alle Funktionen">
         <span>▶</span> <span>30s Tour</span>
       </button>
-      <button class="btn-action" onclick="toggleBridgeAlertMode()" id="btn-alert-mode" title="Brücken-Wachmonitor: Audio-Signal & Push bei Kentergefahr / Ruhigsee">
+      <button class="btn-action" onclick="toggleBridgeAlertMode()" id="btn-alert-mode" title="Wach-Alarme: Akustischer Warnton (Ping) und Benachrichtigung bei gefährlichem Seegang (>1.5m) oder ruhigen Wetterfenstern">
         <span id="icon-alert-bell">🔔</span> <span id="lbl-alert-status">Alerts</span>
       </button>
-      <button class="btn-action" onclick="exportNauticalGpx()" id="btn-export-gpx" title="Nautischer GPX / ECDIS Export für OpenCPN & Bordplotter">
-        <span>⚓</span> <span>GPX</span>
+      <button class="btn-action" onclick="exportNauticalGpx()" id="btn-export-gpx" title="GPX-Export: Navigationsroute für Bordcomputer & GPS-Karten-Apps herunterladen">
+        <span>GPX</span>
       </button>
-      <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar">
+      <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar" title="SITREP (Lagebericht): Vollständige operative Lagebeurteilung mit Wetterdaten, Risiken und Handlungsempfehlungen">
         <span>SITREP</span>
       </button>
-      <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" title="Sprache umschalten / Switch language">
+      <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" title="Sprache umschalten (Deutsch / English)">
         <span id="lbl-lang-code">DE</span>
       </button>
-      <button class="btn-action" onclick="openFaqModal()" id="lbl-faq">
+      <button class="btn-action" onclick="openFaqModal()" id="lbl-faq" title="FAQ: Methodik, Datenquellen, Modelle und ethische Leitlinien">
         <span>FAQ</span>
       </button>
     </div>
@@ -1504,7 +1504,7 @@
       <div id="tactical-map"></div>
 
       <!-- Floating HUD: Selected Sector Card -->
-      <div class="hud-sector-card">
+      <div class="hud-sector-card" title="Sektor-Lage: Zusammenfassung des aktuell gewählten Überwachungsraums und der akuten Brennpunkte">
         <div class="hud-title" id="lbl-map-focus">Sector Radar Status</div>
         <div class="hud-corridor-row">
           <span class="hud-name" id="map-corridor-name">Pan-Med & Balkan Radar</span>
@@ -1517,19 +1517,19 @@
 
       <!-- Floating HUD: Mayday Leeway Drift Tool -->
       <div class="datum-control-bar" id="datum-control-bar">
-        <button class="btn-datum-toggle" id="btn-toggle-datum" onclick="toggleDatumCard()">
+        <button class="btn-datum-toggle" id="btn-toggle-datum" onclick="toggleDatumCard()" title="Mayday-Driftrechner: Berechnet Windversatz (Leeway) und die Suchfläche für ein havariertes Boot">
           🧭 <span id="lbl-datum-btn">Mayday Drift</span>
         </button>
 
         <div class="datum-card" id="datum-panel">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);" id="lbl-datum-card-title">🚨 Mayday Drift Calculator</span>
-            <span style="cursor:pointer; color:var(--text-muted); font-size:1.1rem;" onclick="toggleDatumCard()">&times;</span>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);" id="lbl-datum-card-title" title="Notfall-Driftrechner: Berechnet nach IAMSAR-Standard die Abdrift und das Suchgebiet">🚨 Mayday Drift Calculator</span>
+            <span style="cursor:pointer; color:var(--text-muted); font-size:1.1rem;" onclick="toggleDatumCard()" title="Schließen">&times;</span>
           </div>
 
           <div>
             <label style="font-size:0.65rem; color:var(--text-muted); font-weight:600;" id="lbl-vessel-type">Craft Type (Leeway)</label>
-            <select class="select-ctrl" id="datum-vessel-type" style="width:100%; height:26px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline); margin-top:2px;" onchange="updateDatumCalculation()">
+            <select class="select-ctrl" id="datum-vessel-type" style="width:100%; height:26px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline); margin-top:2px;" onchange="updateDatumCalculation()" title="Bootstyp (Leeway): Bestimmt den Windangriffsfaktor – leichte Schlauchboote driften mit ca. 2,8% des Windes ab, Holz- oder Metallkähne deutlich langsamer">
               <option value="dinghy">Rubber Dinghy / Schlauchboot (2.8% wind)</option>
               <option value="wood">Overcrowded Wooden Boat (1.4% wind)</option>
               <option value="metal">Iron Boat / Metallkahn (1.0% wind)</option>
@@ -1538,16 +1538,16 @@
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-            <input type="number" step="0.01" id="datum-lon" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lon" value="12.2" onchange="updateDatumFromInputs()">
-            <input type="number" step="0.01" id="datum-lat" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lat" value="35.1" onchange="updateDatumFromInputs()">
+            <input type="number" step="0.01" id="datum-lon" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lon" value="12.2" onchange="updateDatumFromInputs()" title="Geografische Länge (Longitude) des Notfall-Datums">
+            <input type="number" step="0.01" id="datum-lat" style="padding:4px; font-size:0.725rem; border-radius:4px; border:1px solid var(--border-hairline);" placeholder="Lat" value="35.1" onchange="updateDatumFromInputs()" title="Geografische Breite (Latitude) des Notfall-Datums">
           </div>
 
           <div style="background:var(--bg-canvas); padding:0.4rem; border-radius:4px; font-size:0.7rem; font-family:var(--font-mono);">
-            <div>Speed: <span id="val-leeway-speed" style="font-weight:700;">1.2 kts</span> (<span id="val-leeway-brg">145°</span>)</div>
-            <div>Area: <span id="val-leeway-area" style="font-weight:700;">34.8 NM²</span></div>
+            <div title="Driftgeschwindigkeit in Knoten (1 Knoten = 1,85 km/h) und Kompasskurs in Grad (Wohin das Boot treibt)">Speed: <span id="val-leeway-speed" style="font-weight:700;">1.2 kts</span> (<span id="val-leeway-brg">145°</span>)</div>
+            <div title="Erweiterte Suchfläche in Quadrat-Seemeilen (NM²), die mit jeder Stunde Ungewissheit wächst">Area: <span id="val-leeway-area" style="font-weight:700;">34.8 NM²</span></div>
           </div>
 
-          <button class="btn-action btn-action-primary" style="height:26px; font-size:0.7rem; justify-content:center;" onclick="activateMapCrosshair()">
+          <button class="btn-action btn-action-primary" style="height:26px; font-size:0.7rem; justify-content:center;" onclick="activateMapCrosshair()" title="Klicke auf die Seekarte, um das Notruf-Datum per Fadenkreuz direkt zu platzieren">
             🎯 <span id="lbl-pick-map">Click Map to Place</span>
           </button>
         </div>
@@ -1556,15 +1556,15 @@
       <!-- Floating HUD: Layer Pills & Color Swatches -->
       <div class="hud-layers">
         <div class="map-toggles">
-          <button class="toggle-pill active" id="toggle-waves" onclick="toggleLayer('waves')">🌊 Sea</button>
-          <button class="toggle-pill active" id="toggle-wind" onclick="toggleLayer('wind')">💨 Wind</button>
-          <button class="toggle-pill active" id="toggle-sar" onclick="toggleLayer('sar')">🎯 SAR</button>
-          <button class="toggle-pill active" id="toggle-hotspots" onclick="toggleLayer('hotspots')">🏛️ Camps</button>
+          <button class="toggle-pill active" id="toggle-waves" onclick="toggleLayer('waves')" title="Seegang: Farbige Gefahrenzonen für Wellenhöhen und Kenterung ein-/ausblenden">🌊 Sea</button>
+          <button class="toggle-pill active" id="toggle-wind" onclick="toggleLayer('wind')" title="Wind: Zeigt Windstärke und Abdriftvektoren auf der Karte an">💨 Wind</button>
+          <button class="toggle-pill active" id="toggle-sar" onclick="toggleLayer('sar')" title="SAR-Suchgebiet: Berechnete Leeway-Driftbox für Rettungsschiffe">🎯 SAR</button>
+          <button class="toggle-pill active" id="toggle-hotspots" onclick="toggleLayer('hotspots')" title="Aufnahmelager: Standorte und aktuelle Auslastung (Lampedusa, Lesbos, Bihać)">🏛️ Camps</button>
         </div>
         <div class="map-legend">
-          <div class="legend-item"><div class="legend-swatch" style="background:#34C759;"></div> <span id="leg-calm">Calm (&lt;0.8m)</span></div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#FF9500;"></div> <span id="leg-rough">Capsize (&gt;1.5m)</span></div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#FF3B30;"></div> <span id="leg-severe">Severe (&gt;2.2m)</span></div>
+          <div class="legend-item" title="Ruhige See: Wellenhöhe unter 0,8m begünstigt riskante Überfahrten"><div class="legend-swatch" style="background:#34C759;"></div> <span id="leg-calm">Calm (&lt;0.8m)</span></div>
+          <div class="legend-item" title="Kentergefahr: Ab 1,5m Wellenhöhe schlagen flache Schlauchboote voll Wasser"><div class="legend-swatch" style="background:#FF9500;"></div> <span id="leg-rough">Capsize (&gt;1.5m)</span></div>
+          <div class="legend-item" title="Extremgefahr: Wellen über 2,2m bedeuten akute Lebensgefahr"><div class="legend-swatch" style="background:#FF3B30;"></div> <span id="leg-severe">Severe (&gt;2.2m)</span></div>
         </div>
       </div>
     </div>
@@ -1573,7 +1573,7 @@
     <div class="telemetry-pane">
 
       <!-- Dynamic Executive Situation Outlook & Assessment Banner (Top Priority) -->
-      <div class="insight-callout-card" id="insight-callout-wrap">
+      <div class="insight-callout-card" id="insight-callout-wrap" title="Operative Lagebeurteilung: Zusammenfassende Einschätzung für Einsatzleiter">
         <div class="insight-callout-header">
           <span class="insight-callout-tag" id="insight-badge">LAGE STABIL</span>
           <span class="insight-callout-time" id="insight-time-pill">T+0h Status</span>
@@ -1585,25 +1585,25 @@
       
       <!-- 4 Compact Telemetry Metric Chips -->
       <div class="metrics-row">
-        <div class="metric-card">
+        <div class="metric-card" title="Signifikante Wellenhöhe: Durchschnitt der höchsten Wellen. Boote kentern ab 1,5m Wellengang.">
           <span class="metric-label" id="lbl-m-wave">Wave Height</span>
           <span class="metric-value"><span id="val-wave">1.26</span> <span class="metric-unit" id="unit-wave">m</span></span>
           <span class="metric-sub" id="sub-wave">Significant sea</span>
           <span class="metric-bench" id="bench-wave">Threshold: 1.5m</span>
         </div>
-        <div class="metric-card">
+        <div class="metric-card" title="Spitzenböen: Starke Winde drücken Boote unkontrolliert auf die offene See hinaus.">
           <span class="metric-label" id="lbl-m-wind">Peak Gusts</span>
           <span class="metric-value"><span id="val-gust">57</span> <span class="metric-unit" id="unit-gust">km/h</span></span>
           <span class="metric-sub" id="sub-gust">Offshore drift</span>
           <span class="metric-bench" id="bench-gust">Normal: &lt;25 km/h</span>
         </div>
-        <div class="metric-card">
+        <div class="metric-card" title="Erwartete Abfahrts- bzw. Ankunftsrate in Personen pro Stunde basierend auf Wetterfenstern.">
           <span class="metric-label" id="lbl-m-arrivals">Arrival Rate</span>
           <span class="metric-value"><span id="val-arrivals">2.1</span> <span class="metric-unit" id="unit-arrivals">ppl/h</span></span>
           <span class="metric-sub" id="sub-arrivals">Avg rate</span>
           <span class="metric-bench" id="bench-arrivals">UNHCR baseline</span>
         </div>
-        <div class="metric-card">
+        <div class="metric-card" title="Aufnahmekapazität: Belegungsgrad der Erstaufnahmelager im Fokusgebiet zur Regelkapazität.">
           <span class="metric-label" id="lbl-m-hotspot">Capacity</span>
           <span class="metric-value"><span id="val-hotspot-occ">88</span> <span class="metric-unit">%</span></span>
           <span class="metric-sub" id="sub-hotspot-occ">Lampedusa</span>
@@ -1724,13 +1724,13 @@
       <textarea id="sitrep-text" style="position:absolute; left:-9999px;"></textarea>
       <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; padding-top:0.5rem; border-top:1px solid var(--border-hairline); flex-wrap:wrap;">
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-          <button class="btn-action" onclick="exportNauticalGpx()" title="GPX Datei für OpenCPN / ECDIS">⚓ GPX Export</button>
-          <button class="btn-action" onclick="exportNauticalGeoJson()" title="GeoJSON Vektoren">🗺️ GeoJSON</button>
-          <button class="btn-action" onclick="window.print()" title="Revisionssicheres PDF-Dossier drucken">📄 PDF Dossier</button>
+          <button class="btn-action" onclick="exportNauticalGpx()" title="GPX-Export: Standard-Navigationsdatei mit Notfall-Koordinaten und Driftvektoren für Bordplotter & GPS-Apps">GPX Export</button>
+          <button class="btn-action" onclick="exportNauticalGeoJson()" title="GeoJSON-Export: Geografische Vektordaten für Kartensysteme (GIS, QGIS, TimeZero)">🗺️ GeoJSON</button>
+          <button class="btn-action" onclick="window.print()" title="PDF-Dossier: Formatiertes IMO SOLAS V/33 Einsatzprotokoll als druckbares PDF">📄 PDF Dossier</button>
         </div>
         <div style="display:flex; gap:0.4rem;">
-          <button class="btn-action" onclick="closeSitrepModal()">Close</button>
-          <button class="btn-action btn-action-primary" id="btn-copy-sitrep" onclick="copySitrep()">Copy for Signal / Email</button>
+          <button class="btn-action" onclick="closeSitrepModal()" title="Lagebericht schließen">Close</button>
+          <button class="btn-action btn-action-primary" id="btn-copy-sitrep" onclick="copySitrep()" title="Lagebericht in die Zwischenablage kopieren (optimiert für Signal, WhatsApp oder E-Mail)">Copy for Signal / Email</button>
         </div>
       </div>
     </div>
@@ -1831,7 +1831,7 @@
     // Comprehensive Bilingual Translations Dictionary
     const i18n = {
       en: {
-        liveBadge: "LIVE PATROL",
+        liveBadge: "LIVE",
         subtitle: "Autonomous early-warning system for civil SAR logistics & sea-state hazards",
         report: "Situation Report (SITREP)",
         faq: "FAQ",
@@ -1919,7 +1919,7 @@
         `
       },
       de: {
-        liveBadge: "LIVE PATROL",
+        liveBadge: "LIVE",
         subtitle: "Ziviles Frühwarnsystem für Rettungslogistik & humanitäre Einsatzplanung",
         report: "Lagebericht (SITREP)",
         faq: "FAQ",
@@ -3058,13 +3058,13 @@
         // Update external clean legend pills above chart (no text wrapping, tabular values)
         if (legendBarEl) {
           legendBarEl.innerHTML = `
-            <span class="legend-pill"><span class="dot" style="background:#EF4444;"></span>${isDe ? 'Ost-Ägäis' : 'East Aegean'}: <strong class="val" style="color:#DC2626;">${vAeg}</strong>/h</span>
-            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Zentr. Med' : 'Central Med'}: <strong class="val" style="color:#0284C7;">${vMed}</strong>/h</span>
-            <span class="legend-pill"><span class="dot" style="background:#10B981;"></span>${isDe ? 'Balkan' : 'Balkan'}: <strong class="val" style="color:#059669;">${vBalk}</strong>/h</span>
-            <span class="legend-pill" style="border-color:#C4B5FD; background:#FAF5FF;"><span class="dot" style="background:#8B5CF6;"></span>${isDe ? 'Gesamt' : 'Total'}: <strong class="val" style="color:#7C3AED;">${vSum}</strong>/h</span>
-            <span class="legend-pill" style="border-color:#BAE6FD; background:#F0F9FF;"><span class="dot" style="background:#0284C7;"></span>🌊 ${isDe ? 'Messung' : 'Sensor'}: <strong class="val" style="color:#0284C7;">${vWave}m</strong></span>
-            <span class="legend-pill" style="border-color:#E9D5FF; background:#FAF5FF; font-size:0.68rem; color:#7C3AED;" title="${isDe ? 'Probabilistischer Modell-Erwartungsbereich' : 'Probabilistic Model Corridor'}"><span class="dot" style="background:#A855F7;"></span>±25% CI</span>
-            <span class="legend-time-chip">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
+            <span class="legend-pill" title="${isDe ? 'Ost-Ägäis: Prognostizierte Abfahrtsrate nach Lesbos (Personen/Stunde)' : 'East Aegean: Modeled departure rate to Lesbos (persons/hour)'}"><span class="dot" style="background:#EF4444;"></span>${isDe ? 'Ost-Ägäis' : 'East Aegean'}: <strong class="val" style="color:#DC2626;">${vAeg}</strong>/h</span>
+            <span class="legend-pill" title="${isDe ? 'Zentrales Mittelmeer: Prognostizierte Abfahrtsrate nach Lampedusa (Personen/Stunde)' : 'Central Med: Modeled departure rate to Lampedusa (persons/hour)'}"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Zentr. Med' : 'Central Med'}: <strong class="val" style="color:#0284C7;">${vMed}</strong>/h</span>
+            <span class="legend-pill" title="${isDe ? 'Balkan-Route: Prognostizierte Grenzpassagen bei Bihać (Personen/Stunde)' : 'Balkan: Modeled crossing rate at Bihać (persons/hour)'}"><span class="dot" style="background:#10B981;"></span>${isDe ? 'Balkan' : 'Balkan'}: <strong class="val" style="color:#059669;">${vBalk}</strong>/h</span>
+            <span class="legend-pill" style="border-color:#C4B5FD; background:#FAF5FF;" title="${isDe ? 'Gesamtrate: Summe aller prognostizierten Abfahrten über alle 3 Korridore' : 'Total departure rate modeled across all 3 corridors'}"><span class="dot" style="background:#8B5CF6;"></span>${isDe ? 'Gesamt' : 'Total'}: <strong class="val" style="color:#7C3AED;">${vSum}</strong>/h</span>
+            <span class="legend-pill" style="border-color:#BAE6FD; background:#F0F9FF;" title="${isDe ? 'Reale Messung: Direkt von Wetter- und Bojensensoren gemessene signifikante Wellenhöhe' : 'Real sensor: Measured significant wave height from buoys and ECMWF marine models'}"><span class="dot" style="background:#0284C7;"></span>🌊 ${isDe ? 'Messung' : 'Sensor'}: <strong class="val" style="color:#0284C7;">${vWave}m</strong></span>
+            <span class="legend-pill" style="border-color:#E9D5FF; background:#FAF5FF; font-size:0.68rem; color:#7C3AED;" title="${isDe ? 'Statistischer Schätzkorridor (±25%): Berücksichtigt Modellunsicherheiten bei Bootstypen und Windverhältnissen' : 'Statistical Confidence Interval (±25%): Accounting for craft variations and wind changes'}"><span class="dot" style="background:#A855F7;"></span>±25% CI</span>
+            <span class="legend-time-chip" title="${isDe ? 'Simulationszeitpunkt in Weltzeit (UTC)' : 'Simulation timestamp in UTC'}">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
           `;
         }
 
@@ -3187,17 +3187,17 @@
       if (legendBarEl) {
         if (isMarine) {
           legendBarEl.innerHTML = `
-            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Wellenhöhe' : 'Wave Height'}: <strong class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(2)} m</strong></span>
-            <span class="legend-pill"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Spitzenböen' : 'Peak Gusts'}: <strong class="val" style="color:#7C3AED;">${Math.round(series2[curIdx] || 0)} km/h</strong></span>
-            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
-            <span class="legend-time-chip">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
+            <span class="legend-pill" title="${isDe ? 'Signifikante Wellenhöhe: Über 1,5m gilt akute Kentergefahr für Schlauchboote' : 'Significant wave height: Over 1.5m poses critical capsize danger'}"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Wellenhöhe' : 'Wave Height'}: <strong class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(2)} m</strong></span>
+            <span class="legend-pill" title="${isDe ? 'Spitzenböen: Starke Winde erhöhen die Abdriftgeschwindigkeit von manövrierunfähigen Booten' : 'Peak gusts: Strong winds accelerate leeway drift of unpowered vessels'}"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Spitzenböen' : 'Peak Gusts'}: <strong class="val" style="color:#7C3AED;">${Math.round(series2[curIdx] || 0)} km/h</strong></span>
+            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;" title="${isDe ? 'Kritische Sicherheitsgrenze: Ab 1,5m Wellenhöhe schlagen flache Boote voll Wasser' : 'Critical threshold: Above 1.5m waves, small unseaworthy craft flood and capsize'}"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
+            <span class="legend-time-chip" title="${isDe ? 'Simulationszeitpunkt in Weltzeit (UTC)' : 'Simulation timestamp in UTC'}">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
           `;
         } else {
           legendBarEl.innerHTML = `
-            <span class="legend-pill"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Windchill' : 'Apparent Temp'}: <strong class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(1)} °C</strong></span>
-            <span class="legend-pill"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Flussabfluss' : 'River Flow'}: <strong class="val" style="color:#7C3AED;">${series2[curIdx]?.toFixed(2)}× mean</strong></span>
-            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
-            <span class="legend-time-chip">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
+            <span class="legend-pill" title="${isDe ? 'Gefühlte Temperatur (Windchill) in den Bergen: Unter 0°C droht akute Erfrierungsgefahr' : 'Apparent temperature factoring windchill: Sub-zero temperatures denote severe hypothermia risk'}"><span class="dot" style="background:#0284C7;"></span>${isDe ? 'Windchill' : 'Apparent Temp'}: <strong class="val" style="color:#0284C7;">${series1[curIdx]?.toFixed(1)} °C</strong></span>
+            <span class="legend-pill" title="${isDe ? 'Flussabfluss-Index relativ zum Mittelwert: Hohe Werte (>1.0) bedeuten reißende Strömungen an Una/Sava' : 'River discharge ratio: Values >1.0 denote dangerous river currents at Una/Sava crossings'}"><span class="dot" style="background:#A855F7;"></span>${isDe ? 'Flussabfluss' : 'River Flow'}: <strong class="val" style="color:#7C3AED;">${series2[curIdx]?.toFixed(2)}× mean</strong></span>
+            <span class="legend-pill" style="border-color:#FECACA; background:#FEF2F2;" title="${isDe ? 'Kritischer Schwellenwert: 0°C Frostgrenze für Unterkühlung im Gebirge' : 'Critical threshold: 0°C frost barrier for mountain passage hypothermia'}"><span class="dot" style="background:#EF4444;"></span>${dangerLabel}</span>
+            <span class="legend-time-chip" title="${isDe ? 'Simulationszeitpunkt in Weltzeit (UTC)' : 'Simulation timestamp in UTC'}">🕒 T+${scrubHour}h · ${timeObj.shortTime} UTC</span>
           `;
         }
       }
@@ -3676,7 +3676,7 @@
           <div style="font-size:0.68rem; color:var(--text-muted); border-top:1px solid var(--border); padding-top:0.5rem; display:flex; flex-direction:column; gap:0.25rem;">
             <div style="display:flex; justify-content:space-between;">
               <span>Data Provenance: Open-Meteo Marine (ECMWF), GDELT 2.0, UNHCR Operational Data Portal</span>
-              <span>Refugee Radar C2 Commander v3.0</span>
+              <span>Refugee Radar v3.0</span>
             </div>
             <div style="font-family:var(--font-mono); font-size:0.63rem; color:#475569; background:#F1F5F9; padding:0.25rem 0.4rem; border-radius:3px; word-break:break-all;">
               ⚖️ <strong>LEGAL AUDIT TRAIL (IMO SOLAS V/33 & SAR CONVENTION 1979):</strong><br>
@@ -3771,7 +3771,7 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       const driftEndLon = datumCoords[0] + lonOffset;
 
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="Refugee Radar C2 Mission Commander v3.0"
+<gpx version="1.1" creator="Refugee Radar v3.0"
      xmlns="http://www.topografix.com/GPX/1/1"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
@@ -3830,8 +3830,8 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       const toast = document.getElementById('toast-copy');
       if (toast) {
         toast.textContent = isDe 
-          ? `⚓ GPX-Datei für OpenCPN/ECDIS erfolgreich heruntergeladen!` 
-          : `⚓ GPX file successfully downloaded for OpenCPN / ECDIS!`;
+          ? `✓ GPX-Datei für Navigations-Apps erfolgreich heruntergeladen!` 
+          : `✓ GPX file successfully downloaded for navigation plotters!`;
         toast.style.display = 'flex';
         setTimeout(() => { toast.style.display = 'none'; }, 3200);
       }
@@ -3856,7 +3856,7 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       const geojson = {
         type: "FeatureCollection",
         metadata: {
-          generated_by: "Refugee Radar C2 Commander v3.0",
+          generated_by: "Refugee Radar v3.0",
           corridor: c.id,
           hour: scrubHour,
           timestamp: new Date().toISOString()

@@ -1,7 +1,7 @@
-// Refugee Radar C2 Commander v3.0 - Maritime Offline Service Worker
+// Refugee Radar v3.0 - Maritime Offline Service Worker
 // Cache-First for static assets; Network-First with offline fallback for live telemetry
 
-const CACHE_NAME = 'refugee-radar-c2-v3.0.0';
+const CACHE_NAME = 'refugee-radar-v3.0.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
