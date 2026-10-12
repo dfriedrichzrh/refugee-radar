@@ -168,46 +168,55 @@
       50% { transform: scale(1.3); opacity: 0.7; }
     }
 
-    /* Segmented Sector Switcher Navigation - Relaxed Floating Pill Bar */
+    /* Segmented Sector Switcher Navigation - macOS Precision Button Bar */
     .corridor-bar {
       display: inline-flex;
       align-items: center;
-      background: rgba(0, 0, 0, 0.04);
-      padding: 4px;
-      border-radius: 9999px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      gap: 4px;
+      background: rgba(0, 0, 0, 0.05);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+      gap: 3px;
     }
 
     .corridor-tab {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      padding: 0 0.85rem;
-      height: 32px;
-      min-width: 148px;
-      border-radius: 9999px;
+      gap: 0.35rem;
+      padding: 0 0.65rem;
+      height: 28px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
       white-space: nowrap;
       border: 1px solid transparent;
-      font-size: 0.825rem;
+      font-size: 0.775rem;
       font-weight: 600;
       color: var(--text-secondary);
+      background: transparent;
+      font-family: inherit;
+      outline: none;
     }
 
     .corridor-tab:hover {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.85);
       color: var(--text-main);
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .corridor-tab:active {
+      transform: scale(0.97);
     }
 
     .corridor-tab.active {
       background: #FFFFFF;
       color: var(--text-main);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0.5px 1.5px rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 0, 0, 0.09);
       font-weight: 700;
     }
 
@@ -221,11 +230,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.2rem;
-      font-size: 0.725rem;
+      font-size: 0.68rem;
       font-family: var(--font-mono);
       font-weight: 700;
-      padding: 0.1rem 0.4rem;
-      border-radius: 9999px;
+      padding: 0.08rem 0.35rem;
+      border-radius: 4px;
       letter-spacing: -0.01em;
     }
 
@@ -234,23 +243,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
       background: transparent;
-      border: 1px solid rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.12);
       color: var(--text-secondary);
-      font-size: 0.725rem;
+      font-size: 0.7rem;
       font-weight: 700;
       cursor: pointer;
-      margin-left: 0.2rem;
+      margin-left: 1px;
       transition: all 0.15s ease;
     }
 
     .index-info-btn:hover {
-      background: var(--text-main);
-      color: #FFFFFF;
-      border-color: var(--text-main);
+      background: #FFFFFF;
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     /* Nav Action Buttons - Relaxed Pill Shape */
@@ -1239,8 +1249,8 @@
         display: none;
       }
       .corridor-tab {
-        min-width: 124px;
-        padding: 0.25rem 0.5rem;
+        min-width: auto;
+        padding: 0 0.5rem;
       }
       .nav-actions {
         flex-shrink: 0;
@@ -1284,8 +1294,10 @@
         display: none;
       }
       .corridor-tab {
-        min-width: 125px;
-        flex-shrink: 0;
+        min-width: auto;
+        flex: 1 1 auto;
+        padding: 0 0.4rem;
+        font-size: 0.725rem;
       }
       .nav-actions {
         order: 2;
@@ -2425,45 +2437,43 @@
         : (hotspotCorridor.id === 'aegean_east' ? 'Aegean' : (hotspotCorridor.id === 'central_med' ? 'Central Med' : 'Balkan'));
 
       const overviewHtml = `
-        <div class="corridor-tab ${allActive}" onclick="selectCorridor('all')" title="${isDe ? `Pan-Med Radar: Ø ${avgRisk}% Frühwarn-Index · Brennpunkt: ${hotspotName} (${maxRisk}%)` : `Pan-Med Radar: Avg ${avgRisk}% Composite Risk · Hotspot: ${hotspotName} (${maxRisk}%)`}">
-          <span class="c-title">🗺️ ${isDe ? 'Pan-Med' : 'Pan-Med'}</span>
+        <button type="button" class="corridor-tab ${allActive}" onclick="selectCorridor('all')" title="${isDe ? `[Taste 1] Pan-Med Gesamtübersicht: Ø ${avgRisk}% Frühwarn-Index · Brennpunkt: ${hotspotName} (${maxRisk}%)` : `[Key 1] Pan-Med Overview: Avg ${avgRisk}% Risk · Hotspot: ${hotspotName} (${maxRisk}%)`}">
+          <span class="c-title">🗺️ Pan-Med</span>
           <span class="c-risk-badge" style="background:${avgRiskBg}; color:${avgRiskColor};">Ø ${avgRisk}%</span>
-        </div>
+        </button>
       `;
 
-      const tabsHtml = liveState.corridors.map(c => {
+      const tabsHtml = liveState.corridors.map((c, idx) => {
         const activeClass = c.id === selectedCorridorId ? 'active' : '';
         const riskColor = c.risk_score > 75 ? 'var(--accent-red)' : (c.risk_score > 50 ? 'var(--accent-amber)' : 'var(--accent-green)');
         const riskBg = c.risk_score > 75 ? 'var(--accent-red-light)' : (c.risk_score > 50 ? 'var(--accent-amber-light)' : 'var(--accent-green-light)');
+        const keyNum = idx + 2;
         
         let title = c.short_name || c.name;
         let riskLabel = `${c.risk_score}%`;
-        let tooltip = isDe ? `Frühwarn-Index: ${c.risk_score}/100` : `Early-warning index: ${c.risk_score}/100`;
+        let tooltip = isDe ? `[Taste ${keyNum}] ${title}: ${c.risk_score}% Risiko-Index` : `[Key ${keyNum}] ${title}: ${c.risk_score}% Risk Index`;
 
         if (c.id === 'aegean_east') {
-          title = isDe ? 'Ost-Ägäis' : 'Eastern Aegean';
-          riskLabel = isDe ? `${c.risk_score}% Überfahrt-Peak` : `${c.risk_score}% Crossing Peak`;
-          tooltip = isDe ? `Ost-Ägäis: ${c.risk_score}% Überfahrten-Spitze (Ruhige See begünstigt Überfahrten nach Lesbos)` : `East Aegean: ${c.risk_score}% Crossing Peak (Calm sea triggers boat crossings to Lesbos)`;
+          title = isDe ? 'Ost-Ägäis' : 'East Aegean';
+          tooltip = isDe ? `[Taste 4] Ost-Ägäis: ${c.risk_score}% Überfahrt-Peak (Ruhige See begünstigt Überfahrten nach Lesbos)` : `[Key 4] East Aegean: ${c.risk_score}% Crossing Peak (Calm sea triggers boat crossings to Lesbos)`;
         } else if (c.id === 'central_med') {
           title = isDe ? 'Zentr. Med' : 'Central Med';
-          riskLabel = isDe ? `${c.risk_score}% Seegang` : `${c.risk_score}% Swell`;
-          tooltip = isDe ? `Zentrales Mittelmeer: ${c.risk_score}% Seegangs- & Kentergefahr (SAR-Wachsamkeit)` : `Central Med: ${c.risk_score}% Swell & Capsize Risk (SAR readiness)`;
+          tooltip = isDe ? `[Taste 2] Zentrales Mittelmeer: ${c.risk_score}% Seegang & Kentergefahr (SAR-Wachsamkeit)` : `[Key 2] Central Med: ${c.risk_score}% Swell & Capsize Risk (SAR readiness)`;
         } else if (c.id === 'balkan_land') {
           title = isDe ? 'Balkan' : 'Balkan Route';
-          riskLabel = isDe ? `${c.risk_score}% Transit` : `${c.risk_score}% Transit`;
-          tooltip = isDe ? `Balkan-Route: ${c.risk_score}% Transit-Risiko (Gebirgspass-Windchill & Flusspegel)` : `Balkan: ${c.risk_score}% Transit Risk (Mountain pass & river flood)`;
+          tooltip = isDe ? `[Taste 3] Balkan-Route: ${c.risk_score}% Transit-Risiko (Gebirgspass-Windchill & Flusspegel)` : `[Key 3] Balkan: ${c.risk_score}% Transit Risk (Mountain pass & river flood)`;
         }
 
         return `
-          <div class="corridor-tab ${activeClass}" onclick="selectCorridor('${c.id}')" title="${tooltip}">
+          <button type="button" class="corridor-tab ${activeClass}" onclick="selectCorridor('${c.id}')" title="${tooltip}">
             <span class="c-title">${title}</span>
             <span class="c-risk-badge" style="background:${riskBg}; color:${riskColor};">${riskLabel}</span>
-          </div>
+          </button>
         `;
       }).join('');
 
       const infoBtnHtml = `
-        <button class="index-info-btn" onclick="openRiskExplainerModal()" title="${isDe ? 'Was bedeuten diese Prozentwerte? (Hier klicken)' : 'What do these percentages mean? (Click here)'}">
+        <button type="button" class="index-info-btn" onclick="openRiskExplainerModal()" title="${isDe ? 'Was bedeuten diese Prozentwerte? (Hier klicken)' : 'What do these percentages mean? (Click here)'}">
           ℹ
         </button>
       `;
