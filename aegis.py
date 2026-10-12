@@ -34,6 +34,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STATE_PATH = os.path.join(HERE, "live_state.json")
 INDEX_PATH = os.path.join(HERE, "index.html")
 PREVIEW_PATH = os.path.join(HERE, "preview.html")
+SW_PATH = os.path.join(HERE, "sw.js")
 REFRESH_SECONDS = 1800
 TIMEOUT = 10
 HISTORY_MAX = 10
@@ -907,6 +908,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         "/index.html": (INDEX_PATH, "text/html; charset=utf-8"),
         "/preview": (PREVIEW_PATH, "text/html; charset=utf-8"),
         "/preview.html": (PREVIEW_PATH, "text/html; charset=utf-8"),
+        "/sw.js": (SW_PATH, "application/javascript; charset=utf-8"),
         "/live_state.json": (STATE_PATH, "application/json; charset=utf-8"),
     }
 

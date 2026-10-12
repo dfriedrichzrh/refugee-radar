@@ -6,3 +6,5 @@ backup/
 *.log
 .DS_Store
 refugee_radar_awards.ics
+node_modules/
+backup_*.html
