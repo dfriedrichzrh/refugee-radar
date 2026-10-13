@@ -715,8 +715,18 @@
       .footer-links-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
+  <script>
+    (function() {
+      const saved = localStorage.getItem('rr_theme') || 'light';
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      } else {
+        document.documentElement.classList.add('light-theme');
+      }
+    })();
+  </script>
 </head>
-<body>
+<body class="light-theme">
 
   <!-- STICKY TOP NAV -->
   <header class="site-header">
@@ -724,7 +734,7 @@
       <a href="index.html" class="brand-wrap">
         <div class="brand-logo-icon">RR</div>
         <span class="brand-name">Refugee Radar</span>
-        <span class="version-tag">v3.4</span>
+        <span class="version-tag">v3.5</span>
       </a>
 
       <div class="nav-center-status" title="Echtzeit-Synchronisation mit Copernicus Marine & NOAA">
@@ -738,7 +748,7 @@
         <!-- Preferences: Theme (Dark/Light wie in Asset Sniper) & Sprache (DE/EN) -->
         <div class="prefs-group" title="Benutzereinstellungen">
           <button type="button" class="btn-pref" id="btn-theme-toggle" onclick="toggleTheme()" title="Design wechseln (Dunkel / Hell)">
-            <span id="theme-icon">☀️</span>
+            <span id="theme-icon">🌙</span>
           </button>
           <button type="button" class="btn-pref" id="btn-lang-toggle" onclick="toggleLanguage()" title="Sprache umschalten (Deutsch / English)">
             <span id="lang-code-text">EN</span>
@@ -1003,7 +1013,7 @@
     // =========================================================================
     // THEME MANAGEMENT (Apple Dark / Light wie in Asset Sniper)
     // =========================================================================
-    let currentTheme = localStorage.getItem('rr_theme') || 'dark';
+    let currentTheme = localStorage.getItem('rr_theme') || 'light';
 
     function applyTheme(theme) {
       currentTheme = theme;
@@ -1014,11 +1024,15 @@
       if (theme === 'light') {
         document.body.classList.add('light-theme');
         document.body.classList.remove('dark-theme');
+        document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
         if (icon) icon.textContent = '🌙';
         if (btn) btn.title = currentLang === 'de' ? 'Auf dunkles Design umschalten' : 'Switch to Dark Theme';
       } else {
         document.body.classList.remove('light-theme');
         document.body.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
+        document.documentElement.classList.add('dark-theme');
         if (icon) icon.textContent = '☀️';
         if (btn) btn.title = currentLang === 'de' ? 'Auf helles Design umschalten' : 'Switch to Light Theme';
       }

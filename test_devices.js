@@ -40,24 +40,30 @@ async function run() {
 
     console.log(`\n--- Testing ${dev.name} (${dev.width}x${dev.height}) ---`);
 
-    // 1. TEST LANDING PAGE (index.html) - DEFAULT DARK
-    console.log(`[${dev.name}] Testing Landing Page (Dark)...`);
+    // 1. TEST LANDING PAGE (index.html) - DEFAULT LIGHT (Clean White Precision)
+    console.log(`[${dev.name}] Testing Landing Page (Default Light)...`);
     await page.goto('http://127.0.0.1:8081/', { waitUntil: 'networkidle', timeout: 15000 });
     await page.waitForTimeout(500);
 
+    const isDefaultLight = await page.$eval('body', b => b.classList.contains('light-theme'));
+    if (!isDefaultLight) throw new Error('Expected landing page to default to light-theme!');
+    const shotLandingLight = path.join(outDir, `${dev.name}_landing_light.png`);
+    await page.screenshot({ path: shotLandingLight, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotLandingLight}`);
+
+    // 2. TEST THEME TOGGLE ON LANDING PAGE (Light -> Dark)
+    console.log(`[${dev.name}] Toggling Landing Page Theme to Dark...`);
+    await page.click('#btn-theme-toggle');
+    await page.waitForTimeout(500);
+    const isDark = await page.$eval('body', b => b.classList.contains('dark-theme'));
+    if (!isDark) throw new Error('Failed to switch to dark-theme on landing page!');
     const shotLandingDark = path.join(outDir, `${dev.name}_landing_dark.png`);
     await page.screenshot({ path: shotLandingDark, fullPage: false });
     console.log(`  ✓ Screenshot: ${shotLandingDark}`);
 
-    // 2. TEST THEME TOGGLE ON LANDING PAGE (Dark -> Light)
-    console.log(`[${dev.name}] Toggling Landing Page Theme to Light...`);
+    // Toggle back to Light for remaining tests
     await page.click('#btn-theme-toggle');
-    await page.waitForTimeout(500);
-    const isLight = await page.$eval('body', b => b.classList.contains('light-theme'));
-    if (!isLight) throw new Error('Failed to switch to light-theme on landing page!');
-    const shotLandingLight = path.join(outDir, `${dev.name}_landing_light.png`);
-    await page.screenshot({ path: shotLandingLight, fullPage: false });
-    console.log(`  ✓ Screenshot: ${shotLandingLight}`);
+    await page.waitForTimeout(300);
 
     // 3. TEST LANGUAGE TOGGLE ON LANDING PAGE (DE -> EN)
     console.log(`[${dev.name}] Toggling Landing Page Language to EN...`);

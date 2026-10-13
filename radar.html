@@ -1669,8 +1669,18 @@
       }
     }
   </style>
+  <script>
+    (function() {
+      const saved = localStorage.getItem('rr_theme') || 'light';
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      } else {
+        document.documentElement.classList.add('light-theme');
+      }
+    })();
+  </script>
 </head>
-<body>
+<body class="light-theme">
 
   <!-- TOP COMMAND NAV (v2.0) -->
   <header class="top-command-nav">
@@ -1681,7 +1691,7 @@
       <div class="brand-logo" title="Refugee Radar: Ziviles Frühwarnsystem für Rettungslogistik & Seegangs-Gefahren">
         <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
-        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.4: Rechtlich gehärtetes Lagezentrum mit IMO SOLAS & MRCC Compliance">v3.4</span>
+        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.5: Light Theme Default Edition mit IMO SOLAS & MRCC Compliance">v3.5</span>
       </div>
       <div class="live-pulse" title="Live-Überwachung: Wetter- und Lagedaten werden alle 30 Minuten automatisch aktualisiert">
         <div class="pulse-dot"></div>
@@ -3805,11 +3815,15 @@
       if (theme === 'dark') {
         document.body.classList.add('dark-theme');
         document.body.classList.remove('light-theme');
+        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.remove('light-theme');
         if (icon) icon.textContent = '☀️';
         if (btn) btn.title = currentLang === 'de' ? 'Auf helles Design umschalten' : 'Switch to Light Theme';
       } else {
         document.body.classList.remove('dark-theme');
         document.body.classList.add('light-theme');
+        document.documentElement.classList.remove('dark-theme');
+        document.documentElement.classList.add('light-theme');
         if (icon) icon.textContent = '🌙';
         if (btn) btn.title = currentLang === 'de' ? 'Auf dunkles Design umschalten' : 'Switch to Dark Theme';
       }
