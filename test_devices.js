@@ -40,13 +40,20 @@ async function run() {
 
     console.log(`\n--- Testing ${dev.name} (${dev.width}x${dev.height}) ---`);
 
-    // 1. TEST LANDING PAGE (index.html) - DEFAULT LIGHT (Clean White Precision)
-    console.log(`[${dev.name}] Testing Landing Page (Default Light)...`);
+    // 1. TEST LANDING PAGE (index.html) - DEFAULT LIGHT & ENGLISH (Clean Precision)
+    console.log(`[${dev.name}] Testing Landing Page (Default Light & EN)...`);
     await page.goto('http://127.0.0.1:8081/', { waitUntil: 'networkidle', timeout: 15000 });
     await page.waitForTimeout(500);
 
     const isDefaultLight = await page.$eval('body', b => b.classList.contains('light-theme'));
     if (!isDefaultLight) throw new Error('Expected landing page to default to light-theme!');
+    
+    const defaultTitle = await page.$eval('.hero-title', el => el.textContent.trim());
+    console.log(`  ✓ Default English Headline verified: "${defaultTitle}"`);
+    if (!defaultTitle.includes('Real-Time Mediterranean')) {
+      throw new Error(`Expected default English headline, got: "${defaultTitle}"`);
+    }
+
     const shotLandingLight = path.join(outDir, `${dev.name}_landing_light.png`);
     await page.screenshot({ path: shotLandingLight, fullPage: false });
     console.log(`  ✓ Screenshot: ${shotLandingLight}`);
@@ -65,15 +72,19 @@ async function run() {
     await page.click('#btn-theme-toggle');
     await page.waitForTimeout(300);
 
-    // 3. TEST LANGUAGE TOGGLE ON LANDING PAGE (DE -> EN)
-    console.log(`[${dev.name}] Toggling Landing Page Language to EN...`);
+    // 3. TEST LANGUAGE TOGGLE ON LANDING PAGE (EN -> DE -> EN)
+    console.log(`[${dev.name}] Toggling Landing Page Language to DE...`);
     await page.click('#btn-lang-toggle');
     await page.waitForTimeout(500);
-    const enTitle = await page.$eval('.hero-title', el => el.textContent.trim());
-    console.log(`  ✓ English Headline verified: "${enTitle}"`);
-    if (!enTitle.includes('Real-Time Mediterranean')) {
-      throw new Error(`Expected English headline, got: "${enTitle}"`);
+    const deTitle = await page.$eval('.hero-title', el => el.textContent.trim());
+    console.log(`  ✓ German Headline verified: "${deTitle}"`);
+    if (!deTitle.includes('Echtzeit-Lagebild')) {
+      throw new Error(`Expected German headline, got: "${deTitle}"`);
     }
+
+    // Toggle back to EN
+    await page.click('#btn-lang-toggle');
+    await page.waitForTimeout(300);
 
     // 4. TEST DEEP-LINK NAVIGATION TO RADAR
     console.log(`[${dev.name}] Deep-linking to radar.html?sector=central_med...`);

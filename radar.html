@@ -4679,7 +4679,7 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       const savedTheme = localStorage.getItem('rr_theme') || 'light';
       applyTheme(savedTheme);
 
-      const savedLang = localStorage.getItem('rr_lang') || 'de';
+      const savedLang = localStorage.getItem('rr_lang') || 'en';
       if (savedLang !== currentLang) {
         currentLang = savedLang === 'en' ? 'de' : 'en';
         toggleLanguage();

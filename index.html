@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refugee Radar — Ziviles Lagebild & Seeraumüberwachung Mittelmeer</title>
-  <meta name="description" content="Zivile Seeraumüberwachung, meteorologische Risikoanalyse und Drift-Prognosen im zentralen und östlichen Mittelmeer. Unabhängig, quelloffen und in Echtzeit.">
+  <title>Refugee Radar — Civil Maritime Observation & Drift Forecasting</title>
+  <meta name="description" content="Civil maritime observation, meteorological risk analysis and drift forecasting in the central and eastern Mediterranean. Independent, open-source and real-time.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
   <style>
     :root {
@@ -737,26 +737,26 @@
         <span class="version-tag">v3.5</span>
       </a>
 
-      <div class="nav-center-status" title="Echtzeit-Synchronisation mit Copernicus Marine & NOAA">
+      <div class="nav-center-status" title="Real-time synchronization with Copernicus Marine & NOAA">
         <div class="pulse-dot"></div>
-        <span id="header-pulse-text">3 Korridore überwacht · Live</span>
+        <span id="header-pulse-text">3 Corridors Monitored · Live</span>
       </div>
 
       <div class="header-actions">
-        <a href="#features" class="nav-link" id="nav-features-link">Methodik</a>
+        <a href="#features" class="nav-link" id="nav-features-link">Methodology</a>
 
-        <!-- Preferences: Theme (Dark/Light wie in Asset Sniper) & Sprache (DE/EN) -->
-        <div class="prefs-group" title="Benutzereinstellungen">
-          <button type="button" class="btn-pref" id="btn-theme-toggle" onclick="toggleTheme()" title="Design wechseln (Dunkel / Hell)">
+        <!-- Preferences: Theme (Dark/Light) & Language (EN/DE) -->
+        <div class="prefs-group" title="User Preferences">
+          <button type="button" class="btn-pref" id="btn-theme-toggle" onclick="toggleTheme()" title="Switch Theme (Dark / Light)">
             <span id="theme-icon">🌙</span>
           </button>
-          <button type="button" class="btn-pref" id="btn-lang-toggle" onclick="toggleLanguage()" title="Sprache umschalten (Deutsch / English)">
-            <span id="lang-code-text">EN</span>
+          <button type="button" class="btn-pref" id="btn-lang-toggle" onclick="toggleLanguage()" title="Switch Language (English / Deutsch)">
+            <span id="lang-code-text">DE</span>
           </button>
         </div>
 
-        <a href="radar.html" class="btn-launch-nav" title="Vollständiges Taktisches Radar mit Karte und Seegangsprognosen öffnen">
-          <span id="nav-btn-launch-text">Live-Radar öffnen</span>
+        <a href="radar.html" class="btn-launch-nav" title="Launch full tactical radar with live charts and drift forecasts">
+          <span id="nav-btn-launch-text">Open Live Radar</span>
           <span>↗</span>
         </a>
       </div>
@@ -768,19 +768,19 @@
     <section class="hero-section">
       <div class="hero-pill">
         <span class="pulse-dot"></span>
-        <span>Live Seeraumüberwachung & Meteorologie</span>
+        <span>Live Maritime Situational Awareness & Meteo</span>
       </div>
-      <h1 class="hero-title">Echtzeit-Lagebild Mittelmeer.</h1>
+      <h1 class="hero-title">Real-Time Mediterranean Situation.</h1>
       <p class="hero-subtitle">
-        Zivile Seeraumüberwachung, meteorologische Risikoanalyse und Drift-Prognosen im zentralen und östlichen Mittelmeer. Unabhängig, quelloffen und in Echtzeit.
+        Civil maritime observation, meteorological risk analysis and drift forecasting in the central and eastern Mediterranean. Independent, open-source and live.
       </p>
       <div class="hero-buttons">
         <a href="radar.html" class="btn-hero-primary" id="btn-hero-launch">
-          <span>Taktisches Radar öffnen</span>
+          <span>Open Tactical Radar</span>
           <span>↗</span>
         </a>
         <a href="#sectors" class="btn-hero-secondary">
-          <span>Sektoren im Überblick ↓</span>
+          <span>Sectors Overview ↓</span>
         </a>
       </div>
     </section>
@@ -788,8 +788,8 @@
     <!-- LIVE SECTOR CARDS -->
     <section class="section-wrap" id="sectors">
       <div class="section-header">
-        <h2 class="section-title">Aktuelle Lage in den 3 Hauptkorridoren</h2>
-        <p class="section-desc">Klicke auf einen Sektor, um das Radar direkt auf diesen Korridor zu zentrieren.</p>
+        <h2 class="section-title">Current Situation Across 3 Main Corridors</h2>
+        <p class="section-desc">Click any sector card to open and pre-focus the tactical radar on that corridor.</p>
       </div>
 
       <div class="sectors-grid">
@@ -1045,7 +1045,7 @@
     // =========================================================================
     // INTERNATIONALIZATION (DE / EN)
     // =========================================================================
-    let currentLang = localStorage.getItem('rr_lang') || 'de';
+    let currentLang = localStorage.getItem('rr_lang') || 'en';
 
     const I18N = {
       de: {
