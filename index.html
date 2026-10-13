@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refugee Radar // v3.0</title>
+  <title>Refugee Radar // v3.1</title>
   
   <!-- MapLibre GL CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" />
@@ -257,6 +257,140 @@
     }
 
     .index-info-btn:hover {
+      background: #FFFFFF;
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Segmented Profile Switcher (Public vs Bridge Mode) */
+    .profile-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.05);
+      padding: 2px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      gap: 2px;
+      margin-right: 0.2rem;
+    }
+
+    .profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0 0.55rem;
+      height: 28px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .profile-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .profile-btn.active {
+      background: #FFFFFF;
+      color: var(--accent-blue);
+      border-color: rgba(0, 0, 0, 0.09);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-weight: 700;
+    }
+
+    /* Mode-driven Visibility */
+    body.profile-public .bridge-only {
+      display: none !important;
+    }
+
+    body.profile-bridge .public-only {
+      display: none !important;
+    }
+
+    /* Public Advocacy & Media Toolkit Card */
+    .advocacy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.85rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .advocacy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .advocacy-title {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .advocacy-badge {
+      font-size: 0.625rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(0, 122, 255, 0.09);
+      color: var(--accent-blue);
+      text-transform: uppercase;
+    }
+
+    .advocacy-text {
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .advocacy-actions {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .ngo-chips-row {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.15rem;
+    }
+
+    .ngo-link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .ngo-link-chip:hover {
       background: #FFFFFF;
       color: var(--accent-blue);
       border-color: var(--accent-blue);
@@ -1473,7 +1607,7 @@
       <div class="brand-logo" title="Refugee Radar: Ziviles Frühwarnsystem für Rettungslogistik & Seegangs-Gefahren">
         <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
-        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.0: Maritimes Frühwarnsystem mit Offline-Cache, GPX-Export und Pegel-Alarmen">v3.0</span>
+        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.1: Dual-Profile Architektur mit Public- & Brücken-Modus">v3.1</span>
       </div>
       <div class="live-pulse" title="Live-Überwachung: Wetter- und Lagedaten werden alle 30 Minuten automatisch aktualisiert">
         <div class="pulse-dot"></div>
@@ -1487,13 +1621,23 @@
     </div>
 
     <div class="nav-actions">
+      <!-- Dual-Profile Switcher: Public vs Bridge Mode -->
+      <div class="profile-switcher" id="profile-switcher">
+        <button type="button" class="profile-btn active" id="prof-btn-public" onclick="setProfile('public')" title="Öffentlichkeit & Recherche: Didaktisch aufbereitetes Lagezentrum mit Medien-Kit und NGO-Transparenz">
+          <span>Public</span>
+        </button>
+        <button type="button" class="profile-btn" id="prof-btn-bridge" onclick="setProfile('bridge')" title="Schiffsbrücke & SAR-Einsatz: Volle nautische Dichte mit Mayday-Driftrechner, GPX-Export und Audio-Alarmen">
+          <span>⚓ Brücke</span>
+        </button>
+      </div>
+
       <button class="btn-action btn-action-primary" onclick="startGuidedTour()" title="30s Tour: Schnelle interaktive Einführung für Einsteiger durch alle Funktionen">
         <span>▶</span> <span>30s Tour</span>
       </button>
-      <button class="btn-action" onclick="toggleBridgeAlertMode()" id="btn-alert-mode" title="Wach-Alarme: Akustischer Warnton (Ping) und Benachrichtigung bei gefährlichem Seegang (>1.5m) oder ruhigen Wetterfenstern">
+      <button class="btn-action bridge-only" onclick="toggleBridgeAlertMode()" id="btn-alert-mode" title="Wach-Alarme: Akustischer Warnton (Ping) und Benachrichtigung bei gefährlichem Seegang (>1.5m) oder ruhigen Wetterfenstern">
         <span id="icon-alert-bell">🔔</span> <span id="lbl-alert-status">Alerts</span>
       </button>
-      <button class="btn-action" onclick="exportNauticalGpx()" id="btn-export-gpx" title="GPX-Export: Navigationsroute für Bordcomputer & GPS-Karten-Apps herunterladen">
+      <button class="btn-action bridge-only" onclick="exportNauticalGpx()" id="btn-export-gpx" title="GPX-Export: Navigationsroute für Bordcomputer & GPS-Karten-Apps herunterladen">
         <span>GPX</span>
       </button>
       <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar" title="SITREP (Lagebericht): Vollständige operative Lagebeurteilung mit Wetterdaten, Risiken und Handlungsempfehlungen">
@@ -1528,7 +1672,7 @@
       </div>
 
       <!-- Floating HUD: Mayday Leeway Drift Tool -->
-      <div class="datum-control-bar" id="datum-control-bar">
+      <div class="datum-control-bar bridge-only" id="datum-control-bar">
         <button class="btn-datum-toggle" id="btn-toggle-datum" onclick="toggleDatumCard()" title="Mayday-Driftrechner: Berechnet Windversatz (Leeway) und die Suchfläche für ein havariertes Boot">
           🧭 <span id="lbl-datum-btn">Mayday Drift</span>
         </button>
@@ -1653,6 +1797,39 @@
           <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-secondary); font-family:var(--font-mono); font-weight:500;">
             <span id="hotspot-name-label">Hotspot Facility</span>
             <span id="hotspot-counts-label">680 / 850 Beds</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Public Advocacy & Media Toolkit Card (Visible only in Public Mode) -->
+      <div class="advocacy-card public-only" id="advocacy-toolkit-card">
+        <div class="advocacy-header">
+          <div class="advocacy-title">
+            <span>📢</span> <span id="lbl-advocacy-title">Advocacy & Media Toolkit</span>
+          </div>
+          <span class="advocacy-badge" id="lbl-advocacy-badge">Verifiziert</span>
+        </div>
+        <div class="advocacy-text" id="lbl-advocacy-desc">
+          Ziviles Informationszentrum für Medien, Beobachter und Zivilgesellschaft. Verbreite aktuelle Lageberichte oder unterstütze Rettungsorganisationen vor Ort.
+        </div>
+        <div class="advocacy-actions">
+          <button class="btn-action btn-action-primary" onclick="copyPublicShareBrief()" style="height:28px; padding:0 0.65rem; font-size:0.75rem;" title="Kopiert eine verifizierte Lagezusammenfassung für Presse, Signal oder WhatsApp">
+            <span>📋</span> <span id="lbl-btn-share-brief">Lage teilen (Presse/Social)</span>
+          </button>
+          <button class="btn-action" onclick="shareOnSocial('x')" style="height:28px; padding:0 0.55rem; font-size:0.75rem;" title="Auf X (Twitter) teilen">
+            <span>𝕏 Post</span>
+          </button>
+          <button class="btn-action" onclick="shareOnSocial('bsky')" style="height:28px; padding:0 0.55rem; font-size:0.75rem;" title="Auf Bluesky teilen">
+            <span>🦋 Bluesky</span>
+          </button>
+        </div>
+        <div>
+          <div style="font-size:0.68rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-top:0.2rem;" id="lbl-sar-initiatives">Zivile Rettungsinitiativen vor Ort:</div>
+          <div class="ngo-chips-row">
+            <a href="https://sea-watch.org" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Sea-Watch: Zivile Seenotrettung im zentralen Mittelmeer">Sea-Watch ↗</a>
+            <a href="https://sos-humanity.org" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="SOS Humanity: Rettungsschiff Humanity 1">SOS Humanity ↗</a>
+            <a href="https://www.aerzte-ohne-grenzen.de" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Ärzte ohne Grenzen: Rettungsschiff Geo Barents">MSF / Ärzte ohne Grenzen ↗</a>
+            <a href="https://www.openarms.es" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Open Arms: Rettungseinsätze im Mittelmeer">Open Arms ↗</a>
           </div>
         </div>
       </div>
@@ -1811,6 +1988,95 @@
     let map = null;
     let layersActive = { waves: true, wind: true, sar: true, hotspots: true };
     let crosshairActive = false;
+    let currentProfile = 'public'; // Defaults to Public & Advocacy as agreed in grill-me
+    try {
+      const savedProf = localStorage.getItem('rr_profile');
+      if (savedProf) currentProfile = savedProf;
+    } catch(e) {}
+
+    function setProfile(profile) {
+      currentProfile = profile;
+      try {
+        localStorage.setItem('rr_profile', profile);
+      } catch (e) {}
+      applyProfileState();
+
+      const toast = document.getElementById('toast-copy');
+      if (toast) {
+        const isDe = currentLang === 'de';
+        if (profile === 'public') {
+          toast.textContent = isDe 
+            ? '👁️ Public-Modus aktiv: Vereinfachtes Lagezentrum mit Medien-Kit' 
+            : '👁️ Public Mode active: Simplified situation center & media kit';
+        } else {
+          toast.textContent = isDe 
+            ? '⚓ Brücken-Modus aktiv: Volle nautische C2-Dichte mit Drift & GPX' 
+            : '⚓ Bridge Mode active: Full tactical C2 density with drift & GPX';
+        }
+        toast.style.display = 'flex';
+        setTimeout(() => { toast.style.display = 'none'; }, 2600);
+      }
+    }
+
+    function applyProfileState() {
+      const isPublic = currentProfile === 'public';
+      document.body.classList.toggle('profile-public', isPublic);
+      document.body.classList.toggle('profile-bridge', !isPublic);
+
+      const btnPub = document.getElementById('prof-btn-public');
+      const btnBrd = document.getElementById('prof-btn-bridge');
+      if (btnPub) btnPub.classList.toggle('active', isPublic);
+      if (btnBrd) btnBrd.classList.toggle('active', !isPublic);
+    }
+
+    function copyPublicShareBrief() {
+      const c = getActiveCorridor();
+      const isDe = currentLang === 'de';
+      const timeObj = getWallClockTime(scrubHour);
+      const wave = getWaveAtHour(scrubHour).toFixed(2);
+      const sector = c ? (c.short_name || c.name) : 'Pan-Mittelmeer';
+
+      const briefText = isDe
+        ? `🚨 REFUGEE RADAR LAGEBRIEFING (${timeObj.formatted})\n` +
+          `• Fokus-Sektor: ${sector}\n` +
+          `• Seegang: ${wave}m (${wave > 1.5 ? '⚠️ Übersteigt 1.5m Kentergrenze für Schlauchboote' : 'Günstige Wetterbedingungen für Überfahrten'})\n` +
+          `• Ziviles Frühwarnsystem für Rettungslogistik & Seegangshavarien.\n` +
+          `🔗 Live-Telemetrie & UNHCR-Lage: https://dfriedrichzrh.github.io/refugee-radar/`
+        : `🚨 REFUGEE RADAR SITUATION BRIEFING (${timeObj.formatted})\n` +
+          `• Focal Sector: ${sector}\n` +
+          `• Significant Sea: ${wave}m (${wave > 1.5 ? '⚠️ Exceeds 1.5m capsize hazard threshold' : 'Calm crossing conditions'})\n` +
+          `• Autonomous civil early-warning for SAR logistics & sea-state hazards.\n` +
+          `🔗 Live telemetry & reception capacity: https://dfriedrichzrh.github.io/refugee-radar/`;
+
+      navigator.clipboard.writeText(briefText).then(() => {
+        const toast = document.getElementById('toast-copy');
+        if (toast) {
+          toast.textContent = isDe ? '✓ Lage-Briefing für Presse/Social in Zwischenablage kopiert!' : '✓ Situation brief copied to clipboard!';
+          toast.style.display = 'flex';
+          setTimeout(() => { toast.style.display = 'none'; }, 2800);
+        }
+      }).catch(err => {
+        console.error('Clipboard copy failed:', err);
+      });
+    }
+
+    function shareOnSocial(platform) {
+      const c = getActiveCorridor();
+      const isDe = currentLang === 'de';
+      const wave = getWaveAtHour(scrubHour).toFixed(2);
+      const sector = c ? (c.short_name || c.name) : 'Mittelmeer';
+      const text = encodeURIComponent(
+        isDe 
+          ? `Refugee Radar Lagebericht: ${sector} meldet ${wave}m Seegang. Ziviles Frühwarnsystem für Seenotrettung & humanitäre Logistik: https://dfriedrichzrh.github.io/refugee-radar/`
+          : `Refugee Radar alert: ${sector} reports ${wave}m swell. Autonomous early-warning for civil SAR logistics: https://dfriedrichzrh.github.io/refugee-radar/`
+      );
+
+      if (platform === 'x') {
+        window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
+      } else if (platform === 'bsky') {
+        window.open(`https://bsky.app/intent/compose?text=${text}`, '_blank', 'noopener,noreferrer');
+      }
+    }
 
     // Custom Interactive Distress Datum state
     let customDatum = {
@@ -2863,11 +3129,25 @@
         }
       }
 
-      // Hide Maritime SAR Drift Tool on Land Corridor
+      // Hide Maritime SAR Drift Tool on Land Corridor or Public Profile
       const datumBar = document.getElementById('datum-control-bar');
       if (datumBar) {
-        datumBar.style.display = isMarine ? 'flex' : 'none';
+        datumBar.style.display = (isMarine && currentProfile === 'bridge') ? 'flex' : 'none';
       }
+
+      // Advocacy Toolkit Dynamic Localization
+      const advTitle = document.getElementById('lbl-advocacy-title');
+      const advBadge = document.getElementById('lbl-advocacy-badge');
+      const advDesc = document.getElementById('lbl-advocacy-desc');
+      const advBriefBtn = document.getElementById('lbl-btn-share-brief');
+      const advSarInit = document.getElementById('lbl-sar-initiatives');
+      if (advTitle) advTitle.textContent = isDe ? 'Advocacy & Medien-Kit' : 'Advocacy & Media Toolkit';
+      if (advBadge) advBadge.textContent = isDe ? 'Verifiziert' : 'Verified';
+      if (advDesc) advDesc.textContent = isDe
+        ? 'Ziviles Informationszentrum für Medien, Beobachter und Zivilgesellschaft. Verbreite aktuelle Lageberichte oder unterstütze Rettungsorganisationen vor Ort.'
+        : 'Civil information hub for media, observers, and civil society. Share verified situation reports or support front-line rescue organizations.';
+      if (advBriefBtn) advBriefBtn.textContent = isDe ? 'Lage teilen (Presse/Social)' : 'Share Brief (Press/Social)';
+      if (advSarInit) advSarInit.textContent = isDe ? 'Zivile Rettungsinitiativen vor Ort:' : 'Civil Rescue Initiatives on site:';
 
       // Insight text
       updateInsightText(isMarine ? getWaveAtHour(scrubHour) : getApparentAtHour(scrubHour), scrubHour, isMarine);
@@ -4262,6 +4542,7 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
 
     // Initial Bootstrap
     window.addEventListener('DOMContentLoaded', () => {
+      applyProfileState();
       initMap();
       loadData();
 

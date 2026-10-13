@@ -32,12 +32,21 @@ async function run() {
     console.log(`Testing ${dev.name} (${dev.width}x${dev.height})...`);
     await page.goto('http://127.0.0.1:8081/', { waitUntil: 'networkidle', timeout: 15000 });
     
-    // Wait for map and charts to settle
-    await page.waitForTimeout(2000);
+    // Wait for map and charts to settle in default Public mode
+    await page.waitForTimeout(1500);
 
     const shotPath = path.join(outDir, `${dev.name}.png`);
     await page.screenshot({ path: shotPath, fullPage: false });
-    console.log(`Saved screenshot: ${shotPath}`);
+    console.log(`Saved screenshot (Public mode): ${shotPath}`);
+
+    // Switch to Bridge mode and test
+    console.log(`[${dev.name}] Switching to Bridge Mode...`);
+    await page.click('#prof-btn-bridge');
+    await page.waitForTimeout(1000);
+
+    const shotPathBridge = path.join(outDir, `${dev.name}_bridge.png`);
+    await page.screenshot({ path: shotPathBridge, fullPage: false });
+    console.log(`Saved screenshot (Bridge mode): ${shotPathBridge}`);
 
     await context.close();
   }
