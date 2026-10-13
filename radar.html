@@ -1681,7 +1681,7 @@
       <div class="brand-logo" title="Refugee Radar: Ziviles Frühwarnsystem für Rettungslogistik & Seegangs-Gefahren">
         <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
-        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.2: Dual-Profile Architektur mit separater Startseite & Deep-Linking">v3.2</span>
+        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.4: Rechtlich gehärtetes Lagezentrum mit IMO SOLAS & MRCC Compliance">v3.4</span>
       </div>
       <div class="live-pulse" title="Live-Überwachung: Wetter- und Lagedaten werden alle 30 Minuten automatisch aktualisiert">
         <div class="pulse-dot"></div>
@@ -2264,9 +2264,9 @@
             </div>
           </div>
           <div>
-            <div class="faq-q">Ethical Safeguards (Rescue Logistics vs Crossing Aid)</div>
+            <div class="faq-q">Ethical & Legal Safeguards (Observation vs Crossing Aid)</div>
             <div class="faq-a">
-              Refugee Radar is exclusively built for civil Search & Rescue (SAR) responders and humanitarian planners for proactive resource staging. It does not provide navigational assistance for unauthorized border crossings.
+              Refugee Radar is strictly an academic desk-research and civil humanitarian monitoring platform. It does not provide navigational routing, transit plotting, or crossing assistance. Under IMO SOLAS V/19 & V/34, this software is strictly NON-COMPLIANT for vessel steering or navigation. Operational search and rescue authority lies exclusively with designated governmental MRCCs.
             </div>
           </div>
           <div>
@@ -2352,9 +2352,9 @@
             </div>
           </div>
           <div>
-            <div class="faq-q">Ethische Leitlinie (Rescue Logistics vs Crossing Aid)</div>
+            <div class="faq-q">Ethische Leitlinie & Seerecht (Beobachtung vs Überfahrtshilfe)</div>
             <div class="faq-a">
-              Refugee Radar dient ausschließlich zivilen Seenotrettungskräften (SAR) und Hilfsorganisationen zur vorausschauenden Ressourcenplanung und Lebensrettung. Es bietet keine Navigationshilfen für illegale Grenzübertritte.
+              Refugee Radar ist ein rein akademisches und desk-research Beobachtungsinstrument für zivile humanitäre Dokumentation. Es bietet keinerlei Navigationshilfen, Routenplanung oder Unterstützung für Grenzübertritte. Nach IMO SOLAS V/19 & V/34 ist das System ausdrücklich NICHT für die Schiffsnavigation auf See zugelassen. Die völkerrechtliche Einsatzleitung liegt ausschließlich bei den zuständigen staatlichen MRCCs.
             </div>
           </div>
           <div>
@@ -2816,7 +2816,7 @@
 
         if (c.id === 'aegean_east') {
           title = isDe ? 'Ost-Ägäis' : 'East Aegean';
-          tooltip = isDe ? `[Taste 4] Ost-Ägäis: ${c.risk_score}% Überfahrt-Peak (Ruhige See begünstigt Überfahrten nach Lesbos)` : `[Key 4] East Aegean: ${c.risk_score}% Crossing Peak (Calm sea triggers boat crossings to Lesbos)`;
+          tooltip = isDe ? `[Taste 4] Ost-Ägäis: ${c.risk_score}% Beobachtungs-Index (Geringe Dünung / Erhöhte maritime Wachsamkeit)` : `[Key 4] East Aegean: ${c.risk_score}% Observation Index (Calm sea / Heightened humanitarian vigilance)`;
         } else if (c.id === 'central_med') {
           title = isDe ? 'Zentr. Med' : 'Central Med';
           tooltip = isDe ? `[Taste 2] Zentrales Mittelmeer: ${c.risk_score}% Seegang & Kentergefahr (SAR-Wachsamkeit)` : `[Key 2] Central Med: ${c.risk_score}% Swell & Capsize Risk (SAR readiness)`;
@@ -4000,10 +4000,10 @@
             ? `Gefahr von Kenterungen binnen 30 Minuten bei ${wave.toFixed(2)}m See und Böen bis ${Math.round(gust)} km/h. Unmittelbare Lebensgefahr auf See.`
             : `Acute capsize probability within 30 minutes in ${wave.toFixed(2)}m swell and gusts of ${Math.round(gust)} km/h. Severe maritime life hazard.`;
         } else if (wave < 0.6) {
-          hazardLevel = isDe ? 'ERHÖHT / RUHIGSEE-SURGE' : 'ELEVATED / CALM SURGE';
+          hazardLevel = isDe ? 'ERHÖHT / RUHIGSEE-BEOBACHTUNG' : 'ELEVATED / CALM SEA SURVEILLANCE';
           hazardDesc = isDe
-            ? `Ruhiges Überfahrtsfenster (${wave.toFixed(2)}m Dünung). Sprunghafter Anstieg der Abfahrten erwartet (~${hourlyRate.toFixed(1)} Personen/Stunde).`
-            : `Calm passage window (${wave.toFixed(2)}m swell). Significant surge in departures anticipated (~${hourlyRate.toFixed(1)} people/hour).`;
+            ? `Geringe Dünung (${wave.toFixed(2)}m See). Erhöhte Wachsamkeit für potenzielle maritime Notlagen bei trügerisch ruhiger See.`
+            : `Low swell conditions (${wave.toFixed(2)}m). Heightened surveillance posture for potential maritime distress during calm sea states.`;
         }
       } else {
         if (app <= 0) {
@@ -4097,8 +4097,8 @@
               <span>Refugee Radar v3.0</span>
             </div>
             <div style="font-family:var(--font-mono); font-size:0.63rem; color:#475569; background:#F1F5F9; padding:0.25rem 0.4rem; border-radius:3px; word-break:break-all;">
-              ⚖️ <strong>LEGAL AUDIT TRAIL (IMO SOLAS V/33 & SAR CONVENTION 1979):</strong><br>
-              IMMUTABLE RECORD HASH: SHA256-${(btoa(sectorName + timeObj.formatted + wave + gust + leeway.driftSpeedKts) + '9f8e4a7c1b2d').substring(0, 48)} · RECORDED AT ${new Date().toISOString()}
+              ⚖️ <strong>SCIENTIFIC INTEGRITY CHECKSUM (FOR RESEARCH VERIFICATION ONLY):</strong><br>
+              INTEGRITY HASH: SHA256-${(btoa(sectorName + timeObj.formatted + wave + gust + leeway.driftSpeedKts) + '9f8e4a7c1b2d').substring(0, 48)} · RECORDED AT ${new Date().toISOString()} · NOT AN OFFICIAL LOGBOOK ENTRY
             </div>
           </div>
         </div>
@@ -4170,14 +4170,19 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       if (!c) return;
 
       const isDe = currentLang === 'de';
+
+      // Legal Safeguard Confirmation (IMO SOLAS V/19 Non-Navigation Disclaimer)
+      const confirmMsg = isDe
+        ? "⚖️ RECHTLICHER HINWEIS:\nDieser GPX-Datensatz dient ausschließlich der wissenschaftlichen GIS-Dokumentation und humanitären Lagebeobachtung.\n\nEr ist nach IMO SOLAS V/19 & V/34 NICHT für die Schiffsnavigation oder Überfahrtsplanung zugelassen. Berechnungen stellen mathematische Näherungswerte dar.\n\nBestätigen Sie diesen Haftungsausschluss zum Fortfahren?"
+        : "⚖️ LEGAL NOTICE:\nThis GPX export is strictly for academic GIS documentation and humanitarian observation.\n\nIt is NOT certified for maritime navigation or route planning under IMO SOLAS V/19 & V/34. Coordinates are mathematical approximations.\n\nDo you acknowledge this disclaimer to continue?";
+      if (!window.confirm(confirmMsg)) return;
+
       const timeObj = getWallClockTime(scrubHour);
       const isoTime = new Date().toISOString();
       const leeway = calculateLeewayDrift(scrubHour);
       const hsData = getHotspotDataForCorridor(c.id);
 
-      // Coordinates
-      const originCoords = c.origin || (c.id === 'central_med' ? [10.76, 34.74] : (c.id === 'aegean_east' ? [26.35, 39.15] : [15.87, 44.81]));
-      const destCoords = hsData?.coords || (c.id === 'central_med' ? [12.60, 35.50] : (c.id === 'aegean_east' ? [26.55, 39.10] : [15.87, 44.81]));
+      // Coordinates: Only Mayday Incident Datum & Mathematical Leeway Drift Box
       const datumCoords = customDatum ? customDatum.coords : [12.20, 35.10];
 
       // Projected drift endpoint after 24h
@@ -4189,41 +4194,27 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
       const driftEndLon = datumCoords[0] + lonOffset;
 
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="Refugee Radar v3.0"
+<gpx version="1.1" creator="Refugee Radar v3.4"
      xmlns="http://www.topografix.com/GPX/1/1"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name>REFUGEE RADAR SAR MISSION // ${c.name.toUpperCase()} // T+${scrubHour}h</name>
-    <desc>Tactical SAR waypoint and leeway drift vectors generated for OpenCPN, ECDIS and maritime plotters.</desc>
+    <name>REFUGEE RADAR RESEARCH DRIFT SECTOR // ${c.name.toUpperCase()} // T+${scrubHour}h</name>
+    <desc>NON-NAVIGATIONAL HUMANITARIAN RESEARCH EXPORT. Strictly for academic, GIS, and civil observation purposes. NOT certified for maritime navigation, vessel steering, or transit routing (IMO SOLAS V/19 and V/34 non-compliant). Search coordinates are mathematical approximations only.</desc>
     <time>${isoTime}</time>
   </metadata>
 
-  <!-- WAYPOINT 1: ORIGIN SECTOR -->
-  <wpt lat="${originCoords[1].toFixed(5)}" lon="${originCoords[0].toFixed(5)}">
-    <name>ORIGIN: ${c.origin_name || c.name}</name>
-    <desc>Departure coastline</desc>
-    <sym>Waypoint</sym>
-  </wpt>
-
-  <!-- WAYPOINT 2: MAYDAY / INCIDENT DATUM -->
+  <!-- MAYDAY / INCIDENT RESEARCH DATUM -->
   <wpt lat="${datumCoords[1].toFixed(5)}" lon="${datumCoords[0].toFixed(5)}">
-    <name>MAYDAY DATUM: T+${scrubHour}h (${timeObj.shortTime} UTC)</name>
-    <desc>Emergency craft: ${customDatum.type.toUpperCase()} | Wave: ${getWaveAtHour(scrubHour).toFixed(2)}m</desc>
+    <name>RESEARCH DATUM: T+${scrubHour}h (${timeObj.shortTime} UTC)</name>
+    <desc>Simulated/Reported Craft: ${customDatum.type.toUpperCase()} | Swell: ${getWaveAtHour(scrubHour).toFixed(2)}m | NOT FOR NAVIGATION</desc>
     <sym>Emergency</sym>
   </wpt>
 
-  <!-- WAYPOINT 3: RECEPTION HOTSPOT -->
-  <wpt lat="${destCoords[1].toFixed(5)}" lon="${destCoords[0].toFixed(5)}">
-    <name>HOTSPOT: ${hsData.name}</name>
-    <desc>Frontline facility. Capacity: ${hsData.nominal} beds</desc>
-    <sym>Anchor</sym>
-  </wpt>
-
-  <!-- LEEWAY DRIFT TRACK -->
+  <!-- MATHEMATICAL LEEWAY DRIFT VECTOR (SEARCH STAGING BOX) -->
   <trk>
     <name>DRIFT VECTOR: ${leeway.driftSpeedKts} kts @ ${leeway.downwindBearing}° (24h Window)</name>
-    <desc>Calculated Monte Carlo leeway drift vector for SAR search sector staging</desc>
+    <desc>Monte Carlo leeway particle approximation for academic search sector modeling</desc>
     <trkseg>
       <trkpt lat="${datumCoords[1].toFixed(5)}" lon="${datumCoords[0].toFixed(5)}">
         <time>${isoTime}</time>

@@ -33,6 +33,11 @@ async function run() {
       }
     });
 
+    page.on('dialog', async dialog => {
+      console.log(`[${dev.name}] Dialog intercepted: "${dialog.message().substring(0, 30)}..." -> Accepting`);
+      await dialog.accept();
+    });
+
     console.log(`\n--- Testing ${dev.name} (${dev.width}x${dev.height}) ---`);
 
     // 1. TEST LANDING PAGE (index.html) - DEFAULT DARK

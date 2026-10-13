@@ -724,7 +724,7 @@
       <a href="index.html" class="brand-wrap">
         <div class="brand-logo-icon">RR</div>
         <span class="brand-name">Refugee Radar</span>
-        <span class="version-tag">v3.2</span>
+        <span class="version-tag">v3.4</span>
       </a>
 
       <div class="nav-center-status" title="Echtzeit-Synchronisation mit Copernicus Marine & NOAA">
@@ -812,7 +812,7 @@
           </div>
 
           <p class="card-narrative" id="desc-sicily">
-            Geringer Seegang begünstigt Überfahrten auf kleinen Metallbooten von Sfax nach Lampedusa. Erhöhte Alarmbereitschaft für zivile Rettungsschiffe.
+            Mäßige Dünung im Korridor Sfax–Lampedusa. Erhöhte maritime Wachsamkeit für zivile humanitäre Beobachtungs- und Rettungslogistik.
           </p>
 
           <div class="card-footer-action">
@@ -946,8 +946,11 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="disclaimer-box">
-        <strong>Rechtlicher Hinweis:</strong> Refugee Radar ist ein unabhängiges, ziviles Open-Source-Beobachtungsinstrument und keine staatliche Rettungsleitstelle (MRCC). Wir leiten keine Einsätze und bieten keine Überfahrtsplanung an. Im akuten Seenotfall wenden Sie sich sofort an das zuständige MRCC oder die Notrufnummer 112.
+      <div class="disclaimer-box" id="legal-disclaimer-box">
+        <strong>Rechtlicher & Nautischer Hinweis (IMO SOLAS V/19 & V/34):</strong><br>
+        1. <em>Keine Schiffsnavigation (Not for Navigation):</em> Refugee Radar dient ausschließlich der akademischen Dokumentation und humanitären Lagebeobachtung. Es ist keine amtliche Seekarte (ECDIS/ENC) und darf keinesfalls zur Schiffsführung oder Reiseplanung verwendet werden.<br>
+        2. <em>Ausschließliche Zuständigkeit der MRCCs:</em> Die völkerrechtliche Einsatzkoordination obliegt nach dem SAR-Übereinkommen von 1979 und UNCLOS ausschließlich den zuständigen staatlichen Rettungsleitstellen (MRCCs). Im Seenotfall ist sofort das zuständige MRCC oder die Notrufnummer 112 zu kontaktieren.<br>
+        3. <em>Haftungsausschluss (As-Is):</em> Umweltdaten und Driftprognosen sind mathematische Modell-Näherungswerte (Copernicus/NOAA). Jegliche Haftung für Navigationsfehler, Havarien oder Folgeschäden ist ausgeschlossen.
       </div>
       <div class="footer-links-row">
         <div>&copy; 2026 Refugee Radar · Open Source MIT License</div>
@@ -1044,13 +1047,13 @@
         sectorsDesc: 'Klicke auf einen Sektor, um das Radar direkt auf diesen Korridor zu zentrieren.',
         sicilyTitle: 'Sizilien-Straße',
         sicilyBadge: 'Moderat / Ruhig',
-        sicilyDesc: 'Geringer Seegang begünstigt Überfahrten auf kleinen Metallbooten von Sfax nach Lampedusa. Erhöhte Alarmbereitschaft für zivile Rettungsschiffe.',
+        sicilyDesc: 'Mäßige Dünung im Korridor Sfax–Lampedusa. Erhöhte maritime Wachsamkeit für zivile humanitäre Beobachtungs- und Rettungslogistik.',
         centralTitle: 'Zentrales Mittelmeer',
         centralBadge: 'Erhöhtes Risiko',
         centralDesc: 'Kritische Kreuzsee und Windböen vor der libyschen Küste. Akute Kenter- und Havariegefahr für überladene Schlauchboote außerhalb der Territorialgewässer.',
         aegeanTitle: 'Ost-Ägäis',
         aegeanBadge: 'Wachsam',
-        aegeanDesc: 'Typische Kanal-Winde in den Meerengen. Lokale Dünung erschwert Schlauchboot-Transite zwischen der türkischen Küste und den griechischen Inseln.',
+        aegeanDesc: 'Typische Kanal-Winde in den Meerengen. Lokale Dünung und Kreuzsee erfordern erhöhte Wachsamkeit in Küstenpassagen.',
         cardAction: 'Im Radar fokussieren',
         metricWave: 'Welle',
         metricWind: 'Wind',
@@ -1065,8 +1068,8 @@
         feat3Desc: 'Keine geschlossenen Schnittstellen. Vollständig quelloffene Algorithmen und Datenquellen ohne politische oder militärische Einflussnahme.',
         ctaTitle: 'Bereit für die operative Lageanalyse?',
         ctaDesc: 'Starte das vollständige C2-Missions-Dashboard mit interaktiver Karte, AIS-Lagedaten und GPX-Exporten.',
-        ctaBtn: 'Taktisches Radar v3.2 starten',
-        disclaimer: 'Refugee Radar ist ein unabhängiges, ziviles Open-Source-Beobachtungsinstrument und keine staatliche Rettungsleitstelle (MRCC). Wir leiten keine Einsätze und bieten keine Überfahrtsplanung an. Im akuten Seenotfall wenden Sie sich sofort an das zuständige MRCC oder die Notrufnummer 112.',
+        ctaBtn: 'Taktisches Radar starten',
+        disclaimer: '<strong>Rechtlicher & Nautischer Hinweis (IMO SOLAS V/19 & V/34):</strong><br>1. <em>Keine Schiffsnavigation (Not for Navigation):</em> Refugee Radar dient ausschließlich der akademischen Dokumentation und humanitären Lagebeobachtung. Es ist keine amtliche Seekarte (ECDIS/ENC) und darf keinesfalls zur Schiffsführung oder Reiseplanung verwendet werden.<br>2. <em>Ausschließliche Zuständigkeit der MRCCs:</em> Die völkerrechtliche Einsatzkoordination obliegt nach dem SAR-Übereinkommen von 1979 und UNCLOS ausschließlich den zuständigen staatlichen Rettungsleitstellen (MRCCs). Im Seenotfall ist sofort das zuständige MRCC oder die Notrufnummer 112 zu kontaktieren.<br>3. <em>Haftungsausschluss (As-Is):</em> Umweltdaten und Driftprognosen sind mathematische Modell-Näherungswerte (Copernicus/NOAA). Jegliche Haftung für Navigationsfehler, Havarien oder Folgeschäden ist ausgeschlossen.',
         langNext: 'EN'
       },
       en: {
@@ -1082,13 +1085,13 @@
         sectorsDesc: 'Click any sector card to open and pre-focus the tactical radar on that corridor.',
         sicilyTitle: 'Sicily Strait',
         sicilyBadge: 'Moderate / Calm',
-        sicilyDesc: 'Low swell favors crossings on small iron skiffs from Sfax to Lampedusa. High alert readiness for civil rescue vessels.',
+        sicilyDesc: 'Moderate swell in the Sfax–Lampedusa corridor. Heightened maritime readiness for civil humanitarian monitoring and rescue logistics.',
         centralTitle: 'Central Mediterranean',
         centralBadge: 'Elevated Risk',
         centralDesc: 'Critical cross-sea and wind gusts off the Libyan coast. Severe capsize and distress risk for overloaded rubber dinghies outside territorial waters.',
         aegeanTitle: 'Eastern Aegean',
         aegeanBadge: 'Watchful',
-        aegeanDesc: 'Channel winds through straits. Local swell complicates dinghy transits between Turkish shores and Greek islands.',
+        aegeanDesc: 'Channel winds through straits. Local swell and chop necessitate heightened maritime vigilance in coastal passages.',
         cardAction: 'Focus in Radar',
         metricWave: 'Wave',
         metricWind: 'Wind',
@@ -1103,8 +1106,8 @@
         feat3Desc: 'Zero proprietary locks. Fully open-source deterministic algorithms and data pipelines without political interference.',
         ctaTitle: 'Ready for Operational Assessment?',
         ctaDesc: 'Launch the full C2 tactical mission dashboard with interactive MapLibre charts, AIS feeds and GPX export.',
-        ctaBtn: 'Launch Tactical Radar v3.2',
-        disclaimer: 'Refugee Radar is an independent open-source humanitarian monitoring instrument and not an official Maritime Rescue Coordination Centre (MRCC). We do not coordinate rescue operations nor provide crossing navigation. In case of distress at sea, alert the responsible MRCC or emergency number 112 immediately.',
+        ctaBtn: 'Launch Tactical Radar',
+        disclaimer: '<strong>Legal & Maritime Compliance Notice (IMO SOLAS V/19 & V/34):</strong><br>1. <em>Not for Navigation:</em> Refugee Radar is strictly an academic desk-research and civil humanitarian monitoring platform. It is NOT an official Electronic Chart Display (ECDIS/ENC) and must never be used for nautical navigation, course plotting, or voyage planning.<br>2. <em>Exclusive Authority of MRCCs:</em> Under the 1979 SAR Convention and UNCLOS Art. 98, operational coordination of search and rescue lies exclusively with mandated national Maritime Rescue Coordination Centres (MRCCs). In emergencies, alert the competent MRCC or 112 immediately.<br>3. <em>Complete Disclaimer of Liability (As-Is):</em> Environmental metrics and leeway drift projections are mathematical approximations (Copernicus/NOAA). Any liability for navigation decisions, maritime incidents, or consequential damages is strictly disclaimed.',
         langNext: 'DE'
       }
     };

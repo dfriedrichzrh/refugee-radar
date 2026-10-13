@@ -1,7 +1,7 @@
-// Refugee Radar v3.2 - Maritime Offline Service Worker
+// Refugee Radar v3.4 - Maritime Offline Service Worker
 // Cache-First for static assets; Network-First with offline fallback for live telemetry
 
-const CACHE_NAME = 'refugee-radar-v3.2.0';
+const CACHE_NAME = 'refugee-radar-v3.4.0';
 const STATIC_ASSETS = [
   './',
   './index.html',
