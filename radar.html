@@ -334,18 +334,7 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
-    /* Segmented Profile Switcher (Public vs Bridge Mode) */
-    .profile-switcher {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.05);
-      padding: 2px;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      gap: 2px;
-      margin-right: 0.2rem;
-    }
-
+    /* Preferences Pill Buttons (Theme & Language) */
     .profile-btn {
       display: inline-flex;
       align-items: center;
@@ -368,23 +357,6 @@
     .profile-btn:hover {
       color: var(--text-main);
       background: rgba(255, 255, 255, 0.8);
-    }
-
-    .profile-btn.active {
-      background: #FFFFFF;
-      color: var(--accent-blue);
-      border-color: rgba(0, 0, 0, 0.09);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      font-weight: 700;
-    }
-
-    /* Mode-driven Visibility */
-    body.profile-public .bridge-only {
-      display: none !important;
-    }
-
-    body.profile-bridge .public-only {
-      display: none !important;
     }
 
     /* Public Advocacy & Media Toolkit Card */
@@ -1691,7 +1663,7 @@
       <div class="brand-logo" title="Refugee Radar: Ziviles Frühwarnsystem für Rettungslogistik & Seegangs-Gefahren">
         <div class="brand-monogram">RR</div>
         <span>Refugee Radar</span>
-        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.5: Light Theme Default Edition mit IMO SOLAS & MRCC Compliance">v3.5</span>
+        <span style="font-size:0.62rem; font-weight:700; color:var(--accent-blue); background:var(--accent-blue-light); padding:2px 5px; border-radius:4px; margin-left:3px; letter-spacing:0.02em;" title="Version 3.6: Lean Unified Edition — Zero Mode Bloat, Integrated SITREP">v3.6</span>
       </div>
       <div class="live-pulse" title="Live-Überwachung: Wetter- und Lagedaten werden alle 30 Minuten automatisch aktualisiert">
         <div class="pulse-dot"></div>
@@ -1705,40 +1677,25 @@
     </div>
 
     <div class="nav-actions">
-      <!-- Dual-Profile Switcher: Public vs Bridge Mode -->
-      <div class="profile-switcher" id="profile-switcher">
-        <button type="button" class="profile-btn active" id="prof-btn-public" onclick="setProfile('public')" title="Öffentlichkeit & Recherche: Didaktisch aufbereitetes Lagezentrum mit Medien-Kit und NGO-Transparenz">
-          <span>Public</span>
-        </button>
-        <button type="button" class="profile-btn" id="prof-btn-bridge" onclick="setProfile('bridge')" title="Schiffsbrücke & SAR-Einsatz: Volle nautische Dichte mit Mayday-Driftrechner, GPX-Export und Audio-Alarmen">
-          <span>⚓ Brücke</span>
-        </button>
-      </div>
-
-      <button class="btn-action btn-action-primary" onclick="startGuidedTour()" title="30s Tour: Schnelle interaktive Einführung für Einsteiger durch alle Funktionen">
+      <button class="btn-action" onclick="startGuidedTour()" title="30s Tour: Fast interactive walk-through">
         <span>▶</span> <span>30s Tour</span>
       </button>
-      <button class="btn-action bridge-only" onclick="toggleBridgeAlertMode()" id="btn-alert-mode" title="Wach-Alarme: Akustischer Warnton (Ping) und Benachrichtigung bei gefährlichem Seegang (>1.5m) oder ruhigen Wetterfenstern">
-        <span id="icon-alert-bell">🔔</span> <span id="lbl-alert-status">Alerts</span>
-      </button>
-      <button class="btn-action bridge-only" onclick="exportNauticalGpx()" id="btn-export-gpx" title="GPX-Export: Navigationsroute für Bordcomputer & GPS-Karten-Apps herunterladen">
-        <span>GPX</span>
-      </button>
-      <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar" title="SITREP (Lagebericht): Vollständige operative Lagebeurteilung mit Wetterdaten, Risiken und Handlungsempfehlungen">
+
+      <button class="btn-action btn-action-primary" onclick="openSitrepModal()" id="lbl-report-bar" title="SITREP: Full operational assessment, GPX, GeoJSON and printable PDF dossier">
         <span>SITREP</span>
       </button>
 
-      <!-- Preferences: Theme (Asset Sniper style) & Language -->
-      <div class="profile-switcher" style="padding:2px; gap:2px;" title="Design & Sprache">
-        <button type="button" class="profile-btn" id="btn-theme-toggle" onclick="toggleTheme()" title="Design wechseln (Dunkel / Hell)">
+      <!-- Preferences: Theme & Language -->
+      <div class="prefs-group" style="display:inline-flex; align-items:center; background:rgba(0,0,0,0.05); padding:2px; border-radius:8px; border:1px solid rgba(0,0,0,0.08); gap:2px;" title="Design & Language">
+        <button type="button" class="profile-btn" id="btn-theme-toggle" onclick="toggleTheme()" title="Switch Theme (Dark / Light)">
           <span id="theme-icon">🌙</span>
         </button>
-        <button type="button" class="profile-btn" id="btn-lang" onclick="toggleLanguage()" title="Sprache umschalten (Deutsch / English)">
+        <button type="button" class="profile-btn" id="btn-lang" onclick="toggleLanguage()" title="Switch Language (Deutsch / English)">
           <span id="lbl-lang-code">DE</span>
         </button>
       </div>
 
-      <button class="btn-action" onclick="openFaqModal()" id="lbl-faq" title="FAQ: Methodik, Datenquellen, Modelle und ethische Leitlinien">
+      <button class="btn-action" onclick="openFaqModal()" id="lbl-faq" title="FAQ: Methodology, data feeds, models and compliance">
         <span>FAQ</span>
       </button>
     </div>
@@ -1892,40 +1849,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Public Advocacy & Media Toolkit Card (Kollabierbar für schlankes Zero-Scroll Dashboard) -->
-      <details class="advocacy-card public-only" id="advocacy-toolkit-card" style="padding:0.75rem 1rem; cursor:pointer;">
-        <summary style="display:flex; justify-content:space-between; align-items:center; list-style:none; outline:none; user-select:none;">
-          <div class="advocacy-title" style="margin:0; font-size:0.8rem; font-weight:700;">
-            <span>📢</span> <span id="lbl-advocacy-title">Advocacy & Media Toolkit</span>
-          </div>
-          <span class="advocacy-badge" style="font-size:0.68rem; padding:2px 8px; border-radius:9999px;" id="lbl-advocacy-badge">Lage teilen ▾</span>
-        </summary>
-        <div style="margin-top:0.75rem; border-top:1px solid var(--border-hairline); padding-top:0.75rem;">
-        <div class="advocacy-text" id="lbl-advocacy-desc">
-          Ziviles Informationszentrum für Medien, Beobachter und Zivilgesellschaft. Verbreite aktuelle Lageberichte oder unterstütze Rettungsorganisationen vor Ort.
-        </div>
-        <div class="advocacy-actions">
-          <button class="btn-action btn-action-primary" onclick="copyPublicShareBrief()" style="height:28px; padding:0 0.65rem; font-size:0.75rem;" title="Kopiert eine verifizierte Lagezusammenfassung für Presse, Signal oder WhatsApp">
-            <span>📋</span> <span id="lbl-btn-share-brief">Lage teilen (Presse/Social)</span>
-          </button>
-          <button class="btn-action" onclick="shareOnSocial('x')" style="height:28px; padding:0 0.55rem; font-size:0.75rem;" title="Auf X (Twitter) teilen">
-            <span>𝕏 Post</span>
-          </button>
-          <button class="btn-action" onclick="shareOnSocial('bsky')" style="height:28px; padding:0 0.55rem; font-size:0.75rem;" title="Auf Bluesky teilen">
-            <span>🦋 Bluesky</span>
-          </button>
-        </div>
-        <div>
-          <div style="font-size:0.68rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-top:0.2rem;" id="lbl-sar-initiatives">Zivile Rettungsinitiativen vor Ort:</div>
-          <div class="ngo-chips-row">
-            <a href="https://sea-watch.org" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Sea-Watch: Zivile Seenotrettung im zentralen Mittelmeer">Sea-Watch ↗</a>
-            <a href="https://sos-humanity.org" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="SOS Humanity: Rettungsschiff Humanity 1">SOS Humanity ↗</a>
-            <a href="https://www.aerzte-ohne-grenzen.de" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Ärzte ohne Grenzen: Rettungsschiff Geo Barents">MSF / Ärzte ohne Grenzen ↗</a>
-            <a href="https://www.openarms.es" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Open Arms: Rettungseinsätze im Mittelmeer">Open Arms ↗</a>
-          </div>
-        </div>
-      </details>
 
       <!-- Compact Plain-Language Sensor Fusion Bar -->
       <div class="agent-card-compact">
@@ -2081,46 +2004,6 @@
     let map = null;
     let layersActive = { waves: true, wind: true, sar: true, hotspots: true };
     let crosshairActive = false;
-    let currentProfile = 'public'; // Defaults to Public & Advocacy as agreed in grill-me
-    try {
-      const savedProf = localStorage.getItem('rr_profile');
-      if (savedProf) currentProfile = savedProf;
-    } catch(e) {}
-
-    function setProfile(profile) {
-      currentProfile = profile;
-      try {
-        localStorage.setItem('rr_profile', profile);
-      } catch (e) {}
-      applyProfileState();
-
-      const toast = document.getElementById('toast-copy');
-      if (toast) {
-        const isDe = currentLang === 'de';
-        if (profile === 'public') {
-          toast.textContent = isDe 
-            ? '👁️ Public-Modus aktiv: Vereinfachtes Lagezentrum mit Medien-Kit' 
-            : '👁️ Public Mode active: Simplified situation center & media kit';
-        } else {
-          toast.textContent = isDe 
-            ? '⚓ Brücken-Modus aktiv: Volle nautische C2-Dichte mit Drift & GPX' 
-            : '⚓ Bridge Mode active: Full tactical C2 density with drift & GPX';
-        }
-        toast.style.display = 'flex';
-        setTimeout(() => { toast.style.display = 'none'; }, 2600);
-      }
-    }
-
-    function applyProfileState() {
-      const isPublic = currentProfile === 'public';
-      document.body.classList.toggle('profile-public', isPublic);
-      document.body.classList.toggle('profile-bridge', !isPublic);
-
-      const btnPub = document.getElementById('prof-btn-public');
-      const btnBrd = document.getElementById('prof-btn-bridge');
-      if (btnPub) btnPub.classList.toggle('active', isPublic);
-      if (btnBrd) btnBrd.classList.toggle('active', !isPublic);
-    }
 
     function copyPublicShareBrief() {
       const c = getActiveCorridor();
@@ -3234,25 +3117,11 @@
         }
       }
 
-      // Hide Maritime SAR Drift Tool on Land Corridor or Public Profile
+      // Maritime SAR Drift Tool visible on Marine Corridors
       const datumBar = document.getElementById('datum-control-bar');
       if (datumBar) {
-        datumBar.style.display = (isMarine && currentProfile === 'bridge') ? 'flex' : 'none';
+        datumBar.style.display = isMarine ? 'flex' : 'none';
       }
-
-      // Advocacy Toolkit Dynamic Localization
-      const advTitle = document.getElementById('lbl-advocacy-title');
-      const advBadge = document.getElementById('lbl-advocacy-badge');
-      const advDesc = document.getElementById('lbl-advocacy-desc');
-      const advBriefBtn = document.getElementById('lbl-btn-share-brief');
-      const advSarInit = document.getElementById('lbl-sar-initiatives');
-      if (advTitle) advTitle.textContent = isDe ? 'Advocacy & Medien-Kit' : 'Advocacy & Media Toolkit';
-      if (advBadge) advBadge.textContent = isDe ? 'Verifiziert' : 'Verified';
-      if (advDesc) advDesc.textContent = isDe
-        ? 'Ziviles Informationszentrum für Medien, Beobachter und Zivilgesellschaft. Verbreite aktuelle Lageberichte oder unterstütze Rettungsorganisationen vor Ort.'
-        : 'Civil information hub for media, observers, and civil society. Share verified situation reports or support front-line rescue organizations.';
-      if (advBriefBtn) advBriefBtn.textContent = isDe ? 'Lage teilen (Presse/Social)' : 'Share Brief (Press/Social)';
-      if (advSarInit) advSarInit.textContent = isDe ? 'Zivile Rettungsinitiativen vor Ort:' : 'Civil Rescue Initiatives on site:';
 
       // Insight text
       updateInsightText(isMarine ? getWaveAtHour(scrubHour) : getApparentAtHour(scrubHour), scrubHour, isMarine);
@@ -4685,7 +4554,6 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
         toggleLanguage();
       }
 
-      applyProfileState();
       initMap();
       loadData();
 

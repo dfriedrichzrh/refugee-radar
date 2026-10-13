@@ -105,22 +105,29 @@ async function run() {
     await page.screenshot({ path: shotRadarDark, fullPage: false });
     console.log(`  ✓ Screenshot: ${shotRadarDark}`);
 
-    // 6. TEST COLLAPSIBLE ADVOCACY TOOLKIT IN RADAR
-    console.log(`[${dev.name}] Testing collapsible Advocacy Toolkit drawer...`);
-    const advCard = await page.$('#advocacy-toolkit-card');
-    if (advCard) {
-      await page.click('#advocacy-toolkit-card summary');
-      await page.waitForTimeout(300);
-      console.log('  ✓ Advocacy Toolkit expanded successfully.');
-    }
+    // 6. TEST STREAMLINED SITREP MODAL & INTEGRATED GPX EXPORT
+    console.log(`[${dev.name}] Testing SITREP Modal and Integrated GPX Export...`);
+    await page.click('#lbl-report-bar');
+    await page.waitForTimeout(600);
+    const sitrepModal = await page.$('#sitrep-modal.active');
+    if (!sitrepModal) throw new Error('SITREP modal failed to open!');
+    const gpxBtn = await page.$('#sitrep-modal button[onclick*="exportNauticalGpx"]');
+    if (!gpxBtn) throw new Error('GPX export button missing from SITREP modal!');
+    console.log('  ✓ SITREP modal and integrated GPX export verified.');
 
-    // 7. TEST BRIDGE MODE
-    console.log(`[${dev.name}] Testing Bridge Mode in Radar...`);
-    await page.click('#prof-btn-bridge');
-    await page.waitForTimeout(1000);
-    const shotRadarBridge = path.join(outDir, `${dev.name}_radar_bridge.png`);
-    await page.screenshot({ path: shotRadarBridge, fullPage: false });
-    console.log(`  ✓ Screenshot: ${shotRadarBridge}`);
+    const shotRadarSitrep = path.join(outDir, `${dev.name}_radar_sitrep.png`);
+    await page.screenshot({ path: shotRadarSitrep, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotRadarSitrep}`);
+
+    // Close SITREP modal via Escape key
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(400);
+
+    // 7. TEST STREAMLINED LEAN RADAR DASHBOARD
+    console.log(`[${dev.name}] Verifying Lean Radar Dashboard layout...`);
+    const shotRadarClean = path.join(outDir, `${dev.name}_radar_clean.png`);
+    await page.screenshot({ path: shotRadarClean, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotRadarClean}`);
 
     // 8. TEST RETURN TO HOME LINK
     console.log(`[${dev.name}] Returning to Home...`);
