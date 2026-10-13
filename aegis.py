@@ -33,6 +33,7 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE_PATH = os.path.join(HERE, "live_state.json")
 INDEX_PATH = os.path.join(HERE, "index.html")
+RADAR_PATH = os.path.join(HERE, "radar.html")
 PREVIEW_PATH = os.path.join(HERE, "preview.html")
 SW_PATH = os.path.join(HERE, "sw.js")
 REFRESH_SECONDS = 1800
@@ -906,6 +907,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
     ROUTES = {
         "/": (INDEX_PATH, "text/html; charset=utf-8"),
         "/index.html": (INDEX_PATH, "text/html; charset=utf-8"),
+        "/radar": (RADAR_PATH, "text/html; charset=utf-8"),
+        "/radar.html": (RADAR_PATH, "text/html; charset=utf-8"),
         "/preview": (PREVIEW_PATH, "text/html; charset=utf-8"),
         "/preview.html": (PREVIEW_PATH, "text/html; charset=utf-8"),
         "/sw.js": (SW_PATH, "application/javascript; charset=utf-8"),
@@ -995,6 +998,8 @@ def self_test(view):
         errs.append("live_state.json unreadable: %s" % exc)
     if not os.path.exists(INDEX_PATH):
         errs.append("index.html missing")
+    if not os.path.exists(RADAR_PATH):
+        errs.append("radar.html missing")
     return errs
 
 
@@ -1003,7 +1008,7 @@ def http_self_test():
     port = srv.server_address[1]
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     out = []
-    checks = [("GET", "/index.html", 200), ("GET", "/live_state.json", 200), ("HEAD", "/", 200),
+    checks = [("GET", "/index.html", 200), ("GET", "/radar.html", 200), ("GET", "/live_state.json", 200), ("HEAD", "/", 200),
               ("POST", "/live_state.json", 405), ("PUT", "/index.html", 405), ("DELETE", "/live_state.json", 405),
               ("GET", "/aegis.py", 404), ("GET", "/../aegis.py", 404)]
     for method, path, expect in checks:
