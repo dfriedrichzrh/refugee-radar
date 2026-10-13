@@ -57,6 +57,77 @@
       --radius-pill: 9999px;
     }
 
+    /* --------------------------------------------------------------------------
+       TACTICAL NIGHT MISSION DARK THEME (VisionOS / Asset Sniper Style)
+       -------------------------------------------------------------------------- */
+    body.dark-theme {
+      --bg-studio: #080c14;
+      --bg-canvas: #0c121e;
+      --surface-glass: rgba(16, 24, 38, 0.88);
+      --surface-glass-heavy: rgba(16, 24, 38, 0.96);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.16);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-secondary: #cbd5e1;
+      
+      --shadow-elevation-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+      --shadow-elevation-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+      --shadow-elevation-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-theme .top-command-nav {
+      background: rgba(10, 16, 28, 0.88);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    body.dark-theme .maplibregl-canvas {
+      filter: brightness(0.82) invert(0.92) hue-rotate(190deg) contrast(1.15);
+    }
+
+    body.dark-theme .btn-action {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    body.dark-theme .btn-action:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    body.dark-theme .corridor-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    body.dark-theme .corridor-tab.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-theme .profile-switcher {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-theme .profile-btn {
+      color: var(--text-muted);
+    }
+
+    body.dark-theme .profile-btn.active {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+    }
+
+    body.dark-theme .modal-container {
+      background: #0E1422;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #F8FAFC;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -1646,9 +1717,17 @@
       <button class="btn-action" onclick="openSitrepModal()" id="lbl-report-bar" title="SITREP (Lagebericht): Vollständige operative Lagebeurteilung mit Wetterdaten, Risiken und Handlungsempfehlungen">
         <span>SITREP</span>
       </button>
-      <button class="btn-action" onclick="toggleLanguage()" id="btn-lang" title="Sprache umschalten (Deutsch / English)">
-        <span id="lbl-lang-code">DE</span>
-      </button>
+
+      <!-- Preferences: Theme (Asset Sniper style) & Language -->
+      <div class="profile-switcher" style="padding:2px; gap:2px;" title="Design & Sprache">
+        <button type="button" class="profile-btn" id="btn-theme-toggle" onclick="toggleTheme()" title="Design wechseln (Dunkel / Hell)">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button type="button" class="profile-btn" id="btn-lang" onclick="toggleLanguage()" title="Sprache umschalten (Deutsch / English)">
+          <span id="lbl-lang-code">DE</span>
+        </button>
+      </div>
+
       <button class="btn-action" onclick="openFaqModal()" id="lbl-faq" title="FAQ: Methodik, Datenquellen, Modelle und ethische Leitlinien">
         <span>FAQ</span>
       </button>
@@ -1804,14 +1883,15 @@
         </div>
       </div>
 
-      <!-- Public Advocacy & Media Toolkit Card (Visible only in Public Mode) -->
-      <div class="advocacy-card public-only" id="advocacy-toolkit-card">
-        <div class="advocacy-header">
-          <div class="advocacy-title">
+      <!-- Public Advocacy & Media Toolkit Card (Kollabierbar für schlankes Zero-Scroll Dashboard) -->
+      <details class="advocacy-card public-only" id="advocacy-toolkit-card" style="padding:0.75rem 1rem; cursor:pointer;">
+        <summary style="display:flex; justify-content:space-between; align-items:center; list-style:none; outline:none; user-select:none;">
+          <div class="advocacy-title" style="margin:0; font-size:0.8rem; font-weight:700;">
             <span>📢</span> <span id="lbl-advocacy-title">Advocacy & Media Toolkit</span>
           </div>
-          <span class="advocacy-badge" id="lbl-advocacy-badge">Verifiziert</span>
-        </div>
+          <span class="advocacy-badge" style="font-size:0.68rem; padding:2px 8px; border-radius:9999px;" id="lbl-advocacy-badge">Lage teilen ▾</span>
+        </summary>
+        <div style="margin-top:0.75rem; border-top:1px solid var(--border-hairline); padding-top:0.75rem;">
         <div class="advocacy-text" id="lbl-advocacy-desc">
           Ziviles Informationszentrum für Medien, Beobachter und Zivilgesellschaft. Verbreite aktuelle Lageberichte oder unterstütze Rettungsorganisationen vor Ort.
         </div>
@@ -1835,7 +1915,7 @@
             <a href="https://www.openarms.es" target="_blank" rel="noopener noreferrer" class="ngo-link-chip" title="Open Arms: Rettungseinsätze im Mittelmeer">Open Arms ↗</a>
           </div>
         </div>
-      </div>
+      </details>
 
       <!-- Compact Plain-Language Sensor Fusion Bar -->
       <div class="agent-card-compact">
@@ -3704,6 +3784,39 @@
       updateDisplay();
       renderTimelineChart();
       renderAgentFeed();
+
+      // Persist language
+      localStorage.setItem('rr_lang', currentLang);
+      const themeBtn = document.getElementById('btn-theme-toggle');
+      if (themeBtn) themeBtn.title = currentLang === 'de' ? 'Design wechseln (Dunkel / Hell)' : 'Toggle Theme (Dark / Light)';
+    }
+
+    // =========================================================================
+    // THEME MANAGEMENT (Apple Dark / Light wie in Asset Sniper)
+    // =========================================================================
+    let currentTheme = localStorage.getItem('rr_theme') || 'light';
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('rr_theme', theme);
+      const icon = document.getElementById('theme-icon');
+      const btn = document.getElementById('btn-theme-toggle');
+
+      if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+        if (icon) icon.textContent = '☀️';
+        if (btn) btn.title = currentLang === 'de' ? 'Auf helles Design umschalten' : 'Switch to Light Theme';
+      } else {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+        if (icon) icon.textContent = '🌙';
+        if (btn) btn.title = currentLang === 'de' ? 'Auf dunkles Design umschalten' : 'Switch to Dark Theme';
+      }
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
     }
 
     // Modal Controls: FAQ & SITREP
@@ -4557,6 +4670,16 @@ Source: Refugee Radar (Open-Meteo ECMWF / UNHCR)`;
 
     // Initial Bootstrap
     window.addEventListener('DOMContentLoaded', () => {
+      // Restore Theme & Language from localStorage
+      const savedTheme = localStorage.getItem('rr_theme') || 'light';
+      applyTheme(savedTheme);
+
+      const savedLang = localStorage.getItem('rr_lang') || 'de';
+      if (savedLang !== currentLang) {
+        currentLang = savedLang === 'en' ? 'de' : 'en';
+        toggleLanguage();
+      }
+
       applyProfileState();
       initMap();
       loadData();

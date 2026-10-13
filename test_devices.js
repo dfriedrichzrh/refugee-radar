@@ -35,23 +35,39 @@ async function run() {
 
     console.log(`\n--- Testing ${dev.name} (${dev.width}x${dev.height}) ---`);
 
-    // 1. TEST LANDING PAGE (index.html)
-    console.log(`[${dev.name}] Navigating to Landing Page (index.html)...`);
+    // 1. TEST LANDING PAGE (index.html) - DEFAULT DARK
+    console.log(`[${dev.name}] Testing Landing Page (Dark)...`);
     await page.goto('http://127.0.0.1:8081/', { waitUntil: 'networkidle', timeout: 15000 });
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(500);
 
-    const shotLanding = path.join(outDir, `${dev.name}_landing.png`);
-    await page.screenshot({ path: shotLanding, fullPage: false });
-    console.log(`  ✓ Saved screenshot: ${shotLanding}`);
+    const shotLandingDark = path.join(outDir, `${dev.name}_landing_dark.png`);
+    await page.screenshot({ path: shotLandingDark, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotLandingDark}`);
 
-    // Verify Title and Hero elements
-    const heroTitle = await page.$eval('.hero-title', el => el.textContent.trim());
-    console.log(`  ✓ Hero Title verified: "${heroTitle}"`);
+    // 2. TEST THEME TOGGLE ON LANDING PAGE (Dark -> Light)
+    console.log(`[${dev.name}] Toggling Landing Page Theme to Light...`);
+    await page.click('#btn-theme-toggle');
+    await page.waitForTimeout(500);
+    const isLight = await page.$eval('body', b => b.classList.contains('light-theme'));
+    if (!isLight) throw new Error('Failed to switch to light-theme on landing page!');
+    const shotLandingLight = path.join(outDir, `${dev.name}_landing_light.png`);
+    await page.screenshot({ path: shotLandingLight, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotLandingLight}`);
 
-    // 2. TEST NAVIGATION TO RADAR (radar.html)
-    console.log(`[${dev.name}] Testing deep-link from sector card to radar.html...`);
+    // 3. TEST LANGUAGE TOGGLE ON LANDING PAGE (DE -> EN)
+    console.log(`[${dev.name}] Toggling Landing Page Language to EN...`);
+    await page.click('#btn-lang-toggle');
+    await page.waitForTimeout(500);
+    const enTitle = await page.$eval('.hero-title', el => el.textContent.trim());
+    console.log(`  ✓ English Headline verified: "${enTitle}"`);
+    if (!enTitle.includes('Real-Time Mediterranean')) {
+      throw new Error(`Expected English headline, got: "${enTitle}"`);
+    }
+
+    // 4. TEST DEEP-LINK NAVIGATION TO RADAR
+    console.log(`[${dev.name}] Deep-linking to radar.html?sector=central_med...`);
     await page.click('#card-sector-central');
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1500);
 
     const currentUrl = page.url();
     console.log(`  ✓ Navigated to: ${currentUrl}`);
@@ -59,32 +75,44 @@ async function run() {
       throw new Error(`Expected URL to contain radar.html, got ${currentUrl}`);
     }
 
-    const shotRadar = path.join(outDir, `${dev.name}_radar_public.png`);
-    await page.screenshot({ path: shotRadar, fullPage: false });
-    console.log(`  ✓ Saved screenshot (Radar Public): ${shotRadar}`);
+    // 5. TEST RADAR THEME SWITCH (Light -> Dark)
+    console.log(`[${dev.name}] Testing Radar Dark Theme switch...`);
+    await page.click('#btn-theme-toggle');
+    await page.waitForTimeout(500);
+    const shotRadarDark = path.join(outDir, `${dev.name}_radar_dark.png`);
+    await page.screenshot({ path: shotRadarDark, fullPage: false });
+    console.log(`  ✓ Screenshot: ${shotRadarDark}`);
 
-    // 3. TEST BRIDGE MODE SWITCH
-    console.log(`[${dev.name}] Testing Bridge Mode switch in Radar...`);
+    // 6. TEST COLLAPSIBLE ADVOCACY TOOLKIT IN RADAR
+    console.log(`[${dev.name}] Testing collapsible Advocacy Toolkit drawer...`);
+    const advCard = await page.$('#advocacy-toolkit-card');
+    if (advCard) {
+      await page.click('#advocacy-toolkit-card summary');
+      await page.waitForTimeout(300);
+      console.log('  ✓ Advocacy Toolkit expanded successfully.');
+    }
+
+    // 7. TEST BRIDGE MODE
+    console.log(`[${dev.name}] Testing Bridge Mode in Radar...`);
     await page.click('#prof-btn-bridge');
     await page.waitForTimeout(1000);
-
     const shotRadarBridge = path.join(outDir, `${dev.name}_radar_bridge.png`);
     await page.screenshot({ path: shotRadarBridge, fullPage: false });
-    console.log(`  ✓ Saved screenshot (Radar Bridge): ${shotRadarBridge}`);
+    console.log(`  ✓ Screenshot: ${shotRadarBridge}`);
 
-    // 4. TEST RETURN TO HOME
-    console.log(`[${dev.name}] Testing return link to Home...`);
+    // 8. TEST RETURN TO HOME LINK
+    console.log(`[${dev.name}] Returning to Home...`);
     const homeLink = await page.$('a[href="index.html"]');
-    if (!homeLink) throw new Error('Home return link not found in radar.html header!');
+    if (!homeLink) throw new Error('Home return link not found!');
     await homeLink.click();
     await page.waitForTimeout(1000);
-    console.log(`  ✓ Successfully returned to: ${page.url()}`);
+    console.log(`  ✓ Successfully back at: ${page.url()}`);
 
     await context.close();
   }
 
   await browser.close();
-  console.log(`\nAll device tests completed successfully. Total console errors: ${totalErrors}`);
+  console.log(`\nAll device & interaction tests completed successfully. Total console errors: ${totalErrors}`);
   if (totalErrors > 0) {
     process.exit(1);
   }

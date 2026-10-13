@@ -51,6 +51,121 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* --------------------------------------------------------------------------
+       APPLE LIGHT THEME (Asset Sniper / Clean White Precision)
+       -------------------------------------------------------------------------- */
+    body.light-theme {
+      --bg-base: #f5f5f7;
+      --bg-surface: rgba(255, 255, 255, 0.82);
+      --bg-surface-hover: rgba(255, 255, 255, 0.95);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-focus: rgba(0, 0, 0, 0.22);
+      --text-main: #1d1d1f;
+      --text-muted: #86868b;
+      --text-sub: #515154;
+      background-image: 
+        radial-gradient(circle at 50% -10%, rgba(0, 113, 227, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 85% 30%, rgba(48, 209, 88, 0.04) 0%, transparent 45%);
+    }
+
+    body.light-theme .site-header {
+      background: rgba(255, 255, 255, 0.82);
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .brand-logo-icon {
+      background: linear-gradient(135deg, #e8eff9, #d0e0f8);
+      border-color: rgba(0, 113, 227, 0.2);
+      color: #0071e3;
+    }
+
+    body.light-theme .hero-title {
+      background: linear-gradient(180deg, #1d1d1f 30%, #515154 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.light-theme .hero-pill {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0071e3;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .btn-hero-secondary {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-theme .btn-hero-secondary:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .metrics-row {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-theme .cta-banner {
+      background: linear-gradient(135deg, #ffffff, #f0f4f9);
+      border-color: rgba(0, 113, 227, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-theme .site-footer {
+      background: #ededf0;
+      border-top-color: rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .disclaimer-box {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-theme .prefs-group {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .btn-pref {
+      color: var(--text-main);
+    }
+
+    body.light-theme .btn-pref:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* PREFERENCES PILL (Theme & Language Switchers) */
+    .prefs-group {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .btn-pref {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      line-height: 1;
+    }
+
+    .btn-pref:hover {
+      background: rgba(255, 255, 255, 0.12);
     }
 
     /* --------------------------------------------------------------------------
@@ -618,9 +733,20 @@
       </div>
 
       <div class="header-actions">
-        <a href="#features" class="nav-link">Methodik</a>
+        <a href="#features" class="nav-link" id="nav-features-link">Methodik</a>
+
+        <!-- Preferences: Theme (Dark/Light wie in Asset Sniper) & Sprache (DE/EN) -->
+        <div class="prefs-group" title="Benutzereinstellungen">
+          <button type="button" class="btn-pref" id="btn-theme-toggle" onclick="toggleTheme()" title="Design wechseln (Dunkel / Hell)">
+            <span id="theme-icon">☀️</span>
+          </button>
+          <button type="button" class="btn-pref" id="btn-lang-toggle" onclick="toggleLanguage()" title="Sprache umschalten (Deutsch / English)">
+            <span id="lang-code-text">EN</span>
+          </button>
+        </div>
+
         <a href="radar.html" class="btn-launch-nav" title="Vollständiges Taktisches Radar mit Karte und Seegangsprognosen öffnen">
-          <span>Live-Radar öffnen</span>
+          <span id="nav-btn-launch-text">Live-Radar öffnen</span>
           <span>↗</span>
         </a>
       </div>
@@ -871,7 +997,230 @@
       }
     }
 
-    window.addEventListener('DOMContentLoaded', updateLiveMetrics);
+    // =========================================================================
+    // THEME MANAGEMENT (Apple Dark / Light wie in Asset Sniper)
+    // =========================================================================
+    let currentTheme = localStorage.getItem('rr_theme') || 'dark';
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('rr_theme', theme);
+      const icon = document.getElementById('theme-icon');
+      const btn = document.getElementById('btn-theme-toggle');
+
+      if (theme === 'light') {
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+        if (icon) icon.textContent = '🌙';
+        if (btn) btn.title = currentLang === 'de' ? 'Auf dunkles Design umschalten' : 'Switch to Dark Theme';
+      } else {
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+        if (icon) icon.textContent = '☀️';
+        if (btn) btn.title = currentLang === 'de' ? 'Auf helles Design umschalten' : 'Switch to Light Theme';
+      }
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    // =========================================================================
+    // INTERNATIONALIZATION (DE / EN)
+    // =========================================================================
+    let currentLang = localStorage.getItem('rr_lang') || 'de';
+
+    const I18N = {
+      de: {
+        navFeatures: 'Methodik',
+        navLaunch: 'Live-Radar öffnen',
+        headerPulse: '3 Korridore überwacht · Live',
+        heroPill: 'Live Seeraumüberwachung & Meteorologie',
+        heroTitle: 'Echtzeit-Lagebild Mittelmeer.',
+        heroSubtitle: 'Zivile Seeraumüberwachung, meteorologische Risikoanalyse und Drift-Prognosen im zentralen und östlichen Mittelmeer. Unabhängig, quelloffen und in Echtzeit.',
+        btnHeroLaunch: 'Taktisches Radar öffnen',
+        btnHeroScroll: 'Sektoren im Überblick ↓',
+        sectorsTitle: 'Aktuelle Lage in den 3 Hauptkorridoren',
+        sectorsDesc: 'Klicke auf einen Sektor, um das Radar direkt auf diesen Korridor zu zentrieren.',
+        sicilyTitle: 'Sizilien-Straße',
+        sicilyBadge: 'Moderat / Ruhig',
+        sicilyDesc: 'Geringer Seegang begünstigt Überfahrten auf kleinen Metallbooten von Sfax nach Lampedusa. Erhöhte Alarmbereitschaft für zivile Rettungsschiffe.',
+        centralTitle: 'Zentrales Mittelmeer',
+        centralBadge: 'Erhöhtes Risiko',
+        centralDesc: 'Kritische Kreuzsee und Windböen vor der libyschen Küste. Akute Kenter- und Havariegefahr für überladene Schlauchboote außerhalb der Territorialgewässer.',
+        aegeanTitle: 'Ost-Ägäis',
+        aegeanBadge: 'Wachsam',
+        aegeanDesc: 'Typische Kanal-Winde in den Meerengen. Lokale Dünung erschwert Schlauchboot-Transite zwischen der türkischen Küste und den griechischen Inseln.',
+        cardAction: 'Im Radar fokussieren',
+        metricWave: 'Welle',
+        metricWind: 'Wind',
+        metricRisk: 'Risiko-Index',
+        featuresTitle: 'Wissenschaftliche Methodik & Funktionen',
+        featuresDesc: 'Entwickelt für maritime NGOs, Journalisten und humanitäre Koordinatoren.',
+        feat1Title: '72h-Seegangsprognose',
+        feat1Desc: 'Stündliche Vorhersagen von signifikantem Seegang, Dünung, Wellenperiode und Windböen direkt aus den physikalischen Modellen von Copernicus Marine und NOAA.',
+        feat2Title: 'Mayday-Drift-Simulation',
+        feat2Desc: 'Wissenschaftliche Monte-Carlo-Partikelsimulation zur Berechnung von Windverdriftung und Meeresströmung für vermisste oder manövrierunfähige Boote.',
+        feat3Title: '100% Open Data & Transparenz',
+        feat3Desc: 'Keine geschlossenen Schnittstellen. Vollständig quelloffene Algorithmen und Datenquellen ohne politische oder militärische Einflussnahme.',
+        ctaTitle: 'Bereit für die operative Lageanalyse?',
+        ctaDesc: 'Starte das vollständige C2-Missions-Dashboard mit interaktiver Karte, AIS-Lagedaten und GPX-Exporten.',
+        ctaBtn: 'Taktisches Radar v3.2 starten',
+        disclaimer: 'Refugee Radar ist ein unabhängiges, ziviles Open-Source-Beobachtungsinstrument und keine staatliche Rettungsleitstelle (MRCC). Wir leiten keine Einsätze und bieten keine Überfahrtsplanung an. Im akuten Seenotfall wenden Sie sich sofort an das zuständige MRCC oder die Notrufnummer 112.',
+        langNext: 'EN'
+      },
+      en: {
+        navFeatures: 'Methodology',
+        navLaunch: 'Open Live Radar',
+        headerPulse: '3 Corridors Monitored · Live',
+        heroPill: 'Live Maritime Situational Awareness & Meteo',
+        heroTitle: 'Real-Time Mediterranean Situation.',
+        heroSubtitle: 'Civil maritime observation, meteorological risk analysis and drift forecasting in the central and eastern Mediterranean. Independent, open-source and live.',
+        btnHeroLaunch: 'Open Tactical Radar',
+        btnHeroScroll: 'Sectors Overview ↓',
+        sectorsTitle: 'Current Situation Across 3 Main Corridors',
+        sectorsDesc: 'Click any sector card to open and pre-focus the tactical radar on that corridor.',
+        sicilyTitle: 'Sicily Strait',
+        sicilyBadge: 'Moderate / Calm',
+        sicilyDesc: 'Low swell favors crossings on small iron skiffs from Sfax to Lampedusa. High alert readiness for civil rescue vessels.',
+        centralTitle: 'Central Mediterranean',
+        centralBadge: 'Elevated Risk',
+        centralDesc: 'Critical cross-sea and wind gusts off the Libyan coast. Severe capsize and distress risk for overloaded rubber dinghies outside territorial waters.',
+        aegeanTitle: 'Eastern Aegean',
+        aegeanBadge: 'Watchful',
+        aegeanDesc: 'Channel winds through straits. Local swell complicates dinghy transits between Turkish shores and Greek islands.',
+        cardAction: 'Focus in Radar',
+        metricWave: 'Wave',
+        metricWind: 'Wind',
+        metricRisk: 'Risk Index',
+        featuresTitle: 'Scientific Methodology & Architecture',
+        featuresDesc: 'Engineered for maritime NGOs, investigative journalism and humanitarian mission coordinators.',
+        feat1Title: '72h Sea State Forecast',
+        feat1Desc: 'Hourly forecast projections of significant wave height, swell period and wind gusts sourced directly from Copernicus Marine & NOAA models.',
+        feat2Title: 'Mayday Drift Simulation',
+        feat2Desc: 'Validated Monte-Carlo leeway and ocean surface current simulation to reconstruct distress vessel trajectory search boxes.',
+        feat3Title: '100% Open Data & Integrity',
+        feat3Desc: 'Zero proprietary locks. Fully open-source deterministic algorithms and data pipelines without political interference.',
+        ctaTitle: 'Ready for Operational Assessment?',
+        ctaDesc: 'Launch the full C2 tactical mission dashboard with interactive MapLibre charts, AIS feeds and GPX export.',
+        ctaBtn: 'Launch Tactical Radar v3.2',
+        disclaimer: 'Refugee Radar is an independent open-source humanitarian monitoring instrument and not an official Maritime Rescue Coordination Centre (MRCC). We do not coordinate rescue operations nor provide crossing navigation. In case of distress at sea, alert the responsible MRCC or emergency number 112 immediately.',
+        langNext: 'DE'
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('rr_lang', lang);
+      const t = I18N[lang];
+
+      const setT = (id, text) => {
+        const el = document.getElementById(id);
+        if (el && text !== undefined) el.textContent = text;
+      };
+
+      setT('lang-code-text', t.langNext);
+      setT('nav-features-link', t.navFeatures);
+      setT('nav-btn-launch-text', t.navLaunch);
+      setT('header-pulse-text', t.headerPulse);
+
+      const pillEl = document.querySelector('.hero-pill span:last-child');
+      if (pillEl) pillEl.textContent = t.heroPill;
+
+      const titleEl = document.querySelector('.hero-title');
+      if (titleEl) titleEl.textContent = t.heroTitle;
+
+      const subEl = document.querySelector('.hero-subtitle');
+      if (subEl) subEl.textContent = t.heroSubtitle;
+
+      const btnHeroLaunch = document.getElementById('btn-hero-launch');
+      if (btnHeroLaunch) {
+        btnHeroLaunch.innerHTML = `<span>${t.btnHeroLaunch}</span> <span>↗</span>`;
+      }
+
+      const btnHeroSec = document.querySelector('.btn-hero-secondary');
+      if (btnHeroSec) btnHeroSec.textContent = t.btnHeroScroll;
+
+      const secTitle = document.querySelector('#sectors .section-title');
+      if (secTitle) secTitle.textContent = t.sectorsTitle;
+      const secDesc = document.querySelector('#sectors .section-desc');
+      if (secDesc) secDesc.textContent = t.sectorsDesc;
+
+      // Sector 1
+      const sicilyH3 = document.querySelector('#card-sector-sicily h3');
+      if (sicilyH3) sicilyH3.textContent = t.sicilyTitle;
+      setT('txt-status-sicily', t.sicilyBadge);
+      setT('desc-sicily', t.sicilyDesc);
+
+      // Sector 2
+      const centralH3 = document.querySelector('#card-sector-central h3');
+      if (centralH3) centralH3.textContent = t.centralTitle;
+      setT('txt-status-central', t.centralBadge);
+      setT('desc-central', t.centralDesc);
+
+      // Sector 3
+      const aegeanH3 = document.querySelector('#card-sector-aegean h3');
+      if (aegeanH3) aegeanH3.textContent = t.aegeanTitle;
+      setT('txt-status-aegean', t.aegeanBadge);
+      setT('desc-aegean', t.aegeanDesc);
+
+      // Metric labels
+      document.querySelectorAll('.metric-lbl').forEach((el, idx) => {
+        const mod = idx % 3;
+        if (mod === 0) el.textContent = t.metricWave;
+        else if (mod === 1) el.textContent = t.metricWind;
+        else if (mod === 2) el.textContent = t.metricRisk;
+      });
+
+      // Card actions
+      document.querySelectorAll('.card-footer-action span:first-child').forEach(el => {
+        el.textContent = t.cardAction;
+      });
+
+      // Features section
+      const featTitle = document.querySelector('#features .section-title');
+      if (featTitle) featTitle.textContent = t.featuresTitle;
+      const featDesc = document.querySelector('#features .section-desc');
+      if (featDesc) featDesc.textContent = t.featuresDesc;
+
+      const featCards = document.querySelectorAll('.feature-card');
+      if (featCards[0]) {
+        featCards[0].querySelector('h4').textContent = t.feat1Title;
+        featCards[0].querySelector('p').textContent = t.feat1Desc;
+      }
+      if (featCards[1]) {
+        featCards[1].querySelector('h4').textContent = t.feat2Title;
+        featCards[1].querySelector('p').textContent = t.feat2Desc;
+      }
+      if (featCards[2]) {
+        featCards[2].querySelector('h4').textContent = t.feat3Title;
+        featCards[2].querySelector('p').textContent = t.feat3Desc;
+      }
+
+      // CTA Banner
+      const ctaH2 = document.querySelector('.cta-banner h2');
+      if (ctaH2) ctaH2.textContent = t.ctaTitle;
+      const ctaP = document.querySelector('.cta-banner p');
+      if (ctaP) ctaP.textContent = t.ctaDesc;
+      const ctaBtn = document.querySelector('.cta-banner .btn-hero-primary span:first-child');
+      if (ctaBtn) ctaBtn.textContent = t.ctaBtn;
+
+      // Disclaimer
+      const discEl = document.querySelector('.disclaimer-box');
+      if (discEl) {
+        discEl.innerHTML = `<strong>${lang === 'de' ? 'Rechtlicher Hinweis:' : 'Legal Notice:'}</strong> ${t.disclaimer}`;
+      }
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'de' ? 'en' : 'de');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
+      applyLanguage(currentLang);
+      updateLiveMetrics();
+    });
   </script>
 </body>
 </html>
